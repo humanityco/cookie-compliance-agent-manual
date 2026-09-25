@@ -49,7 +49,7 @@ Every skill and cookbook here is built on this rule.
 
 ## Use it with the Cookie Compliance MCP server
 
-Cookie Compliance runs a remote MCP server that agents can call directly. To add it to Claude Code:
+Cookie Compliance runs a remote MCP server that agents can call directly, at `https://mcp.cookie-compliance.co/mcp` (Streamable HTTP; add it to any MCP client by that URL). In Claude Code:
 
 ```bash
 claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.co/mcp

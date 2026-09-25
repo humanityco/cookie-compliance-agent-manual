@@ -33,7 +33,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 
 ## The right way
 
-1. **Get the snippet.** Copy it from the dashboard, or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` with your AppID. It looks like this:
+1. **Get the snippet.** Copy it from the dashboard, or ask an agent that has the Cookie Compliance MCP server connected to use its `getSnippet` tool (listed as `install.getSnippet` or `install_getSnippet`, depending on the client) with your AppID. It looks like this:
 
    ```html
    <script>
@@ -81,19 +81,24 @@ Colours, wording, consent categories and regions are **not** set here. They live
 
 Use a **private window**, so no earlier consent is remembered.
 
+**Your location matters.** If region rules are switched on in the dashboard, the banner and the blocking follow the rule for the visitor's region. Some regions may be set to show no banner, or not to block. Test from a location covered by your strictest rule (for example the EU), or confirm region rules are off, before judging checks 1 and 3.
+
 | # | Check | Pass |
 |---|---|---|
 | 1 | **Look at the page** | The banner appears on first visit. There is **no** "Hu-manity PREVIEW — not active consent management" badge (that badge means a demo snippet was installed instead of the real one). |
-| 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`. |
-| 3 | **Network tab, before clicking anything** | No requests to analytics or ad hosts (for example `google-analytics.com`, `googletagmanager.com/gtag`, `connect.facebook.net`). |
-| 4 | **Click Accept, then reload** | Those requests now appear, the banner stays closed, and a `hu-consent` cookie exists. |
+| 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`, and the page contains no `previewMode`. |
+| 3 | **Before clicking anything** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) in the Application → Cookies panel, and no requests to analytics or ad hosts in the Network tab. |
+| 4 | **Accept all** | Trackers start loading straight away, with no reload needed. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 | 5 | **Another page** | Repeat checks 1–2 on an inner page, not only the homepage. |
 
-Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but the network tab is the real proof, because a script can still inject other scripts.
+Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but cookies and network requests are the real proof, because a script can still inject other scripts.
+
+**Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) are **allowed to load before consent** on purpose. They receive a "denied" consent signal instead of being blocked. Seeing those requests is correct. Judge check 3 by the cookies: none of their tracking cookies should appear before the visitor accepts.
 
 ## Gotchas
 
 - **Automated browsers see no banner.** The widget deliberately doesn't run when the browser reports that it is automated (`navigator.webdriver`), or when the user agent looks like a bot, including `HeadlessChrome`. If you check with Playwright, Puppeteer or Selenium, hide `navigator.webdriver` and use a normal desktop user agent, or you'll get a false "banner missing".
 - **"Combine" or "minify JS" optimisers** (in hosting panels or caching plugins) can merge or move the snippet. Exclude both tags from them.
-- **"Banner not showing" right after signup** usually means the configuration was saved but not **published** in the dashboard.
+- **"Banner not showing" right after signup:** one common cause is a configuration that was saved but not **published** in the dashboard.
+- **Remove any other consent banner.** If the site already has a hand-made cookie popup or another consent tool, take it out. Two banners give visitors two conflicting choices.
 - **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the page address it came from.
