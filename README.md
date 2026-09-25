@@ -1,4 +1,4 @@
-# agent-manual
+# cookie-compliance-agent-manual
 
 Skills and cookbooks that help coding agents add a **Cookie Compliance** consent banner, by Hu-manity.co, to a website the right way.
 
