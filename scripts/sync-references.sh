@@ -15,6 +15,8 @@ stale=0
 for list in "$root"/skills/*/references.txt; do
   skill="$(dirname "$list")"
   tmp="$(mktemp -d)"
+  trap 'rm -rf "$tmp"' EXIT
+  chmod 755 "$tmp"
   while IFS= read -r name || [ -n "$name" ]; do
     name="${name%$'\r'}"
     [ -z "$name" ] && continue

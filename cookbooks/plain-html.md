@@ -93,7 +93,7 @@ Use a **private window**, so no earlier consent is remembered.
 
 Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but cookies and network requests are the real proof, because a script can still inject other scripts.
 
-**Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) are **allowed to load before consent** on purpose. They receive a "denied" consent signal instead of being blocked. Seeing those requests is correct. Judge check 3 by the cookies: none of their tracking cookies should appear before the visitor accepts.
+**Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) are **allowed to load before consent** on purpose. They receive a "denied" consent signal instead of being blocked. With Google Consent Mode, cookieless pings to `google-analytics.com` that carry the denied state are expected too. Seeing those requests is correct. Judge check 3 by the cookies: none of their tracking cookies should appear before the visitor accepts.
 
 ## Gotchas
 

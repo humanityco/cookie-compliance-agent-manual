@@ -63,7 +63,7 @@ Use a fresh browser profile or private window. If you drive a browser with autom
 | 3 | **Before any click** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) and no requests to analytics or ad hosts. |
 | 4 | **Use the accept-all control** | Trackers load at once, with no reload needed. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 
-**Consent Mode exception to check 3:** when Google, Meta or Microsoft Consent Mode is on, their loader scripts (for example `googletagmanager.com/gtag/js`, `connect.facebook.net`) load before consent **by design**, and they are sent a "denied" signal. That is correct; don't "fix" it. Judge check 3 by cookies only.
+**Consent Mode exception to check 3:** when Google, Meta or Microsoft Consent Mode is on, their loader scripts (for example `googletagmanager.com/gtag/js`, `connect.facebook.net`) load before consent **by design**, and they are sent a "denied" signal. With Google Consent Mode, cookieless pings to `google-analytics.com` carrying the denied state are expected too. That is correct; don't "fix" it. Judge check 3 by cookies only.
 
 If you can't run a browser, give the owner this table and ask them to confirm each row.
 
