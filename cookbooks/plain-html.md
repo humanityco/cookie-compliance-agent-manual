@@ -1,7 +1,7 @@
 ---
 title: Add Cookie Compliance to a plain HTML site
 kind: platform
-last_verified: 2026-09-25
+last_verified: 2026-09-28
 ---
 
 # Add Cookie Compliance to a plain HTML site
@@ -87,11 +87,13 @@ Use a **private window**, so no earlier consent is remembered.
 |---|---|---|
 | 1 | **Look at the page** | The banner appears on first visit. There is **no** "Hu-manity PREVIEW — not active consent management" badge (that badge means a demo snippet was installed instead of the real one). |
 | 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`, and the page contains no `previewMode`. |
-| 3 | **Before clicking anything** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) in the Application → Cookies panel, and no requests to analytics or ad hosts in the Network tab. |
-| 4 | **Accept all** | Trackers start loading straight away, with no reload needed. After a reload the banner stays closed and a `hu-consent` cookie exists. |
-| 5 | **Another page** | Repeat checks 1–2 on an inner page, not only the homepage. |
+| 3 | **Before clicking anything** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) in the Application → Cookies panel, and no **data hits** in the Network tab (for example `google-analytics.com/g/collect`, `facebook.com/tr`). |
+| 4 | **Allow everything** (choose the most permissive option, then save) | Trackers start running straight away, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
+| 5 | **Another page** | Repeat checks 1–3 on an inner page, in a fresh private window, not only the homepage. |
 
-Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but cookies and network requests are the real proof, because a script can still inject other scripts.
+Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but cookies and data hits are the real proof, because a script can still inject other scripts.
+
+**A tracker's script file may still download before consent.** While the page loads, the browser looks ahead in the HTML and starts downloading `<script src>` files it finds there, even while the Cookie Compliance snippet above them is still running. (Scripts that code adds later are not fetched this way.) So you can see a request for a file such as `googletagmanager.com/gtag/js` even when the banner is blocking it correctly: the file downloads but never runs. That is not a failure, as long as its cookies and data hits stay absent. To confirm it didn't run, type these in the browser console before choosing anything: `typeof google_tag_manager` should print `"undefined"` (Google), and `typeof fbq === 'undefined' || !fbq.getState` should print `true` (Meta).
 
 **Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) are **allowed to load before consent** on purpose. They receive a "denied" consent signal instead of being blocked. With Google Consent Mode, cookieless pings to `google-analytics.com` that carry the denied state are expected too. Seeing those requests is correct. Judge check 3 by the cookies: none of their tracking cookies should appear before the visitor accepts.
 
