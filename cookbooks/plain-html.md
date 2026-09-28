@@ -6,7 +6,7 @@ last_verified: 2026-09-28
 
 # Add Cookie Compliance to a plain HTML site
 
-**In short:** paste the two-tag snippet as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
+**In short:** paste the **live** two-tag snippet (from MCP `install.getSnippet` or the dashboard Integrations page) as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
 
 ## You need
 
@@ -33,7 +33,11 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 
 ## The right way
 
-1. **Get the snippet.** Copy it from the dashboard, or ask an agent that has the Cookie Compliance MCP server connected to use its `getSnippet` tool (listed as `install.getSnippet` or `install_getSnippet`, depending on the client) with your AppID. It looks like this:
+1. **Get the live snippet — do not rebuild it from memory.** Copy it from the dashboard (**Integrations → Manual Integration**), or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. That source already picks the correct script URL for your app's banner engine:
+   - **v1** (default): `https://cdn.hu-manity.co/hu-banner.min.js`
+   - **v2**: `https://cdn.hu-manity.co/v2/hu-banner.min.js`
+
+   Shape (keys and URL vary — treat this as illustration only):
 
    ```html
    <script>
@@ -47,12 +51,14 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
    <script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
    ```
 
+   If you later switch banner engine in the dashboard, **re-copy and replace** the snippet on every page. Changing the setting alone does not update a hand-pasted install.
+
 2. **Put it first in `<head>`**, before anything else that runs code:
 
    ```html
    <head>
      <meta charset="utf-8">
-     <!-- Cookie Compliance: FIRST script on the page -->
+     <!-- Cookie Compliance: FIRST script on the page (paste live snippet here) -->
      <script>
          var huOptions = { "appID": "YOUR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
      </script>
@@ -67,7 +73,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 
 4. **Leave your trackers alone.** Don't delete them and don't wrap them in your own "if consented" code. The widget holds them back until the visitor agrees.
 
-**Options in `huOptions`:**
+**Options in `huOptions` (common keys):**
 
 | Key | Default | Change it when |
 |---|---|---|
@@ -75,7 +81,9 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 | `currentLanguage` | `"en"` | The page is in another language (two-letter code). |
 | `globalCookie` | `false` | Consent should be shared across your subdomains. |
 
-Colours, wording, consent categories and regions are **not** set here. They live in your published configuration in the dashboard, and anything you add to the page for them is overwritten when the banner loads.
+The dashboard snippet may also include other keys (for example Consent Mode defaults, `blockingEngine`, custom providers). Keep whatever the live snippet gave you.
+
+Colours, wording, consent categories and regions are **not** set in the page. They live in your published configuration in the dashboard, and anything you add to the page for them is overwritten when the banner loads.
 
 ## Check it works
 
@@ -86,7 +94,7 @@ Use a **private window**, so no earlier consent is remembered.
 | # | Check | Pass |
 |---|---|---|
 | 1 | **Look at the page** | The banner appears on first visit. There is **no** "Hu-manity PREVIEW — not active consent management" badge (that badge means a demo snippet was installed instead of the real one). |
-| 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`, and the page contains no `previewMode`. |
+| 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`, and the page contains no `previewMode`. For a v2 app, the script `src` is `/v2/hu-banner.min.js`. |
 | 3 | **Before clicking anything** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) in the Application → Cookies panel, and no **data hits** in the Network tab (for example `google-analytics.com/g/collect`, `facebook.com/tr`). |
 | 4 | **Allow everything** (choose the most permissive option, then save) | Trackers start running straight away, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 | 5 | **Another page** | Repeat checks 1–3 on an inner page, in a fresh private window, not only the homepage. |
@@ -102,5 +110,6 @@ Check 3 is the one that matters for compliance. In the Elements panel, blocked t
 - **Automated browsers see no banner.** The widget deliberately doesn't run when the browser reports that it is automated (`navigator.webdriver`), or when the user agent looks like a bot, including `HeadlessChrome`. If you check with Playwright, Puppeteer or Selenium, hide `navigator.webdriver` and use a normal desktop user agent, or you'll get a false "banner missing".
 - **"Combine" or "minify JS" optimisers** (in hosting panels or caching plugins) can merge or move the snippet. Exclude both tags from them.
 - **"Banner not showing" right after signup:** one common cause is a configuration that was saved but not **published** in the dashboard.
+- **Wrong engine URL:** a v2 app with the v1 script path (or the reverse) after an engine switch — re-copy from Integrations / `install.getSnippet`.
 - **Remove any other consent banner.** If the site already has a hand-made cookie popup or another consent tool, take it out. Two banners give visitors two conflicting choices.
 - **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the page address it came from.

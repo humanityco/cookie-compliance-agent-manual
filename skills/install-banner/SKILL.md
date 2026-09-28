@@ -15,28 +15,44 @@ MCP tool names below are written `install.getSnippet`; some clients list them as
 
 ```
 Is the site WordPress?
-├─ yes → install the "Cookie Compliance for WordPress" plugin and connect it with the
-│        App ID + App Key from the Cookie Compliance dashboard. Then go to step 4 (Verify).
-└─ no  → does the owner have a Cookie Compliance AppID?
-         ├─ no  → STOP AND ASK. Send them to sign up (free plan, no card).
-         │        With MCP connected: call help.startSignup and give them the URL.
-         │        Never invent an AppID. Never install a demo/preview snippet as the result.
-         └─ yes → go to step 2
+├─ yes → install the "Cookie Compliance for WordPress" plugin
+│        (wordpress.org/plugins/cookie-notice/) and connect it with the
+│        App ID + App Key from the Cookie Compliance dashboard.
+│        Do NOT paste the manual snippet. Then go to step 4 (Verify).
+│        Detail: references/wordpress.md
+└─ no  → need a Cookie Compliance AppID (see below). Then go to step 2.
 ```
+
+**Getting an AppID (non-WordPress):**
+
+| Situation | What to do |
+|---|---|
+| Cookie Compliance MCP connected **and signed in** | Call `account.listApps`. If the site's domain is missing, call `account.createApp` with the domain, then use the returned AppID. Never invent an AppID. |
+| MCP connected, anonymous (no account tools) | Call any `account.*` tool (cheapest: `account.listApps`) so the client starts sign-in, **or** call `help.explainTokenSetup`. Do not ask for the owner's password. |
+| No account yet | STOP AND ASK. Call `help.startSignup` and give them the URL (free plan, no card). Wait for an AppID. |
+| No MCP | Ask the owner for the AppID from the Cookie Compliance dashboard (Integrations), or for them to copy the Manual Integration snippet from there. |
+
+Never invent an AppID. Never install a demo/preview snippet (`demo.generateSnippet` / `previewMode`) as the finished result.
 
 ## 2. Get the live snippet
 
-- **Cookie Compliance MCP connected:** call `install.getSnippet` with `appID`. Use the returned `html` exactly as given, and follow its `placement` and `warnings`. If it refuses the AppID, report that to the owner; don't work around it.
-- **No MCP:** ask the owner to copy the snippet from the Cookie Compliance dashboard, or build this exact form:
+**Prefer live HTML. Do not reconstruct it from memory.**
 
-  ```html
-  <script>
-      var huOptions = { "appID": "THEIR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
-  </script>
-  <script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
-  ```
+- **Cookie Compliance MCP connected:** call `install.getSnippet` with `appID`. Paste the returned `html` **exactly** as given. Follow its `placement` and `warnings`. Note `widgetVersion` (`v1`, `v2`, or null): the script URL already matches it. If it refuses the AppID (unpublished or unknown), report that to the owner; don't work around it.
+- **No MCP:** ask the owner to copy the snippet from the Cookie Compliance dashboard → **Integrations → Manual Integration**. That page emits the correct CDN path for the app's banner engine (v1 or v2). Paste it unchanged.
 
-Keep `blocking: true` unless the owner explicitly asks otherwise. Don't add design or text keys; the published configuration overrides them.
+**Last resort only** (owner has an AppID, cannot reach MCP or dashboard, and asked you to build the tags):
+
+```html
+<script>
+    var huOptions = { "appID": "THEIR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
+</script>
+<script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+```
+
+Ask which banner engine the app uses. If it is **v2**, the script `src` must be `https://cdn.hu-manity.co/v2/hu-banner.min.js` instead. If you do not know, stop and get the dashboard/MCP snippet — guessing the wrong URL puts the site on the wrong engine. Keep `blocking: true` unless the owner explicitly asks otherwise. Don't add design or text keys; the published configuration overrides them. A hand-built snippet also omits keys the dashboard may include (`blockingEngine`, Consent Mode defaults, custom providers) — another reason to prefer live HTML.
+
+If the owner later switches banner engine in the dashboard, a hand-pasted snippet does **not** update by itself. Re-copy and replace it on every page.
 
 ## 3. Place it
 
@@ -46,7 +62,12 @@ Keep `blocking: true` unless the owner explicitly asks otherwise. Don't add desi
 4. Leave existing trackers in place, **below** the snippet. Don't delete them or add your own consent checks around them.
 5. Remove any other consent banner, whether hand-made or another consent tool, and any leftover preview snippet (`previewMode`). Two banners give conflicting consent.
 
-Platform detail: `references/plain-html.md`.
+Platform detail:
+
+- Plain HTML: `references/plain-html.md`
+- Next.js: `references/nextjs.md`
+- Google Tag Manager on the page: `references/gtm.md`
+- WordPress: `references/wordpress.md` (plugin path — no paste)
 
 **Stop and ask the owner** if the only way to add scripts is through a tag manager, or if you can't edit `<head>` on every page. Say so plainly; don't invent a workaround.
 
@@ -59,7 +80,7 @@ Use a fresh browser profile or private window. If you drive a browser with autom
 | # | Check | Pass |
 |---|---|---|
 | 1 | **Screenshot** the page on first load (desktop and mobile width) | The banner is visible. No badge reading "Hu-manity PREVIEW — not active consent management". |
-| 2 | **Page source** | The snippet is the first script in `<head>`, without `async`/`defer`, on the homepage **and** an inner page. No `previewMode` anywhere. |
+| 2 | **Page source** | The snippet is the first script in `<head>`, without `async`/`defer`, on the homepage **and** an inner page. No `previewMode` anywhere. For a v2 app, the script `src` contains `/v2/hu-banner.min.js`. |
 | 3 | **Before any click** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) and no data hits (for example `google-analytics.com/g/collect`, `facebook.com/tr`). A tracker's script **file** in the HTML may still download (the browser starts fetching `<script src>` files it finds ahead in the page); that is fine only if it never runs. Prove it: `typeof google_tag_manager === 'undefined'` and `typeof fbq === 'undefined' \|\| !fbq.getState` are both true. Repeat this check on an inner page in a fresh profile. |
 | 4 | **Allow everything**: choose the most permissive option (for example the highest level), then save | Trackers run at once, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 
@@ -69,4 +90,4 @@ If you can't run a browser, give the owner this table and ask them to confirm ea
 
 ## 5. Report
 
-Tell the owner: which file(s) you changed, the result of each check (with screenshots if taken), the region you tested from, and that design, wording and regions are managed in the Cookie Compliance dashboard, not in the page.
+Tell the owner: which file(s) you changed, the result of each check (with screenshots if taken), the region you tested from, which banner engine URL was installed (v1 root path vs `/v2/`), and that design, wording and regions are managed in the Cookie Compliance dashboard, not in the page.
