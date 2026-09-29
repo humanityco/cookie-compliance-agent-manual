@@ -1,0 +1,22 @@
+# cookie-compliance-agent-manual
+
+> Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner (by Hu-manity.co) so it blocks trackers before consent, not just shows a notice afterward.
+
+Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and similar laws, published by Hu-manity.co (https://hu-manity.co/llms.txt). The product itself — capabilities, pricing, the MCP server — is documented at https://cookie-compliance.co/llms.txt; this repo is the agent-facing companion that shows how to actually install and verify the banner.
+
+## Skills
+
+- [install-banner](skills/install-banner/SKILL.md): get the live snippet for an AppID and place it correctly. Shipped.
+
+## Cookbooks
+
+- [plain-html](cookbooks/plain-html.md): paste the snippet into a static site's `<head>`.
+- [wordpress](cookbooks/wordpress.md): install via the Cookie Compliance for WordPress plugin, not a pasted snippet.
+- [nextjs](cookbooks/nextjs.md): place the snippet correctly in a Next.js layout.
+- [gtm](cookbooks/gtm.md): keep Google Tag Manager itself un-blocked while the tags it fires stay held back.
+
+## Optional
+
+- [README](README.md): why this exists, what's planned, how to contribute.
+- [AGENTS.md](AGENTS.md): hard rules for contributing here.
+- [LICENSE](LICENSE): MIT.
