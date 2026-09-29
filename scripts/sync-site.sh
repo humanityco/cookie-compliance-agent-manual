@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Mirrors the repo's markdown into site/ so manual.hu-manity.co serves the
+# same skills/cookbooks/llms.txt as raw files, at stable paths. site/ is a
+# generated copy: edit the source (skills/, cookbooks/, root files), never
+# site/ directly.
+#
+#   scripts/sync-site.sh          rebuild the site/ mirror
+#   scripts/sync-site.sh --check  exit 1 if the mirror is out of date (for CI)
+set -euo pipefail
+shopt -s nullglob
+root="$(cd "$(dirname "$0")/.." && pwd)"
+check=false
+[ "${1:-}" = "--check" ] && check=true
+
+tmp="$(mktemp -d)"
+trap 'rm -rf "$tmp"' EXIT
+chmod 755 "$tmp"
+
+for f in README.md AGENTS.md LICENSE; do
+  cp "$root/$f" "$tmp/$f"
+done
+# llms.txt says "this repo" -- true on GitHub, not on this site. One
+# deliberate, mechanical substitution; everything else is a byte-identical
+# mirror.
+sed 's/this repo is the agent-facing companion/this manual is the agent-facing companion/' \
+  "$root/llms.txt" > "$tmp/llms.txt"
+
+mkdir -p "$tmp/skills" "$tmp/cookbooks"
+for skill_md in "$root"/skills/*/SKILL.md; do
+  name="$(basename "$(dirname "$skill_md")")"
+  mkdir -p "$tmp/skills/$name"
+  cp "$skill_md" "$tmp/skills/$name/SKILL.md"
+done
+for cookbook in "$root"/cookbooks/*.md; do
+  cp "$cookbook" "$tmp/cookbooks/$(basename "$cookbook")"
+done
+
+if $check; then
+  stale=0
+  # index.html is hand-written, not part of the mirror -- exclude it from the diff.
+  if ! diff -rq -x index.html "$tmp" "$root/site" >/dev/null 2>&1; then
+    echo "stale: site/ does not match skills/, cookbooks/ and root docs"
+    diff -rq -x index.html "$tmp" "$root/site" || true
+    stale=1
+  fi
+  exit $stale
+else
+  find "$root/site" -mindepth 1 ! -name index.html -delete
+  cp -r "$tmp"/. "$root/site"/
+  echo "synced site/"
+fi

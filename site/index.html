@@ -2,22 +2,102 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>cookie-compliance-agent-manual</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cookie Compliance Agent Manual</title>
+<meta name="description" content="Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice.">
 <style>
-  :root { color-scheme: light dark; }
-  body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 4rem auto; padding: 0 1.5rem; line-height: 1.5; }
-  a { color: #20c19e; }
-  code { background: rgba(127,127,127,0.15); padding: 0.1em 0.4em; border-radius: 4px; }
+  :root {
+    color-scheme: light dark;
+    --accent: #20c19e;
+    --bg: #ffffff;
+    --fg: #1a1f24;
+    --muted: #5a6570;
+    --border: #e3e7ea;
+    --code-bg: rgba(32,193,158,0.1);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #14181c;
+      --fg: #eef1f3;
+      --muted: #9aa5ad;
+      --border: #2a3138;
+      --code-bg: rgba(32,193,158,0.15);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181c;
+    --fg: #eef1f3;
+    --muted: #9aa5ad;
+    --border: #2a3138;
+    --code-bg: rgba(32,193,158,0.15);
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+    line-height: 1.55;
+  }
+  main {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding: 3rem 1.25rem 4rem;
+  }
+  h1 { font-size: 1.6rem; margin: 0 0 0.5rem; }
+  .tagline { color: var(--muted); margin: 0 0 2rem; font-size: 1.05rem; }
+  h2 { font-size: 1.1rem; margin: 2.25rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
+  ul { padding-left: 0; margin: 0; list-style: none; }
+  li { margin: 0.6rem 0; padding-left: 1rem; border-left: 2px solid var(--border); }
+  li.shipped { border-left-color: var(--accent); }
+  a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  a:hover { text-decoration: underline; }
+  .desc { display: block; color: var(--muted); font-weight: 400; font-size: 0.92rem; margin-top: 0.15rem; }
+  .badge {
+    display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em;
+    color: var(--accent); background: var(--code-bg); border-radius: 4px;
+    padding: 0.05rem 0.4rem; margin-left: 0.4rem; vertical-align: middle;
+  }
+  code { background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.9em; }
+  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
+  footer a { font-weight: 400; }
 </style>
 </head>
 <body>
-<h1>cookie-compliance-agent-manual</h1>
-<p>This site is being built. In the meantime, the skills and cookbooks live in the
-GitHub repo, which already has an <code>llms.txt</code> of its own:</p>
-<ul>
-  <li><a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a></li>
-  <li><a href="https://github.com/humanityco/cookie-compliance-agent-manual/blob/main/llms.txt">llms.txt</a></li>
-</ul>
+<main>
+  <h1>Cookie Compliance Agent Manual</h1>
+  <p class="tagline">Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice afterward.</p>
+
+  <p>Ask a coding agent to "add a cookie banner" and it usually writes one by hand: a popup that stores the visitor's choice while the analytics tag above it has already run. This manual gives an agent tested procedures for doing it properly with <a href="https://cookie-compliance.co/">Cookie Compliance</a> instead — the right snippet, in the right place, verified afterward.</p>
+
+  <h2>Skills</h2>
+  <ul>
+    <li class="shipped"><a href="skills/install-banner/SKILL.md">install-banner</a><span class="badge">shipped</span><span class="desc">Get the live snippet for an AppID and place it correctly.</span></li>
+    <li class="shipped"><a href="skills/verify-install/SKILL.md">verify-install</a><span class="badge">shipped</span><span class="desc">Prove the banner blocks trackers before consent, on any install.</span></li>
+    <li class="shipped"><a href="skills/match-site-design/SKILL.md">match-site-design</a><span class="badge">shipped</span><span class="desc">Derive a banner design from the site's own colours; check WCAG AA contrast.</span></li>
+  </ul>
+
+  <h2>Cookbooks</h2>
+  <ul>
+    <li class="shipped"><a href="cookbooks/plain-html.md">plain-html</a><span class="desc">Paste the snippet into a static site's <code>&lt;head&gt;</code>.</span></li>
+    <li class="shipped"><a href="cookbooks/wordpress.md">wordpress</a><span class="desc">Install via the plugin, not a pasted snippet.</span></li>
+    <li class="shipped"><a href="cookbooks/nextjs.md">nextjs</a><span class="desc">Place the snippet correctly in a Next.js layout.</span></li>
+    <li class="shipped"><a href="cookbooks/nuxt.md">nuxt</a><span class="desc">Place it in <code>nuxt.config.ts</code> — never mark it <code>async</code>.</span></li>
+    <li class="shipped"><a href="cookbooks/astro.md">astro</a><span class="desc">Place it in the shared layout with <code>is:inline</code> on every tag.</span></li>
+    <li class="shipped"><a href="cookbooks/gtm.md">gtm</a><span class="desc">Keep Google Tag Manager itself un-blocked while its tags stay held back.</span></li>
+  </ul>
+
+  <h2>For agents</h2>
+  <ul>
+    <li><a href="llms.txt">llms.txt</a><span class="desc">Machine-readable index of everything on this page.</span></li>
+  </ul>
+
+  <footer>
+    Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+    Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.
+  </footer>
+</main>
 </body>
 </html>
