@@ -51,7 +51,8 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`nextjs.md`](cookbooks/nextjs.md) | Shipped |
 | [`gtm.md`](cookbooks/gtm.md) | Shipped |
 | [`nuxt.md`](cookbooks/nuxt.md) | Shipped |
-| Astro, Shopify | Planned |
+| [`astro.md`](cookbooks/astro.md) | Shipped |
+| Shopify | Planned |
 
 ## The one rule
 

@@ -3,3 +3,4 @@ wordpress.md
 nextjs.md
 gtm.md
 nuxt.md
+astro.md

@@ -17,6 +17,7 @@ Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and simi
 - [nextjs](cookbooks/nextjs.md): place the snippet correctly in a Next.js layout.
 - [gtm](cookbooks/gtm.md): keep Google Tag Manager itself un-blocked while the tags it fires stay held back.
 - [nuxt](cookbooks/nuxt.md): place the snippet in `nuxt.config.ts`, not a composable or client plugin — and never mark it `async`.
+- [astro](cookbooks/astro.md): place the snippet in the shared layout with `is:inline` on every tag, or Astro silently defers it as a module.
 
 ## Optional
 
