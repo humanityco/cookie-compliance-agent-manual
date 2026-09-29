@@ -92,7 +92,7 @@ A contribution must:
 
 ## License
 
-To be announced before the first public release.
+[MIT](./LICENSE). "Cookie Compliance" is a trademark of Hu-manity.co; this license covers the skills and cookbooks in this repo, not the trademark or the hosted service.
 
 ---
 
