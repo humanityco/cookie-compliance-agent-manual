@@ -2,3 +2,4 @@ plain-html.md
 wordpress.md
 nextjs.md
 gtm.md
+nuxt.md

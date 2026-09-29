@@ -66,6 +66,7 @@ Platform detail:
 
 - Plain HTML: `references/plain-html.md`
 - Next.js: `references/nextjs.md`
+- Nuxt: `references/nuxt.md`
 - Google Tag Manager on the page: `references/gtm.md`
 - WordPress: `references/wordpress.md` (plugin path — no paste)
 
