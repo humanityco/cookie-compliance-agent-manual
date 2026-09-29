@@ -38,9 +38,9 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 ### Skills
 
 - **install-banner** *(shipped)*: get the live snippet for an AppID and place it correctly (WordPress → plugin; others → paste).
+- **verify-install** *(shipped)*: prove the banner actually blocks trackers before consent. `install-banner` calls this at its own verify step; it also stands alone for checking a banner someone else installed.
 - **match-site-design** *(planned)*: derive a banner design from the site's own colours and check contrast.
 - **configure-regions** *(planned)*: set per-region rules (for example GDPR in the EU, CCPA in California).
-- **verify-install** *(planned)*: standalone verify skill (checklist already lives inside install-banner).
 
 ### Cookbooks
 

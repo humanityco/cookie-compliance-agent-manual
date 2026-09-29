@@ -7,6 +7,7 @@ Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and simi
 ## Skills
 
 - [install-banner](skills/install-banner/SKILL.md): get the live snippet for an AppID and place it correctly. Shipped.
+- [verify-install](skills/verify-install/SKILL.md): prove the banner blocks trackers before consent, on any Cookie Compliance install. Shipped.
 
 ## Cookbooks
 
