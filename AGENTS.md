@@ -15,7 +15,7 @@ just showing a notice. See [README.md](README.md) for the full picture.
 ## Hard rules for anyone contributing here
 
 - **No real AppIDs, customer domains, or personal data** in any file. Use
-  `YOUR_APP_ID` / `example.com`.
+  `YOUR_APP_ID` / `example.com` (`scripts/check-no-real-data.sh` enforces this in CI).
 - **Verify before you claim.** Any statement about banner behavior must be
   checked against a real install, not assumed.
 - **Capability, never compliance, as the claim.** This manual helps install a

@@ -99,7 +99,7 @@ Issues and pull requests are welcome. Every contribution is reviewed before it i
 A contribution must:
 
 - **Be verified.** Any claim about how the banner behaves has been checked against a real install.
-- **Contain no customer data.** No real AppIDs, customer domains, or personal information. Use placeholders such as `YOUR_APP_ID` and `example.com`.
+- **Contain no customer data.** No real AppIDs, customer domains, or personal information. Use placeholders such as `YOUR_APP_ID` and `example.com`. CI runs `scripts/check-no-real-data.sh` on every PR.
 - **Follow the recipe shape** (cookbooks only): problem → wrong approach → right approach → how to check it.
 - **Edit cookbooks, not `skills/*/references/`.** Those copies are generated; CI runs `scripts/sync-references.sh --check`.
 
