@@ -52,7 +52,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`gtm.md`](cookbooks/gtm.md) | Shipped |
 | [`nuxt.md`](cookbooks/nuxt.md) | Shipped |
 | [`astro.md`](cookbooks/astro.md) | Shipped |
-| Shopify | Planned |
+| [`shopify.md`](cookbooks/shopify.md) | Shipped |
 
 ## The one rule
 
