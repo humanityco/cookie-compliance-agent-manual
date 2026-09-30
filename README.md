@@ -40,7 +40,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 - **install-banner** *(shipped)*: get the live snippet for an AppID and place it correctly (WordPress → plugin; others → paste).
 - **verify-install** *(shipped)*: prove the banner actually blocks trackers before consent. `install-banner` calls this at its own verify step; it also stands alone for checking a banner someone else installed.
 - **match-site-design** *(shipped)*: derive a banner design from the site's own colours and check contrast.
-- **configure-regions** *(planned)*: set per-region rules (for example GDPR in the EU, CCPA in California).
+- **configure-regions** *(shipped)*: set per-region rules (for example GDPR in the EU, CCPA in California).
 
 ### Cookbooks
 
@@ -52,7 +52,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`gtm.md`](cookbooks/gtm.md) | Shipped |
 | [`nuxt.md`](cookbooks/nuxt.md) | Shipped |
 | [`astro.md`](cookbooks/astro.md) | Shipped |
-| Shopify | Planned |
+| [`shopify.md`](cookbooks/shopify.md) | Shipped |
 
 ## The one rule
 

@@ -68,6 +68,7 @@ Platform detail:
 - Next.js: `references/nextjs.md`
 - Nuxt: `references/nuxt.md`
 - Astro: `references/astro.md`
+- Shopify: `references/shopify.md`
 - Google Tag Manager on the page: `references/gtm.md`
 - WordPress: `references/wordpress.md` (plugin path — no paste)
 
