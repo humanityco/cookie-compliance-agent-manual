@@ -9,6 +9,7 @@ Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and simi
 - [install-banner](skills/install-banner/SKILL.md): get the live snippet for an AppID and place it correctly. Shipped.
 - [verify-install](skills/verify-install/SKILL.md): prove the banner blocks trackers before consent, on any Cookie Compliance install. Shipped.
 - [match-site-design](skills/match-site-design/SKILL.md): derive a banner design from the site's own colours and check WCAG AA contrast. Shipped.
+- [configure-regions](skills/configure-regions/SKILL.md): set which regulations apply and how visitors are treated by region (GDPR, CCPA, and others). Shipped.
 
 ## Cookbooks
 
@@ -18,6 +19,7 @@ Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and simi
 - [gtm](cookbooks/gtm.md): keep Google Tag Manager itself un-blocked while the tags it fires stay held back.
 - [nuxt](cookbooks/nuxt.md): place the snippet in `nuxt.config.ts`, not a composable or client plugin — and never mark it `async`.
 - [astro](cookbooks/astro.md): place the snippet in the shared layout with `is:inline` on every tag, or Astro silently defers it as a module.
+- [shopify](cookbooks/shopify.md): place the snippet first in `layout/theme.liquid`'s `<head>` — not checkout Additional scripts or a Customer Events pixel.
 
 ## Optional
 
