@@ -4,3 +4,6 @@ dist/
 .env
 .env.*
 .DS_Store
+# a local `npm i playwright` for gallery renders
+package.json
+package-lock.json

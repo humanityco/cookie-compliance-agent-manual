@@ -24,6 +24,7 @@ just showing a notice. See [README.md](README.md) for the full picture.
 - **`site/` (manual.hu-manity.co) is generated, except `index.html`.** Edit
   `skills/`, `cookbooks/` or the root docs, then run `scripts/sync-site.sh`
   (`--check` enforces this in CI).
+- **`gallery/` is generated from `gallery/examples.json`** by `scripts/gallery.mjs`; never hand-edit `gallery/README.md` or `gallery/index.html`.
 - **Capability, never compliance, as the claim.** This manual helps install a
   tool correctly; it does not certify anyone's legal compliance.
 

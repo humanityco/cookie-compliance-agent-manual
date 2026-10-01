@@ -12,7 +12,9 @@ jobs:
       - uses: actions/checkout@v4
       - name: Cookbooks must match skills/*/references
         run: bash scripts/sync-references.sh --check
-      - name: site/ must match skills, cookbooks and root docs
+      - name: gallery/ must match gallery/examples.json
+        run: node scripts/gallery.mjs build --check
+      - name: site/ must match skills, cookbooks, gallery and root docs
         run: bash scripts/sync-site.sh --check
 
   no-real-data:

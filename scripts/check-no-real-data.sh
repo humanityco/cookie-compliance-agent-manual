@@ -21,7 +21,8 @@ APPID_ALLOWLIST=(
 
 # Domains allowed to appear inside a URL: our own product surfaces, the
 # WordPress plugin listing, the one third-party vendor the GTM cookbook
-# names, and the standard non-customer placeholders.
+# names, the schema.org vocabulary (the JSON-LD "@context" on generated pages),
+# and the standard non-customer placeholders.
 DOMAIN_ALLOWLIST=(
   "cookie-compliance.co"
   "mcp.cookie-compliance.co"
@@ -32,6 +33,7 @@ DOMAIN_ALLOWLIST=(
   "wordpress.org"
   "www.googletagmanager.com"
   "github.com"
+  "schema.org"
   "example.com"
   "example.org"
   "example.net"

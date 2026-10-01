@@ -23,6 +23,10 @@ No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&
 - [astro](cookbooks/astro.md): place the snippet in the shared layout with `is:inline` on every tag, or Astro silently defers it as a module.
 - [shopify](cookbooks/shopify.md): place the snippet first in `layout/theme.liquid`'s `<head>` — not checkout Additional scripts or a Customer Events pixel.
 
+## Design gallery
+
+- [gallery](gallery/README.md): example banner designs, each with a screenshot and the exact design JSON to apply.
+
 ## Optional
 
 - [README](README.md): why this exists, what's planned, how to contribute.

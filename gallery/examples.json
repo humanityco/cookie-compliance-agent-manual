@@ -1,0 +1,202 @@
+[
+  {
+    "id": "minimal-card",
+    "title": "Minimal card",
+    "caption": "A quiet off-white card with a near-black button, for minimal and monochrome sites.",
+    "alt": "Cookie consent banner as a floating off-white card at the bottom of a light page, with dark grey text and a near-black Save my preferences button with slightly rounded corners.",
+    "site": {
+      "background": "#fafafa",
+      "text": "#111827",
+      "accent": "#111827"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#111827",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#fafafa",
+      "borderColor": "#5e6a74",
+      "textColor": "#434f58",
+      "headingColor": "#434f58",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "dark-mint-bar",
+    "title": "Dark mint bar",
+    "caption": "A wide dark bar across the bottom with a mint button, for dark-themed sites.",
+    "alt": "Cookie consent banner as a wide near-black bar across the bottom of a dark page, with white text and a mint green Save my preferences button with black text and slightly rounded corners.",
+    "site": {
+      "background": "#0f1117",
+      "text": "#e5e7eb",
+      "accent": "#20c19e"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#20c19e",
+      "btnTextColor": "#000000",
+      "bannerColor": "#0f1117",
+      "borderColor": "#767676",
+      "textColor": "#ffffff",
+      "headingColor": "#ffffff",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "corporate-top-bar",
+    "title": "Corporate top bar",
+    "caption": "A wide white bar across the top with a navy, square-cornered button.",
+    "alt": "Cookie consent banner as a wide white bar across the top of a white page, with dark grey text and a navy blue Save my preferences button with square corners.",
+    "site": {
+      "background": "#ffffff",
+      "text": "#111827",
+      "accent": "#1d3a8a"
+    },
+    "design": {
+      "position": "top",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#1d3a8a",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#ffffff",
+      "borderColor": "#5e6a74",
+      "textColor": "#434f58",
+      "headingColor": "#434f58",
+      "btnBorderRadius": "0px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "centered-violet",
+    "title": "Centered violet",
+    "caption": "A wide pale-violet panel centred on the page, with a pill-shaped violet button and slightly smaller text.",
+    "alt": "Cookie consent banner as a wide pale violet panel centred vertically on a pale violet page, with smaller dark grey text and a violet pill-shaped Save my preferences button with fully rounded corners.",
+    "site": {
+      "background": "#f5f3ff",
+      "text": "#1f2937",
+      "accent": "#7c3aed"
+    },
+    "design": {
+      "position": "center",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#7c3aed",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#f5f3ff",
+      "borderColor": "#5e6a74",
+      "textColor": "#434f58",
+      "headingColor": "#434f58",
+      "btnBorderRadius": "25px",
+      "textSize": "12px",
+      "headingSize": "14px"
+    }
+  },
+  {
+    "id": "warm-left-card",
+    "title": "Warm left card",
+    "caption": "A narrow cream card at the bottom left with a burnt-orange pill button, for warm, editorial sites.",
+    "alt": "Cookie consent banner as a narrow cream card floating at the bottom left of a cream page, with dark grey text and a burnt orange pill-shaped Save my preferences button with fully rounded corners.",
+    "site": {
+      "background": "#fdf6ec",
+      "text": "#292524",
+      "accent": "#c2410c"
+    },
+    "design": {
+      "position": "left",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#c2410c",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#fdf6ec",
+      "borderColor": "#5e6a74",
+      "textColor": "#434f58",
+      "headingColor": "#434f58",
+      "btnBorderRadius": "25px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "dark-rose-side-panel",
+    "title": "Dark rose side panel",
+    "caption": "A full-height dark panel down the right side with a rose, square-cornered button.",
+    "alt": "Cookie consent banner as a tall near-black panel running the full height of the right side of a dark page, with white text and a rose pink Save my preferences button with black text and square corners.",
+    "site": {
+      "background": "#18181b",
+      "text": "#e4e4e7",
+      "accent": "#f43f5e"
+    },
+    "design": {
+      "position": "right",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#f43f5e",
+      "btnTextColor": "#000000",
+      "bannerColor": "#18181b",
+      "borderColor": "#767676",
+      "textColor": "#ffffff",
+      "headingColor": "#ffffff",
+      "btnBorderRadius": "0px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "large-text-teal",
+    "title": "Large text teal",
+    "caption": "A white bottom card with a teal button and larger text, for readability-first sites.",
+    "alt": "Cookie consent banner as a floating white card at the bottom of a white page, with larger dark grey text and a teal Save my preferences button with slightly rounded corners.",
+    "site": {
+      "background": "#ffffff",
+      "text": "#111827",
+      "accent": "#0f766e"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#0f766e",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#ffffff",
+      "borderColor": "#5e6a74",
+      "textColor": "#434f58",
+      "headingColor": "#434f58",
+      "btnBorderRadius": "6px",
+      "textSize": "15px",
+      "headingSize": "18px"
+    }
+  },
+  {
+    "id": "blue-top-card",
+    "title": "Blue top card",
+    "caption": "A white card floating at the top with a bright blue button, for clean product sites.",
+    "alt": "Cookie consent banner as a floating white card at the top of a white page, with dark grey text and a bright blue Save my preferences button with slightly rounded corners.",
+    "site": {
+      "background": "#ffffff",
+      "text": "#111827",
+      "accent": "#1f6feb"
+    },
+    "design": {
+      "position": "top",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#1f6feb",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#ffffff",
+      "borderColor": "#5e6a74",
+      "textColor": "#434f58",
+      "headingColor": "#434f58",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  }
+]

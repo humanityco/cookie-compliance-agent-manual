@@ -9,6 +9,7 @@
   :root {
     color-scheme: light dark;
     --accent: #20c19e;
+    --link: #0f7a63; /* #20c19e is 2.29:1 on white; this is 5.27:1 */
     --bg: #ffffff;
     --fg: #1a1f24;
     --muted: #5a6570;
@@ -24,6 +25,7 @@
       --muted: #9aa5ad;
       --border: #2a3138;
       --code-bg: rgba(32,193,158,0.15);
+      --link: #20c19e;
     }
   }
   :root[data-theme="dark"] {
@@ -32,6 +34,7 @@
     --muted: #9aa5ad;
     --border: #2a3138;
     --code-bg: rgba(32,193,158,0.15);
+    --link: #20c19e;
   }
   * { box-sizing: border-box; }
   body {
@@ -52,7 +55,8 @@
   ul { padding-left: 0; margin: 0; list-style: none; }
   li { margin: 0.6rem 0; padding-left: 1rem; border-left: 2px solid var(--border); }
   li.shipped { border-left-color: var(--accent); }
-  a { color: var(--accent); text-decoration: none; font-weight: 600; }
+  a { color: var(--link); text-decoration: none; font-weight: 600; }
+  p a, footer a { text-decoration: underline; } /* in-text links: not colour alone */
   a:hover { text-decoration: underline; }
   .desc { display: block; color: var(--muted); font-weight: 400; font-size: 0.92rem; margin-top: 0.15rem; }
   .badge {
@@ -89,6 +93,11 @@
     <li class="shipped"><a href="cookbooks/astro.md">astro</a><span class="desc">Place it in the shared layout with <code>is:inline</code> on every tag.</span></li>
     <li class="shipped"><a href="cookbooks/gtm.md">gtm</a><span class="desc">Put it above the GTM container in <code>&lt;head&gt;</code> — never inside GTM.</span></li>
     <li class="shipped"><a href="cookbooks/shopify.md">shopify</a><span class="desc">Place it in <code>layout/theme.liquid</code> — not Additional scripts or a Customer Events pixel.</span></li>
+  </ul>
+
+  <h2>Design gallery</h2>
+  <ul>
+    <li class="shipped"><a href="gallery/">Banner design gallery</a><span class="desc">Example banner designs: a screenshot and the exact design JSON for each.</span></li>
   </ul>
 
   <h2>For agents</h2>
