@@ -1,6 +1,7 @@
 [
   {
     "id": "minimal-card",
+    "engine": "v1",
     "title": "Minimal card",
     "caption": "A quiet off-white card with a near-black button, for minimal and monochrome sites.",
     "alt": "Cookie consent banner as a floating off-white card at the bottom of a light page, with dark grey text and a near-black Save my preferences button with slightly rounded corners.",
@@ -26,6 +27,7 @@
   },
   {
     "id": "dark-mint-bar",
+    "engine": "v1",
     "title": "Dark mint bar",
     "caption": "A wide dark bar across the bottom with a mint button, for dark-themed sites.",
     "alt": "Cookie consent banner as a wide near-black bar across the bottom of a dark page, with white text and a mint green Save my preferences button with black text and slightly rounded corners.",
@@ -51,6 +53,7 @@
   },
   {
     "id": "corporate-top-bar",
+    "engine": "v1",
     "title": "Corporate top bar",
     "caption": "A wide white bar across the top with a navy, square-cornered button.",
     "alt": "Cookie consent banner as a wide white bar across the top of a white page, with dark grey text and a navy blue Save my preferences button with square corners.",
@@ -76,6 +79,7 @@
   },
   {
     "id": "centered-violet",
+    "engine": "v1",
     "title": "Centered violet",
     "caption": "A wide pale-violet panel centred on the page, with a pill-shaped violet button and slightly smaller text.",
     "alt": "Cookie consent banner as a wide pale violet panel centred vertically on a pale violet page, with smaller dark grey text and a violet pill-shaped Save my preferences button with fully rounded corners.",
@@ -101,6 +105,7 @@
   },
   {
     "id": "warm-left-card",
+    "engine": "v1",
     "title": "Warm left card",
     "caption": "A narrow cream card at the bottom left with a burnt-orange pill button, for warm, editorial sites.",
     "alt": "Cookie consent banner as a narrow cream card floating at the bottom left of a cream page, with dark grey text and a burnt orange pill-shaped Save my preferences button with fully rounded corners.",
@@ -126,6 +131,7 @@
   },
   {
     "id": "dark-rose-side-panel",
+    "engine": "v1",
     "title": "Dark rose side panel",
     "caption": "A full-height dark panel down the right side with a rose, square-cornered button.",
     "alt": "Cookie consent banner as a tall near-black panel running the full height of the right side of a dark page, with white text and a rose pink Save my preferences button with black text and square corners.",
@@ -151,6 +157,7 @@
   },
   {
     "id": "large-text-teal",
+    "engine": "v1",
     "title": "Large text teal",
     "caption": "A white bottom card with a teal button and larger text, for readability-first sites.",
     "alt": "Cookie consent banner as a floating white card at the bottom of a white page, with larger dark grey text and a teal Save my preferences button with slightly rounded corners.",
@@ -176,6 +183,7 @@
   },
   {
     "id": "blue-top-card",
+    "engine": "v1",
     "title": "Blue top card",
     "caption": "A white card floating at the top with a bright blue button, for clean product sites.",
     "alt": "Cookie consent banner as a floating white card at the top of a white page, with dark grey text and a bright blue Save my preferences button with slightly rounded corners.",
@@ -194,6 +202,240 @@
       "borderColor": "#5e6a74",
       "textColor": "#434f58",
       "headingColor": "#434f58",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "compact-bottom-bar",
+    "engine": "v2",
+    "title": "Compact bottom bar",
+    "caption": "Compact style as a single-row white bar across the bottom, with navy links, for sites that want the banner to take as little height as possible.",
+    "alt": "v2 consent banner in the compact style as a single-row white bar across the bottom of a white page: the heading on the left, then the message with a navy Privacy policy link, then Private and Personalized buttons with grey borders and a Customize button, with download and close icons at the far right.",
+    "site": {
+      "background": "#ffffff",
+      "text": "#111827",
+      "accent": "#1d3a8a"
+    },
+    "config": {
+      "bannerStyle": "compact"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#1d3a8a",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#ffffff",
+      "borderColor": "#5e6a74",
+      "textColor": "#1f2937",
+      "headingColor": "#111827",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "compact-top-bar-dark",
+    "engine": "v2",
+    "title": "Compact top bar, dark",
+    "caption": "Compact style as a single-row dark bar across the top, with mint links, for dark-themed sites.",
+    "alt": "v2 consent banner in the compact style as a single-row near-black bar across the top of a dark page: a white heading on the left, then the white message with a mint Privacy policy link, then Private and Personalized buttons with grey borders and a Customize button, with download and close icons at the far right.",
+    "site": {
+      "background": "#0f1117",
+      "text": "#e5e7eb",
+      "accent": "#20c19e"
+    },
+    "config": {
+      "bannerStyle": "compact"
+    },
+    "design": {
+      "position": "top",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#20c19e",
+      "btnTextColor": "#000000",
+      "bannerColor": "#0f1117",
+      "borderColor": "#767676",
+      "textColor": "#ffffff",
+      "headingColor": "#ffffff",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "compact-floating-card",
+    "engine": "v2",
+    "title": "Compact floating card",
+    "caption": "Compact style as a wide pale-violet card floating at the bottom, with pill-shaped buttons and violet links.",
+    "alt": "v2 consent banner in the compact style as a wide pale violet card floating at the bottom of a pale violet page: the heading in the top row beside download and close icons, the message with a violet Privacy policy link below it, then pill-shaped Private and Personalized buttons and a pill-shaped Customize button.",
+    "site": {
+      "background": "#f5f3ff",
+      "text": "#1f2937",
+      "accent": "#7c3aed"
+    },
+    "config": {
+      "bannerStyle": "compact"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#7c3aed",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#f5f3ff",
+      "borderColor": "#5e6a74",
+      "textColor": "#1f2937",
+      "headingColor": "#1f2937",
+      "btnBorderRadius": "25px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "standard-bottom-card",
+    "engine": "v2",
+    "title": "Standard bottom card",
+    "caption": "Standard style as a wide white card floating at the bottom, with all three levels and teal links.",
+    "alt": "v2 consent banner in the standard style as a wide white card floating at the bottom of a white page: the site domain at top left with download and close icons at top right, a centred heading and message with a teal Privacy policy link, then Private, Balanced and Personalized buttons and a Customize button in one centred row.",
+    "site": {
+      "background": "#ffffff",
+      "text": "#111827",
+      "accent": "#0f766e"
+    },
+    "config": {
+      "bannerStyle": "standard"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#0f766e",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#ffffff",
+      "borderColor": "#5e6a74",
+      "textColor": "#1f2937",
+      "headingColor": "#111827",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "standard-center",
+    "engine": "v2",
+    "title": "Standard centered",
+    "caption": "Standard style as a cream panel centred on the page, with pill-shaped buttons and burnt-orange links, for warm, editorial sites.",
+    "alt": "v2 consent banner in the standard style as a cream panel centred over a cream page: the site domain at top left with download and close icons at top right, a centred heading and message with a burnt orange Privacy policy link, then pill-shaped Private, Balanced and Personalized buttons and a pill-shaped Customize button.",
+    "site": {
+      "background": "#fdf6ec",
+      "text": "#292524",
+      "accent": "#c2410c"
+    },
+    "config": {
+      "bannerStyle": "standard"
+    },
+    "design": {
+      "position": "center",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#c2410c",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#fdf6ec",
+      "borderColor": "#5e6a74",
+      "textColor": "#292524",
+      "headingColor": "#292524",
+      "btnBorderRadius": "25px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "standard-right-panel",
+    "engine": "v2",
+    "title": "Standard right panel",
+    "caption": "Standard style as a full-height dark panel down the right side, with square-cornered buttons and rose links.",
+    "alt": "v2 consent banner in the standard style as a near-black panel running the full height of the right side of a dark page: the site domain and the download and close icons at the top, a centred white heading and message with a rose Privacy policy link, then square-cornered Private, Balanced and Personalized buttons, with the Customize button on its own row below them.",
+    "site": {
+      "background": "#18181b",
+      "text": "#e4e4e7",
+      "accent": "#f43f5e"
+    },
+    "config": {
+      "bannerStyle": "standard"
+    },
+    "design": {
+      "position": "right",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#f43f5e",
+      "btnTextColor": "#000000",
+      "bannerColor": "#18181b",
+      "borderColor": "#767676",
+      "textColor": "#ffffff",
+      "headingColor": "#ffffff",
+      "btnBorderRadius": "0px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "compact-phone",
+    "engine": "v2",
+    "title": "Compact on a phone",
+    "caption": "Compact style on a phone: two level buttons side by side, and Customize as an underlined link below them.",
+    "alt": "v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, Private and Personalized buttons side by side, and Customize as a blue underlined link centred below them.",
+    "viewport": "phone",
+    "site": {
+      "background": "#ffffff",
+      "text": "#111827",
+      "accent": "#1f6feb"
+    },
+    "config": {
+      "bannerStyle": "compact"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "fixed",
+      "bannerOpacity": 1,
+      "primaryColor": "#1f6feb",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#ffffff",
+      "borderColor": "#5e6a74",
+      "textColor": "#1f2937",
+      "headingColor": "#111827",
+      "btnBorderRadius": "6px",
+      "textSize": "13px",
+      "headingSize": "15px"
+    }
+  },
+  {
+    "id": "standard-phone",
+    "engine": "v2",
+    "title": "Standard on a phone",
+    "caption": "Standard style on a phone: the three levels and Customize stacked as full-width buttons.",
+    "alt": "v2 consent banner in the standard style on a phone-sized screen, as an off-white card floating at the bottom of an off-white page: the site domain with download and close icons at the top, a centred heading and message with a near-black Privacy policy link, then full-width Private, Balanced and Personalized buttons stacked in a column, with a full-width Customize button last.",
+    "viewport": "phone",
+    "site": {
+      "background": "#fafafa",
+      "text": "#111827",
+      "accent": "#111827"
+    },
+    "config": {
+      "bannerStyle": "standard"
+    },
+    "design": {
+      "position": "bottom",
+      "displayType": "floating",
+      "bannerOpacity": 1,
+      "primaryColor": "#111827",
+      "btnTextColor": "#ffffff",
+      "bannerColor": "#fafafa",
+      "borderColor": "#5e6a74",
+      "textColor": "#1f2937",
+      "headingColor": "#111827",
       "btnBorderRadius": "6px",
       "textSize": "13px",
       "headingSize": "15px"
