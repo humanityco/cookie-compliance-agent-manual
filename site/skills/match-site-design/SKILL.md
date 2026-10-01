@@ -19,7 +19,7 @@ Call `demo.suggestDesign` with what you found:
 {"brand": {"brandColor": "#20c19e", "pageBackground": "#16202c", "cornerStyle": "rounded", "textScale": "medium"}}
 ```
 
-It returns a complete `design.*` key set (`primaryColor`, `btnTextColor`, `bannerColor`, `textColor`, `headingColor`, `btnBorderRadius`, `textSize`, `headingSize`, `spacingSize`), the reasoning for each value, and a WCAG AA contrast check for banner body text, headings, and button labels — picking text colour by measured contrast against the two backgrounds, not by habit. If `contrastPassesAA` is false, do not override the colours it picked; that defeats the check that made it call `demo.suggestDesign` in the first place.
+It returns a `design.*` key set you can apply to a live app (`primaryColor`, `btnTextColor`, `bannerColor`, `textColor`, `headingColor`, `btnBorderRadius`, `textSize`, `headingSize` — it leaves out `spacingSize`, because a live app can't store it), the reasoning for each value, and a WCAG AA contrast check for banner body text, headings, and button labels — picking text colour by measured contrast against the two backgrounds, not by habit. If `contrastPassesAA` is false, do not override the colours it picked; that defeats the check that made it call `demo.suggestDesign` in the first place.
 
 You can also pass `design` values you already have instead of `brand`, to validate them rather than derive new ones.
 

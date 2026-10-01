@@ -17,7 +17,7 @@ MCP tool names below are written `install.getSnippet`; some clients list them as
 Is the site WordPress?
 ├─ yes → install the "Cookie Compliance for WordPress" plugin
 │        (wordpress.org/plugins/cookie-notice/) and connect it with the
-│        App ID + App Key from the Cookie Compliance dashboard.
+│        App ID + App Secret Key from the Cookie Compliance dashboard.
 │        Do NOT paste the manual snippet. Then go to step 4 (Verify).
 │        Detail: references/wordpress.md
 └─ no  → need a Cookie Compliance AppID (see below). Then go to step 2.

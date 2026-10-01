@@ -12,7 +12,7 @@ last_verified: 2026-09-28
 
 - A WordPress site where you can install plugins (or network-activate on multisite).
 - A Cookie Compliance account. Free plan needs no card.
-- From the Cookie Compliance dashboard → **Integrations → WordPress Integration**: the site's **App ID** and **App Key** (secret). Agents: never put the App Key in chat logs or commit it; paste it only into the plugin's connection fields.
+- From the Cookie Compliance dashboard → **Integrations → WordPress Integration**: the site's **App ID** and **App Secret Key** (it goes into the plugin's **App Key** field). Agents: never put the key in chat logs or commit it; paste it only into the plugin's connection fields.
 
 ## The wrong way
 
@@ -27,7 +27,7 @@ On WordPress that fights the plugin (two banners, two consent stores) and skips 
 ## The right way
 
 1. In wp-admin → Plugins → Add New, search **Cookie Compliance** (slug `cookie-notice` on [wordpress.org/plugins/cookie-notice/](https://wordpress.org/plugins/cookie-notice/)). Install and activate **Cookie Compliance**.
-2. Open the plugin's admin screen and connect with the **App ID** and **App Key** from the Cookie Compliance dashboard Integrations page for that domain.
+2. Open the plugin's admin screen and connect with the **App ID** and the **App Secret Key** (in the plugin's **App Key** field) from the Cookie Compliance dashboard Integrations page for that domain.
 3. Publish (or confirm published) configuration in the Cookie Compliance dashboard. The plugin pulls config on a schedule and via **Pull Configuration** — Admin Portal changes are not live on the WP site until a pull.
 4. Leave analytics plugins and tags alone. The product blocks them before consent; do not delete Site Kit / MonsterInsights / etc. solely to "make consent work."
 5. If a hand-rolled cookie popup or another CMP is still in the theme, remove it.
@@ -41,7 +41,7 @@ Same verification table as the install-banner skill (private window, strictest r
 | # | Check | Pass |
 |---|---|---|
 | W1 | View source | The plugin injected the banner script pair early in `<head>` (not a theme paste you added). No second, hand-pasted `huOptions` block. |
-| W2 | Plugin connected | App ID matches the dashboard domain; status shows connected / not stuck on "basic" onboarding if the owner already has an account. |
+| W2 | Plugin connected | App ID matches the dashboard domain; the plugin's **Domain Info** card shows **Protection: Active**, not **Not Connected**. |
 
 ## Gotchas
 

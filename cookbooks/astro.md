@@ -31,7 +31,7 @@ last_verified: 2026-09-29
 </html>
 ```
 
-This looks identical to the plain-HTML version, and that's the trap. **Astro processes every `<script>` tag by default** — even one with a real `src` URL — bundling and hoisting it through its own module graph, unless the tag has `is:inline` or an explicit non-module `type`. The result renders as `<script type="module" src="/src/layouts/Layout.astro?astro&type=script&index=0&lang.ts">`: a deferred module, not the synchronous inline script `huOptions` has to be for `hu-banner.min.js` to read it before running.
+This looks identical to the plain-HTML version, and that's the trap. **Astro processes every `<script>` tag by default** — even one with a real `src` URL — bundling and hoisting it through its own module graph, unless the tag has `is:inline` or any attribute other than `src`. The result renders as `<script type="module" src="/src/layouts/Layout.astro?astro&type=script&index=0&lang.ts">`: a deferred module, not the synchronous inline script `huOptions` has to be for `hu-banner.min.js` to read it before running.
 
 **Verified 2026-09-29:** pasting the exact two-tag live snippet with no `is:inline` produced exactly this — the `huOptions` script became a deferred Vite module, and a bare third `<script src="...">` tracker tag (no `type` attribute, matching a typical GA4/gtag snippet) was *also* rewritten into a second deferred module. Only the Cookie Compliance CDN tag survived unprocessed, because it happened to carry an explicit `type="text/javascript"` attribute — which is incidental, not something to rely on.
 

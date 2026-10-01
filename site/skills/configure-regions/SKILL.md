@@ -37,7 +37,7 @@ To actually treat an EU visitor differently from a California visitor, turn on `
 
 **This array replaces wholesale — it is never merged.** Sending only the `gdpr` entry silently deletes every other region's rules. `account.previewComplianceChange` warns about this at preview time, but nothing warns you at commit time, so read the preview. Always fetch the app's current `geolocationRules` with `account.getDesign` first, edit only the one entry you mean to change, and send the **whole list** back.
 
-Valid `name`s are the same seven keys as `regulations.*` above.
+Valid `name`s are the same seven keys as `regulations.*` above, plus `other`: the rule for visitors who match no other enabled rule. US visitors are the exception: outside California they match `otherus` only when it is enabled, and otherwise get no rule at all, so `other` does not cover them. `other` is kept whatever `regulations` says, so keep it in the list.
 
 ## 4. `geolocationMethod: "automatic"` silently discards your custom rules
 

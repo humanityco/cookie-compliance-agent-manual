@@ -112,4 +112,4 @@ Check 3 is the one that matters for compliance. In the Elements panel, blocked t
 - **"Banner not showing" right after signup:** one common cause is a configuration that was saved but not **published** in the dashboard.
 - **Wrong engine URL:** a v2 app with the v1 script path (or the reverse) after an engine switch — re-copy from Integrations / `install.getSnippet`.
 - **Remove any other consent banner.** If the site already has a hand-made cookie popup or another consent tool, take it out. Two banners give visitors two conflicting choices.
-- **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the page address it came from.
+- **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the website's domain it came from (not the individual page address).
