@@ -16,6 +16,9 @@ just showing a notice. See [README.md](README.md) for the full picture.
 
 - **No real AppIDs, customer domains, or personal data** in any file. Use
   `YOUR_APP_ID` / `example.com` (`scripts/check-no-real-data.sh` enforces this in CI).
+- **Nothing internal.** No decision or ticket IDs, internal hosts, repo or database
+  names, or notes on how something was tested in-house — this repo is public
+  (`scripts/check-no-internal.sh` enforces this in CI).
 - **Verify before you claim.** Any statement about banner behavior must be
   checked against a real install, not assumed.
 - **`site/` (manual.hu-manity.co) is generated, except `index.html`.** Edit

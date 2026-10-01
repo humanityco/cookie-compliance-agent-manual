@@ -21,3 +21,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: No real AppIDs or customer domains
         run: bash scripts/check-no-real-data.sh
+      - name: No internal identifiers (decision IDs, tickets, hosts, repos, DB names)
+        run: bash scripts/check-no-internal.sh

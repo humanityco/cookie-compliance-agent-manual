@@ -41,7 +41,7 @@ Valid `name`s are the same seven keys as `regulations.*` above.
 
 ## 4. `geolocationMethod: "automatic"` silently discards your custom rules
 
-`automatic` is the default. In automatic mode, Designer API overwrites whatever `geolocationRules` you last stored with its own built-in default matrix on every live read — your custom per-region rules never reach a visitor. **Set `geolocationMethod: "manual"` in the same change** if you want the array in step 3 to actually take effect.
+`automatic` is the default. In automatic mode, the Cookie Compliance server overwrites whatever `geolocationRules` you last stored with its own built-in default matrix on every live read — your custom per-region rules never reach a visitor. **Set `geolocationMethod: "manual"` in the same change** if you want the array in step 3 to actually take effect.
 
 ## 5. The legacy fallback, and why it matters even if you never touch it
 
@@ -49,9 +49,9 @@ The widget only uses `geolocationRules` when it's non-empty **and** `regulations
 
 ## Verified
 
-Live-tested against a real (non-production, no-visitor) test app on 2026-09-29, `publish:false` throughout, with results confirmed by reading the actual stored row rather than trusting a response body:
+Live-tested against a non-production test app on 2026-09-29, with `publish:false` throughout and every result confirmed against the stored configuration, not just the tool's response:
 
-- `regulations.gdpr`/`ccpa` written, then `regulations.lgpd` written alone — confirmed via a direct read-only production database read (not just `account.previewComplianceChange`, which compares against the *live* config and can't see draft state) that the stored draft ends up with all three (`gdpr`, `ccpa`, `lgpd`) set. Proves the merge; this was a real bug that erased siblings until it was fixed on 2026-09-29.
-- `geolocationRules` written with 2 entries, then overwritten with a 1-entry list — the same direct database read confirmed the dropped entry (`ccpa`) is gone from the stored draft, not merely masked. Proves the replace-wholesale behavior.
+- `regulations.gdpr`/`ccpa` written, then `regulations.lgpd` written alone: the stored draft ends up with all three set. Writes to `regulations.*` merge.
+- `geolocationRules` written with 2 entries, then with a 1-entry list: the dropped entry is gone from the stored draft. Writes to `geolocationRules` replace the whole list.
 
-Not independently browser-verified this session — grounded in reading the current Designer API and Web Channel source, not a live behavioral test: the `automatic`-mode override in step 4, and the widget's region-matching fallback in step 5. Re-check both against source if either surface changes.
+Steps 4 and 5 describe the documented behaviour of the server and the banner and have not yet been confirmed in a live browser test. Re-check them if either changes.
