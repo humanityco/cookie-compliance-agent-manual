@@ -10,7 +10,7 @@ last_verified: 2026-09-28
 
 ## You need
 
-- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (correct v1 or `/v2/` URL already included).
+- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (correct v1 or `/v2/` URL already included). No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-nextjs) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to the App Router root layout or the Pages Router document.
 
 ## The wrong way

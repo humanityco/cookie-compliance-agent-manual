@@ -29,7 +29,7 @@ Is the site WordPress?
 |---|---|
 | Cookie Compliance MCP connected **and signed in** | Call `account.listApps`. If the site's domain is missing, call `account.createApp` with the domain, then use the returned AppID. Never invent an AppID. |
 | MCP connected, anonymous (no account tools) | Call any `account.*` tool (cheapest: `account.listApps`) so the client starts sign-in, **or** call `help.explainTokenSetup`. Do not ask for the owner's password. |
-| No account yet | STOP AND ASK. Call `help.startSignup` and give them the URL (free plan, no card). Wait for an AppID. |
+| No account yet | STOP AND ASK. Call `help.startSignup` and give them the URL (free plan, no card). No MCP: give them the [signup page](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=skill-install-banner). Wait for an AppID. |
 | No MCP | Ask the owner for the AppID from the Cookie Compliance dashboard (Integrations), or for them to copy the Manual Integration snippet from there. |
 
 Never invent an AppID. Never install a demo/preview snippet (`demo.generateSnippet` / `previewMode`) as the finished result.

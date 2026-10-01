@@ -11,7 +11,7 @@ last_verified: 2026-09-28
 ## You need
 
 - A WordPress site where you can install plugins (or network-activate on multisite).
-- A Cookie Compliance account. Free plan needs no card.
+- A Cookie Compliance account. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-wordpress); the free plan needs no card.
 - From the Cookie Compliance dashboard → **Integrations → WordPress Integration**: the site's **App ID** and **App Secret Key** (it goes into the plugin's **App Key** field). Agents: never put the key in chat logs or commit it; paste it only into the plugin's connection fields.
 
 ## The wrong way

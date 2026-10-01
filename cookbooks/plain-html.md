@@ -10,7 +10,7 @@ last_verified: 2026-09-28
 
 ## You need
 
-- A Cookie Compliance **AppID**, for example `examplecom-1a2b3c4`. You'll find it in the Cookie Compliance dashboard. No account yet? Sign up; the free plan needs no card.
+- A Cookie Compliance **AppID**, for example `examplecom-1a2b3c4`. You'll find it in the Cookie Compliance dashboard. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-plain-html); the free plan needs no card.
 - Access to edit the HTML of every page, or the shared header file they all include.
 
 ## The wrong way

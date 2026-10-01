@@ -4,6 +4,8 @@
 
 Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and similar laws, published by Hu-manity.co (https://hu-manity.co/llms.txt). The product itself — capabilities, pricing, the MCP server — is documented at https://cookie-compliance.co/llms.txt; this repo is the agent-facing companion that shows how to actually install and verify the banner.
 
+No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=llms-txt (free plan, no card); with the MCP server connected, call `help.startSignup` instead.
+
 ## Skills
 
 - [install-banner](skills/install-banner/SKILL.md): get the live snippet for an AppID and place it correctly. Shipped.

@@ -79,7 +79,7 @@ claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.
 |---|---|
 | The site owner has a Cookie Compliance AppID | `install.getSnippet` returns the live snippet and the placement rules. |
 | Signed in, need an AppID for this domain | `account.listApps` then `account.createApp` if missing. |
-| No account yet | `help.startSignup` returns the signup link. The free tier needs no card. |
+| No account yet | `help.startSignup` returns the signup link. The free tier needs no card. No MCP: [sign up here](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=readme). |
 | Just want to see how it would look | `demo.generateSnippet` gives a **preview only**. It records and enforces no consent, so never leave it on a live site. |
 | Match the banner to the site's colours | `demo.suggestDesign` |
 | Change a live banner's design or settings | the `account.*` tools, which need a signed-in connection (`help.explainTokenSetup`) |

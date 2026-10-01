@@ -10,7 +10,7 @@ last_verified: 2026-09-30
 
 ## You need
 
-- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration**.
+- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration**. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-shopify) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit-code access to the store's live theme (Online Store → Themes).
 
 ## The wrong way

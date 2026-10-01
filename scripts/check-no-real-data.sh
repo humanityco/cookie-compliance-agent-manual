@@ -27,6 +27,7 @@ DOMAIN_ALLOWLIST=(
   "mcp.cookie-compliance.co"
   "cdn.hu-manity.co"
   "hu-manity.co"
+  "app.hu-manity.co"
   "manual.hu-manity.co"
   "wordpress.org"
   "www.googletagmanager.com"
