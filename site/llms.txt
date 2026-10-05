@@ -26,7 +26,7 @@ No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&
 ## Design gallery
 
 - [gallery](gallery/README.md): example banner designs, each with a screenshot and the exact design JSON to apply.
-- [gallery/v2](gallery/v2/README.md): example designs for the opt-in v2 banner (standard and compact styles), with the design and config JSON to apply and how to switch an app to v2.
+- [gallery/v2](gallery/v2/README.md): example designs for the v2 banner (standard and compact styles), with the design and config JSON to apply and how to switch an app to v2.
 
 ## Optional
 

@@ -29,9 +29,9 @@ A measured failure mode of this class: consent defaults landed **after** the GTM
 
 ```html
 <head>
-  <!-- 1. Cookie Compliance FIRST (live snippet) -->
+  <!-- 1. Cookie Compliance FIRST (live snippet; a new app is on v2, an app on v1 keeps the URL without /v2/) -->
   <script>var huOptions = { "appID": "YOUR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };</script>
-  <script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+  <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
 
   <!-- 2. GTM container BELOW — unchanged -->
   <script>(function(w,d,s,l,i){/* standard GTM snippet */})</script>

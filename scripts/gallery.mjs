@@ -237,8 +237,8 @@ const TEXT = {
     title: 'Banner design gallery',
     intro: (n) => `${count(n)} example designs for the Cookie Compliance banner. Each one is a screenshot of the real widget in preview mode, using one of its real layouts. The build checks body text and headings against the banner colour, and the button label, the selected and unselected level labels and the links against their backgrounds, at WCAG AA (4.5:1).`,
     desc: (n) => `${count(n)} example Cookie Compliance consent banner designs, each with a screenshot and the exact design JSON, with text, button, level label and link colours checked against WCAG AA.`,
-    // These designs are for the default banner; the other gallery covers the opt-in v2 one.
-    sibling: { lead: 'These designs are for the v1 banner, the default.', text: 'For the opt-in v2 banner and its compact style, see the', name: 'v2 banner design gallery', md: 'v2/README.md', html: 'v2/', footer: 'v2 banner designs:' },
+    // These designs are for the v1 banner; the other gallery covers the v2 one.
+    sibling: { lead: 'These designs are for the v1 banner.', text: 'For the v2 banner and its compact style, see the', name: 'v2 banner design gallery', md: 'v2/README.md', html: 'v2/', footer: 'v2 banner designs:' },
     before: [],
     after: [['Apply a design to your live banner', APPLY_V1]],
   },
@@ -246,10 +246,10 @@ const TEXT = {
     title: 'v2 banner design gallery',
     intro: (n) => `${count(n)} example designs for the v2 Cookie Compliance banner, in both of its styles, standard and compact. Each one is a screenshot of the real v2 widget showing that design. The build checks every colour pair a visitor reads on the v2 banner's first layer at WCAG AA (4.5:1), and the level pill borders at 3:1.`,
     desc: (n) => `${count(n)} example designs for the v2 Cookie Compliance consent banner, in standard and compact styles, each with a screenshot and the exact design and config JSON, with every first-layer colour pair checked against WCAG AA.`,
-    sibling: { lead: 'These designs are for the v2 banner, which is opt-in.', text: 'For the default v1 banner, see the', name: 'v1 banner design gallery', md: '../README.md', html: '../', footer: 'v1 (default) banner designs:' },
+    sibling: { lead: 'These designs are for the v2 banner.', text: 'For the v1 banner, see the', name: 'v1 banner design gallery', md: '../README.md', html: '../', footer: 'v1 banner designs:' },
     before: [
       ['What v2 is', [
-        'v2 is the new banner engine. It is opt-in, per app: an app uses the v1 banner, the default, until its owner switches it to v2, and it can be switched back the same way.',
+        'v2 is the new banner engine. Apps created in the dashboard or through the MCP server start on v2. Apps created earlier, or registered by the WordPress plugin on its own, stay on v1 until the owner switches them, and the switch works both ways.',
         '',
         'The v2 first layer offers the consent levels as buttons, Private, Personalized and (when the app offers three choices) Balanced, with Customize last. There is no Accept or Save button: choosing a level is the choice, and nothing is selected until the visitor picks one. Customize opens the categories.',
       ]],

@@ -32,7 +32,7 @@ On WordPress that fights the plugin (two banners, two consent stores) and skips 
 4. Leave analytics plugins and tags alone. The product blocks them before consent; do not delete Site Kit / MonsterInsights / etc. solely to "make consent work."
 5. If a hand-rolled cookie popup or another CMP is still in the theme, remove it.
 
-**Banner engine:** a new app is v2. The plugin picks the CDN path from the app's WidgetVersion on config pull, so you do not paste a script URL. v1 is for an app the owner asked to keep on v1. After an engine switch, wait for the next pull (or run Pull Configuration).
+**Banner engine:** an app created in the dashboard or through MCP is v2; an app the plugin registers on its own stays on v1 until the owner switches it. The plugin picks the CDN path from the app's WidgetVersion on config pull, so you do not paste a script URL. v1 is also what an app keeps when the owner asked for it. After an engine switch, wait for the next pull (or run Pull Configuration).
 
 ## Check it works
 

@@ -4,11 +4,11 @@
 
 Eight example designs for the v2 Cookie Compliance banner, in both of its styles, standard and compact. Each one is a screenshot of the real v2 widget showing that design. The build checks every colour pair a visitor reads on the v2 banner's first layer at WCAG AA (4.5:1), and the level pill borders at 3:1.
 
-These designs are for the v2 banner, which is opt-in. For the default v1 banner, see the [v1 banner design gallery](../README.md).
+These designs are for the v2 banner. For the v1 banner, see the [v1 banner design gallery](../README.md).
 
 ## What v2 is
 
-v2 is the new banner engine. It is opt-in, per app: an app uses the v1 banner, the default, until its owner switches it to v2, and it can be switched back the same way.
+v2 is the new banner engine. Apps created in the dashboard or through the MCP server start on v2. Apps created earlier, or registered by the WordPress plugin on its own, stay on v1 until the owner switches them, and the switch works both ways.
 
 The v2 first layer offers the consent levels as buttons, Private, Personalized and (when the app offers three choices) Balanced, with Customize last. There is no Accept or Save button: choosing a level is the choice, and nothing is selected until the visitor picks one. Customize opens the categories.
 

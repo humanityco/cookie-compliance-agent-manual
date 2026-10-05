@@ -4,7 +4,7 @@
 
 Eight example designs for the Cookie Compliance banner. Each one is a screenshot of the real widget in preview mode, using one of its real layouts. The build checks body text and headings against the banner colour, and the button label, the selected and unselected level labels and the links against their backgrounds, at WCAG AA (4.5:1).
 
-These designs are for the v1 banner, the default. For the opt-in v2 banner and its compact style, see the [v2 banner design gallery](v2/README.md).
+These designs are for the v1 banner. For the v2 banner and its compact style, see the [v2 banner design gallery](v2/README.md).
 
 ## Minimal card
 
