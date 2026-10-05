@@ -7,6 +7,30 @@ description: Set which privacy regulations apply to a Cookie Compliance banner a
 
 MCP tool names below are written `account.previewComplianceChange`; some clients list them as `account_previewComplianceChange`.
 
+## GDPR starter
+
+A new app declares GDPR and leaves region detection, Consent Mode and Global Privacy Control off. Ask the site owner once whether to turn the starter on. Apply it only after they accept. An earlier request to "make the site compliant" is not that answer.
+
+Read `subscriptionType` from `account.createApp` or from `account.getDesign` (`meta.subscriptionType`).
+
+On **Pro**, preview then commit exactly:
+
+```json
+{"geolocation": true, "googleConsentMode": true, "facebookConsentMode": true, "microsoftConsentMode": true, "gpcSupportMode": true}
+```
+
+Leave `geolocationMethod` unset. It is already `automatic`, so the platform's region matrix applies. Do not send `geolocationRules`.
+
+On **Free** (`Basic`, or any value other than `Pro`), the live banner keeps region detection off and keeps Meta and Microsoft Consent Mode off. Apply only:
+
+```json
+{"googleConsentMode": true, "gpcSupportMode": true}
+```
+
+Say, in the same question, that region detection and the Meta and Microsoft signals stay off on the Free plan. Do not change `regulations` or any consent-mode map. GDPR stays the only declared law. This does not make the site legally compliant.
+
+The preview is the write. If it reports a deletion or a warning the owner did not accept, stop and show it.
+
 ## 1. Two separate decisions — don't conflate them
 
 | Decision | Setting | What it does |
