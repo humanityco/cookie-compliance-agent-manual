@@ -48,6 +48,37 @@ done
 # rebuild keeps it. Any other index.html (e.g. site/gallery/, site/gallery/v2/) is mirrored.
 cp "$root/site/index.html" "$tmp/index.html"
 
+# Crawlers and agents find the manual by these two files. They are generated
+# here so a rebuild cannot leave site/ without them, and so --check fails if
+# someone hand-edits the copies under site/.
+base="https://manual.hu-manity.co"
+{
+  printf '%s\n' '<?xml version="1.0" encoding="UTF-8"?>'
+  printf '%s\n' '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
+  printf '  <url><loc>%s/</loc></url>\n' "$base"
+  while IFS= read -r f; do
+    rel="${f#"$tmp"/}"
+    case "$rel" in
+      index.html|sitemap.xml|robots.txt|*.png) continue ;;
+      gallery/index.html) loc="$base/gallery/" ;;
+      gallery/v2/index.html) loc="$base/gallery/v2/" ;;
+      *) loc="$base/$rel" ;;
+    esac
+    printf '  <url><loc>%s</loc></url>\n' "$loc"
+  done < <(find "$tmp" -type f | sort)
+  printf '%s\n' '</urlset>'
+} > "$tmp/sitemap.xml"
+
+cat > "$tmp/robots.txt" << 'EOF'
+User-agent: *
+Allow: /
+
+# Published so a coding agent can retrieve and follow these install steps.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+Sitemap: https://manual.hu-manity.co/sitemap.xml
+EOF
+
 if $check; then
   stale=0
   if ! diff -rq "$tmp" "$root/site" >/dev/null 2>&1; then

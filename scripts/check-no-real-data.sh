@@ -34,6 +34,7 @@ DOMAIN_ALLOWLIST=(
   "www.googletagmanager.com"
   "github.com"
   "schema.org"
+  "www.sitemaps.org"
   "example.com"
   "example.org"
   "example.net"

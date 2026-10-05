@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Published so a coding agent can retrieve and follow these install steps.
+Content-Signal: search=yes, ai-input=yes, ai-train=yes
+
+Sitemap: https://manual.hu-manity.co/sitemap.xml
