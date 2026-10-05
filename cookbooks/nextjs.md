@@ -10,7 +10,7 @@ last_verified: 2026-09-28
 
 ## You need
 
-- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (correct v1 or `/v2/` URL already included). No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-nextjs) (free plan, no card); with MCP, call `help.startSignup`.
+- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-nextjs) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to the App Router root layout or the Pages Router document.
 
 ## The wrong way
@@ -56,8 +56,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           }}
         />
         <script
-          src="https://cdn.hu-manity.co/hu-banner.min.js"
-          // If the live snippet says /v2/hu-banner.min.js, use that URL instead.
+          src="https://cdn.hu-manity.co/v2/hu-banner.min.js"
+          // A new app. If the live snippet has no /v2/, the app is on v1 — keep that URL.
         />
       </head>
       <body>{children}</body>

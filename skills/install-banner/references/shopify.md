@@ -40,7 +40,8 @@ last_verified: 2026-09-30
         "globalCookie": false
     };
     </script>
-    <script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- A new app. If the live snippet has no /v2/, the app is on v1 — keep that URL. -->
 
     <meta charset="utf-8">
     <!-- ...rest of the theme's existing <head>, including {{ content_for_header }}, unchanged... -->

@@ -39,7 +39,7 @@ Never invent an AppID. Never install a demo/preview snippet (`demo.generateSnipp
 **Prefer live HTML. Do not reconstruct it from memory.**
 
 - **Cookie Compliance MCP connected:** call `install.getSnippet` with `appID`. Paste the returned `html` **exactly** as given. Follow its `placement` and `warnings`. Note `widgetVersion` (`v1`, `v2`, or null): the script URL already matches it. If it refuses the AppID (unpublished or unknown), report that to the owner; don't work around it.
-- **No MCP:** ask the owner to copy the snippet from the Cookie Compliance dashboard → **Integrations → Manual Integration**. That page emits the correct CDN path for the app's banner engine (v1 or v2). Paste it unchanged.
+- **No MCP:** ask the owner to copy the snippet from the Cookie Compliance dashboard → **Integrations → Manual Integration**. That page emits the correct CDN path. A new app is v2 (`/v2/hu-banner.min.js`); an existing app keeps the engine it already has. Paste the snippet unchanged.
 
 **Last resort only** (owner has an AppID, cannot reach MCP or dashboard, and asked you to build the tags):
 
@@ -47,10 +47,10 @@ Never invent an AppID. Never install a demo/preview snippet (`demo.generateSnipp
 <script>
     var huOptions = { "appID": "THEIR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
 </script>
-<script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
 ```
 
-Ask which banner engine the app uses. If it is **v2**, the script `src` must be `https://cdn.hu-manity.co/v2/hu-banner.min.js` instead. If you do not know, stop and get the dashboard/MCP snippet — guessing the wrong URL puts the site on the wrong engine. Keep `blocking: true` unless the owner explicitly asks otherwise. Don't add design or text keys; the published configuration overrides them. A hand-built snippet also omits keys the dashboard may include (`blockingEngine`, Consent Mode defaults, custom providers) — another reason to prefer live HTML.
+A new app is on **v2**, so the script `src` is `https://cdn.hu-manity.co/v2/hu-banner.min.js`. Use `https://cdn.hu-manity.co/hu-banner.min.js` only when the owner asked for the v1 banner, or the live snippet already has that URL. If you do not know which engine the app is on, stop and get the dashboard/MCP snippet — guessing the wrong URL puts the site on the wrong engine. Keep `blocking: true` unless the owner explicitly asks otherwise. Don't add design or text keys; the published configuration overrides them. A hand-built snippet also omits keys the dashboard may include (`blockingEngine`, Consent Mode defaults, custom providers) — another reason to prefer live HTML.
 
 If the owner later switches banner engine in the dashboard, a hand-pasted snippet does **not** update by itself. Re-copy and replace it on every page.
 

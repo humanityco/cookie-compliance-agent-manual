@@ -52,4 +52,4 @@ Same verification as install-banner / plain-html. Extra:
 ## Gotchas
 
 - **WordPress + GTM4WP (or similar):** still install the Cookie Compliance **plugin** for placement; do not also paste a manual snippet, and do not put the CMP inside GTM.
-- **v1 vs v2 URL:** take it from the live snippet; do not hardcode after an engine switch.
+- **Banner engine:** a new app uses `/v2/hu-banner.min.js`. Take the URL from the live snippet. An app already on v1 keeps the URL without `/v2/`. After an engine switch, re-copy; do not hardcode.

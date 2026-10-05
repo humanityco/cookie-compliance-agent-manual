@@ -34,8 +34,8 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 ## The right way
 
 1. **Get the live snippet — do not rebuild it from memory.** Copy it from the dashboard (**Integrations → Manual Integration**), or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. That source already picks the correct script URL for your app's banner engine:
-   - **v1** (default): `https://cdn.hu-manity.co/hu-banner.min.js`
-   - **v2**: `https://cdn.hu-manity.co/v2/hu-banner.min.js`
+   - **v2** (a new app): `https://cdn.hu-manity.co/v2/hu-banner.min.js`
+   - **v1**: `https://cdn.hu-manity.co/hu-banner.min.js` — the owner asked for v1, or this app was already on v1
 
    Shape (keys and URL vary — treat this as illustration only):
 
@@ -48,7 +48,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
            "globalCookie": false
        };
    </script>
-   <script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+   <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
    ```
 
    If you later switch banner engine in the dashboard, **re-copy and replace** the snippet on every page. Changing the setting alone does not update a hand-pasted install.
@@ -62,7 +62,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
      <script>
          var huOptions = { "appID": "YOUR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
      </script>
-     <script src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+     <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
 
      <!-- your existing tags stay here, unchanged -->
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>

@@ -10,7 +10,7 @@ last_verified: 2026-09-29
 
 ## You need
 
-- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (correct v1 or `/v2/` URL already included). No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-astro) (free plan, no card); with MCP, call `help.startSignup`.
+- A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-astro) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to the shared layout (`src/layouts/Layout.astro`, or whatever every page renders through).
 
 ## The wrong way
@@ -49,8 +49,8 @@ Add `is:inline` to **every** script tag you want Astro to leave completely alone
     <script is:inline>
       var huOptions = { "appID": "YOUR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
     </script>
-    <script is:inline src="https://cdn.hu-manity.co/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
-    <!-- If the live snippet says /v2/hu-banner.min.js, use that URL instead. -->
+    <script is:inline src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+    <!-- A new app. If the live snippet has no /v2/, the app is on v1 — keep that URL. -->
 
     <slot name="head" />
   </head>
