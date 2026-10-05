@@ -18,7 +18,7 @@ This manual gives agents tested procedures for doing it properly with Cookie Com
 
 A hand-rolled banner is a popup and a `localStorage` flag. A Cookie Compliance banner, installed the way this manual describes, also:
 
-- **Blocks before consent** — holds back non-essential scripts and iframes until the visitor chooses, across 252 built-in tracker patterns and 166 providers, not just the trackers a one-off implementation happened to check for. Scripts that an allowed script adds later (such as tags fired from Google Tag Manager) must be gated there, and on the Free plan blocking stops once the site reaches its visit limit.
+- **Blocks before consent** — holds back non-essential scripts and iframes until the visitor chooses, across 282 built-in tracker patterns and 181 providers, not just the trackers a one-off implementation happened to check for. Scripts that an allowed script adds later (such as tags fired from Google Tag Manager) must be gated there, and on the Free plan blocking stops once the site reaches its visit limit.
 - **Signals consent mode** — passes the visitor's choice to Google, Microsoft and Meta Consent Mode, and honors Global Privacy Control (GPC), without extra code per provider.
 - **Keeps proof** — each consent is a server-side, exportable record, not a client-side flag with nothing behind it (on the Free plan, until the site reaches its monthly visit limit).
 - **Applies region rules** — different regions (for example GDPR in the EU, CCPA/CPRA in the US) get different rules without hand-coding the branching per visitor.
