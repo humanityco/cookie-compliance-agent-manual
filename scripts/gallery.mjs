@@ -113,7 +113,7 @@ function contrastPairs(ex) {
     ['headingColor', d.headingColor, 'bannerColor (heading)', d.bannerColor, 4.5], // the notice heading
     ['headingColor', d.headingColor, 'bannerColor (unselected level label)', d.bannerColor, 4.5], // level pills are transparent
     ['textColor', d.textColor, 'bannerColor (Customize)', d.bannerColor, 4.5], // Customize is a transparent button
-    ['primaryColor', d.primaryColor, 'bannerColor (links)', d.bannerColor, 4.5], // Privacy policy, Do Not Sell, and compact's phone Customize link
+    ['primaryColor', d.primaryColor, 'bannerColor (links)', d.bannerColor, 4.5], // Privacy policy and Do Not Sell links
     ['btnTextColor', d.btnTextColor, 'primaryColor (selected level label)', d.primaryColor, 4.5], // a chosen pill fills with primaryColor
     ['borderColor', d.borderColor, 'bannerColor (level pill border)', d.bannerColor, 3], // non-text: WCAG 1.4.11 asks 3:1
   ];
@@ -257,7 +257,7 @@ const TEXT = {
         'v2 has two styles, set with `config.bannerStyle` (a config key, not a design key):',
         '',
         '- **Standard** (the default): the site\'s domain in the top row, the heading and message below it, then the level buttons, then Customize. Balanced shows only when the app offers three choices (its number-of-choices setting); with two, standard shows Private and Personalized. On screens 480px wide or less the level buttons and Customize stack into one full-width column.',
-        '- **Compact:** the first layer offers Private and Personalized only (Customize still lists every category), and the heading moves into the top row in place of the domain. At `position` top or bottom with `displayType` fixed, on screens 1200px wide or more, the whole banner is a single-row bar. On screens 480px wide or less, Customize becomes an underlined link in `primaryColor`.',
+        '- **Compact:** the first layer offers Private and Personalized only (Customize still lists every category), and the heading moves into the top row in place of the domain. At `position` top or bottom with `displayType` fixed, on screens 1200px wide or more, the whole banner is a single-row bar. On screens 480px wide or less, Customize stays a button in the same row as the level buttons.',
         '',
         'The examples use the default behaviour settings. On a live banner, the number of choices, the close button and which links show depend on the app\'s settings and the visitor\'s region.',
       ]],
@@ -286,7 +286,7 @@ const TEXT = {
         '',
         '- `textColor` on `bannerColor`: the message and the Customize label.',
         '- `headingColor` on `bannerColor`: the heading and the level button labels.',
-        '- `primaryColor` on `bannerColor`: the links, and compact\'s Customize link on phones.',
+        '- `primaryColor` on `bannerColor`: the links.',
         '- `textColor` at 0.7 opacity over `bannerColor`: the site\'s domain (standard only).',
         '- `textColor` at 0.85 opacity over `bannerColor`: the note shown to a visitor who sends Global Privacy Control.',
         '- `btnTextColor` on `primaryColor`: a chosen level button.',

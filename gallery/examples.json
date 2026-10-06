@@ -385,8 +385,8 @@
     "id": "compact-phone",
     "engine": "v2",
     "title": "Compact on a phone",
-    "caption": "Compact style on a phone: two level buttons side by side, and Customize as an underlined link below them.",
-    "alt": "v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, Private and Personalized buttons side by side, and Customize as a blue underlined link centred below them.",
+    "caption": "Compact style on a phone: two level buttons and a Customize button side by side in one row.",
+    "alt": "v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, then Private, Personalized and a lighter-bordered Customize button side by side in one row.",
     "viewport": "phone",
     "site": {
       "background": "#ffffff",

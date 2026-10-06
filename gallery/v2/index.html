@@ -65,7 +65,7 @@
     {
       "@type": "ImageObject",
       "name": "Compact on a phone",
-      "caption": "v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, Private and Personalized buttons side by side, and Customize as a blue underlined link centred below them.",
+      "caption": "v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, then Private, Personalized and a lighter-bordered Customize button side by side in one row.",
       "contentUrl": "https://manual.hu-manity.co/gallery/v2/img/compact-phone.png"
     },
     {
@@ -163,7 +163,7 @@
     <p>v2 has two styles, set with <code>config.bannerStyle</code> (a config key, not a design key):</p>
     <ul>
       <li><strong>Standard</strong> (the default): the site's domain in the top row, the heading and message below it, then the level buttons, then Customize. Balanced shows only when the app offers three choices (its number-of-choices setting); with two, standard shows Private and Personalized. On screens 480px wide or less the level buttons and Customize stack into one full-width column.</li>
-      <li><strong>Compact:</strong> the first layer offers Private and Personalized only (Customize still lists every category), and the heading moves into the top row in place of the domain. At <code>position</code> top or bottom with <code>displayType</code> fixed, on screens 1200px wide or more, the whole banner is a single-row bar. On screens 480px wide or less, Customize becomes an underlined link in <code>primaryColor</code>.</li>
+      <li><strong>Compact:</strong> the first layer offers Private and Personalized only (Customize still lists every category), and the heading moves into the top row in place of the domain. At <code>position</code> top or bottom with <code>displayType</code> fixed, on screens 1200px wide or more, the whole banner is a single-row bar. On screens 480px wide or less, Customize stays a button in the same row as the level buttons.</li>
     </ul>
     <p>The examples use the default behaviour settings. On a live banner, the number of choices, the close button and which links show depend on the app's settings and the visitor's region.</p>
   </section>
@@ -326,7 +326,7 @@
       <figcaption><strong>Standard right panel</strong><span class="desc">Standard style as a full-height dark panel down the right side, with square-cornered buttons and rose links.</span></figcaption>
     </figure>
     <figure id="compact-phone">
-      <img src="img/compact-phone.png" alt="v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, Private and Personalized buttons side by side, and Customize as a blue underlined link centred below them." width="780" height="1688" loading="lazy">
+      <img src="img/compact-phone.png" alt="v2 consent banner in the compact style on a phone-sized screen, as a white sheet across the bottom of a white page: the heading in the top row beside download and close icons, the message with a blue Privacy policy link, then Private, Personalized and a lighter-bordered Customize button side by side in one row." width="780" height="1688" loading="lazy">
       <details>
         <summary>Design and config JSON</summary>
         <pre><code>{
@@ -349,7 +349,7 @@
   }
 }</code></pre>
       </details>
-      <figcaption><strong>Compact on a phone</strong><span class="desc">Compact style on a phone: two level buttons side by side, and Customize as an underlined link below them.</span></figcaption>
+      <figcaption><strong>Compact on a phone</strong><span class="desc">Compact style on a phone: two level buttons and a Customize button side by side in one row.</span></figcaption>
     </figure>
     <figure id="standard-phone">
       <img src="img/standard-phone.png" alt="v2 consent banner in the standard style on a phone-sized screen, as an off-white card floating at the bottom of an off-white page: the site domain with download and close icons at the top, a centred heading and message with a near-black Privacy policy link, then full-width Private, Balanced and Personalized buttons stacked in a column, with a full-width Customize button last." width="780" height="1688" loading="lazy">
@@ -407,7 +407,7 @@
     <ul>
       <li><code>textColor</code> on <code>bannerColor</code>: the message and the Customize label.</li>
       <li><code>headingColor</code> on <code>bannerColor</code>: the heading and the level button labels.</li>
-      <li><code>primaryColor</code> on <code>bannerColor</code>: the links, and compact's Customize link on phones.</li>
+      <li><code>primaryColor</code> on <code>bannerColor</code>: the links.</li>
       <li><code>textColor</code> at 0.7 opacity over <code>bannerColor</code>: the site's domain (standard only).</li>
       <li><code>textColor</code> at 0.85 opacity over <code>bannerColor</code>: the note shown to a visitor who sends Global Privacy Control.</li>
       <li><code>btnTextColor</code> on <code>primaryColor</code>: a chosen level button.</li>
