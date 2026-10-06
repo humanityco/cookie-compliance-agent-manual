@@ -96,7 +96,7 @@ Use a **private window**, so no earlier consent is remembered.
 | 1 | **Look at the page** | The banner appears on first visit. There is **no** "Hu-manity PREVIEW — not active consent management" badge (that badge means a demo snippet was installed instead of the real one). |
 | 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`, and the page contains no `previewMode`. For a v2 app, the script `src` is `/v2/hu-banner.min.js`. |
 | 3 | **Before clicking anything** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) in the Application → Cookies panel, and no **data hits** in the Network tab (for example `google-analytics.com/g/collect`, `facebook.com/tr`). |
-| 4 | **Allow everything** (choose the most permissive option, then save) | Trackers start running straight away, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
+| 4 | **Allow everything** (choose the most permissive option; on a Classic banner, then click Save; the New banner has no Save button, each choice saves on click, and if the app has the Reloading setting on, the page reloads once after the choice) | Trackers start running straight away, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 | 5 | **Another page** | Repeat checks 1–3 on an inner page, in a fresh private window, not only the homepage. |
 
 Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but cookies and data hits are the real proof, because a script can still inject other scripts.

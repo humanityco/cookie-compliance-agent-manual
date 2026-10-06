@@ -247,12 +247,14 @@ Standard style on a phone: the three levels and Customize stacked as full-width 
 
 ## Switch an app to v2
 
-1. **Dashboard:** open the app, go to Configuration → Design, and find the last card, **Banner engine**. Set **Engine version** to **New**. It saves itself.
+1. **Dashboard:** open the app, go to Configuration, use the **Banner engine** dropdown in the page header, choose **New** and confirm. It goes live right away and is not part of Publish.
 2. **WordPress plugin:** version 3.1.11 or later picks the change up at its next check-in. Nothing to paste.
 3. **Hand-pasted snippet:** go to Integrations, copy the updated snippet (it loads the v2 script) and replace the old one on your site.
-4. Once the app is on v2, set **Banner style** to Compact if you want the compact style, then click **Publish Now** (unlike Engine version, this setting does not save itself). Standard is the default.
+4. Once the app is on v2, set **Banner style** to Compact if you want the compact style, then click **Publish Now**. The engine switch goes live when you confirm it, but banner style needs **Publish Now**. Standard is the default.
 
-To switch back to v1, follow the same steps and set the engine version back. For a hand-pasted snippet, paste the updated snippet again.
+To switch back to v1, choose **Classic** in the same dropdown and confirm. For a hand-pasted snippet, paste the updated snippet again.
+
+Settings that apply to only one engine, or behave differently on New, are tagged in the dashboard ("Classic engine only", "New engine only", "Works differently on New").
 
 ## Apply a design to your live banner
 
