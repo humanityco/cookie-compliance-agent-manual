@@ -65,6 +65,9 @@
     padding: 0.05rem 0.4rem; margin-left: 0.4rem; vertical-align: middle;
   }
   code { background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.9em; }
+  pre { background: var(--code-bg); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin: 0.5rem 0; white-space: pre-wrap; }
+  button.copy { font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.8rem; cursor: pointer; }
+  button.copy:hover { border-color: var(--accent); }
   footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
   footer a { font-weight: 400; }
 </style>
@@ -75,6 +78,18 @@
   <p class="tagline">Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice afterward.</p>
 
   <p>Ask a coding agent to "add a cookie banner" and it usually writes one by hand: a popup that stores the visitor's choice while the analytics tag above it has already run. This manual gives an agent tested procedures for doing it properly with <a href="https://cookie-compliance.co/">Cookie Compliance</a> instead — the right snippet, in the right place, verified afterward.</p>
+
+  <h2>Start here</h2>
+  <p>Paste this into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page). It does the install start to finish and asks you only to sign in or register, make the legal region choice, and approve anything that costs money.</p>
+  <pre id="prompt">Install the Cookie Compliance consent banner on this website, start to finish.
+Read https://manual.hu-manity.co/start.md and follow it.
+Mode: autopilot. Decide the technical steps yourself. Ask me only for what only I can do (sign in or register, the legal region choice, anything that costs money), one question at a time with your recommended answer first.
+Do not write your own banner.</pre>
+  <button class="copy" type="button" id="copy-prompt">Copy prompt</button>
+  <ul>
+    <li class="shipped"><a href="prompts.md">More prompts and tool setup</a><span class="desc">Guided mode, existing AppID, no MCP, and how to connect the MCP server in Claude Code, Cursor, Windsurf, GitHub Copilot and Codex.</span></li>
+    <li class="shipped"><a href="start.md">start.md</a><span class="desc">The page the agent follows.</span></li>
+  </ul>
 
   <h2>Skills</h2>
   <ul>
@@ -112,5 +127,22 @@
     Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.
   </footer>
 </main>
+<script>
+  (function () {
+    var b = document.getElementById('copy-prompt'), p = document.getElementById('prompt');
+    if (!b || !p) return;
+    b.addEventListener('click', function () {
+      var done = function () { b.textContent = 'Copied'; };
+      var fallback = function () {
+        var r = document.createRange(); r.selectNodeContents(p);
+        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+        b.textContent = 'Selected: copy it with your keyboard shortcut';
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(p.textContent).then(done, fallback);
+      } else { fallback(); }
+    });
+  })();
+</script>
 </body>
 </html>

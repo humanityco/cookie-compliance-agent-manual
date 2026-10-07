@@ -37,7 +37,7 @@ You can also pass `design` values you already have instead of `brand`, to valida
 To restyle a **real** banner:
 
 1. `account.previewDesignChange` with `AppID` and the `design` object from step 2. Requires an authenticated connection (`help.explainTokenSetup` if you don't have one). Read the returned before/after: a field with `fromState: "not_set"` means the banner is currently on its built-in default, not that it was blank by choice — say so if you show this to the owner.
-2. Show the before/after to the site owner and get their agreement — this changes what every visitor sees.
+2. Show the before/after to the site owner and get their agreement — this changes what every visitor sees. (Exception: `install-banner` in Autopilot applies it without asking on an app it created in that same install, which has no visitors yet.)
 3. `account.updateDesign` with the same `AppID`, the same `design` object, and the `previewToken` from step 1. Pass `publish: false` first to confirm the call succeeds without touching the live banner (`published: false`, `consentReIssued: false` in the result), then re-run with `publish: true` (the default) once the owner has agreed.
 
 Do **not** add a `design` block to the snippet from `install.getSnippet`. It would style the banner for a fraction of a second and then revert, which looks like an intermittent bug rather than a setting.

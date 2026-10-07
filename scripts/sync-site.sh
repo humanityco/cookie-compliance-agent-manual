@@ -8,6 +8,9 @@
 #   scripts/sync-site.sh --check  exit 1 if the mirror is out of date (for CI)
 set -euo pipefail
 shopt -s nullglob
+# The sitemap is sorted; a locale-dependent sort orders it differently on a
+# laptop (en_US) and in CI (C), so --check would fail on CI. Pin it.
+export LC_ALL=C
 root="$(cd "$(dirname "$0")/.." && pwd)"
 check=false
 [ "${1:-}" = "--check" ] && check=true
@@ -16,7 +19,7 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 chmod 755 "$tmp"
 
-for f in README.md AGENTS.md LICENSE; do
+for f in README.md AGENTS.md LICENSE start.md prompts.md; do
   cp "$root/$f" "$tmp/$f"
 done
 # llms.txt says "this repo" -- true on GitHub, not on this site. One
