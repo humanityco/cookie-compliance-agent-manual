@@ -8,7 +8,7 @@ These designs are for the v2 banner. For the v1 banner, see the [v1 banner desig
 
 ## What v2 is
 
-v2 is the new banner engine. Apps created in the dashboard or through the MCP server start on v2. Apps created earlier, or registered by the WordPress plugin on its own, stay on v1 until the owner switches them, and the switch works both ways.
+v2 is the new banner engine. Apps created in the dashboard, through the MCP server, or from the WordPress plugin 3.1.13 or later start on v2. Other apps (created earlier, or by an older plugin version) stay on v1 until the owner switches them, and the switch works both ways.
 
 The v2 first layer offers the consent levels as buttons, Private, Personalized and (when the app offers three choices) Balanced, with Customize last. There is no Accept or Save button: choosing a level is the choice, and nothing is selected until the visitor picks one. Customize opens the categories.
 
