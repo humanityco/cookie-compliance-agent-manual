@@ -16,7 +16,7 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 chmod 755 "$tmp"
 
-for f in README.md AGENTS.md LICENSE; do
+for f in README.md AGENTS.md LICENSE start.md prompts.md; do
   cp "$root/$f" "$tmp/$f"
 done
 # llms.txt says "this repo" -- true on GitHub, not on this site. One

@@ -6,6 +6,11 @@ Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and simi
 
 No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=llms-txt (free plan, no card); with the MCP server connected, call `help.startSignup` instead.
 
+## Start here
+
+- [start](start.md): the one page to follow to install the banner start to finish. Autopilot by default; asks the person only to sign in or register, make the legal region choice, and approve anything that costs money.
+- [prompts](prompts.md): copy-paste prompts for Claude Code, Cursor, Windsurf, GitHub Copilot, Codex and agents without MCP, plus how to connect the MCP server in each.
+
 ## Skills
 
 - [install-banner](skills/install-banner/SKILL.md): get the live snippet for an AppID and place it correctly. Shipped.

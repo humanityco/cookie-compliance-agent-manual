@@ -6,6 +6,19 @@ Skills and cookbooks that teach coding agents to add a **Cookie Compliance** con
 
 ---
 
+## Quick start
+
+Paste this into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page):
+
+```text
+Install the Cookie Compliance consent banner on this website, start to finish.
+Read https://manual.hu-manity.co/start.md and follow it.
+Mode: autopilot. Decide the technical steps yourself. Ask me only for what only I can do (sign in or register, the legal region choice, anything that costs money), one question at a time with your recommended answer first.
+Do not write your own banner.
+```
+
+More prompts, and how to connect the MCP server in each tool: [`prompts.md`](prompts.md). The page the agent follows: [`start.md`](start.md).
+
 ## Why this exists
 
 Ask a coding agent to "add a cookie banner so we comply with GDPR" and it usually writes one by hand: a popup that stores the visitor's choice in `localStorage`. By then the analytics tag at the top of the page has already run.
@@ -31,6 +44,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 
 | Folder | What it holds | Who it's for |
 |---|---|---|
+| [`start.md`](start.md), [`prompts.md`](prompts.md) | The page an agent follows to install start to finish, and copy-paste prompts per tool. | Everyone |
 | [`skills/`](skills/) | Installable agent skills. Each folder has a `SKILL.md` that an agent loads and follows. | Agents |
 | [`cookbooks/`](cookbooks/) | Worked recipes per platform and scenario. Each one covers the problem, the common wrong approach, the right approach, and how to check that it worked. | Developers and agents |
 | [`gallery/`](gallery/) | Example banner designs: a screenshot, a caption and the exact design JSON for each, with a separate page for the v2 banner at [`gallery/v2/`](gallery/v2/). Generated from `gallery/examples.json`. | Developers and agents |
@@ -38,7 +52,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 
 ### Skills
 
-- **install-banner** *(shipped)*: get the live snippet for an AppID and place it correctly (WordPress → plugin; others → paste).
+- **install-banner** *(shipped)*: the whole journey, in Autopilot by default: look around, sign in or register, create the app, place the snippet correctly (WordPress → plugin; others → paste), match the design, set regions, verify.
 - **verify-install** *(shipped)*: prove the banner actually blocks trackers before consent. `install-banner` calls this at its own verify step; it also stands alone for checking a banner someone else installed.
 - **match-site-design** *(shipped)*: derive a banner design from the site's own colours and check contrast.
 - **configure-regions** *(shipped)*: set per-region rules (for example GDPR in the EU, CCPA in California).
@@ -95,7 +109,7 @@ The skills in this repo tell an agent when to reach for each tool, and what to c
 
 ## Load the install-banner skill
 
-Clone or add this repo where your agent reads skills, then point it at `skills/install-banner/` (the folder that contains `SKILL.md`). Cookbooks used offline are copied into `skills/install-banner/references/` by `scripts/sync-references.sh` — run that after editing anything under `cookbooks/`.
+The prompt above works without installing anything: the agent fetches the skill from this site. To keep the skill on hand, clone or add this repo where your agent reads skills, then point it at `skills/install-banner/` (the folder that contains `SKILL.md`). Cookbooks used offline are copied into `skills/install-banner/references/` by `scripts/sync-references.sh` — run that after editing anything under `cookbooks/`.
 
 Example (Claude Code-compatible skill layout): ensure `skills/install-banner/SKILL.md` is on the skill search path for the session.
 
