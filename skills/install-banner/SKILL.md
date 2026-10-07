@@ -32,7 +32,7 @@ Is the site WordPress?
 | No account yet | STOP AND ASK. Call `help.startSignup` with the site's `domain` (it pre-fills the add-domain step) and give them the URL (free plan, no card). No MCP: give them the [signup page](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=skill-install-banner). Wait for an AppID. |
 | No MCP | Ask the owner for the AppID from the Cookie Compliance dashboard (Integrations), or for them to copy the Manual Integration snippet from there. |
 
-Never invent an AppID. Never install a demo/preview snippet (`demo.generateSnippet` / `previewMode`) as the finished result.
+Never invent an AppID. Never install a demo/preview snippet (`demo.generateSnippet` / `previewMode`) as the finished result, and never add `forceShow` or `cnPreview` to `huOptions`: both are preview-only and stop the visitor's choice being saved.
 
 ## 2. Get the live snippet
 
@@ -60,7 +60,7 @@ If the owner later switches banner engine in the dashboard, a hand-pasted snippe
 2. Insert the snippet as the **first script** in `<head>`, above analytics, pixels and any tag-manager container.
 3. No `async`, `defer` or `type="module"`. Don't route it through a bundler, a framework script helper, or a tag manager.
 4. Leave existing trackers in place, **below** the snippet. Don't delete them or add your own consent checks around them.
-5. Remove any other consent banner, whether hand-made or another consent tool, and any leftover preview snippet (`previewMode`). Two banners give conflicting consent.
+5. Remove any other consent banner, whether hand-made or another consent tool, and any leftover preview key (`previewMode`, `forceShow`, `cnPreview`). Two banners give conflicting consent, and a preview key stops choices being saved.
 
 Platform detail:
 
