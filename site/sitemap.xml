@@ -2,6 +2,8 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://manual.hu-manity.co/</loc></url>
   <url><loc>https://manual.hu-manity.co/AGENTS.md</loc></url>
+  <url><loc>https://manual.hu-manity.co/LICENSE</loc></url>
+  <url><loc>https://manual.hu-manity.co/README.md</loc></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/astro.md</loc></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/gtm.md</loc></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/nextjs.md</loc></url>
@@ -9,14 +11,12 @@
   <url><loc>https://manual.hu-manity.co/cookbooks/plain-html.md</loc></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/shopify.md</loc></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/wordpress.md</loc></url>
-  <url><loc>https://manual.hu-manity.co/gallery/</loc></url>
   <url><loc>https://manual.hu-manity.co/gallery/README.md</loc></url>
-  <url><loc>https://manual.hu-manity.co/gallery/v2/</loc></url>
+  <url><loc>https://manual.hu-manity.co/gallery/</loc></url>
   <url><loc>https://manual.hu-manity.co/gallery/v2/README.md</loc></url>
-  <url><loc>https://manual.hu-manity.co/LICENSE</loc></url>
+  <url><loc>https://manual.hu-manity.co/gallery/v2/</loc></url>
   <url><loc>https://manual.hu-manity.co/llms.txt</loc></url>
   <url><loc>https://manual.hu-manity.co/prompts.md</loc></url>
-  <url><loc>https://manual.hu-manity.co/README.md</loc></url>
   <url><loc>https://manual.hu-manity.co/skills/configure-regions/SKILL.md</loc></url>
   <url><loc>https://manual.hu-manity.co/skills/install-banner/SKILL.md</loc></url>
   <url><loc>https://manual.hu-manity.co/skills/match-site-design/SKILL.md</loc></url>
