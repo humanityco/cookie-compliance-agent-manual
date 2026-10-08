@@ -17,6 +17,7 @@
 <meta property="og:image:width" content="1280">
 <meta property="og:image:height" content="800">
 <meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="/assets/site.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -128,7 +129,6 @@
   a { color: var(--link); text-decoration: none; font-weight: 600; }
   p a, li a, footer a { text-decoration: underline; } /* in-text links: not colour alone */
   a:hover { text-decoration: underline; }
-  .back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.92rem; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 32rem), 1fr)); gap: 2rem; }
   figure { margin: 0; }
   figure img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; }
@@ -146,8 +146,23 @@
 </style>
 </head>
 <body>
-<main>
-  <a class="back" href="/">&larr; Cookie Compliance Agent Manual</a>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="/">Cookie Compliance <span>Agent Manual</span></a>
+    <nav aria-label="Main">
+    <ul>
+      <li><a href="/start/">Start</a></li>
+      <li><a href="/#skills">Skills</a></li>
+      <li><a href="/#cookbooks">Cookbooks</a></li>
+      <li><a href="/gallery/" aria-current="page">Gallery</a></li>
+      <li><a href="/llms.txt">For agents <span class="nav-note">(llms.txt)</span></a></li>
+      <li><a href="https://github.com/humanityco/cookie-compliance-agent-manual">GitHub</a></li>
+    </ul>
+    </nav>
+  </div>
+</header>
+<main id="content">
   <h1>Banner design gallery</h1>
   <p class="tagline">Eight example designs for the Cookie Compliance banner. Each one is a screenshot of the real widget in preview mode, using one of its real layouts. The build checks body text and headings against the banner colour, and the button label, the selected and unselected level labels and the links against their backgrounds, at WCAG AA (4.5:1).</p>
   <p class="sibling">These designs are for the v1 banner. For the v2 banner and its compact style, see the <a href="v2/">v2 banner design gallery</a>.</p>
@@ -330,7 +345,7 @@
       <li><strong>Dashboard:</strong> set the same values in your app's banner design settings, then publish.</li>
       <li><strong>MCP server:</strong> call <code>account.previewDesignChange</code> with your AppID and the <code>design</code> object, show the before/after to the site owner, then call <code>account.updateDesign</code> with the same object and the returned <code>previewToken</code>.</li>
     </ul>
-    <p>Never add a <code>design</code> block to the install snippet. To derive a design from your own site's colours instead, follow <a href="../skills/match-site-design/SKILL.md"><code>skills/match-site-design/SKILL.md</code></a>.</p>
+    <p>Never add a <code>design</code> block to the install snippet. To derive a design from your own site's colours instead, follow <a href="/skills/match-site-design/"><code>skills/match-site-design/SKILL.md</code></a>.</p>
   </section>
 
   <footer>

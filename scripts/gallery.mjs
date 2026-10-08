@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { STYLESHEET, SKIP_LINK, header } from './site-layout.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://manual.hu-manity.co/gallery/';
@@ -320,9 +321,11 @@ function readme(engine) {
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // Inline markdown used in the shared text: `code`, **bold**, [text](href).
+// A link to a skill's raw SKILL.md points at that skill's HTML page instead.
+const href = (h) => h.replace(/^(?:\.\.\/)+skills\/([^/]+)\/SKILL\.md$/, '/skills/$1/');
 const md = (s) => esc(s)
-  .replace(/\[`([^`]+)`\]\(([^)]+)\)/g, '<a href="$2"><code>$1</code></a>')
-  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+  .replace(/\[`([^`]+)`\]\(([^)]+)\)/g, (_, t, h) => `<a href="${href(h)}"><code>${t}</code></a>`)
+  .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, t, h) => `<a href="${href(h)}">${t}</a>`)
   .replace(/`([^`]+)`/g, '<code>$1</code>')
   .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
 
@@ -408,6 +411,7 @@ function html(engine) {
 <meta property="og:image:width" content="${ogSize.width}">
 <meta property="og:image:height" content="${ogSize.height}">
 <meta name="twitter:card" content="summary_large_image">
+${STYLESHEET}
 <script type="application/ld+json">
 ${JSON.stringify(jsonLd, null, 2).replace(/</g, '\\u003c')}
 </script>
@@ -462,7 +466,6 @@ ${JSON.stringify(jsonLd, null, 2).replace(/</g, '\\u003c')}
   a { color: var(--link); text-decoration: none; font-weight: 600; }
   p a, li a, footer a { text-decoration: underline; } /* in-text links: not colour alone */
   a:hover { text-decoration: underline; }
-  .back { display: inline-block; margin-bottom: 1.5rem; font-size: 0.92rem; }
   .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 32rem), 1fr)); gap: 2rem; }
   figure { margin: 0; }
   figure img { display: block; width: 100%; height: auto; border: 1px solid var(--border); border-radius: 6px; }
@@ -480,8 +483,9 @@ ${JSON.stringify(jsonLd, null, 2).replace(/</g, '\\u003c')}
 </style>
 </head>
 <body>
-<main>
-  <a class="back" href="/">&larr; Cookie Compliance Agent Manual</a>
+${SKIP_LINK}
+${header('gallery', new URL(url).pathname)}
+<main id="content">
   <h1>${esc(t.title)}</h1>
   <p class="tagline">${esc(t.intro(examples.length))}</p>
   <p class="sibling">${esc(s.lead)} ${esc(s.text)} <a href="${s.html}">${esc(s.name)}</a>.</p>

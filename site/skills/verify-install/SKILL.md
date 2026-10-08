@@ -7,6 +7,25 @@ description: Verify a Cookie Compliance consent banner actually blocks trackers 
 
 A banner that is merely visible has not been verified. Verification means proving trackers do not run before the visitor consents, then proving they do run once the visitor allows them.
 
+## 0. Status check first
+
+Open `https://designer-api.hu-manity.co/api/designer/user-design-live/?AppID=YOUR_APP_ID` (public, no sign-in; it is the same request the banner makes from each visitor's browser).
+
+- **Any 400:** the configuration is not live yet. Show the person the error text. "App does not exist" or "App was deleted": the AppID is wrong or the app is gone. Get the current AppID from **Integrations** (or `account.listApps`); do not publish. Any other 400 (for example "App is not published yet"): they click **Publish Now** in the dashboard. Stop here until it returns 200.
+- **200:** the configuration is live. Read `data.WidgetVersion`: `"v2"` means the New engine, so the script path must be `/v2/hu-banner.min.js`; anything else (`null`, `"v1"`) means Classic, so the path must be the root `/hu-banner.min.js`.
+
+A 200 only means the configuration is live. It is not a pass of any check below and never replaces them, including when you cannot run a browser.
+
+**If the script path does not match `WidgetVersion`**, first find out how the banner was installed, then fix it that way. A WordPress site with the Cookie Compliance plugin active (for example `wp-content/plugins/cookie-notice` in the code, or the plugin listed in wp-admin) uses the plugin route. Anything else is a pasted snippet: by hand, from the dashboard, or from `install.getSnippet`. If unsure, ask the person once.
+
+| How it was installed | Fix |
+|---|---|
+| WordPress plugin | Update the plugin to the current version, run **Pull latest settings**, then purge the page cache (the plugin offers this in a notice when the engine changes; see "Banner engine" in the [WordPress cookbook](https://manual.hu-manity.co/cookbooks/wordpress.md)). Otherwise a cached page keeps the old script path. Never add the manual snippet to a site that runs the plugin. |
+| Pasted snippet, MCP connected | Call `install.getSnippet` again and replace the snippet on every page. |
+| Pasted snippet, no MCP | After publishing, copy the snippet again from **Integrations → Manual Integration** and replace it on every page. |
+
+## 1. Browser checks
+
 Use a fresh browser profile or private window. If you drive a browser with automation, **hide `navigator.webdriver` and use a normal desktop user agent**, because the widget deliberately doesn't run for automated or headless browsers, and you'd wrongly conclude the banner is missing.
 
 **Location matters:** with region rules on, the visitor's region decides whether the banner shows and whether it blocks. Test from a region under the strictest rule (for example the EU), or confirm region rules are off. Otherwise a missing banner may be correct, and a pass may not hold for EU visitors.
@@ -22,8 +41,8 @@ Use a fresh browser profile or private window. If you drive a browser with autom
 
 **Banner or revoke icon missing?** Open the browser console. With or without debug mode, the widget prints short `status` lines saying what it showed and why, for example `[hu] status banner-hidden:gpc` (the browser sends Global Privacy Control, so the banner is correctly not shown). That is expected behaviour, not a broken install: re-test in a fresh profile without Global Privacy Control. `[hu] status revoke-off:no-choice-yet` is normal on a first visit.
 
-If you can't run a browser, give the owner this table and ask them to confirm each row.
+If you can't run a browser, give the owner this table. A row counts only when the owner checks it now against its Pass column and tells you what they saw; a bare "it works" is not a confirmation. Report those rows as "owner-confirmed, not verified by me". They do not make the install verified.
 
 ## Report
 
-Tell the owner: the result of each check (with screenshots if taken), the region you tested from, which banner engine URL was installed (v1 root path vs `/v2/`), and that design, wording and regions are managed in the Cookie Compliance dashboard, not in the page.
+Tell the owner: the status check result and its `WidgetVersion`, the result of each check (with screenshots if taken, and which rows are owner-confirmed), the region you tested from, which banner engine URL was installed (v1 root path vs `/v2/`), and that design, wording and regions are managed in the Cookie Compliance dashboard, not in the page.

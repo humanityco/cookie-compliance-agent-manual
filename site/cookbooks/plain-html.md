@@ -6,7 +6,7 @@ last_verified: 2026-09-28
 
 # Add Cookie Compliance to a plain HTML site
 
-**In short:** paste the **live** two-tag snippet (from MCP `install.getSnippet` or the dashboard Integrations page) as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
+**In short:** publish the app, then paste the **live** two-tag snippet (from MCP `install.getSnippet` or the dashboard Integrations page) as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
 
 ## You need
 
@@ -33,7 +33,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 
 ## The right way
 
-1. **Get the live snippet — do not rebuild it from memory.** Copy it from the dashboard (**Integrations → Manual Integration**), or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. That source already picks the correct script URL for your app's banner engine:
+1. **Get the live snippet — do not rebuild it from memory.** Publish first, then copy: click **Publish Now** in the dashboard, then copy the snippet from **Integrations → Manual Integration**. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. Once the app is published, that source picks the script URL for your app's banner engine (to check it matches, see step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md)):
    - **v2** (a new app): `https://cdn.hu-manity.co/v2/hu-banner.min.js`
    - **v1**: `https://cdn.hu-manity.co/hu-banner.min.js` — the owner asked for v1, or this app was already on v1
 
@@ -105,11 +105,22 @@ Check 3 is the one that matters for compliance. In the Elements panel, blocked t
 
 **Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) are **allowed to load before consent** on purpose. They receive a "denied" consent signal instead of being blocked. With Google Consent Mode, cookieless pings to `google-analytics.com` that carry the denied state are expected too. Seeing those requests is correct. Judge check 3 by the cookies: none of their tracking cookies should appear before the visitor accepts.
 
+## Troubleshooting
+
+The status check is `https://designer-api.hu-manity.co/api/designer/user-design-live/?AppID=YOUR_APP_ID` (public, no sign-in). Any 400 means the configuration is not live yet.
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| The script loads but no banner shows | The app is not published. | Click **Publish Now** in the dashboard, then copy the snippet again from **Integrations → Manual Integration**. |
+| Status check returns 400 "App is not published yet" | Same. | Same. |
+| Status check returns 400 "App does not exist" or "App was deleted" | The AppID in the snippet is wrong, or the app is gone. | Do not publish. Copy the snippet for the current app from **Integrations → Manual Integration**. |
+| The script path does not match the status check's `WidgetVersion` (`"v2"` needs `/v2/hu-banner.min.js`) | The snippet was copied before publishing, or before an engine switch. | Pasted snippet: copy it again from **Integrations → Manual Integration** after publishing (with MCP: call `install.getSnippet` again). WordPress plugin: never add this snippet; use the plugin fix in step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md). |
+| No banner, and the console shows `[hu] status banner-hidden:gpc` | The browser sends Global Privacy Control. | Nothing: this is expected. Re-test in a fresh profile without Global Privacy Control. |
+| No banner in Playwright, Puppeteer or Selenium | The widget does not run in automated browsers. | See the first gotcha below. |
+
 ## Gotchas
 
 - **Automated browsers see no banner.** The widget deliberately doesn't run when the browser reports that it is automated (`navigator.webdriver`), or when the user agent looks like a bot, including `HeadlessChrome`. If you check with Playwright, Puppeteer or Selenium, hide `navigator.webdriver` and use a normal desktop user agent, or you'll get a false "banner missing".
 - **"Combine" or "minify JS" optimisers** (in hosting panels or caching plugins) can merge or move the snippet. Exclude both tags from them.
-- **"Banner not showing" right after signup:** one common cause is a configuration that was saved but not **published** in the dashboard.
-- **Wrong engine URL:** a v2 app with the v1 script path (or the reverse) after an engine switch — re-copy from Integrations / `install.getSnippet`.
 - **Remove any other consent banner.** If the site already has a hand-made cookie popup or another consent tool, take it out. Two banners give visitors two conflicting choices.
 - **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the website's domain it came from (not the individual page address).

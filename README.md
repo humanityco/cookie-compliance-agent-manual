@@ -82,7 +82,7 @@ Blocking works by **execution order**, and code that has already run cannot be u
 3. On **every page**, which means it belongs in a shared layout or template.
 4. Loaded as a normal synchronous script, with no `async`, `defer` or `type="module"`, and never moved or merged by a bundler or a "combine JS" optimiser.
 
-**Prefer live HTML** from MCP `install.getSnippet` or the dashboard **Integrations → Manual Integration**. Those sources already emit the correct CDN path for the app's banner engine (`hu-banner.min.js` for v1, `/v2/hu-banner.min.js` for v2). Do not hardcode the script URL from memory after an engine switch.
+**Prefer live HTML** from MCP `install.getSnippet` or the dashboard **Integrations → Manual Integration**. Once the app is published (dashboard **Publish Now**), those sources emit the correct CDN path for the app's banner engine (`hu-banner.min.js` for v1, `/v2/hu-banner.min.js` for v2). Do not hardcode the script URL from memory after an engine switch.
 
 Every skill and cookbook here is built on this rule.
 

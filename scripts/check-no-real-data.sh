@@ -22,11 +22,13 @@ APPID_ALLOWLIST=(
 # Domains allowed to appear inside a URL: our own product surfaces, the
 # WordPress plugin listing, the one third-party vendor the GTM cookbook
 # names, the schema.org vocabulary (the JSON-LD "@context" on generated pages),
-# and the standard non-customer placeholders.
+# the original Markdown author's site (cited in the vendored markdown renderer's
+# licence, scripts/vendor/marked.LICENSE), and the standard non-customer placeholders.
 DOMAIN_ALLOWLIST=(
   "cookie-compliance.co"
   "mcp.cookie-compliance.co"
   "cdn.hu-manity.co"
+  "designer-api.hu-manity.co"   # the banner's own public config host, called from every visitor's browser
   "hu-manity.co"
   "app.hu-manity.co"
   "manual.hu-manity.co"
@@ -35,6 +37,7 @@ DOMAIN_ALLOWLIST=(
   "github.com"
   "schema.org"
   "www.sitemaps.org"
+  "daringfireball.net"
   "example.com"
   "example.org"
   "example.net"
