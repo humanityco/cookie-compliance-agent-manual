@@ -23,7 +23,9 @@ just showing a notice. See [README.md](README.md) for the full picture.
   checked against a real install, not assumed.
 - **`site/` (manual.hu-manity.co) is generated, except `index.html`.** Edit
   `skills/`, `cookbooks/` or the root docs, then run `scripts/sync-site.sh`
-  (`--check` enforces this in CI).
+  (`--check` enforces this in CI). It also renders each page's HTML twin
+  (`/start/`, `/skills/<name>/`, ...) with `scripts/build-pages.mjs`; shared
+  header and styles live in `scripts/site-layout.mjs` and `scripts/site-assets/`.
 - **`gallery/` is generated from `gallery/examples.json`** by `scripts/gallery.mjs`; never hand-edit `gallery/README.md`, `gallery/index.html` or their `gallery/v2/` counterparts.
 - **Capability, never compliance, as the claim.** This manual helps install a
   tool correctly; it does not certify anyone's legal compliance.

@@ -3,6 +3,9 @@
 # same skills/cookbooks/llms.txt and design gallery as raw files, at stable
 # paths. site/ is a generated copy: edit the source (skills/, cookbooks/,
 # gallery/examples.json, root files), never site/ directly.
+# It also renders each mirrored page's human-readable HTML twin (start/,
+# prompts/, skills/<name>/, cookbooks/<name>/) with scripts/build-pages.mjs,
+# so it needs node.
 #
 #   scripts/sync-site.sh          rebuild the site/ mirror
 #   scripts/sync-site.sh --check  exit 1 if the mirror is out of date (for CI)
@@ -51,6 +54,14 @@ done
 # rebuild keeps it. Any other index.html (e.g. site/gallery/, site/gallery/v2/) is mirrored.
 cp "$root/site/index.html" "$tmp/index.html"
 
+# Human-readable HTML twins of the mirrored markdown, plus site/assets/. The
+# raw .md files above are left byte-identical: agents fetch those.
+if ! command -v node >/dev/null 2>&1; then
+  echo "sync-site: node is required to render the HTML pages (scripts/build-pages.mjs)" >&2
+  exit 1
+fi
+node "$root/scripts/build-pages.mjs" "$tmp" >/dev/null
+
 # Crawlers and agents find the manual by these two files. They are generated
 # here so a rebuild cannot leave site/ without them, and so --check fails if
 # someone hand-edits the copies under site/.
@@ -62,9 +73,8 @@ base="https://manual.hu-manity.co"
   while IFS= read -r f; do
     rel="${f#"$tmp"/}"
     case "$rel" in
-      index.html|sitemap.xml|robots.txt|*.png) continue ;;
-      gallery/index.html) loc="$base/gallery/" ;;
-      gallery/v2/index.html) loc="$base/gallery/v2/" ;;
+      index.html|sitemap.xml|robots.txt|*.png|assets/*) continue ;;
+      */index.html) loc="$base/${rel%index.html}" ;;
       *) loc="$base/$rel" ;;
     esac
     printf '  <url><loc>%s</loc></url>\n' "$loc"
@@ -85,7 +95,7 @@ EOF
 if $check; then
   stale=0
   if ! diff -rq "$tmp" "$root/site" >/dev/null 2>&1; then
-    echo "stale: site/ does not match skills/, cookbooks/, gallery/ and root docs"
+    echo "stale: site/ does not match skills/, cookbooks/, gallery/, root docs and scripts/build-pages.mjs (run: scripts/sync-site.sh)"
     diff -rq "$tmp" "$root/site" || true
     stale=1
   fi

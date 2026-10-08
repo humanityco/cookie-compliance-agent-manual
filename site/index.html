@@ -5,144 +5,91 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cookie Compliance Agent Manual</title>
 <meta name="description" content="Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice.">
-<style>
-  :root {
-    color-scheme: light dark;
-    --accent: #20c19e;
-    --link: #0f7a63; /* #20c19e is 2.29:1 on white; this is 5.27:1 */
-    --bg: #ffffff;
-    --fg: #1a1f24;
-    --muted: #5a6570;
-    --border: #e3e7ea;
-    --code-bg: rgba(32,193,158,0.1);
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #14181c;
-      --fg: #eef1f3;
-      --muted: #9aa5ad;
-      --border: #2a3138;
-      --code-bg: rgba(32,193,158,0.15);
-      --link: #20c19e;
-    }
-  }
-  :root[data-theme="dark"] {
-    --bg: #14181c;
-    --fg: #eef1f3;
-    --muted: #9aa5ad;
-    --border: #2a3138;
-    --code-bg: rgba(32,193,158,0.15);
-    --link: #20c19e;
-  }
-  * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background: var(--bg);
-    color: var(--fg);
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
-    line-height: 1.55;
-  }
-  main {
-    max-width: 42rem;
-    margin: 0 auto;
-    padding: 3rem 1.25rem 4rem;
-  }
-  h1 { font-size: 1.6rem; margin: 0 0 0.5rem; }
-  .tagline { color: var(--muted); margin: 0 0 2rem; font-size: 1.05rem; }
-  h2 { font-size: 1.1rem; margin: 2.25rem 0 0.75rem; border-bottom: 1px solid var(--border); padding-bottom: 0.4rem; }
-  ul { padding-left: 0; margin: 0; list-style: none; }
-  li { margin: 0.6rem 0; padding-left: 1rem; border-left: 2px solid var(--border); }
-  li.shipped { border-left-color: var(--accent); }
-  a { color: var(--link); text-decoration: none; font-weight: 600; }
-  p a, footer a { text-decoration: underline; } /* in-text links: not colour alone */
-  a:hover { text-decoration: underline; }
-  .desc { display: block; color: var(--muted); font-weight: 400; font-size: 0.92rem; margin-top: 0.15rem; }
-  .badge {
-    display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.02em;
-    color: var(--accent); background: var(--code-bg); border-radius: 4px;
-    padding: 0.05rem 0.4rem; margin-left: 0.4rem; vertical-align: middle;
-  }
-  code { background: var(--code-bg); padding: 0.1em 0.4em; border-radius: 4px; font-size: 0.9em; }
-  pre { background: var(--code-bg); border-radius: 6px; padding: 0.9rem 1rem; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; margin: 0.5rem 0; white-space: pre-wrap; }
-  button.copy { font: inherit; font-size: 0.85rem; font-weight: 600; color: var(--fg); background: transparent; border: 1px solid var(--border); border-radius: 6px; padding: 0.35rem 0.8rem; cursor: pointer; }
-  button.copy:hover { border-color: var(--accent); }
-  footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--muted); font-size: 0.9rem; }
-  footer a { font-weight: 400; }
-</style>
+<link rel="canonical" href="https://manual.hu-manity.co/">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt (for agents)">
+<link rel="stylesheet" href="/assets/site.css">
+<script src="/assets/site.js" defer></script>
 </head>
 <body>
-<main>
+<a class="skip" href="#content">Skip to content</a>
+<header class="site-header">
+  <div class="bar">
+    <a class="brand" href="/">Cookie Compliance <span>Agent Manual</span></a>
+    <nav aria-label="Main">
+    <ul>
+      <li><a href="/start/">Start</a></li>
+      <li><a href="/#skills">Skills</a></li>
+      <li><a href="/#cookbooks">Cookbooks</a></li>
+      <li><a href="/gallery/">Gallery</a></li>
+      <li><a href="/llms.txt">For agents <span class="nav-note">(llms.txt)</span></a></li>
+      <li><a href="https://github.com/humanityco/cookie-compliance-agent-manual">GitHub</a></li>
+    </ul>
+    </nav>
+  </div>
+</header>
+<main id="content" class="home">
   <h1>Cookie Compliance Agent Manual</h1>
   <p class="tagline">Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice afterward.</p>
 
   <p>Ask a coding agent to "add a cookie banner" and it usually writes one by hand: a popup that stores the visitor's choice while the analytics tag above it has already run. This manual gives an agent tested procedures for doing it properly with <a href="https://cookie-compliance.co/">Cookie Compliance</a> instead — the right snippet, in the right place, verified afterward.</p>
 
-  <h2>Start here</h2>
+  <h2 id="start-here">Start here</h2>
   <p>Paste this into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page). It does the install start to finish and asks you only to sign in or register, make the legal region choice, and approve anything that costs money.</p>
   <pre id="prompt">Install the Cookie Compliance consent banner on this website, start to finish.
 Read https://manual.hu-manity.co/start.md and follow it.
 Mode: autopilot. Decide the technical steps yourself. Ask me only for what only I can do (sign in or register, the legal region choice, anything that costs money), one question at a time with your recommended answer first.
 Do not write your own banner.</pre>
-  <button class="copy" type="button" id="copy-prompt">Copy prompt</button>
-  <ul>
-    <li class="shipped"><a href="prompts.md">More prompts and tool setup</a><span class="desc">Guided mode, existing AppID, no MCP, and how to connect the MCP server in Claude Code, Cursor, Windsurf, GitHub Copilot and Codex.</span></li>
-    <li class="shipped"><a href="start.md">start.md</a><span class="desc">The page the agent follows.</span></li>
+  <button class="copy" type="button" id="copy-prompt" data-copy="prompt">Copy prompt</button>
+
+  <h2 id="where-are-you">Where are you?</h2>
+  <p>Each one opens the matching step of the start page.</p>
+  <ul class="doors">
+    <li><a href="start/#new"><strong>I'm new (no account)</strong><span>Sign up first. The free plan needs no card.</span></a></li>
+    <li><a href="start/#have-account"><strong>I have an account</strong><span>Sign in, then set up an app for this site.</span></a></li>
+    <li><a href="start/#have-app"><strong>I already have an app for this site</strong><span>Have its AppID ready. The agent picks up from there.</span></a></li>
   </ul>
 
-  <h2>Skills</h2>
-  <ul>
-    <li class="shipped"><a href="skills/install-banner/SKILL.md">install-banner</a><span class="badge">shipped</span><span class="desc">Get the live snippet for an AppID and place it correctly.</span></li>
-    <li class="shipped"><a href="skills/verify-install/SKILL.md">verify-install</a><span class="badge">shipped</span><span class="desc">Prove the banner blocks trackers before consent, on any install.</span></li>
-    <li class="shipped"><a href="skills/match-site-design/SKILL.md">match-site-design</a><span class="badge">shipped</span><span class="desc">Derive a banner design from the site's own colours; check WCAG AA contrast.</span></li>
-    <li class="shipped"><a href="skills/configure-regions/SKILL.md">configure-regions</a><span class="badge">shipped</span><span class="desc">Set which regulations apply and how visitors are treated by region.</span></li>
+  <h2 id="guides">Guides</h2>
+  <ul class="links">
+    <li><a href="start/">Start page</a><span class="desc">The page the agent follows, start to finish.</span></li>
+    <li><a href="prompts/">More prompts and tool setup</a><span class="desc">Guided mode, existing AppID, no MCP, and how to connect the MCP server in Claude Code, Cursor, Windsurf, GitHub Copilot and Codex.</span></li>
   </ul>
 
-  <h2>Cookbooks</h2>
-  <ul>
-    <li class="shipped"><a href="cookbooks/plain-html.md">plain-html</a><span class="desc">Paste the snippet into a static site's <code>&lt;head&gt;</code>.</span></li>
-    <li class="shipped"><a href="cookbooks/wordpress.md">wordpress</a><span class="desc">Install via the plugin, not a pasted snippet.</span></li>
-    <li class="shipped"><a href="cookbooks/nextjs.md">nextjs</a><span class="desc">Place the snippet correctly in a Next.js layout.</span></li>
-    <li class="shipped"><a href="cookbooks/nuxt.md">nuxt</a><span class="desc">Place it in <code>nuxt.config.ts</code> — never mark it <code>async</code>.</span></li>
-    <li class="shipped"><a href="cookbooks/astro.md">astro</a><span class="desc">Place it in the shared layout with <code>is:inline</code> on every tag.</span></li>
-    <li class="shipped"><a href="cookbooks/gtm.md">gtm</a><span class="desc">Put it above the GTM container in <code>&lt;head&gt;</code> — never inside GTM.</span></li>
-    <li class="shipped"><a href="cookbooks/shopify.md">shopify</a><span class="desc">Place it in <code>layout/theme.liquid</code> — not Additional scripts or a Customer Events pixel.</span></li>
+  <h2 id="skills">Skills</h2>
+  <ul class="links">
+    <li><a href="skills/install-banner/">install-banner</a><span class="desc">Get the live snippet for an AppID and place it correctly.</span></li>
+    <li><a href="skills/verify-install/">verify-install</a><span class="desc">Prove the banner blocks trackers before consent, on any install.</span></li>
+    <li><a href="skills/match-site-design/">match-site-design</a><span class="desc">Derive a banner design from the site's own colours; check WCAG AA contrast.</span></li>
+    <li><a href="skills/configure-regions/">configure-regions</a><span class="desc">Set which regulations apply and how visitors are treated by region.</span></li>
   </ul>
 
-  <h2>Design gallery</h2>
-  <ul>
-    <li class="shipped"><a href="gallery/">Banner design gallery</a><span class="desc">Example banner designs: a screenshot and the exact design JSON for each.</span></li>
-    <li class="shipped"><a href="gallery/v2/">v2 banner design gallery</a><span class="desc">Example designs for the v2 banner, in its standard and compact styles, and how to switch an app to v2.</span></li>
+  <h2 id="cookbooks">Cookbooks</h2>
+  <ul class="links">
+    <li><a href="cookbooks/plain-html/">plain-html</a><span class="desc">Paste the snippet into a static site's <code>&lt;head&gt;</code>.</span></li>
+    <li><a href="cookbooks/wordpress/">wordpress</a><span class="desc">Install via the plugin, not a pasted snippet.</span></li>
+    <li><a href="cookbooks/nextjs/">nextjs</a><span class="desc">Place the snippet correctly in a Next.js layout.</span></li>
+    <li><a href="cookbooks/nuxt/">nuxt</a><span class="desc">Place it in <code>nuxt.config.ts</code> — never mark it <code>async</code>.</span></li>
+    <li><a href="cookbooks/astro/">astro</a><span class="desc">Place it in the shared layout with <code>is:inline</code> on every tag.</span></li>
+    <li><a href="cookbooks/gtm/">gtm</a><span class="desc">Put it above the GTM container in <code>&lt;head&gt;</code> — never inside GTM.</span></li>
+    <li><a href="cookbooks/shopify/">shopify</a><span class="desc">Place it in <code>layout/theme.liquid</code> — not Additional scripts or a Customer Events pixel.</span></li>
   </ul>
 
-  <h2>For agents</h2>
-  <ul>
-    <li><a href="llms.txt">llms.txt</a><span class="desc">Machine-readable index of everything on this page.</span></li>
+  <h2 id="gallery">Design gallery</h2>
+  <ul class="links">
+    <li><a href="gallery/">Banner design gallery</a><span class="desc">Example banner designs: a screenshot and the exact design JSON for each.</span></li>
+    <li><a href="gallery/v2/">v2 banner design gallery</a><span class="desc">Example designs for the v2 banner, in its standard and compact styles, and how to switch an app to v2.</span></li>
+  </ul>
+
+  <h2 id="for-agents">For agents</h2>
+  <ul class="links">
+    <li><a href="llms.txt">llms.txt</a><span class="desc">Machine-readable index of everything on this site.</span></li>
+    <li><a href="start.md">start.md</a><span class="desc">The start page as raw markdown. Every guide, skill and cookbook page links to its own raw markdown.</span></li>
     <li><a href="https://app.hu-manity.co/#/register?enable-free=true&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=site-home">Sign up</a><span class="desc">No account yet? Free plan, no card. With MCP, call <code>help.startSignup</code>.</span></li>
   </ul>
-
-  <footer>
-    Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
-    Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.
-  </footer>
 </main>
-<script>
-  (function () {
-    var b = document.getElementById('copy-prompt'), p = document.getElementById('prompt');
-    if (!b || !p) return;
-    b.addEventListener('click', function () {
-      var done = function () { b.textContent = 'Copied'; };
-      var fallback = function () {
-        var r = document.createRange(); r.selectNodeContents(p);
-        var sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
-        b.textContent = 'Selected: copy it with your keyboard shortcut';
-      };
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(p.textContent).then(done, fallback);
-      } else { fallback(); }
-    });
-  })();
-</script>
+<footer class="site-footer">
+  <p>Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+  Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.</p>
+</footer>
 </body>
 </html>
