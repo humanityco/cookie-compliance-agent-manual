@@ -6,7 +6,7 @@ last_verified: 2026-09-28
 
 # Add Cookie Compliance to a plain HTML site
 
-**In short:** publish the app, then paste the **live** two-tag snippet (from MCP `install.getSnippet` or the dashboard Integrations page) as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
+**In short:** make sure the app is published (a domain added in the dashboard is published automatically), then paste the **live** two-tag snippet (from MCP `install.getSnippet` or the dashboard Integrations page) as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
 
 ## You need
 
@@ -33,7 +33,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 
 ## The right way
 
-1. **Get the live snippet — do not rebuild it from memory.** Publish first, then copy: click **Publish Now** in the dashboard, then copy the snippet from **Integrations → Manual Integration**. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. Once the app is published, that source picks the script URL for your app's banner engine (to check it matches, see step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md)):
+1. **Get the live snippet — do not rebuild it from memory.** A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet from **Integrations → Manual Integration**. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. Once the app is published, that source picks the script URL for your app's banner engine (to check it matches, see step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md)):
    - **v2** (a new app): `https://cdn.hu-manity.co/v2/hu-banner.min.js`
    - **v1**: `https://cdn.hu-manity.co/hu-banner.min.js` — the owner asked for v1, or this app was already on v1
 

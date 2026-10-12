@@ -126,6 +126,7 @@
 <li><strong>Plugin slug is still <code>cookie-notice</code></strong> on WordPress.org; the product name is Cookie Compliance.</li>
 <li><strong>Optimisers</strong> (LiteSpeed, Autoptimize, &quot;combine JS&quot;) can reorder or merge the banner. Exclude it; caching-compatibility toggles in the plugin exist for this class of problem.</li>
 <li><strong>Multisite:</strong> capability to write network options is gated — a site admin without network rights cannot complete some writes. Say so rather than inventing a workaround.</li>
+<li><strong>Page caches:</strong> plugin 3.1.14 and later marks the plugin&#39;s preview (administrators only), Beaver Builder previews and JSON requests as not to be cached, which caches that honour the standard no-cache signals respect. Other page builders are not covered. If a cache may already hold such a page, purge it once. Not yet browser-verified.</li>
 <li><strong>Automated browsers</strong> still bail (<code>navigator.webdriver</code> / HeadlessChrome) — same mask as other platforms when verifying with Playwright.</li>
 </ul>
   </main>

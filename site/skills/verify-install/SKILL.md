@@ -11,7 +11,7 @@ A banner that is merely visible has not been verified. Verification means provin
 
 Open `https://designer-api.hu-manity.co/api/designer/user-design-live/?AppID=YOUR_APP_ID` (public, no sign-in; it is the same request the banner makes from each visitor's browser).
 
-- **Any 400:** the configuration is not live yet. Show the person the error text. "App does not exist" or "App was deleted": the AppID is wrong or the app is gone. Get the current AppID from **Integrations** (or `account.listApps`); do not publish. Any other 400 (for example "App is not published yet"): they click **Publish Now** in the dashboard. Stop here until it returns 200.
+- **Any 400:** the configuration is not live yet. Show the person the error text. "App does not exist" or "App was deleted": the AppID is wrong or the app is gone. Get the current AppID from **Integrations** (or `account.listApps`); do not publish. Any other 400 (for example "App is not published yet"): a domain added in the dashboard is published automatically, so they click **Publish Now** in the dashboard, then copy the snippet again if they copied it before publishing. Stop here until it returns 200.
 - **200:** the configuration is live. Read `data.WidgetVersion`: `"v2"` means the New engine, so the script path must be `/v2/hu-banner.min.js`; anything else (`null`, `"v1"`) means Classic, so the path must be the root `/hu-banner.min.js`.
 
 A 200 only means the configuration is live. It is not a pass of any check below and never replaces them, including when you cannot run a browser.
@@ -38,6 +38,8 @@ Use a fresh browser profile or private window. If you drive a browser with autom
 | 4 | **Allow everything**: choose the most permissive option (for example the highest level). On a Classic banner, then click Save. The New banner has no Save button: each choice saves on click, and if the app has the Reloading setting on, the page reloads once after the choice | Trackers run at once, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 
 **Consent Mode exception to check 3:** when Google, Meta or Microsoft Consent Mode is on, their loader scripts (for example `googletagmanager.com/gtag/js`, `connect.facebook.net`) load before consent **by design**, and they are sent a "denied" signal. With Google Consent Mode, cookieless pings to `google-analytics.com` carrying the denied state are expected too. That is correct; don't "fix" it. Judge check 3 by cookies only.
+
+**Blocked iframes:** a blocked iframe shows a notice in its place with an **Accept** button, and Accept allows the whole category, not just that embed. Not yet browser-verified.
 
 **Banner or revoke icon missing?** Open the browser console. With or without debug mode, the widget prints short `status` lines saying what it showed and why, for example `[hu] status banner-hidden:gpc` (the browser sends Global Privacy Control, so the banner is correctly not shown). That is expected behaviour, not a broken install: re-test in a fresh profile without Global Privacy Control. `[hu] status revoke-off:no-choice-yet` is normal on a first visit.
 

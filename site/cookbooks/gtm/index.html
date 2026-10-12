@@ -88,7 +88,7 @@
 </ul>
 <h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
 <ol>
-<li>Get the <strong>live</strong> Cookie Compliance snippet (MCP <code>install.getSnippet</code> or dashboard Integrations → Manual Integration). Publish the app in the dashboard (<strong>Publish Now</strong>) before you copy the snippet; a snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-gtm">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
+<li>Get the <strong>live</strong> Cookie Compliance snippet (MCP <code>install.getSnippet</code> or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-gtm">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Paste it as the <strong>first script</strong> in the site&#39;s real <code>&lt;head&gt;</code> (layout / theme / HTML), on every page.</li>
 <li>Leave the existing GTM snippet where it is, <strong>below</strong> Cookie Compliance.</li>
 <li>Leave tags inside GTM alone — do not delete GA4/Ads tags to &quot;fix&quot; consent. The widget holds them until the visitor chooses (and Consent Mode signals apply when configured in the dashboard).</li>

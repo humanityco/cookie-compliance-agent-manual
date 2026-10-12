@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add Cookie Compliance to a plain HTML site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="In short: publish the app, then paste the live two-tag snippet (from MCP install.getSnippet or the dashboard Integrations page) as the first thing inside &lt;head&gt; on every page, above every other…">
+<meta name="description" content="In short: make sure the app is published (a domain added in the dashboard is published automatically), then paste the live two-tag snippet (from MCP install.getSnippet or the dashboard Integrations…">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/plain-html/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/plain-html.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add Cookie Compliance to a plain HTML site">
-<meta property="og:description" content="In short: publish the app, then paste the live two-tag snippet (from MCP install.getSnippet or the dashboard Integrations page) as the first thing inside &lt;head&gt; on every page, above every other…">
+<meta property="og:description" content="In short: make sure the app is published (a domain added in the dashboard is published automatically), then paste the live two-tag snippet (from MCP install.getSnippet or the dashboard Integrations…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/plain-html/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -77,7 +77,7 @@
   <main id="content" class="doc">
 <h1 id="add-cookie-compliance-to-a-plain-html-site">Add Cookie Compliance to a plain HTML site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-28">28 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/plain-html.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> publish the app, then paste the <strong>live</strong> two-tag snippet (from MCP <code>install.getSnippet</code> or the dashboard Integrations page) as the <strong>first thing inside <code>&lt;head&gt;</code></strong> on <strong>every page</strong>, above every other script. Leave your analytics tags where they are, below it.</p>
+<p><strong>In short:</strong> make sure the app is published (a domain added in the dashboard is published automatically), then paste the <strong>live</strong> two-tag snippet (from MCP <code>install.getSnippet</code> or the dashboard Integrations page) as the <strong>first thing inside <code>&lt;head&gt;</code></strong> on <strong>every page</strong>, above every other script. Leave your analytics tags where they are, below it.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance <strong>AppID</strong>, for example <code>examplecom-1a2b3c4</code>. You&#39;ll find it in the Cookie Compliance dashboard. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-plain-html">Sign up</a>; the free plan needs no card.</li>
@@ -100,7 +100,7 @@
 </ol>
 <h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
 <ol>
-<li><p><strong>Get the live snippet — do not rebuild it from memory.</strong> Publish first, then copy: click <strong>Publish Now</strong> in the dashboard, then copy the snippet from <strong>Integrations → Manual Integration</strong>. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call <code>install.getSnippet</code> (also listed as <code>install_getSnippet</code>) with your AppID. Paste the returned HTML <strong>unchanged</strong>. Once the app is published, that source picks the script URL for your app&#39;s banner engine (to check it matches, see step 0 of <a href="/skills/verify-install/">verify-install</a>):</p>
+<li><p><strong>Get the live snippet — do not rebuild it from memory.</strong> A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet from <strong>Integrations → Manual Integration</strong>. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call <code>install.getSnippet</code> (also listed as <code>install_getSnippet</code>) with your AppID. Paste the returned HTML <strong>unchanged</strong>. Once the app is published, that source picks the script URL for your app&#39;s banner engine (to check it matches, see step 0 of <a href="/skills/verify-install/">verify-install</a>):</p>
 <ul>
 <li><strong>v2</strong> (a new app): <code>https://cdn.hu-manity.co/v2/hu-banner.min.js</code></li>
 <li><strong>v1</strong>: <code>https://cdn.hu-manity.co/hu-banner.min.js</code> — the owner asked for v1, or this app was already on v1</li>

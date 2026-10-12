@@ -48,4 +48,5 @@ Same verification table as the install-banner skill (private window, strictest r
 - **Plugin slug is still `cookie-notice`** on WordPress.org; the product name is Cookie Compliance.
 - **Optimisers** (LiteSpeed, Autoptimize, "combine JS") can reorder or merge the banner. Exclude it; caching-compatibility toggles in the plugin exist for this class of problem.
 - **Multisite:** capability to write network options is gated — a site admin without network rights cannot complete some writes. Say so rather than inventing a workaround.
+- **Page caches:** plugin 3.1.14 and later marks the plugin's preview (administrators only), Beaver Builder previews and JSON requests as not to be cached, which caches that honour the standard no-cache signals respect. Other page builders are not covered. If a cache may already hold such a page, purge it once. Not yet browser-verified.
 - **Automated browsers** still bail (`navigator.webdriver` / HeadlessChrome) — same mask as other platforms when verifying with Playwright.
