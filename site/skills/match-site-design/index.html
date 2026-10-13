@@ -51,6 +51,7 @@
             <li><a href="#1-read-the-sites-own-colours--dont-guess">1. Read the site's own colours — don't guess</a></li>
             <li><a href="#2-derive-a-design--dont-hand-write-hex-values">2. Derive a design — don't hand-write hex values</a></li>
             <li><a href="#3-apply-it-in-the-one-place-it-works">3. Apply it in the one place it works</a></li>
+            <li><a href="#4-when-the-design-keys-are-not-enough-css-in-the-sites-own-stylesheet-v2-banner">4. When the design keys are not enough: CSS in the site's own stylesheet (v2 banner)</a></li>
             <li><a href="#verified">Verified</a></li>
           </ul></li>
         <li><a href="/skills/configure-regions/">configure-regions</a></li>
@@ -113,8 +114,53 @@
 </ol>
 <p>Do <strong>not</strong> add a <code>design</code> block to the snippet from <code>install.getSnippet</code>. It would style the banner for a fraction of a second and then revert, which looks like an intermittent bug rather than a setting.</p>
 <p><code>account.updateDesign</code> refuses any compliance-determinative field (blocking, consent categories, geolocation rules, consent mode, GPC, expiry) — those go through the <code>configure-regions</code> skill instead.</p>
+<h2 id="4-when-the-design-keys-are-not-enough-css-in-the-sites-own-stylesheet-v2-banner">4. When the design keys are not enough: CSS in the site&#39;s own stylesheet (v2 banner) <a class="anchor" href="#4-when-the-design-keys-are-not-enough-css-in-the-sites-own-stylesheet-v2-banner" aria-label="Link to this section">#</a></h2>
+<p>Anything a design key covers — the banner&#39;s colours, text sizes, button corner roundness — goes through step 3. Use CSS only for what no key covers (a different font for the banner, text alignment, hiding the site name, lifting the banner above a sticky footer or chat bar), or to style one element differently from the rest (for example, square corners on the level buttons only). For those, add CSS to the <strong>site&#39;s own stylesheet</strong> (WordPress: Appearance → Customize → <strong>Additional CSS</strong>, or the theme&#39;s <code>style.css</code>). The banner is part of the page (no iframe, no shadow root), so the site&#39;s CSS reaches it. Never put CSS or a <code>design</code> block in the install snippet.</p>
+<p><strong>Check the engine first.</strong> This section is for the v2 banner. With the banner open (from its round reopen icon, or in a new private window), the v2 banner has <code>#hu .hu-panel</code> in the page and the v1 banner has <code>#hu-cookies-content</code>. The script address (<code>/v2/hu-banner.min.js</code> for v2) is a second check — a script-combining optimizer can remove that tag from the page source. The v1 banner uses different class names; these selectors do nothing there.</p>
+<p><strong>Write every rule as <code>body #hu .hu-…</code>.</strong> The banner&#39;s own rules sit under the <code>#hu</code> root id and its stylesheet loads late, so a class alone (<code>.hu-heading</code>), <code>#hu .hu-heading</code> placed in <code>&lt;head&gt;</code>, or a tag selector (<code>#hu h2</code>) can lose, depending on the v2 version the site runs. <code>body #hu .hu-…</code> wins from <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> on every v2 version. If a rule still does not take, add <code>!important</code>. A site theme rule that uses <code>!important</code> beats the banner; only your own, more specific <code>!important</code> fixes that.</p>
+<div class="table-wrap" role="region" aria-label="Table" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Want</th>
+<th>CSS</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>A different font in the banner only (it uses the site&#39;s body font by default)</td>
+<td><code>#hu.hu-wrapper { font-family: Georgia, serif; }</code></td>
+</tr>
+<tr>
+<td>Left-aligned heading and message (standard style)</td>
+<td><code>body #hu .hu-heading, body #hu .hu-body { text-align: left; }</code></td>
+</tr>
+<tr>
+<td>Centred message on the compact bar</td>
+<td><code>#hu .hu-body { text-align: center !important; }</code></td>
+</tr>
+<tr>
+<td>Square corners on the level buttons only</td>
+<td><code>body #hu .hu-levels .hu-level { border-radius: 4px; }</code></td>
+</tr>
+<tr>
+<td>Hide the site name in the top row</td>
+<td><code>body #hu .hu-site-url { visibility: hidden; }</code></td>
+</tr>
+<tr>
+<td>Lift the banner above a sticky footer or chat bar (bottom banners; on phones every banner is a bottom band)</td>
+<td><code>body #hu.hu-position-bottom { bottom: 80px; } @media (max-width: 600px) { body #hu.hu-wrapper { bottom: 80px; } }</code> — never plain <code>body #hu { bottom: … }</code>: on a top or centre banner it stretches an invisible box over the page that blocks clicks</td>
+</tr>
+<tr>
+<td>Recolour the keyboard focus ring (already on by default) on all four parts</td>
+<td><code>body #hu :focus-visible, body #hu .hu-level:focus-within, body #hu-revoke :focus-visible, body #hu-passive :focus-visible, body .hu-iframe-overlay :focus-visible { outline-color: #005fcc; }</code></td>
+</tr>
+</tbody></table>
+</div>
+<p>Three more parts sit <strong>outside</strong> <code>#hu</code>, so a rule under <code>#hu</code> does not reach them: the round icon that reopens the banner (<code>#hu-revoke</code>), the Global Privacy Control notice (<code>#hu-passive</code>), and the notice over a blocked video or map (<code>.hu-iframe-overlay</code>). Use the same pattern with their root, e.g. <code>body #hu-revoke .hu-revoke-button { … }</code>.</p>
+<p>Do not use CSS to hide, cover or shrink the level buttons, Customize, the close button, the category switches or the privacy-policy link — a visitor who cannot reach a choice cannot refuse. Do not remove the focus ring (<code>outline: none</code>). If you change a colour with CSS, the contrast check from step 2 no longer covers it — prefer the design keys.</p>
 <h2 id="verified">Verified <a class="anchor" href="#verified" aria-label="Link to this section">#</a></h2>
 <p><code>demo.suggestDesign</code>, <code>account.previewDesignChange</code> and <code>account.updateDesign</code> (with <code>publish: false</code>) were called live against a real (non-production, no-visitor) test app on 2026-09-29, confirming: the derived key set and contrast report shape above, that an unset field previews as <code>fromState: &quot;not_set&quot;</code> rather than a false before-value, and that <code>publish: false</code> saves a draft with <code>consentReIssued: false</code> and does not touch the live banner.</p>
+<p>Every selector in step 4 was checked in a real browser on 2026-10-13 against the v2 banner, with the CSS placed in <code>&lt;head&gt;</code> where WordPress prints Additional CSS — the harder spot, because a rule there loses any tie that the same rule at the end of <code>&lt;body&gt;</code> would win.</p>
   </main>
 </div>
 <footer class="site-footer">
