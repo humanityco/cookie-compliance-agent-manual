@@ -50,7 +50,7 @@ Anything a design key covers — the banner's colours, text sizes, button corner
 
 **Check the engine first.** This section is for the v2 banner. With the banner open (from its round reopen icon, or in a new private window), the v2 banner has `#hu .hu-panel` in the page and the v1 banner has `#hu-cookies-content`. The script address (`/v2/hu-banner.min.js` for v2) is a second check — a script-combining optimizer can remove that tag from the page source. The v1 banner uses different class names; these selectors do nothing there.
 
-**Write every rule as `body #hu .hu-…`.** The banner's own rules sit under the `#hu` root id and its stylesheet loads late, so a class alone (`.hu-heading`), `#hu .hu-heading` placed in `<head>`, or a tag selector (`#hu h2`) can lose, depending on the v2 version the site runs. `body #hu .hu-…` wins from `<head>` or `<body>` on every v2 version. If a rule still does not take, add `!important`. A site theme rule that uses `!important` beats the banner; only your own, more specific `!important` fixes that.
+**Write every rule as `body #hu .hu-…`.** The banner's own rules sit under the `#hu` root id and its stylesheet loads late, so a class alone (`.hu-heading`), `#hu .hu-heading` placed in `<head>`, or a tag selector (`#hu h2`) can lose, depending on the v2 version the site runs. `body #hu .hu-…` beats the banner's general rules from `<head>` or `<body>` on every v2 version. A few layout rules carry more weight (for example the compact bar's text alignment), so if a rule still does not take, add `!important`. A site theme rule that uses `!important` beats the banner; only your own, more specific `!important` fixes that.
 
 | Want | CSS |
 |---|---|
