@@ -42,7 +42,7 @@ Read the app's current values first with `account.getDesign` before changing eit
 
 ## 2. Declaring applicable regulations — safe to merge
 
-`account.previewComplianceChange` then `account.updateComplianceConfig` with, for example, `{"regulations": {"gdpr": true, "ccpa": true}}`. This **merges** against whatever the app already has stored: setting `lgpd` in a later call does not erase `gdpr`/`ccpa`. See Verified below — this was a real bug until 2026-09-29.
+`account.previewComplianceChange` then `account.updateComplianceConfig` with, for example, `{"regulations": {"gdpr": true, "ccpa": true}}`. This **merges** against whatever the app already has stored: setting `lgpd` in a later call does not erase `gdpr`/`ccpa`. See Verified below.
 
 ## 3. Per-region behavior — `geolocationRules`, and its one real hazard
 
@@ -59,9 +59,9 @@ To actually treat an EU visitor differently from a California visitor, turn on `
 }
 ```
 
-`privacy` and `doNotSell` show or hide the privacy-policy link and the Do Not Sell link for that region's visitors, and a rule's flag wins over the app's **Privacy Policy Link** or **Do Not Sell Link** switch in the dashboard. Where no rule applies (see the next paragraph), the switch alone decides. Make sure each link has a URL and link text. Send both flags on every entry: the two banner engines treat a missing flag differently.
+`privacy` and `doNotSell` show or hide the privacy-policy link and the Do Not Sell link for that region's visitors, and a rule's flag wins over the app's **Privacy Policy Link** or **Do Not Sell Link** switch in the dashboard. Where no rule applies (for example geolocation is off, or the visitor matches no rule; see below), the switch alone decides. Make sure each link has a URL and link text. Send both flags on every entry: the two banner engines treat a missing flag differently.
 
-**On the New banner, region rules apply only while the script blocking engine is on.** When the engine is off, including a WordPress site with the plugin's **Script blocking engine** setting off and every page a logged-in WordPress administrator views, the New banner applies no region rule at all: not `display`, `revoke`, `privacy` or `doNotSell`. Every visitor gets the app's own settings. The Classic banner still applies region rules in that case. The WordPress plugin's **Autoblocking** setting, and a rule's own `blocking: false`, do not switch region rules off. On the Free plan the live banner keeps region detection off on both engines (see the GDPR starter above).
+**On the New banner, region rules shape the banner whether or not the script blocking engine is on.** When the engine is off, the matching rule's `display`, `revoke`, `privacy` and `doNotSell` flags still decide what the banner shows. The engine is off on a WordPress site with the plugin's **Script blocking engine** setting off and on every page a logged-in WordPress administrator views. So an administrator sees the same banner as visitors. What the engine controls is blocking: with it off nothing is held and a rule's own `blocking` flag is ignored, and `display: false` hides the banner. The WordPress plugin's **Autoblocking** setting, and a rule's own `blocking: false`, do not switch region rules off. A Free plan site past its visit limit is also engine-off, but the live banner keeps region detection off on the Free plan on both engines (see the GDPR starter above) and new visitors have no country, so a rule applies there only to a visitor whose country is already known.
 
 **This array replaces wholesale — it is never merged.** Sending only the `gdpr` entry silently deletes every other region's rules. `account.previewComplianceChange` warns about this at preview time, but nothing warns you at commit time, so read the preview. Always fetch the app's current `geolocationRules` with `account.getDesign` first, edit only the one entry you mean to change, and send the **whole list** back.
 
