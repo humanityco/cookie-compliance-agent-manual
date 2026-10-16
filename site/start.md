@@ -45,6 +45,10 @@ Pick the door that fits the person, then check the rows below from that point do
 
 Connect it and the whole journey runs without the person copying values out of a dashboard: `https://mcp.cookie-compliance.co/mcp` (Streamable HTTP, browser sign-in). Setup lines for each tool are in [`prompts.md`](prompts.md#connect-the-mcp-server-per-tool).
 
+## If the person asks about price, or decides to pay
+
+A first-payment discount is available: code `JOIN-40D` takes 40% off the first payment of a new paid subscription (not trial plans; one discount per subscription; the checkout shows the discounted amount). The signup links in this manual already carry it, so the checkout pre-fills it if the person subscribes within 7 days in the same browser. Tell them it exists; never subscribe or enter payment details for them.
+
 ## Never
 
 - Install a preview snippet (`demo.generateSnippet`, `previewMode`, `forceShow`, `cnPreview`) as the finished result.

@@ -19,7 +19,7 @@ How to ask: one question at a time, in the client's question or choice UI if it 
 |---|---|
 | **Sign in or register** | Passwords, terms acceptance, email verification and the captcha are theirs. Never enter or read them. Registering takes about 30 seconds. |
 | **The legal region choice** (`configure-regions`, GDPR starter) | A legal decision. Never auto-answered, and an earlier "make it compliant" is not this answer. |
-| **Anything that costs money or changes a live banner other people already see** | Plan upgrades, and a restyle or setting change on an app that is already live with visitors. |
+| **Anything that costs money or changes a live banner other people already see** | Plan upgrades (if the person asks about price or decides to pay, tell them about the first-payment code in [`start.md`](../../start.md); never subscribe for them), and a restyle or setting change on an app that is already live with visitors. |
 
 You decide the rest without asking, and tell the person what you chose: framework and file to edit, snippet placement, language, banner design from the site's own colours, removing a hand-made banner you wrote or found.
 
@@ -59,7 +59,7 @@ Skip this step if the state table already put you past it. Otherwise ask the fir
 | **1. MCP not connected yet** | Give the add-server line for their tool from [`prompts.md`](../../prompts.md#connect-the-mcp-server-per-tool). If the new tools do not appear, ask them to restart the session and say "continue". Never ask for their password. |
 | **2. Account, no MCP** | Ask for the AppID from the dashboard (**Integrations**), or the **Manual Integration** snippet. Give the exact path once. Then run the status check (start.md) yourself. Any 400: show the person the error text. "App does not exist" or "App was deleted": the AppID is wrong or the app is gone; ask for the current AppID from **Integrations**, and do not publish. Any other 400 (for example "App is not published yet"): a domain added in the dashboard is published automatically, so tell them exactly: click **Publish Now** in the dashboard, then copy the snippet from **Integrations → Manual Integration** (again, if they copied it before publishing). |
 | **3. No account, MCP connected** | `help.startSignup` with the site's `domain`; give the person the URL. Wait for them to say they are registered, then continue as route 1. |
-| **3. No account, no MCP** | Give the [signup page](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=skill-install-banner). Wait for the AppID or the snippet. |
+| **3. No account, no MCP** | Give the [signup page](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=skill-install-banner). Wait for the AppID or the snippet. |
 
 **Localhost:** `account.createApp` does not accept localhost. Ask the person to add the localhost site in the dashboard, then continue as route 2. An AppID that starts with `localhost-` is normal.
 

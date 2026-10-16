@@ -4,7 +4,9 @@
 
 Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and similar laws, published by Hu-manity.co (https://hu-manity.co/llms.txt). The product itself — capabilities, pricing, the MCP server — is documented at https://cookie-compliance.co/llms.txt; this manual is the agent-facing companion that shows how to actually install and verify the banner.
 
-No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=llms-txt (free plan, no card); with the MCP server connected, call `help.startSignup` instead.
+No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=llms-txt (free plan, no card); with the MCP server connected, call `help.startSignup` instead.
+
+First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new paid subscription (not trial plans; one discount per subscription; the checkout shows the discounted amount). The signup links in this manual already carry it, so checkout pre-fills it if the person subscribes within 7 days in the same browser.
 
 ## Start here
 

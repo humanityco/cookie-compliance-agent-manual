@@ -22,7 +22,7 @@ A measured failure mode of this class: consent defaults landed **after** the GTM
 
 ## The right way
 
-1. Get the **live** Cookie Compliance snippet (MCP `install.getSnippet` or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-gtm) (free plan, no card); with MCP, call `help.startSignup`.
+1. Get the **live** Cookie Compliance snippet (MCP `install.getSnippet` or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-gtm) (free plan, no card); with MCP, call `help.startSignup`.
 2. Paste it as the **first script** in the site's real `<head>` (layout / theme / HTML), on every page.
 3. Leave the existing GTM snippet where it is, **below** Cookie Compliance.
 4. Leave tags inside GTM alone — do not delete GA4/Ads tags to "fix" consent. The widget holds them until the visitor chooses (and Consent Mode signals apply when configured in the dashboard).

@@ -98,7 +98,7 @@ claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.
 |---|---|
 | The site owner has a Cookie Compliance AppID | `install.getSnippet` returns the live snippet and the placement rules. |
 | Signed in, need an AppID for this domain | `account.listApps` then `account.createApp` if missing. Ask the owner once about the GDPR starter ([`configure-regions`](skills/configure-regions/SKILL.md)). |
-| No account yet | `help.startSignup` returns the signup link; pass the site's `domain` and the add-domain step is pre-filled. The free tier needs no card. No MCP: [sign up here](https://app.hu-manity.co/#/register?enable-free=true&utm_source=agent-manual&utm_medium=docs&utm_content=readme). |
+| No account yet | `help.startSignup` returns the signup link; pass the site's `domain` and the add-domain step is pre-filled. The free tier needs no card. A new paid subscription's first payment can use code `JOIN-40D` (details in [`start.md`](start.md)); the signup links here carry it. No MCP: [sign up here](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=readme). |
 | Just want to see how it would look | `demo.generateSnippet` gives a **preview only**. It records and enforces no consent, so never leave it on a live site. |
 | Match the banner to the site's colours | `demo.suggestDesign` |
 | Change a live banner's design or settings | the `account.*` tools, which need a signed-in connection (`help.explainTokenSetup`) |
