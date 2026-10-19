@@ -42,6 +42,8 @@ To restyle a **real** banner:
 
 Do **not** add a `design` block to the snippet from `install.getSnippet`. It would style the banner for a fraction of a second and then revert, which looks like an intermittent bug rather than a setting.
 
+**Free plan:** the live banner keeps the default button corners whatever `btnBorderRadius` says. Corner roundness changes on paid plans only, so do not promise it to a Free-plan owner.
+
 `account.updateDesign` refuses any compliance-determinative field (blocking, consent categories, geolocation rules, consent mode, GPC, expiry) — those go through the `configure-regions` skill instead.
 
 ## 4. When the design keys are not enough: CSS in the site's own stylesheet (v2 banner)

@@ -235,6 +235,7 @@
 </li>
 </ol>
 <p><strong>Never paste the token into a chat message.</strong> It goes in the connection settings only.</p>
+<p>Only an Admin or Super Admin on the account can create a token. A Master Admin sign-in cannot.</p>
 <p>Tokens expire. When yours does, the AI can no longer reach your account: create a new token the same way and replace the old one. You can revoke a token at any time from the same list (<strong>Revoke Token</strong>).</p>
 <h2 id="check-it-worked">Check it worked <a class="anchor" href="#check-it-worked" aria-label="Link to this section">#</a></h2>
 <p>Ask your AI:</p>
@@ -242,7 +243,11 @@
 </code></pre></div>
 <p>It should list your sites.</p>
 <ul>
-<li><strong>It says it is connected but cannot see your sites:</strong> you added the try-it-out address. Remove the server and add <code>https://mcp.cookie-compliance.co/mcp/account</code> instead.</li>
+<li><strong>It says it is connected but cannot see your sites:</strong> there are two causes.<ul>
+<li>You added the try-it-out address. Remove the server and add <code>https://mcp.cookie-compliance.co/mcp/account</code> instead.</li>
+<li>You use an API token and it has expired or was revoked. Create a new token and replace the old one.</li>
+</ul>
+</li>
 <li><strong>It asks you to sign in again:</strong> this can happen from time to time. It is one click in the browser page that opens.</li>
 </ul>
 <h2 id="what-to-ask-next">What to ask next <a class="anchor" href="#what-to-ask-next" aria-label="Link to this section">#</a></h2>
@@ -250,7 +255,7 @@
 <div class="code"><pre tabindex="0"><code class="language-text">Make my cookie banner match my website. My brand colour is #…, my page background is #…. Show me the change before you publish it.
 </code></pre></div>
 <p>Give the AI your colours, or a screenshot of your site. It cannot reliably read colours from a web address.</p>
-<p>Through this connection the AI can change the banner&#39;s colours, position, size, wording, button corners and animation. It cannot change the logo or the font, or add custom code.</p>
+<p>Through this connection the AI can change the banner&#39;s colours, position, size, wording, button corners and animation. Button corners change on paid plans only: on the Free plan they stay at the default. It cannot change the logo or the font, or add custom code.</p>
 <p>After you publish a change, visitors whose browser saved the old banner may see it for up to an hour.</p>
 <h2 id="for-ai-agents">For AI agents <a class="anchor" href="#for-ai-agents" aria-label="Link to this section">#</a></h2>
 <ul>

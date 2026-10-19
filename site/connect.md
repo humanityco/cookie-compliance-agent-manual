@@ -119,6 +119,8 @@ Use this only when your app has no sign-in button for the server. A token is a l
 
 **Never paste the token into a chat message.** It goes in the connection settings only.
 
+Only an Admin or Super Admin on the account can create a token. A Master Admin sign-in cannot.
+
 Tokens expire. When yours does, the AI can no longer reach your account: create a new token the same way and replace the old one. You can revoke a token at any time from the same list (**Revoke Token**).
 
 ## Check it worked
@@ -131,7 +133,9 @@ Which Cookie Compliance sites can you see?
 
 It should list your sites.
 
-- **It says it is connected but cannot see your sites:** you added the try-it-out address. Remove the server and add `https://mcp.cookie-compliance.co/mcp/account` instead.
+- **It says it is connected but cannot see your sites:** there are two causes.
+  - You added the try-it-out address. Remove the server and add `https://mcp.cookie-compliance.co/mcp/account` instead.
+  - You use an API token and it has expired or was revoked. Create a new token and replace the old one.
 - **It asks you to sign in again:** this can happen from time to time. It is one click in the browser page that opens.
 
 ## What to ask next
@@ -144,7 +148,7 @@ Make my cookie banner match my website. My brand colour is #…, my page backgro
 
 Give the AI your colours, or a screenshot of your site. It cannot reliably read colours from a web address.
 
-Through this connection the AI can change the banner's colours, position, size, wording, button corners and animation. It cannot change the logo or the font, or add custom code.
+Through this connection the AI can change the banner's colours, position, size, wording, button corners and animation. Button corners change on paid plans only: on the Free plan they stay at the default. It cannot change the logo or the font, or add custom code.
 
 After you publish a change, visitors whose browser saved the old banner may see it for up to an hour.
 
