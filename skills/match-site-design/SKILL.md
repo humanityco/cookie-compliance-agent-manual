@@ -19,7 +19,7 @@ Call `demo.suggestDesign` with what you found:
 {"brand": {"brandColor": "#20c19e", "pageBackground": "#16202c", "cornerStyle": "rounded", "textScale": "medium"}}
 ```
 
-It returns a `design.*` key set you can apply to a live app (`primaryColor`, `btnTextColor`, `bannerColor`, `textColor`, `headingColor`, `btnBorderRadius`, `textSize`, `headingSize` — it leaves out `spacingSize`, because a live app can't store it), the reasoning for each value, and a WCAG AA contrast check for banner body text, headings, and button labels — picking text colour by measured contrast against the two backgrounds, not by habit. If `contrastPassesAA` is false, do not override the colours it picked; that defeats the check that made it call `demo.suggestDesign` in the first place.
+It returns a `design.*` key set you can apply to a live app (`primaryColor`, `btnTextColor`, `bannerColor`, `textColor`, `headingColor`, `btnBorderRadius`, `textSize`, `headingSize` — it leaves out `spacingSize`, because a live app can't store it), the reasoning for each value, and a WCAG AA contrast check for banner body text, headings, and button labels — picking text colour by measured contrast against the two backgrounds, not by habit, and white button labels whenever white reaches 4.5:1 on the brand colour. Colours come back as 6-digit hex (`#RRGGBB`). If `contrastPassesAA` is false, do not override the colours it picked; that defeats the check that made it call `demo.suggestDesign` in the first place.
 
 You can also pass `design` values you already have instead of `brand`, to validate them rather than derive new ones.
 
@@ -36,13 +36,17 @@ You can also pass `design` values you already have instead of `brand`, to valida
 
 To restyle a **real** banner:
 
-1. `account.previewDesignChange` with `AppID` and the `design` object from step 2. Requires a signed-in connection on the account address `https://mcp.cookie-compliance.co/mcp/account`. Sign in: see [`connect.md`](../../connect.md). Read the returned before/after: a field with `fromState: "not_set"` means the banner is currently on its built-in default, not that it was blank by choice — say so if you show this to the owner.
-2. Show the before/after to the site owner and get their agreement — this changes what every visitor sees. (Exception: `install-banner` in Autopilot applies it without asking on an app it created in that same install, which has no visitors yet.)
-3. `account.updateDesign` with the same `AppID`, the same `design` object, and the `previewToken` from step 1. Pass `publish: false` first to confirm the call succeeds without touching the live banner (`published: false`, `consentReIssued: false` in the result), then re-run with `publish: true` (the default) once the owner has agreed.
+1. `account.previewDesignChange` with `AppID` and the `design` object from step 2. Requires a signed-in connection on the account address `https://mcp.cookie-compliance.co/mcp/account`. Sign in: see [`connect.md`](../../connect.md). Read the returned before/after: a field with `fromState: "not_set"` means the banner is currently on its built-in default, not that it was blank by choice — say so if you show this to the owner. The preview also reports `contrast` for body text and headings on the banner and button labels on the button, as the banner would look after the change, with a warning for any pair below WCAG AA (4.5:1; 3:1 for headings 24px or larger). It never refuses on contrast.
+2. Show the before/after to the site owner, with any contrast warning, and get their agreement — this changes what every visitor sees, and the owner decides whether a low-contrast pair is acceptable. (Exception: `install-banner` in Autopilot applies it without asking on an app it created in that same install, which has no visitors yet.)
+3. `account.updateDesign` with the same `AppID`, the same `design` object, and the `previewToken` from step 1, within 10 minutes of the preview (`previewTokenExpiresAt` in its result; after that, preview again). It publishes by default — that is the normal path once the owner has agreed. A design change never asks visitors for their consent again (`consentReIssued: false`).
+
+**`publish: false`** saves the change as a draft and leaves the live banner alone. Re-running the same call with `publish: true` publishes it (the same `previewToken`, so still within the 10 minutes; after that, preview again) — but publishing puts the app's **whole** draft live, including any edits saved in the dashboard since the last publish, not just this change. The result lists those other values in a warning; pass it on to the owner.
+
+**Colours must be 6-digit hex (`#RRGGBB`).** The banner ignores `#RGB`, `rgb()` and colour names and shows its default instead, so `account.previewDesignChange` refuses them for any colour you change. One exception: `bannerColor` accepts `rgb()`/`rgba()` with a warning, because the v2 banner shows white instead — prefer a hex `bannerColor` with `bannerOpacity`.
 
 Do **not** add a `design` block to the snippet from `install.getSnippet`. It would style the banner for a fraction of a second and then revert, which looks like an intermittent bug rather than a setting.
 
-**Free plan:** the live banner keeps the default button corners whatever `btnBorderRadius` says. Corner roundness changes on paid plans only, so do not promise it to a Free-plan owner.
+**Free plan:** the live banner keeps the defaults for `btnBorderRadius`, `revokeMarginX`, `revokeMarginY`, `delayDisplay`, `delayTime` and `levelsOrder`, whatever the app stores. Button corners, the reopen icon's position, a delay before the banner appears and the order of the level buttons change on paid plans only, so do not promise them to a Free-plan owner.
 
 `account.updateDesign` refuses any compliance-determinative field (blocking, consent categories, geolocation rules, consent mode, GPC, expiry) — those go through the `configure-regions` skill instead.
 
@@ -70,6 +74,6 @@ Do not use CSS to hide, cover or shrink the level buttons, Customize, the close 
 
 ## Verified
 
-`demo.suggestDesign`, `account.previewDesignChange` and `account.updateDesign` (with `publish: false`) were called live against a real (non-production, no-visitor) test app on 2026-09-29, confirming: the derived key set and contrast report shape above, that an unset field previews as `fromState: "not_set"` rather than a false before-value, and that `publish: false` saves a draft with `consentReIssued: false` and does not touch the live banner.
+`demo.suggestDesign`, `account.previewDesignChange` and `account.updateDesign` (with `publish: false`) were called live against a real (non-production, no-visitor) test app on 2026-09-29, confirming: the derived key set and contrast report shape above, that an unset field previews as `fromState: "not_set"` rather than a false before-value, and that `publish: false` saves a draft with `consentReIssued: false` and does not touch the live banner. Publishing a saved draft by re-running with `publish: true`, the colour-format refusal and the preview's contrast report came later and were not part of that test.
 
 Every selector in step 4 was checked in a real browser on 2026-10-13 against the v2 banner, with the CSS placed in `<head>` where WordPress prints Additional CSS — the harder spot, because a rule there loses any tie that the same rule at the end of `<body>` would win.
