@@ -12,6 +12,7 @@ export const SKIP_LINK = '<a class="skip" href="#content">Skip to content</a>';
 // [section, label, href]. `section` marks the current entry with aria-current.
 const NAV = [
   ['start', 'Start', '/start/'],
+  ['connect', 'Connect', '/connect/'],
   ['skills', 'Skills', '/#skills'],
   ['cookbooks', 'Cookbooks', '/#cookbooks'],
   ['gallery', 'Gallery', '/gallery/'],

@@ -21,7 +21,8 @@ APPID_ALLOWLIST=(
 
 # Domains allowed to appear inside a URL: our own product surfaces, the
 # WordPress plugin listing, the one third-party vendor the GTM cookbook
-# names, the schema.org vocabulary (the JSON-LD "@context" on generated pages),
+# names, the two AI vendors' own connector help pages (cited by connect.md),
+# the schema.org vocabulary (the JSON-LD "@context" on generated pages),
 # the original Markdown author's site (cited in the vendored markdown renderer's
 # licence, scripts/vendor/marked.LICENSE), and the standard non-customer placeholders.
 DOMAIN_ALLOWLIST=(
@@ -34,6 +35,8 @@ DOMAIN_ALLOWLIST=(
   "manual.hu-manity.co"
   "wordpress.org"
   "www.googletagmanager.com"
+  "support.claude.com"
+  "help.openai.com"
   "github.com"
   "schema.org"
   "www.sitemaps.org"

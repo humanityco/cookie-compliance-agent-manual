@@ -43,7 +43,7 @@ Pick the door that fits the person, then check the rows below from that point do
 
 ## The MCP server
 
-Connect it and the whole journey runs without the person copying values out of a dashboard: `https://mcp.cookie-compliance.co/mcp` (Streamable HTTP, browser sign-in). Setup lines for each tool are in [`prompts.md`](prompts.md#connect-the-mcp-server-per-tool).
+Connect it and the whole journey runs without the person copying values out of a dashboard. Existing customers add `https://mcp.cookie-compliance.co/mcp/account` (Streamable HTTP; the client asks them to sign in in the browser). Steps for each app: [`connect.md`](connect.md) (raw: `https://manual.hu-manity.co/connect.md`).
 
 ## If the person asks about price, or decides to pay
 

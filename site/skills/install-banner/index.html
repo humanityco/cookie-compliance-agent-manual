@@ -24,6 +24,7 @@
     <nav aria-label="Main">
     <ul>
       <li><a href="/start/">Start</a></li>
+      <li><a href="/connect/">Connect</a></li>
       <li><a href="/#skills" aria-current="true">Skills</a></li>
       <li><a href="/#cookbooks">Cookbooks</a></li>
       <li><a href="/gallery/">Gallery</a></li>
@@ -40,7 +41,8 @@
       <h2>Get started</h2>
       <ul>
         <li><a href="/start/">Start here</a></li>
-        <li><a href="/prompts/">Prompts and tool setup</a></li>
+        <li><a href="/connect/">Connect your AI assistant</a></li>
+        <li><a href="/prompts/">Prompts</a></li>
       </ul>
       <h2>Skills</h2>
       <ul>
@@ -142,11 +144,11 @@
 </thead>
 <tbody><tr>
 <td><strong>1. MCP connected</strong></td>
-<td>Call <code>help.authStatus</code>. If not signed in, call <code>account.listApps</code> (it starts the browser sign-in; call it even though it is not in your tool list, because the tools only list once signed in), or <code>help.explainTokenSetup</code>. Tell the person to approve the connection page that opens, and to read what it names. Once signed in: <code>account.listApps</code>. If the site&#39;s domain is there, use its AppID; if several match, ask which. If it is missing, <code>account.createApp</code> with the domain. The app is not finished until the person has answered the GDPR starter question (<code>configure-regions</code>).</td>
+<td>Call <code>help.authStatus</code>. If not signed in, the server was added with the try-it-out address (<code>https://mcp.cookie-compliance.co/mcp</code>) or sign-in was not finished. Sign in: see <a href="/connect/"><code>connect.md</code></a> (raw: <code>https://manual.hu-manity.co/connect.md</code>): the person adds <code>https://mcp.cookie-compliance.co/mcp/account</code> and approves the Cookie Compliance page that opens in their browser. Tell them to read what that page names. Once signed in: <code>account.listApps</code>. If the site&#39;s domain is there, use its AppID; if several match, ask which. If it is missing, <code>account.createApp</code> with the domain. The app is not finished until the person has answered the GDPR starter question (<code>configure-regions</code>).</td>
 </tr>
 <tr>
 <td><strong>1. MCP not connected yet</strong></td>
-<td>Give the add-server line for their tool from <a href="/prompts/#connect-the-mcp-server-per-tool"><code>prompts.md</code></a>. If the new tools do not appear, ask them to restart the session and say &quot;continue&quot;. Never ask for their password.</td>
+<td>Give the steps for their app from <a href="/connect/"><code>connect.md</code></a>, with the account address <code>https://mcp.cookie-compliance.co/mcp/account</code>. If the new tools do not appear, ask them to restart the session and say &quot;continue&quot;. Never ask for their password.</td>
 </tr>
 <tr>
 <td><strong>2. Account, no MCP</strong></td>

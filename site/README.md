@@ -17,7 +17,7 @@ Mode: autopilot. Decide the technical steps yourself. Ask me only for what only 
 Do not write your own banner.
 ```
 
-More prompts, and how to connect the MCP server in each tool: [`prompts.md`](prompts.md). The page the agent follows: [`start.md`](start.md).
+More prompts: [`prompts.md`](prompts.md). Connect your AI app to your account: [`connect.md`](connect.md). The page the agent follows: [`start.md`](start.md).
 
 ## Why this exists
 
@@ -44,7 +44,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 
 | Folder | What it holds | Who it's for |
 |---|---|---|
-| [`start.md`](start.md), [`prompts.md`](prompts.md) | The page an agent follows to install start to finish, and copy-paste prompts per tool. | Everyone |
+| [`start.md`](start.md), [`connect.md`](connect.md), [`prompts.md`](prompts.md) | The page an agent follows to install start to finish, how to connect each AI app to the MCP server, and copy-paste prompts. | Everyone |
 | [`skills/`](skills/) | Installable agent skills. Each folder has a `SKILL.md` that an agent loads and follows. | Agents |
 | [`cookbooks/`](cookbooks/) | Worked recipes per platform and scenario. Each one covers the problem, the common wrong approach, the right approach, and how to check that it worked. | Developers and agents |
 | [`gallery/`](gallery/) | Example banner designs: a screenshot, a caption and the exact design JSON for each, with a separate page for the v2 banner at [`gallery/v2/`](gallery/v2/). Generated from `gallery/examples.json`. | Developers and agents |
@@ -88,11 +88,7 @@ Every skill and cookbook here is built on this rule.
 
 ## Use it with the Cookie Compliance MCP server
 
-Cookie Compliance runs a remote MCP server that agents can call directly, at `https://mcp.cookie-compliance.co/mcp` (Streamable HTTP; add it to any MCP client by that URL). In Claude Code:
-
-```bash
-claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.co/mcp
-```
+Cookie Compliance runs a remote MCP server (Streamable HTTP). Existing customers add `https://mcp.cookie-compliance.co/mcp/account` and sign in in the browser; to try it with no account, add `https://mcp.cookie-compliance.co/mcp`. Steps for each AI app: [`connect.md`](connect.md).
 
 | Situation | Tool |
 |---|---|
@@ -101,7 +97,7 @@ claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.
 | No account yet | `help.startSignup` returns the signup link; pass the site's `domain` and the add-domain step is pre-filled. The free tier needs no card. A new paid subscription's first payment can use code `JOIN-40D` (details in [`start.md`](start.md)); the signup links here carry it. No MCP: [sign up here](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=readme). |
 | Just want to see how it would look | `demo.generateSnippet` gives a **preview only**. It records and enforces no consent, so never leave it on a live site. |
 | Match the banner to the site's colours | `demo.suggestDesign` |
-| Change a live banner's design or settings | the `account.*` tools, which need a signed-in connection (`help.explainTokenSetup`) |
+| Change a live banner's design or settings | the `account.*` tools, which need the account address and a signed-in connection ([`connect.md`](connect.md)) |
 
 The skills in this repo tell an agent when to reach for each tool, and what to check afterwards.
 

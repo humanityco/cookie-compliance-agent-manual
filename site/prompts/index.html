@@ -24,6 +24,7 @@
     <nav aria-label="Main">
     <ul>
       <li><a href="/start/" aria-current="true">Start</a></li>
+      <li><a href="/connect/">Connect</a></li>
       <li><a href="/#skills">Skills</a></li>
       <li><a href="/#cookbooks">Cookbooks</a></li>
       <li><a href="/gallery/">Gallery</a></li>
@@ -40,12 +41,13 @@
       <h2>Get started</h2>
       <ul>
         <li><a href="/start/">Start here</a></li>
-        <li><a href="/prompts/" aria-current="page">Prompts and tool setup</a>
+        <li><a href="/connect/">Connect your AI assistant</a></li>
+        <li><a href="/prompts/" aria-current="page">Prompts</a>
           <ul class="toc" aria-label="On this page">
             <li><a href="#the-prompt">The prompt</a></li>
             <li><a href="#variants">Variants</a></li>
             <li><a href="#what-happens-after-you-paste">What happens after you paste</a></li>
-            <li><a href="#connect-the-mcp-server-per-tool">Connect the MCP server (per tool)</a></li>
+            <li><a href="#connect-the-mcp-server">Connect the MCP server</a></li>
             <li><a href="#optional-give-your-agent-the-skills">Optional: give your agent the skills</a></li>
             <li><a href="#where-each-platform-is-covered">Where each platform is covered</a></li>
           </ul></li>
@@ -77,7 +79,7 @@
   <main id="content" class="doc">
 <h1 id="copy-paste-prompts">Copy-paste prompts</h1>
 <p class="page-meta"><a href="/prompts.md">View raw markdown (for agents)</a></p>
-<p>Paste one of these into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page). The agent does the work and asks you only for what only you can do.</p>
+<p>Paste one of these into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page). The agent does the work and asks you only for what only you can do. To connect your AI app to your account first, see <a href="/connect/">Connect your AI assistant</a>.</p>
 <h2 id="the-prompt">The prompt <a class="anchor" href="#the-prompt" aria-label="Link to this section">#</a></h2>
 <div class="code"><pre tabindex="0"><code class="language-text">Install the Cookie Compliance consent banner on this website, start to finish.
 Read https://manual.hu-manity.co/start.md and follow it.
@@ -128,46 +130,9 @@ Do not write your own banner.
 <li>It checks that trackers are held back until a visitor chooses, then reports what it changed.</li>
 </ol>
 <p>Registering takes about 30 seconds and is always yours to do: the agent never enters a password, accepts terms or solves a captcha for you.</p>
-<h2 id="connect-the-mcp-server-per-tool">Connect the MCP server (per tool) <a class="anchor" href="#connect-the-mcp-server-per-tool" aria-label="Link to this section">#</a></h2>
-<p>The server address is <code>https://mcp.cookie-compliance.co/mcp</code>. Adding it connects anonymously and does not open a browser by itself. Sign-in starts when the agent first uses your account (it calls <code>account.listApps</code>, which is not in the tool list until you are signed in): your client then shows a sign-in link, you approve the connection page in your browser, and you never paste a token. If the new tools do not appear after you add the server, restart the agent session and say &quot;continue&quot;.</p>
-<div class="table-wrap" role="region" aria-label="Table" tabindex="0">
-<table>
-<thead>
-<tr>
-<th>Tool</th>
-<th>Add the server</th>
-</tr>
-</thead>
-<tbody><tr>
-<td><strong>Claude Code</strong></td>
-<td>Run <code>claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.co/mcp</code>. Add <code>--scope user</code> to have it in every project.</td>
-</tr>
-<tr>
-<td><strong>Cursor</strong></td>
-<td>Add to <code>.cursor/mcp.json</code> (this project) or <code>~/.cursor/mcp.json</code> (all projects): <code>{&quot;mcpServers&quot;: {&quot;cookie-compliance&quot;: {&quot;url&quot;: &quot;https://mcp.cookie-compliance.co/mcp&quot;}}}</code>.</td>
-</tr>
-<tr>
-<td><strong>Windsurf</strong></td>
-<td>In Cascade open the MCP settings and edit <code>mcp_config.json</code>: <code>{&quot;mcpServers&quot;: {&quot;cookie-compliance&quot;: {&quot;serverUrl&quot;: &quot;https://mcp.cookie-compliance.co/mcp&quot;}}}</code>. Windsurf has no one-click install for this.</td>
-</tr>
-<tr>
-<td><strong>GitHub Copilot (VS Code)</strong></td>
-<td>Add to <code>.vscode/mcp.json</code>: <code>{&quot;servers&quot;: {&quot;cookie-compliance&quot;: {&quot;type&quot;: &quot;http&quot;, &quot;url&quot;: &quot;https://mcp.cookie-compliance.co/mcp&quot;}}}</code>, or run <code>code --add-mcp &quot;{\&quot;name\&quot;:\&quot;cookie-compliance\&quot;,\&quot;type\&quot;:\&quot;http\&quot;,\&quot;url\&quot;:\&quot;https://mcp.cookie-compliance.co/mcp\&quot;}&quot;</code>.</td>
-</tr>
-<tr>
-<td><strong>Codex</strong></td>
-<td>Run <code>codex mcp add cookie-compliance --url https://mcp.cookie-compliance.co/mcp</code>. If Codex shows the server as needing sign-in, run <code>codex mcp login cookie-compliance</code>.</td>
-</tr>
-<tr>
-<td><strong>Any other MCP client</strong></td>
-<td>Add a Streamable HTTP server with that URL. If the client cannot sign in by browser, the agent calls <code>help.explainTokenSetup</code> and walks you through the manual token step.</td>
-</tr>
-<tr>
-<td><strong>No MCP at all</strong> (for example ChatGPT in a browser tab)</td>
-<td>Use the prompt above with the no-MCP variant. The agent asks for your AppID or the snippet from your dashboard (<strong>Integrations → Manual Integration</strong>). Design and region rules are then set in the dashboard.</td>
-</tr>
-</tbody></table>
-</div>
+<h2 id="connect-the-mcp-server">Connect the MCP server <a class="anchor" href="#connect-the-mcp-server" aria-label="Link to this section">#</a></h2>
+<p>Steps for each app (Claude, ChatGPT, Claude Code, Cursor, Windsurf, GitHub Copilot, Codex): <a href="/connect/">Connect your AI assistant</a>. Existing customers add <code>https://mcp.cookie-compliance.co/mcp/account</code> and sign in in the browser.</p>
+<p>No MCP at all? Use the prompt above with the no-MCP variant. The agent asks for your AppID or the snippet from your dashboard (<strong>Integrations → Manual Integration</strong>). Design and region rules are then set in the dashboard.</p>
 <h2 id="optional-give-your-agent-the-skills">Optional: give your agent the skills <a class="anchor" href="#optional-give-your-agent-the-skills" aria-label="Link to this section">#</a></h2>
 <p>The prompt works without installing anything, because the agent fetches the skill from this site. To have the skill on hand every session:</p>
 <ul>

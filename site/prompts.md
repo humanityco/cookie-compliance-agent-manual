@@ -1,6 +1,6 @@
 # Copy-paste prompts
 
-Paste one of these into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page). The agent does the work and asks you only for what only you can do.
+Paste one of these into your coding agent (Claude Code, Cursor, Windsurf, GitHub Copilot, Codex, or any agent that can read a web page). The agent does the work and asks you only for what only you can do. To connect your AI app to your account first, see [Connect your AI assistant](connect.md).
 
 ## The prompt
 
@@ -32,19 +32,11 @@ Do not write your own banner.
 
 Registering takes about 30 seconds and is always yours to do: the agent never enters a password, accepts terms or solves a captcha for you.
 
-## Connect the MCP server (per tool)
+## Connect the MCP server
 
-The server address is `https://mcp.cookie-compliance.co/mcp`. Adding it connects anonymously and does not open a browser by itself. Sign-in starts when the agent first uses your account (it calls `account.listApps`, which is not in the tool list until you are signed in): your client then shows a sign-in link, you approve the connection page in your browser, and you never paste a token. If the new tools do not appear after you add the server, restart the agent session and say "continue".
+Steps for each app (Claude, ChatGPT, Claude Code, Cursor, Windsurf, GitHub Copilot, Codex): [Connect your AI assistant](connect.md). Existing customers add `https://mcp.cookie-compliance.co/mcp/account` and sign in in the browser.
 
-| Tool | Add the server |
-|---|---|
-| **Claude Code** | Run `claude mcp add --transport http cookie-compliance https://mcp.cookie-compliance.co/mcp`. Add `--scope user` to have it in every project. |
-| **Cursor** | Add to `.cursor/mcp.json` (this project) or `~/.cursor/mcp.json` (all projects): `{"mcpServers": {"cookie-compliance": {"url": "https://mcp.cookie-compliance.co/mcp"}}}`. |
-| **Windsurf** | In Cascade open the MCP settings and edit `mcp_config.json`: `{"mcpServers": {"cookie-compliance": {"serverUrl": "https://mcp.cookie-compliance.co/mcp"}}}`. Windsurf has no one-click install for this. |
-| **GitHub Copilot (VS Code)** | Add to `.vscode/mcp.json`: `{"servers": {"cookie-compliance": {"type": "http", "url": "https://mcp.cookie-compliance.co/mcp"}}}`, or run `code --add-mcp "{\"name\":\"cookie-compliance\",\"type\":\"http\",\"url\":\"https://mcp.cookie-compliance.co/mcp\"}"`. |
-| **Codex** | Run `codex mcp add cookie-compliance --url https://mcp.cookie-compliance.co/mcp`. If Codex shows the server as needing sign-in, run `codex mcp login cookie-compliance`. |
-| **Any other MCP client** | Add a Streamable HTTP server with that URL. If the client cannot sign in by browser, the agent calls `help.explainTokenSetup` and walks you through the manual token step. |
-| **No MCP at all** (for example ChatGPT in a browser tab) | Use the prompt above with the no-MCP variant. The agent asks for your AppID or the snippet from your dashboard (**Integrations → Manual Integration**). Design and region rules are then set in the dashboard. |
+No MCP at all? Use the prompt above with the no-MCP variant. The agent asks for your AppID or the snippet from your dashboard (**Integrations → Manual Integration**). Design and region rules are then set in the dashboard.
 
 ## Optional: give your agent the skills
 

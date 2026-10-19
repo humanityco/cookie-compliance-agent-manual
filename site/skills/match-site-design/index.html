@@ -24,6 +24,7 @@
     <nav aria-label="Main">
     <ul>
       <li><a href="/start/">Start</a></li>
+      <li><a href="/connect/">Connect</a></li>
       <li><a href="/#skills" aria-current="true">Skills</a></li>
       <li><a href="/#cookbooks">Cookbooks</a></li>
       <li><a href="/gallery/">Gallery</a></li>
@@ -40,7 +41,8 @@
       <h2>Get started</h2>
       <ul>
         <li><a href="/start/">Start here</a></li>
-        <li><a href="/prompts/">Prompts and tool setup</a></li>
+        <li><a href="/connect/">Connect your AI assistant</a></li>
+        <li><a href="/prompts/">Prompts</a></li>
       </ul>
       <h2>Skills</h2>
       <ul>
@@ -108,7 +110,7 @@
 </div>
 <p>To restyle a <strong>real</strong> banner:</p>
 <ol>
-<li><code>account.previewDesignChange</code> with <code>AppID</code> and the <code>design</code> object from step 2. Requires an authenticated connection (<code>help.explainTokenSetup</code> if you don&#39;t have one). Read the returned before/after: a field with <code>fromState: &quot;not_set&quot;</code> means the banner is currently on its built-in default, not that it was blank by choice — say so if you show this to the owner.</li>
+<li><code>account.previewDesignChange</code> with <code>AppID</code> and the <code>design</code> object from step 2. Requires a signed-in connection on the account address <code>https://mcp.cookie-compliance.co/mcp/account</code>. Sign in: see <a href="/connect/"><code>connect.md</code></a>. Read the returned before/after: a field with <code>fromState: &quot;not_set&quot;</code> means the banner is currently on its built-in default, not that it was blank by choice — say so if you show this to the owner.</li>
 <li>Show the before/after to the site owner and get their agreement — this changes what every visitor sees. (Exception: <code>install-banner</code> in Autopilot applies it without asking on an app it created in that same install, which has no visitors yet.)</li>
 <li><code>account.updateDesign</code> with the same <code>AppID</code>, the same <code>design</code> object, and the <code>previewToken</code> from step 1. Pass <code>publish: false</code> first to confirm the call succeeds without touching the live banner (<code>published: false</code>, <code>consentReIssued: false</code> in the result), then re-run with <code>publish: true</code> (the default) once the owner has agreed.</li>
 </ol>

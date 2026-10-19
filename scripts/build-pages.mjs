@@ -4,6 +4,7 @@
 // raw markdown, byte for byte, at its usual path:
 //
 //   start.md                -> start/index.html                  (/start/)
+//   connect.md              -> connect/index.html                (/connect/)
 //   prompts.md              -> prompts/index.html                (/prompts/)
 //   skills/<name>/SKILL.md  -> skills/<name>/index.html          (/skills/<name>/)
 //   cookbooks/<name>.md     -> cookbooks/<name>/index.html       (/cookbooks/<name>/)
@@ -46,12 +47,15 @@ const ls = (dir) => (existsSync(join(out, dir)) ? readdirSync(join(out, dir)) : 
 const skills = ordered(ls('skills').filter((n) => existsSync(join(out, 'skills', n, 'SKILL.md'))), SKILL_ORDER);
 const cookbooks = ordered(ls('cookbooks').filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3)), COOKBOOK_ORDER);
 
-// { src: raw markdown path, url: pretty path, section: header nav entry, kind (shown under
-// the h1), label (sidebar), description (else the front-matter's, else the first paragraph) }
+// { src: raw markdown path, url: pretty path, section: sidebar group and header nav entry,
+// nav (header nav entry, when it differs from section), kind (shown under the h1),
+// label (sidebar), description (else the front-matter's, else the first paragraph) }
 const PAGES = [
   { src: 'start.md', url: '/start/', section: 'start', label: 'Start here',
     description: 'The one page a coding agent follows to install the Cookie Compliance consent banner, start to finish.' },
-  { src: 'prompts.md', url: '/prompts/', section: 'start', label: 'Prompts and tool setup' },
+  { src: 'connect.md', url: '/connect/', section: 'start', nav: 'connect', label: 'Connect your AI assistant',
+    description: 'How to connect Claude, ChatGPT, Claude Code, Cursor and other AI apps to Cookie Compliance, so the AI can read and change your cookie banner.' },
+  { src: 'prompts.md', url: '/prompts/', section: 'start', label: 'Prompts' },
   ...skills.map((n) => ({ src: `skills/${n}/SKILL.md`, url: `/skills/${n}/`, section: 'skills', kind: 'Skill', label: n })),
   ...cookbooks.map((n) => ({ src: `cookbooks/${n}.md`, url: `/cookbooks/${n}/`, section: 'cookbooks', kind: 'Cookbook', label: n })),
 ];
@@ -230,7 +234,7 @@ ${SCRIPT}
 </head>
 <body>
 ${SKIP_LINK}
-${header(p.section, p.url)}
+${header(p.nav ?? p.section, p.url)}
 <div class="layout">
   ${sidebar(p, renderer.toc)}
   <main id="content" class="doc">

@@ -4,7 +4,7 @@
 # paths. site/ is a generated copy: edit the source (skills/, cookbooks/,
 # gallery/examples.json, root files), never site/ directly.
 # It also renders each mirrored page's human-readable HTML twin (start/,
-# prompts/, skills/<name>/, cookbooks/<name>/) with scripts/build-pages.mjs,
+# connect/, prompts/, skills/<name>/, cookbooks/<name>/) with scripts/build-pages.mjs,
 # so it needs node.
 #
 #   scripts/sync-site.sh          rebuild the site/ mirror
@@ -22,7 +22,7 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 chmod 755 "$tmp"
 
-for f in README.md AGENTS.md LICENSE start.md prompts.md; do
+for f in README.md AGENTS.md LICENSE start.md connect.md prompts.md; do
   cp "$root/$f" "$tmp/$f"
 done
 # llms.txt says "this repo" -- true on GitHub, not on this site. One
