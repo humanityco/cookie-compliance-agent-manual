@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cookie Compliance</title>
+    <script>
+        var huOptions = {
+            "appID": "YOUR_APP_ID",
+            "currentLanguage": "en",
+            "blocking": true,
+            "globalCookie": false
+        };
+    </script>
+    <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" asp-page="/Index">Cookie Compliance</a>
+        <nav>
+            <a asp-page="/Index">Home</a>
+            <a asp-page="/About">About</a>
+            <a asp-page="/Product">Product</a>
+        </nav>
+    </header>
+    <main>
+        @RenderBody()
+    </main>
+    <footer class="site-footer">
+        <p class="footer-name">Field Notes Market</p>
+        <nav>
+            <a asp-page="/Index">Home</a>
+            <a asp-page="/About">About</a>
+            <a asp-page="/Product">Product</a>
+        </nav>
+    </footer>
+</body>
+</html>

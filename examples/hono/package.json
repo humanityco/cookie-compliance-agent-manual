@@ -1,0 +1,12 @@
+{
+  "name": "hono-example",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.19.11",
+    "hono": "^4.12.14"
+  }
+}

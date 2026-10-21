@@ -1,0 +1,259 @@
+<script lang="ts">
+	import type { LayoutProps } from './$types';
+
+	let { children }: LayoutProps = $props();
+</script>
+
+<header class="topbar">
+	<a class="brand" href="/">Cookie Compliance</a>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/about">About</a>
+		<a href="/product">Product</a>
+	</nav>
+</header>
+
+<main>
+	{@render children()}
+</main>
+
+<footer class="site-footer">
+	<p class="footer-name">Field Notes Market</p>
+	<nav>
+		<a href="/">Home</a>
+		<a href="/about">About</a>
+		<a href="/product">Product</a>
+	</nav>
+</footer>
+
+<style>
+	:global(:root) {
+		--ink: #1c1917;
+		--muted: #57534e;
+		--line: #e7e5e4;
+		--paper: #f6f5f3;
+		--card: #ffffff;
+		--accent: #0f766e;
+	}
+
+	:global(body) {
+		margin: 0;
+		font-family: "Segoe UI", system-ui, sans-serif;
+		color: var(--ink);
+		background: var(--paper);
+		line-height: 1.55;
+	}
+
+	.topbar {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 0.9rem 1.5rem;
+		background: #fff;
+		border-bottom: 1px solid var(--line);
+	}
+
+	.brand {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.55rem;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+		text-decoration: none;
+		color: var(--ink);
+	}
+
+	.brand::before {
+		content: "";
+		width: 0.7rem;
+		height: 0.7rem;
+		border-radius: 3px;
+		background: var(--accent);
+	}
+
+	.topbar nav {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	.topbar nav a {
+		color: var(--muted);
+		text-decoration: none;
+	}
+
+	.topbar nav a:hover,
+	.topbar nav a:focus-visible,
+	.brand:hover,
+	.brand:focus-visible {
+		color: var(--ink);
+	}
+
+	.topbar a:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+	}
+
+	main {
+		max-width: 60rem;
+		margin: 0 auto;
+		padding: 2.75rem 1.5rem 4rem;
+	}
+
+	main :global(.kicker) {
+		margin: 0 0 0.55rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: var(--accent);
+	}
+
+	main :global(.hero h1),
+	main :global(.about h1),
+	main :global(.product h1) {
+		margin: 0 0 0.75rem;
+		font-size: 2.35rem;
+		line-height: 1.15;
+		letter-spacing: -0.03em;
+	}
+
+	main :global(.lede) {
+		margin: 0 0 1.75rem;
+		max-width: 40rem;
+		font-size: 1.125rem;
+		color: var(--muted);
+	}
+
+	main :global(.cards) {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 1rem;
+		margin: 0 0 2.5rem;
+	}
+
+	main :global(.card) {
+		margin: 0;
+		padding: 1rem 1.1rem 1.15rem;
+		background: var(--card);
+		border: 1px solid var(--line);
+		border-radius: 12px;
+	}
+
+	main :global(.card h2) {
+		margin: 0 0 0.4rem;
+		font-size: 1rem;
+		letter-spacing: -0.01em;
+	}
+
+	main :global(.card p) {
+		margin: 0;
+		color: var(--muted);
+	}
+
+	main :global(.story) {
+		padding-top: 1.75rem;
+		border-top: 1px solid var(--line);
+	}
+
+	main :global(.story h2) {
+		margin: 0 0 0.6rem;
+		font-size: 1.4rem;
+		letter-spacing: -0.02em;
+	}
+
+	main :global(.story p),
+	main :global(.about p),
+	main :global(.product p),
+	main :global(.categories .note) {
+		max-width: 42rem;
+		margin: 0 0 0.85rem;
+	}
+
+	main :global(.story p:last-child),
+	main :global(.about p:last-child),
+	main :global(.product p:last-child),
+	main :global(.categories .note) {
+		margin-bottom: 0;
+	}
+
+	main :global(code) {
+		font-family: ui-monospace, "Cascadia Code", Menlo, Consolas, monospace;
+		font-size: 0.92em;
+	}
+
+
+	main :global(.categories) {
+		margin-top: 2.5rem;
+		padding-top: 1.75rem;
+		border-top: 1px solid var(--line);
+	}
+
+	main :global(.categories h2) {
+		margin: 0 0 0.6rem;
+		font-size: 1.4rem;
+		letter-spacing: -0.02em;
+	}
+
+	main :global(.category-grid) {
+		display: grid;
+		grid-template-columns: repeat(4, minmax(0, 1fr));
+		gap: 1rem;
+		margin: 0 0 1rem;
+	}
+
+	.site-footer {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 1rem;
+		padding: 1.1rem 1.5rem;
+		background: #fff;
+		border-top: 1px solid var(--line);
+	}
+
+	.footer-name {
+		margin: 0;
+		font-weight: 700;
+		letter-spacing: -0.02em;
+	}
+
+	.site-footer nav {
+		display: flex;
+		gap: 1.25rem;
+	}
+
+	.site-footer nav a {
+		color: var(--muted);
+		text-decoration: none;
+	}
+
+	.site-footer nav a:hover,
+	.site-footer nav a:focus-visible {
+		color: var(--ink);
+	}
+
+	.site-footer a:focus-visible {
+		outline: 2px solid var(--accent);
+		outline-offset: 3px;
+	}
+
+	@media (max-width: 720px) {
+		main :global(.cards),
+		main :global(.category-grid) {
+			grid-template-columns: 1fr;
+		}
+
+		main :global(.hero h1),
+		main :global(.about h1),
+		main :global(.product h1) {
+			font-size: 1.85rem;
+		}
+
+		.topbar,
+		.site-footer {
+			align-items: flex-start;
+			flex-direction: column;
+		}
+	}
+</style>

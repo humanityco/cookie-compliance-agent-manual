@@ -45,6 +45,7 @@ DOMAIN_ALLOWLIST=(
   "example.org"
   "example.net"
   "localhost"
+  "rubygems.org"   # source line in examples/rails/Gemfile
 )
 
 fail=0

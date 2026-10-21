@@ -1,0 +1,14 @@
+{
+  "name": "example/cookie-compliance-symfony",
+  "description": "Cookie Compliance snippet placement on Symfony and Twig",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "symfony/http-foundation": "^7.4",
+    "symfony/routing": "^7.4",
+    "twig/twig": "^3.14"
+  },
+  "config": {
+    "sort-packages": true
+  }
+}

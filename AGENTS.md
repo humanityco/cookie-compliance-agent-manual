@@ -11,6 +11,8 @@ just showing a notice. See [README.md](README.md) for the full picture.
 - **Need a worked recipe for a specific platform or scenario?** See [`cookbooks/`](cookbooks/).
   Each skill's `references/` folder is a generated copy of these — edit the
   cookbook, never `skills/*/references/` (`scripts/sync-references.sh --check` enforces this in CI).
+- **Want a runnable project that already places the snippet?** See [`examples/`](examples/).
+  Those apps illustrate placement only. The procedure is still the skills and cookbooks.
 
 ## Hard rules for anyone contributing here
 

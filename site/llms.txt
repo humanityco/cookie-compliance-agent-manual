@@ -31,6 +31,13 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [astro](cookbooks/astro.md): place the snippet in the shared layout with `is:inline` on every tag, or Astro silently defers it as a module.
 - [shopify](cookbooks/shopify.md): place the snippet first in `layout/theme.liquid`'s `<head>` — not checkout Additional scripts or a Customer Events pixel.
 
+## Example projects
+
+Runnable apps in the repository under `examples/`. Each places the snippet first in the shared document. They illustrate placement; the procedure is still the skills and cookbooks. Not published as site pages.
+
+- [examples](examples/README.md): index of stacks, the file that owns `<head>`, and how to run each app.
+- Stacks and the file that owns `<head>`: ASP.NET Razor Pages (`Pages/Shared/_Layout.cshtml`), Blazor (`Components/App.razor`), Angular (`src/index.html`), React Vite (`index.html`), Vue Vite (`index.html`), SvelteKit (`src/app.html`), Laravel (`resources/views/layouts/app.blade.php`), Django (`templates/base.html`), Rails (`app/views/layouts/application.html.erb`), Next.js (`app/layout.tsx`), Nuxt (`nuxt.config.ts`), Astro (`src/layouts/Layout.astro`), Express (`templates/layout.html`), Spring Boot (`src/main/resources/templates/layout.html`), Go (`templates/layout.html`), Flask (`templates/base.html`), FastAPI (`templates/base.html`), Fastify (`templates/layout.html`), NestJS (`templates/layout.html`), Symfony (`templates/base.html.twig`), Eleventy (`src/_includes/base.njk`), plain HTML (`index.html`, `about/index.html`, `product/index.html`), Google Tag Manager (`index.html`, `about/index.html`, `product/index.html`), Hono (`templates/layout.html`), React Router (`app/root.tsx`), Solid (`index.html`), Qwik (`index.html`), Jekyll (`_layouts/default.html`), Hugo (`layouts/baseof.html`).
+
 ## Design gallery
 
 - [gallery](gallery/README.md): example banner designs, each with a screenshot and the exact design JSON to apply.

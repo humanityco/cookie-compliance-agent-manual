@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ if eq .RelPermalink "/about/" }}
+<section class="about">
+  <p class="kicker">About this example</p>
+  <h1>One head for every page.</h1>
+  <p><code>layouts/baseof.html</code> owns the document head. Home, About, and Product use that layout, so they share the same banner tags. The snippet comes before the head block, so a later head addition cannot precede it.</p>
+</section>
+{{ else if eq .RelPermalink "/product/" }}
+<section class="product">
+  <p class="kicker">Field Notes Market</p>
+  <h1>Graph Paper Notebook</h1>
+  <p class="lede">A sewn notebook of graph paper for sketches and shopping lists. Weekend orders go out on Monday.</p>
+  <p>This sample product uses the same shared head as Home and About.</p>
+</section>
+{{ end }}
+{{ end }}

@@ -1,0 +1,21 @@
+<template>
+  <header class="topbar">
+    <a class="brand" href="/">Cookie Compliance</a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/product">Product</a>
+    </nav>
+  </header>
+  <main>
+    <slot />
+  </main>
+  <footer class="site-footer">
+    <p class="footer-name">Field Notes Market</p>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/product">Product</a>
+    </nav>
+  </footer>
+</template>

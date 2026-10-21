@@ -1,0 +1,4 @@
+baseURL = 'https://example.com/'
+locale = 'en'
+title = 'Cookie Compliance'
+disableKinds = ['taxonomy', 'term', 'RSS', 'sitemap', 'robotsTXT']

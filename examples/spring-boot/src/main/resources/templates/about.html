@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html th:replace="~{layout :: layout(~{::content})}" lang="en">
+<body>
+    <div th:fragment="content" th:remove="tag">
+        <section class="about">
+          <p class="kicker">About this example</p>
+          <h1>One head for every page</h1>
+          <p><code>src/main/resources/templates/layout.html</code> owns the document head. Home, About, and Product all use that template, so they share the same banner tags.</p>
+        </section>
+    </div>
+</body>
+</html>
