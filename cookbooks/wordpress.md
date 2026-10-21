@@ -50,3 +50,9 @@ Same verification table as the install-banner skill (private window, strictest r
 - **Multisite:** capability to write network options is gated — a site admin without network rights cannot complete some writes. Say so rather than inventing a workaround.
 - **Page caches:** plugin 3.1.14 and later marks the plugin's preview (administrators only), Beaver Builder previews and JSON requests as not to be cached, which caches that honour the standard no-cache signals respect. Other page builders are not covered. If a cache may already hold such a page, purge it once. Not yet browser-verified.
 - **Automated browsers** still bail (`navigator.webdriver` / HeadlessChrome) — same mask as other platforms when verifying with Playwright.
+
+## More help
+
+- [Getting started](https://cookie-compliance.co/documentation/getting-started/) — connecting the plugin to a Cookie Compliance account.
+- [Caching plugin compatibility](https://cookie-compliance.co/documentation/caching-plugin-compatibility/) — optimiser and page-cache settings.
+- [Multisite support](https://cookie-compliance.co/documentation/multisite-support/) — what a network install can and cannot do.

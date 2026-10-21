@@ -88,3 +88,8 @@ Same table as the install-banner skill / plain-html cookbook. Extra:
 - **Client components** that inject scripts after hydration are too late for pre-consent blocking.
 - **GTM in the layout:** leave the GTM snippet **below** Cookie Compliance — see `gtm.md`. Never put Cookie Compliance inside the GTM container.
 - **Engine switch:** re-paste the live snippet when WidgetVersion changes; the layout does not auto-update.
+
+## More help
+
+- [Where to put the Cookie Compliance snippet](https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/) — the placement rule for every platform, for the site owner.
+- [Banner not displayed](https://cookie-compliance.co/documentation/banner-is-not-displayed/) — what to check when the banner does not show.

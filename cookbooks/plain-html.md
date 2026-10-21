@@ -124,3 +124,8 @@ The status check is `https://designer-api.hu-manity.co/api/designer/user-design-
 - **"Combine" or "minify JS" optimisers** (in hosting panels or caching plugins) can merge or move the snippet. Exclude both tags from them.
 - **Remove any other consent banner.** If the site already has a hand-made cookie popup or another consent tool, take it out. Two banners give visitors two conflicting choices.
 - **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the website's domain it came from (not the individual page address).
+
+## More help
+
+- [Where to put the Cookie Compliance snippet](https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/) — the placement rule for every platform, for the site owner.
+- [Banner not displayed](https://cookie-compliance.co/documentation/banner-is-not-displayed/) — what to check when the banner does not show.

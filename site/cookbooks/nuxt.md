@@ -76,3 +76,8 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site
 | N2 | Grep `app.head.script` in `nuxt.config.ts` | No entry — Cookie Compliance's or a tracker's — has `async` or `defer`, per the gotcha above. |
 
 **Verified 2026-09-29** against a local Nuxt 4 dev server, a real (non-production) test AppID, and a real `googletagmanager.com/gtag/js` tag as the tracker, in a fresh isolated browser context: the tracker script rendered with `type="javascript/blocked"` and no tracking cookie (`_ga`) appeared before consent, matching the shared `verify-install` checklist's check 3.
+
+## More help
+
+- [Where to put the Cookie Compliance snippet](https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/) — the placement rule for every platform, for the site owner.
+- [Banner not displayed](https://cookie-compliance.co/documentation/banner-is-not-displayed/) — what to check when the banner does not show.

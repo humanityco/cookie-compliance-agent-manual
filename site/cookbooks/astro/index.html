@@ -64,6 +64,7 @@
             <li><a href="#the-right-way">The right way</a></li>
             <li><a href="#check-it-works">Check it works</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
+            <li><a href="#more-help">More help</a></li>
           </ul></li>
         <li><a href="/cookbooks/gtm/">gtm</a></li>
         <li><a href="/cookbooks/shopify/">shopify</a></li>
@@ -151,6 +152,11 @@
 <li><strong><code>is:inline</code> is not optional cleanup — it&#39;s the difference between working and silently broken.</strong> Astro&#39;s default script processing doesn&#39;t remove the banner or make it error; the page still looks fine and the badge-free banner still shows. The only visible symptom is that blocking stops working, which is exactly the kind of failure that survives a casual glance.</li>
 <li><strong>A <code>&lt;script&gt;</code> with an unusual <code>type</code> may already be exempt, but don&#39;t rely on it.</strong> In testing, a tag with <code>type=&quot;text/javascript&quot;</code> happened to pass through unprocessed while a bare <code>&lt;script src=&quot;...&quot;&gt;</code> did not. Add <code>is:inline</code> explicitly rather than depending on which attributes currently happen to opt a tag out.</li>
 <li><strong>Engine switch:</strong> re-paste the live snippet when <code>widgetVersion</code> changes in the dashboard; the layout does not auto-update.</li>
+</ul>
+<h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><a href="https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/">Where to put the Cookie Compliance snippet</a> — the placement rule for every platform, for the site owner.</li>
+<li><a href="https://cookie-compliance.co/documentation/banner-is-not-displayed/">Banner not displayed</a> — what to check when the banner does not show.</li>
 </ul>
   </main>
 </div>

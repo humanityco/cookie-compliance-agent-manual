@@ -78,3 +78,8 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site
 - **`is:inline` is not optional cleanup — it's the difference between working and silently broken.** Astro's default script processing doesn't remove the banner or make it error; the page still looks fine and the badge-free banner still shows. The only visible symptom is that blocking stops working, which is exactly the kind of failure that survives a casual glance.
 - **A `<script>` with an unusual `type` may already be exempt, but don't rely on it.** In testing, a tag with `type="text/javascript"` happened to pass through unprocessed while a bare `<script src="...">` did not. Add `is:inline` explicitly rather than depending on which attributes currently happen to opt a tag out.
 - **Engine switch:** re-paste the live snippet when `widgetVersion` changes in the dashboard; the layout does not auto-update.
+
+## More help
+
+- [Where to put the Cookie Compliance snippet](https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/) — the placement rule for every platform, for the site owner.
+- [Banner not displayed](https://cookie-compliance.co/documentation/banner-is-not-displayed/) — what to check when the banner does not show.

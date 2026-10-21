@@ -53,3 +53,8 @@ Same verification as install-banner / plain-html. Extra:
 
 - **WordPress + GTM4WP (or similar):** still install the Cookie Compliance **plugin** for placement; do not also paste a manual snippet, and do not put the CMP inside GTM.
 - **Banner engine:** a new app uses `/v2/hu-banner.min.js`. Take the URL from the live snippet. An app already on v1 keeps the URL without `/v2/`. After an engine switch, re-copy; do not hardcode.
+
+## More help
+
+- [GTM / tag trigger timing troubleshooting](https://cookie-compliance.co/documentation/gtm-tag-trigger-timing-troubleshooting/) — when tags fire too early or not at all.
+- [Google Consent Mode](https://cookie-compliance.co/documentation/google-consent-mode/) — how the banner signals consent to Google tags.

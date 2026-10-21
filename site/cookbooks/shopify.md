@@ -69,3 +69,8 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the live storefr
 | SP4 | `document.head.firstElementChild` in the live DOM | Will usually be Shopify's own async analytics script, **not** the Cookie Compliance snippet — expected per the gotcha above, not a failure. |
 
 **Verified 2026-09-30** against a real Shopify dev store (Partners-created, `*.myshopify.com`, password-gated, no real customer data), a real non-production Cookie Compliance AppID, and a real `googletagmanager.com/gtag/js` tag as the test tracker: the tracker rendered with `type="javascript/blocked"`, class `hu-blocked`, `data-hu-category="2"`, and its `src` moved to `data-src` — confirmed via the live DOM, not the tool's own preview response. The test tracker line was removed from `theme.liquid` after verification; only the real Cookie Compliance snippet remains live on that store.
+
+## More help
+
+- [Where to put the Cookie Compliance snippet](https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/) — the placement rule for every platform, for the site owner.
+- [Banner not displayed](https://cookie-compliance.co/documentation/banner-is-not-displayed/) — what to check when the banner does not show.
