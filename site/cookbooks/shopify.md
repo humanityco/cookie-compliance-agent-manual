@@ -1,10 +1,11 @@
 ---
-title: Add Cookie Compliance to a Shopify store
+title: Add a cookie consent banner to a Shopify store
+description: Paste the Cookie Compliance snippet first inside <head> in layout/theme.liquid via Edit code, not checkout Additional scripts or a Customer Events pixel.
 kind: platform
 last_verified: 2026-09-30
 ---
 
-# Add Cookie Compliance to a Shopify store
+# Add a cookie consent banner to a Shopify store
 
 **In short:** paste the **live** snippet as the first thing inside `<head>` in `layout/theme.liquid`, via **Online Store → Themes → theme actions (⋯) → Edit code** — not the checkout "Additional scripts" field, and not a Custom Pixel added through **Settings → Customer events**.
 

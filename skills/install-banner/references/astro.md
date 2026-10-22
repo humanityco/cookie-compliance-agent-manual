@@ -1,10 +1,11 @@
 ---
-title: Add Cookie Compliance to an Astro site
+title: Add a cookie consent banner to an Astro site
+description: Put the Cookie Compliance snippet in the Astro layout's <head> with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.
 kind: platform
 last_verified: 2026-09-29
 ---
 
-# Add Cookie Compliance to an Astro site
+# Add a cookie consent banner to an Astro site
 
 **In short:** paste the **live** snippet into the shared layout's `<head>`, and add `is:inline` to **every** Cookie Compliance `<script>` tag. Without it, Astro silently rewrites the tags into deferred Vite modules — the banner may still render, but `blocking` no longer holds.
 

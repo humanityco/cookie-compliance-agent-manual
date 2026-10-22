@@ -1,10 +1,11 @@
 ---
-title: Cookie Compliance when the site uses Google Tag Manager
+title: Cookie consent banner with Google Tag Manager
+description: Put the Cookie Compliance snippet in <head> above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.
 kind: scenario
 last_verified: 2026-09-28
 ---
 
-# Cookie Compliance when the site uses Google Tag Manager
+# Cookie consent banner with Google Tag Manager
 
 **In short:** put Cookie Compliance in the page `<head>` **above** the GTM container snippet. Do **not** add the Cookie Compliance tags as a tag inside the GTM container.
 

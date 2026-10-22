@@ -1,10 +1,11 @@
 ---
-title: Add Cookie Compliance on WordPress
+title: Add a cookie consent banner to WordPress
+description: Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key, instead of pasting a snippet into the theme.
 kind: platform
 last_verified: 2026-10-07
 ---
 
-# Add Cookie Compliance on WordPress
+# Add a cookie consent banner to WordPress
 
 **In short:** install the **Cookie Compliance for WordPress** plugin and connect it with your App ID and App Secret Key (plugin 3.1.12 and older label it **App Key**). Do **not** paste the Manual Integration snippet into a theme or a "header scripts" plugin.
 

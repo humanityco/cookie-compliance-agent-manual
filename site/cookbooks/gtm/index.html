@@ -4,15 +4,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Cookie Compliance when the site uses Google Tag Manager — Cookie Compliance Agent Manual</title>
-<meta name="description" content="In short: put Cookie Compliance in the page &lt;head&gt; above the GTM container snippet. Do not add the Cookie Compliance tags as a tag inside the GTM container.">
+<title>Cookie consent banner with Google Tag Manager — Cookie Compliance Agent Manual</title>
+<meta name="description" content="Put the Cookie Compliance snippet in &lt;head&gt; above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/gtm/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/gtm.md" title="Raw markdown (for agents)">
-<meta property="og:title" content="Cookie Compliance when the site uses Google Tag Manager">
-<meta property="og:description" content="In short: put Cookie Compliance in the page &lt;head&gt; above the GTM container snippet. Do not add the Cookie Compliance tags as a tag inside the GTM container.">
+<meta property="og:title" content="Cookie consent banner with Google Tag Manager">
+<meta property="og:description" content="Put the Cookie Compliance snippet in &lt;head&gt; above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/gtm/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "TechArticle",
+        "Article"
+      ],
+      "headline": "Cookie consent banner with Google Tag Manager",
+      "description": "Put the Cookie Compliance snippet in \u003chead> above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.",
+      "url": "https://manual.hu-manity.co/cookbooks/gtm/",
+      "inLanguage": "en",
+      "dateModified": "2026-09-28",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://manual.hu-manity.co/#organization",
+        "name": "Hu-manity.co",
+        "url": "https://hu-manity.co/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://manual.hu-manity.co/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Cookie consent banner with Google Tag Manager",
+          "item": "https://manual.hu-manity.co/cookbooks/gtm/"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
 </head>
@@ -77,7 +118,7 @@
     </nav>
   </details>
   <main id="content" class="doc">
-<h1 id="cookie-compliance-when-the-site-uses-google-tag-manager">Cookie Compliance when the site uses Google Tag Manager</h1>
+<h1 id="cookie-consent-banner-with-google-tag-manager">Cookie consent banner with Google Tag Manager</h1>
 <p class="page-meta">Cookbook · scenario <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-28">28 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/gtm.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> put Cookie Compliance in the page <code>&lt;head&gt;</code> <strong>above</strong> the GTM container snippet. Do <strong>not</strong> add the Cookie Compliance tags as a tag inside the GTM container.</p>
 <h2 id="why">Why <a class="anchor" href="#why" aria-label="Link to this section">#</a></h2>
@@ -143,6 +184,7 @@
 </div>
 <footer class="site-footer">
   <p>Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+  Product: <a href="https://cookie-compliance.co/">Cookie Compliance</a> · <a href="https://cookie-compliance.co/mcp/">MCP server</a>.
   Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.</p>
 </footer>
 </body>

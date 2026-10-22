@@ -14,7 +14,7 @@ import { readFileSync, writeFileSync, existsSync, readdirSync, mkdirSync } from 
 import { createRequire } from 'node:module';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { STYLESHEET, SKIP_LINK, header } from './site-layout.mjs';
+import { STYLESHEET, SKIP_LINK, header, PRODUCT_LINKS } from './site-layout.mjs';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const SITE = 'https://manual.hu-manity.co/gallery/';
@@ -497,6 +497,7 @@ ${figures.join('\n')}
 ${t.after.map(sectionHtml).join('\n')}
   <footer>
     Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+    ${PRODUCT_LINKS}
     Machine-readable version: <a href="README.md">${ENGINES[engine].dir}/README.md</a>.
     ${esc(s.footer)} <a href="${s.html}">${esc(s.name)}</a>.
   </footer>

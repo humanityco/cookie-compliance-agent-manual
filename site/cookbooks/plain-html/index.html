@@ -4,15 +4,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Add Cookie Compliance to a plain HTML site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="In short: make sure the app is published (a domain added in the dashboard is published automatically), then paste the live two-tag snippet (from MCP install.getSnippet or the dashboard Integrations…">
+<title>Add a cookie consent banner to a plain HTML site — Cookie Compliance Agent Manual</title>
+<meta name="description" content="Paste the live Cookie Compliance snippet first in &lt;head&gt; on every page of a static HTML site, above every other script, with your analytics tags below it.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/plain-html/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/plain-html.md" title="Raw markdown (for agents)">
-<meta property="og:title" content="Add Cookie Compliance to a plain HTML site">
-<meta property="og:description" content="In short: make sure the app is published (a domain added in the dashboard is published automatically), then paste the live two-tag snippet (from MCP install.getSnippet or the dashboard Integrations…">
+<meta property="og:title" content="Add a cookie consent banner to a plain HTML site">
+<meta property="og:description" content="Paste the live Cookie Compliance snippet first in &lt;head&gt; on every page of a static HTML site, above every other script, with your analytics tags below it.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/plain-html/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "TechArticle",
+        "Article"
+      ],
+      "headline": "Add a cookie consent banner to a plain HTML site",
+      "description": "Paste the live Cookie Compliance snippet first in \u003chead> on every page of a static HTML site, above every other script, with your analytics tags below it.",
+      "url": "https://manual.hu-manity.co/cookbooks/plain-html/",
+      "inLanguage": "en",
+      "dateModified": "2026-09-28",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://manual.hu-manity.co/#organization",
+        "name": "Hu-manity.co",
+        "url": "https://hu-manity.co/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://manual.hu-manity.co/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Add a cookie consent banner to a plain HTML site",
+          "item": "https://manual.hu-manity.co/cookbooks/plain-html/"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
 </head>
@@ -78,7 +119,7 @@
     </nav>
   </details>
   <main id="content" class="doc">
-<h1 id="add-cookie-compliance-to-a-plain-html-site">Add Cookie Compliance to a plain HTML site</h1>
+<h1 id="add-a-cookie-consent-banner-to-a-plain-html-site">Add a cookie consent banner to a plain HTML site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-28">28 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/plain-html.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> make sure the app is published (a domain added in the dashboard is published automatically), then paste the <strong>live</strong> two-tag snippet (from MCP <code>install.getSnippet</code> or the dashboard Integrations page) as the <strong>first thing inside <code>&lt;head&gt;</code></strong> on <strong>every page</strong>, above every other script. Leave your analytics tags where they are, below it.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
@@ -270,6 +311,7 @@
 </div>
 <footer class="site-footer">
   <p>Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+  Product: <a href="https://cookie-compliance.co/">Cookie Compliance</a> · <a href="https://cookie-compliance.co/mcp/">MCP server</a>.
   Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.</p>
 </footer>
 </body>

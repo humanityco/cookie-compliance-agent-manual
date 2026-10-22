@@ -1,10 +1,11 @@
 ---
-title: Add Cookie Compliance to a Next.js site
+title: Add a cookie consent banner to a Next.js site
+description: Put the Cookie Compliance snippet in <head> of the Next.js root layout or pages/_document.tsx as plain script tags, not next/script, first on every page.
 kind: platform
 last_verified: 2026-09-28
 ---
 
-# Add Cookie Compliance to a Next.js site
+# Add a cookie consent banner to a Next.js site
 
 **In short:** paste the **live** snippet into the document `<head>` of the root layout so it is the **first script on every page**, as classic synchronous tags — not via `next/script` with `strategy`, not in a client component that hydrates later.
 

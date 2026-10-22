@@ -4,15 +4,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Add Cookie Compliance to a Nuxt site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="In short: paste the live snippet into app.head.script in nuxt.config.ts — not a useHead() call inside a page or component, and not inside a client-only plugin — and never mark any script in that…">
+<title>Add a cookie consent banner to a Nuxt site — Cookie Compliance Agent Manual</title>
+<meta name="description" content="Put the Cookie Compliance snippet in app.head.script in nuxt.config.ts, not useHead() or a client-only plugin, and never mark a script in that array async.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/nuxt/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/nuxt.md" title="Raw markdown (for agents)">
-<meta property="og:title" content="Add Cookie Compliance to a Nuxt site">
-<meta property="og:description" content="In short: paste the live snippet into app.head.script in nuxt.config.ts — not a useHead() call inside a page or component, and not inside a client-only plugin — and never mark any script in that…">
+<meta property="og:title" content="Add a cookie consent banner to a Nuxt site">
+<meta property="og:description" content="Put the Cookie Compliance snippet in app.head.script in nuxt.config.ts, not useHead() or a client-only plugin, and never mark a script in that array async.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/nuxt/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "TechArticle",
+        "Article"
+      ],
+      "headline": "Add a cookie consent banner to a Nuxt site",
+      "description": "Put the Cookie Compliance snippet in app.head.script in nuxt.config.ts, not useHead() or a client-only plugin, and never mark a script in that array async.",
+      "url": "https://manual.hu-manity.co/cookbooks/nuxt/",
+      "inLanguage": "en",
+      "dateModified": "2026-09-29",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://manual.hu-manity.co/#organization",
+        "name": "Hu-manity.co",
+        "url": "https://hu-manity.co/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://manual.hu-manity.co/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Add a cookie consent banner to a Nuxt site",
+          "item": "https://manual.hu-manity.co/cookbooks/nuxt/"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
 </head>
@@ -77,7 +118,7 @@
     </nav>
   </details>
   <main id="content" class="doc">
-<h1 id="add-cookie-compliance-to-a-nuxt-site">Add Cookie Compliance to a Nuxt site</h1>
+<h1 id="add-a-cookie-consent-banner-to-a-nuxt-site">Add a cookie consent banner to a Nuxt site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-29">29 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/nuxt.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet into <code>app.head.script</code> in <code>nuxt.config.ts</code> — not a <code>useHead()</code> call inside a page or component, and not inside a client-only plugin — and never mark any script in that array <code>async</code>.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
@@ -162,6 +203,7 @@ export default defineNuxtConfig({
 </div>
 <footer class="site-footer">
   <p>Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+  Product: <a href="https://cookie-compliance.co/">Cookie Compliance</a> · <a href="https://cookie-compliance.co/mcp/">MCP server</a>.
   Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.</p>
 </footer>
 </body>

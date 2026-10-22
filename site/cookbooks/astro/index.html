@@ -4,15 +4,56 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Add Cookie Compliance to an Astro site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="In short: paste the live snippet into the shared layout's &lt;head&gt;, and add is:inline to every Cookie Compliance &lt;script&gt; tag. Without it, Astro silently rewrites the tags into deferred Vite modules —…">
+<title>Add a cookie consent banner to an Astro site — Cookie Compliance Agent Manual</title>
+<meta name="description" content="Put the Cookie Compliance snippet in the Astro layout's &lt;head&gt; with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/astro/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/astro.md" title="Raw markdown (for agents)">
-<meta property="og:title" content="Add Cookie Compliance to an Astro site">
-<meta property="og:description" content="In short: paste the live snippet into the shared layout's &lt;head&gt;, and add is:inline to every Cookie Compliance &lt;script&gt; tag. Without it, Astro silently rewrites the tags into deferred Vite modules —…">
+<meta property="og:title" content="Add a cookie consent banner to an Astro site">
+<meta property="og:description" content="Put the Cookie Compliance snippet in the Astro layout's &lt;head&gt; with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/astro/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": [
+        "TechArticle",
+        "Article"
+      ],
+      "headline": "Add a cookie consent banner to an Astro site",
+      "description": "Put the Cookie Compliance snippet in the Astro layout's \u003chead> with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.",
+      "url": "https://manual.hu-manity.co/cookbooks/astro/",
+      "inLanguage": "en",
+      "dateModified": "2026-09-29",
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://manual.hu-manity.co/#organization",
+        "name": "Hu-manity.co",
+        "url": "https://hu-manity.co/"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://manual.hu-manity.co/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Add a cookie consent banner to an Astro site",
+          "item": "https://manual.hu-manity.co/cookbooks/astro/"
+        }
+      ]
+    }
+  ]
+}
+</script>
 <link rel="stylesheet" href="/assets/site.css">
 <script src="/assets/site.js" defer></script>
 </head>
@@ -77,7 +118,7 @@
     </nav>
   </details>
   <main id="content" class="doc">
-<h1 id="add-cookie-compliance-to-an-astro-site">Add Cookie Compliance to an Astro site</h1>
+<h1 id="add-a-cookie-consent-banner-to-an-astro-site">Add a cookie consent banner to an Astro site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-29">29 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/astro.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet into the shared layout&#39;s <code>&lt;head&gt;</code>, and add <code>is:inline</code> to <strong>every</strong> Cookie Compliance <code>&lt;script&gt;</code> tag. Without it, Astro silently rewrites the tags into deferred Vite modules — the banner may still render, but <code>blocking</code> no longer holds.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
@@ -162,6 +203,7 @@
 </div>
 <footer class="site-footer">
   <p>Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+  Product: <a href="https://cookie-compliance.co/">Cookie Compliance</a> · <a href="https://cookie-compliance.co/mcp/">MCP server</a>.
   Source and contributions: <a href="https://github.com/humanityco/cookie-compliance-agent-manual">github.com/humanityco/cookie-compliance-agent-manual</a>.</p>
 </footer>
 </body>

@@ -40,7 +40,11 @@ ${items.join('\n')}
 </header>`;
 }
 
+// The product links, shared with the gallery pages' own footer (scripts/gallery.mjs).
+export const PRODUCT_LINKS = 'Product: <a href="https://cookie-compliance.co/">Cookie Compliance</a> · <a href="https://cookie-compliance.co/mcp/">MCP server</a>.';
+
 export const FOOTER = `<footer class="site-footer">
   <p>Cookie Compliance is a product of <a href="https://hu-manity.co">Hu-manity.co</a>.
+  ${PRODUCT_LINKS}
   Source and contributions: <a href="${GITHUB}">github.com/humanityco/cookie-compliance-agent-manual</a>.</p>
 </footer>`;

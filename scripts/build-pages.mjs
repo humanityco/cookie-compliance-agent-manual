@@ -47,6 +47,22 @@ const ls = (dir) => (existsSync(join(out, dir)) ? readdirSync(join(out, dir)) : 
 const skills = ordered(ls('skills').filter((n) => existsSync(join(out, 'skills', n, 'SKILL.md'))), SKILL_ORDER);
 const cookbooks = ordered(ls('cookbooks').filter((f) => f.endsWith('.md')).map((f) => f.slice(0, -3)), COOKBOOK_ORDER);
 
+// The HTML page's meta description for each skill. A SKILL.md's own `description`
+// is the text an agent matches a request against, so it is written for that and
+// stays untouched; search results get these instead. Every skill needs one: the
+// build fails rather than let trigger text become a search snippet.
+const SKILL_DESCRIPTIONS = {
+  'install-banner': 'Install the Cookie Compliance consent banner on a website, start to finish: the live snippet first in <head>, or the plugin on WordPress, then verified.',
+  'verify-install': 'Check that a Cookie Compliance consent banner holds trackers back until the visitor chooses, judged by tracking cookies before consent, not by the banner.',
+  'match-site-design': "Style a Cookie Compliance consent banner to match a site: derive colours, corners and text size from the site's own CSS and check WCAG AA contrast.",
+  'configure-regions': 'Set which privacy regulations a Cookie Compliance banner applies, such as GDPR in the EU and CCPA in California, and how it treats visitors by region.',
+};
+const undescribed = skills.filter((n) => !SKILL_DESCRIPTIONS[n]);
+if (undescribed.length) {
+  console.error(`build-pages: no HTML description for skill(s) ${undescribed.join(', ')}; add one to SKILL_DESCRIPTIONS in scripts/build-pages.mjs`);
+  process.exit(1);
+}
+
 // { src: raw markdown path, url: pretty path, section: sidebar group and header nav entry,
 // nav (header nav entry, when it differs from section), kind (shown under the h1),
 // label (sidebar), description (else the front-matter's, else the first paragraph) }
@@ -56,7 +72,8 @@ const PAGES = [
   { src: 'connect.md', url: '/connect/', section: 'start', nav: 'connect', label: 'Connect your AI assistant',
     description: 'How to connect Claude, ChatGPT, Claude Code, Cursor and other AI apps to Cookie Compliance, so the AI can read and change your cookie banner.' },
   { src: 'prompts.md', url: '/prompts/', section: 'start', label: 'Prompts' },
-  ...skills.map((n) => ({ src: `skills/${n}/SKILL.md`, url: `/skills/${n}/`, section: 'skills', kind: 'Skill', label: n })),
+  ...skills.map((n) => ({ src: `skills/${n}/SKILL.md`, url: `/skills/${n}/`, section: 'skills', kind: 'Skill', label: n,
+    description: SKILL_DESCRIPTIONS[n] })),
   ...cookbooks.map((n) => ({ src: `cookbooks/${n}.md`, url: `/cookbooks/${n}/`, section: 'cookbooks', kind: 'Cookbook', label: n })),
 ];
 
@@ -91,11 +108,14 @@ function slugger() {
 }
 
 // The YAML front-matter the skills and cookbooks open with: flat "key: value" lines only.
+// Each line loses its \r and trailing whitespace before it is matched, exactly as
+// front_matter() in scripts/sync-site.sh does, so the page's dateModified and the
+// sitemap's lastmod always come from the same value.
 function frontMatter(src) {
-  const m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n/.exec(src);
+  const m = /^---[ \t\r]*\n([\s\S]*?)\n---[ \t\r]*\n/.exec(src);
   if (!m) return { meta: {}, body: src };
   const meta = {};
-  for (const line of m[1].split(/\r?\n/)) {
+  for (const line of m[1].split('\n').map((l) => l.trimEnd())) {
     const kv = /^([A-Za-z_][\w-]*):\s*(.*)$/.exec(line);
     if (kv) meta[kv[1]] = kv[2].replace(/^(["'])(.*)\1$/, '$2');
   }
@@ -103,9 +123,15 @@ function frontMatter(src) {
 }
 
 const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+// A YYYY-MM-DD that is a real calendar day (no 2026-02-31) -> "28 September 2026", else null.
+// Same rule as valid_date() in scripts/sync-site.sh, so dateModified and lastmod agree.
 const longDate = (iso) => {
   const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso ?? '');
-  return m ? `${Number(m[3])} ${MONTHS[Number(m[2]) - 1]} ${m[1]}` : null;
+  if (!m) return null;
+  const [y, mo, d] = m.slice(1).map(Number);
+  const leap = y % 4 === 0 && (y % 100 !== 0 || y % 400 === 0);
+  const days = [31, leap ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31][mo - 1];
+  return days && d >= 1 && d <= days ? `${d} ${MONTHS[mo - 1]} ${m[1]}` : null;
 };
 
 function truncate(text, max = 200) {
@@ -214,6 +240,32 @@ function page(p) {
   const metaLine = `<p class="page-meta">${facts.join(' <span aria-hidden="true">·</span> ')}</p>\n`;
   html = /<\/h1>\n/.test(html) ? html.replace(/<\/h1>\n/, (m) => m + metaLine) : metaLine + html;
 
+  // Structured data for search engines: the page as an article, and its place under the home page.
+  // dateModified only where the source states one (a cookbook's last_verified).
+  const url = `${BASE}${p.url}`;
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': ['TechArticle', 'Article'], // Article: the type Google documents for article results
+        headline: title,
+        description,
+        url,
+        inLanguage: 'en',
+        ...(verified && { dateModified: meta.last_verified }),
+        // The same entity site/index.html declares in full; name and url keep this page valid on its own.
+        publisher: { '@type': 'Organization', '@id': `${BASE}/#organization`, name: 'Hu-manity.co', url: 'https://hu-manity.co/' },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          { '@type': 'ListItem', position: 1, name: 'Home', item: `${BASE}/` },
+          { '@type': 'ListItem', position: 2, name: title, item: url },
+        ],
+      },
+    ],
+  };
+
   return `<!doctype html>
 <!-- Generated by scripts/build-pages.mjs from ${p.src}. Do not edit by hand. -->
 <html lang="en">
@@ -222,13 +274,16 @@ function page(p) {
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>${esc(title)} — Cookie Compliance Agent Manual</title>
 <meta name="description" content="${esc(description)}">
-<link rel="canonical" href="${BASE}${p.url}">
+<link rel="canonical" href="${url}">
 <link rel="alternate" type="text/markdown" href="/${p.src}" title="Raw markdown (for agents)">
 <meta property="og:title" content="${esc(title)}">
 <meta property="og:description" content="${esc(description)}">
 <meta property="og:type" content="article">
-<meta property="og:url" content="${BASE}${p.url}">
+<meta property="og:url" content="${url}">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
+<script type="application/ld+json">
+${JSON.stringify(jsonLd, null, 2).replace(/</g, '\\u003c')}
+</script>
 ${STYLESHEET}
 ${SCRIPT}
 </head>

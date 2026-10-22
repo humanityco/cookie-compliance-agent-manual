@@ -1,10 +1,11 @@
 ---
-title: Add Cookie Compliance to a plain HTML site
+title: Add a cookie consent banner to a plain HTML site
+description: Paste the live Cookie Compliance snippet first in <head> on every page of a static HTML site, above every other script, with your analytics tags below it.
 kind: platform
 last_verified: 2026-09-28
 ---
 
-# Add Cookie Compliance to a plain HTML site
+# Add a cookie consent banner to a plain HTML site
 
 **In short:** make sure the app is published (a domain added in the dashboard is published automatically), then paste the **live** two-tag snippet (from MCP `install.getSnippet` or the dashboard Integrations page) as the **first thing inside `<head>`** on **every page**, above every other script. Leave your analytics tags where they are, below it.
 

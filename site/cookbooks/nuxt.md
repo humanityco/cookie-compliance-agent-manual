@@ -1,10 +1,11 @@
 ---
-title: Add Cookie Compliance to a Nuxt site
+title: Add a cookie consent banner to a Nuxt site
+description: Put the Cookie Compliance snippet in app.head.script in nuxt.config.ts, not useHead() or a client-only plugin, and never mark a script in that array async.
 kind: platform
 last_verified: 2026-09-29
 ---
 
-# Add Cookie Compliance to a Nuxt site
+# Add a cookie consent banner to a Nuxt site
 
 **In short:** paste the **live** snippet into `app.head.script` in `nuxt.config.ts` — not a `useHead()` call inside a page or component, and not inside a client-only plugin — and never mark any script in that array `async`.
 
