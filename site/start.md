@@ -39,7 +39,7 @@ Pick the door that fits the person, then check the rows below from that point do
 | Prove the banner blocks before consent | [`skills/verify-install/SKILL.md`](skills/verify-install/SKILL.md) |
 | Banner colours, font and custom CSS that match the site | [`skills/match-site-design/SKILL.md`](skills/match-site-design/SKILL.md) |
 | Region rules (GDPR, CCPA and others) | [`skills/configure-regions/SKILL.md`](skills/configure-regions/SKILL.md) |
-| Where to put the snippet for a framework | [plain-html](cookbooks/plain-html.md), [wordpress](cookbooks/wordpress.md), [nextjs](cookbooks/nextjs.md), [nuxt](cookbooks/nuxt.md), [astro](cookbooks/astro.md), [shopify](cookbooks/shopify.md), [gtm](cookbooks/gtm.md) |
+| Where to put the snippet for a framework | [plain-html](cookbooks/plain-html.md), [wordpress](cookbooks/wordpress.md), [nextjs](cookbooks/nextjs.md), [nuxt](cookbooks/nuxt.md), [astro](cookbooks/astro.md), [angular](cookbooks/angular.md), [vite](cookbooks/vite.md), [sveltekit](cookbooks/sveltekit.md), [shopify](cookbooks/shopify.md), [gtm](cookbooks/gtm.md) |
 
 ## The MCP server
 

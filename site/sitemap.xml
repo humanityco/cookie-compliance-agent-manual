@@ -2,12 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://manual.hu-manity.co/</loc></url>
   <url><loc>https://manual.hu-manity.co/connect/</loc></url>
+  <url><loc>https://manual.hu-manity.co/cookbooks/angular/</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/astro/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/gtm/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/nextjs/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/nuxt/</loc><lastmod>2026-09-29</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/plain-html/</loc><lastmod>2026-09-28</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/shopify/</loc><lastmod>2026-09-30</lastmod></url>
+  <url><loc>https://manual.hu-manity.co/cookbooks/sveltekit/</loc><lastmod>2026-10-22</lastmod></url>
+  <url><loc>https://manual.hu-manity.co/cookbooks/vite/</loc><lastmod>2026-10-22</lastmod></url>
   <url><loc>https://manual.hu-manity.co/cookbooks/wordpress/</loc><lastmod>2026-10-07</lastmod></url>
   <url><loc>https://manual.hu-manity.co/gallery/</loc></url>
   <url><loc>https://manual.hu-manity.co/gallery/v2/</loc></url>

@@ -4,4 +4,7 @@ nextjs.md
 gtm.md
 nuxt.md
 astro.md
+angular.md
+vite.md
+sveltekit.md
 shopify.md

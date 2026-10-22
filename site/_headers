@@ -12,6 +12,9 @@
 /connect.md
   Link: <https://manual.hu-manity.co/connect/>; rel="canonical"
 
+/cookbooks/angular.md
+  Link: <https://manual.hu-manity.co/cookbooks/angular/>; rel="canonical"
+
 /cookbooks/astro.md
   Link: <https://manual.hu-manity.co/cookbooks/astro/>; rel="canonical"
 
@@ -29,6 +32,12 @@
 
 /cookbooks/shopify.md
   Link: <https://manual.hu-manity.co/cookbooks/shopify/>; rel="canonical"
+
+/cookbooks/sveltekit.md
+  Link: <https://manual.hu-manity.co/cookbooks/sveltekit/>; rel="canonical"
+
+/cookbooks/vite.md
+  Link: <https://manual.hu-manity.co/cookbooks/vite/>; rel="canonical"
 
 /cookbooks/wordpress.md
   Link: <https://manual.hu-manity.co/cookbooks/wordpress/>; rel="canonical"

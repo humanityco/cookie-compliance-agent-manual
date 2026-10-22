@@ -47,6 +47,6 @@ The prompt works without installing anything, because the agent fetches the skil
 
 ## Where each platform is covered
 
-[Plain HTML](cookbooks/plain-html.md) · [WordPress](cookbooks/wordpress.md) · [Next.js](cookbooks/nextjs.md) · [Nuxt](cookbooks/nuxt.md) · [Astro](cookbooks/astro.md) · [Shopify](cookbooks/shopify.md) · [Google Tag Manager](cookbooks/gtm.md)
+[Plain HTML](cookbooks/plain-html.md) · [WordPress](cookbooks/wordpress.md) · [Next.js](cookbooks/nextjs.md) · [Nuxt](cookbooks/nuxt.md) · [Astro](cookbooks/astro.md) · [Angular](cookbooks/angular.md) · [Vite (React, Vue)](cookbooks/vite.md) · [SvelteKit](cookbooks/sveltekit.md) · [Shopify](cookbooks/shopify.md) · [Google Tag Manager](cookbooks/gtm.md)
 
 The agent picks the right one itself from your project.

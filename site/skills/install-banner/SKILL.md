@@ -101,6 +101,9 @@ Platform detail:
 - Next.js: `references/nextjs.md`
 - Nuxt: `references/nuxt.md`
 - Astro: `references/astro.md`
+- Angular: `references/angular.md`
+- Vite (React or Vue single-page app): `references/vite.md`
+- SvelteKit: `references/sveltekit.md`
 - Shopify: `references/shopify.md`
 - Google Tag Manager on the page: `references/gtm.md`
 - WordPress: `references/wordpress.md` (plugin path — no paste)
