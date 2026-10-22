@@ -18,7 +18,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 
 - [install-banner](skills/install-banner/SKILL.md): get the live snippet for an AppID and place it correctly. Shipped.
 - [verify-install](skills/verify-install/SKILL.md): prove the banner blocks trackers before consent, on any Cookie Compliance install. Shipped.
-- [match-site-design](skills/match-site-design/SKILL.md): derive a banner design from the site's own colours and check WCAG AA contrast. Shipped.
+- [match-site-design](skills/match-site-design/SKILL.md): derive a banner design from the site's own colours and check WCAG AA contrast; set the banner font; supported CSS hooks for custom styling. Shipped.
 - [configure-regions](skills/configure-regions/SKILL.md): set which regulations apply and how visitors are treated by region (GDPR, CCPA, and others). Shipped.
 
 ## Cookbooks

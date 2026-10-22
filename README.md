@@ -54,7 +54,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 
 - **install-banner** *(shipped)*: the whole journey, in Autopilot by default: look around, sign in or register, create the app, place the snippet correctly (WordPress → plugin; others → paste), match the design, set regions, verify.
 - **verify-install** *(shipped)*: prove the banner actually blocks trackers before consent. `install-banner` calls this at its own verify step; it also stands alone for checking a banner someone else installed.
-- **match-site-design** *(shipped)*: derive a banner design from the site's own colours and check contrast.
+- **match-site-design** *(shipped)*: derive a banner design from the site's own colours and check contrast; set the banner font; supported CSS hooks for custom styling.
 - **configure-regions** *(shipped)*: set per-region rules (for example GDPR in the EU, CCPA in California).
 
 ### Cookbooks

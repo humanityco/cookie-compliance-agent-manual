@@ -148,7 +148,7 @@ Make my cookie banner match my website. My brand colour is #…, my page backgro
 
 Give the AI your colours, or a screenshot of your site. It cannot reliably read colours from a web address.
 
-Through this connection the AI can change the banner's colours, position, size, wording, button corners and animation. Button corners change on paid plans only: on the Free plan they stay at the default. It cannot change the logo or the font, or add custom code.
+Through this connection the AI can change the banner's colours, position, size, wording, button corners and animation. Button corners change on paid plans only: on the Free plan they stay at the default. It can also choose the banner font from four options: your website's own font, a plain sans-serif (Arial), a serif (Georgia) or the device's own font. It cannot change the logo or add custom code through the connection; for another font or custom CSS, see [Customise beyond design settings](skills/match-site-design/SKILL.md#4-customise-beyond-design-settings).
 
 After you publish a change, visitors whose browser saved the old banner may see it for up to an hour.
 

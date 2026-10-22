@@ -93,7 +93,7 @@
             <li><a href="#1-read-the-sites-own-colours--dont-guess">1. Read the site's own colours — don't guess</a></li>
             <li><a href="#2-derive-a-design--dont-hand-write-hex-values">2. Derive a design — don't hand-write hex values</a></li>
             <li><a href="#3-apply-it-in-the-one-place-it-works">3. Apply it in the one place it works</a></li>
-            <li><a href="#4-when-the-design-keys-are-not-enough-css-in-the-sites-own-stylesheet-v2-banner">4. When the design keys are not enough: CSS in the site's own stylesheet (v2 banner)</a></li>
+            <li><a href="#4-customise-beyond-design-settings">4. Customise beyond design settings</a></li>
             <li><a href="#verified">Verified</a></li>
           </ul></li>
         <li><a href="/skills/configure-regions/">configure-regions</a></li>
@@ -159,53 +159,196 @@
 <p>Do <strong>not</strong> add a <code>design</code> block to the snippet from <code>install.getSnippet</code>. It would style the banner for a fraction of a second and then revert, which looks like an intermittent bug rather than a setting.</p>
 <p><strong>Free plan:</strong> the live banner keeps the defaults for <code>btnBorderRadius</code>, <code>revokeMarginX</code>, <code>revokeMarginY</code>, <code>delayDisplay</code>, <code>delayTime</code> and <code>levelsOrder</code>, whatever the app stores. Button corners, the reopen icon&#39;s position, a delay before the banner appears and the order of the level buttons change on paid plans only, so do not promise them to a Free-plan owner.</p>
 <p><code>account.updateDesign</code> refuses any compliance-determinative field (blocking, consent categories, geolocation rules, consent mode, GPC, expiry) — those go through the <code>configure-regions</code> skill instead.</p>
-<h2 id="4-when-the-design-keys-are-not-enough-css-in-the-sites-own-stylesheet-v2-banner">4. When the design keys are not enough: CSS in the site&#39;s own stylesheet (v2 banner) <a class="anchor" href="#4-when-the-design-keys-are-not-enough-css-in-the-sites-own-stylesheet-v2-banner" aria-label="Link to this section">#</a></h2>
-<p>Anything a design key covers — the banner&#39;s colours, text sizes, button corner roundness — goes through step 3. Use CSS only for what no key covers (a different font for the banner, text alignment, hiding the site name, lifting the banner above a sticky footer or chat bar), or to style one element differently from the rest (for example, square corners on the level buttons only). For those, add CSS to the <strong>site&#39;s own stylesheet</strong> (WordPress: Appearance → Customize → <strong>Additional CSS</strong>, or the theme&#39;s <code>style.css</code>). The banner is part of the page (no iframe, no shadow root), so the site&#39;s CSS reaches it. Never put CSS or a <code>design</code> block in the install snippet.</p>
-<p><strong>Check the engine first.</strong> This section is for the v2 banner. With the banner open (from its round reopen icon, or in a new private window), the v2 banner has <code>#hu .hu-panel</code> in the page and the v1 banner has <code>#hu-cookies-content</code>. The script address (<code>/v2/hu-banner.min.js</code> for v2) is a second check — a script-combining optimizer can remove that tag from the page source. The v1 banner uses different class names; these selectors do nothing there.</p>
-<p><strong>Write every rule as <code>body #hu .hu-…</code>.</strong> The banner&#39;s own rules sit under the <code>#hu</code> root id and its stylesheet loads late, so a class alone (<code>.hu-heading</code>), <code>#hu .hu-heading</code> placed in <code>&lt;head&gt;</code>, or a tag selector (<code>#hu h2</code>) can lose, depending on the v2 version the site runs. <code>body #hu .hu-…</code> beats the banner&#39;s general rules from <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code> on every v2 version. A few layout rules carry more weight (for example the compact bar&#39;s text alignment), so if a rule still does not take, add <code>!important</code>. A site theme rule that uses <code>!important</code> beats the banner; only your own, more specific <code>!important</code> fixes that.</p>
+<h2 id="4-customise-beyond-design-settings">4. Customise beyond design settings <a class="anchor" href="#4-customise-beyond-design-settings" aria-label="Link to this section">#</a></h2>
+<p>Anything a design key covers — colours, text sizes, button corners, the font — goes through step 3. For the rest, use CSS in the <strong>site&#39;s own stylesheet</strong>. The banner is part of the page (no iframe, no shadow root), so the site&#39;s CSS reaches it. Never put CSS or a <code>design</code> block in the install snippet.</p>
+<p>The banner comes in two engines, set per site: <strong>Classic</strong> (v1) and <strong>New</strong> (v2). Everything in 4.1–4.5 works on both; where an engine differs, the text says so. Only 4.6 is engine-specific.</p>
+<h3 id="41-the-font-designfontfamily">4.1 The font: <code>design.fontFamily</code> <a class="anchor" href="#41-the-font-designfontfamily" aria-label="Link to this section">#</a></h3>
+<p>Set it like any other design key (<code>account.previewDesignChange</code>, then <code>account.updateDesign</code>). The owner sees it in the dashboard under Configuration → Design → Typography → <strong>Font</strong>. Available on every plan.</p>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
 <thead>
 <tr>
-<th>Want</th>
+<th>Value</th>
+<th>Font</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>not set</td>
+<td>the banner default: <strong>Arial on Classic</strong>; <strong>the website&#39;s own font on New</strong>. On both engines the notice over a blocked video or map uses the website&#39;s font for its text and Arial for its button</td>
+</tr>
+<tr>
+<td><code>&quot;site&quot;</code></td>
+<td>the website&#39;s own font</td>
+</tr>
+<tr>
+<td><code>&quot;sans-serif&quot;</code></td>
+<td>Arial, or the closest plain font on the device (the Classic default look)</td>
+</tr>
+<tr>
+<td><code>&quot;serif&quot;</code></td>
+<td>Georgia, or Times New Roman</td>
+</tr>
+<tr>
+<td><code>&quot;system&quot;</code></td>
+<td>the device&#39;s own interface font (San Francisco on Apple, Segoe UI on Windows, Roboto on Android)</td>
+</tr>
+</tbody></table>
+</div>
+<p><code>null</code> goes back to the banner default. A named font such as <code>&quot;Open Sans&quot;</code> is not a value: <code>account.previewDesignChange</code> refuses it — use 4.5 instead. None of the four downloads a font: <code>&quot;site&quot;</code> uses the font the page already has, the others are fonts already on the device.</p>
+<h3 id="42-where-the-css-goes">4.2 Where the CSS goes <a class="anchor" href="#42-where-the-css-goes" aria-label="Link to this section">#</a></h3>
+<div class="table-wrap" role="region" aria-label="Table" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Platform</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>WordPress, classic theme</td>
+<td>Appearance → Customize → <strong>Additional CSS</strong></td>
+</tr>
+<tr>
+<td>WordPress, block theme</td>
+<td>Appearance → Editor → Styles → ⋮ → <strong>Additional CSS</strong></td>
+</tr>
+<tr>
+<td>WordPress, child theme</td>
+<td>the theme&#39;s <code>style.css</code></td>
+</tr>
+<tr>
+<td>Any other site</td>
+<td>the site&#39;s main stylesheet, or a <code>&lt;style&gt;</code> in <code>&lt;head&gt;</code></td>
+</tr>
+</tbody></table>
+</div>
+<p>The banner adds its own stylesheet at the end of <code>&lt;head&gt;</code>, so a rule exactly as specific as the banner&#39;s loses from <code>&lt;head&gt;</code>. The rule in 4.3 is chosen to win from anywhere.</p>
+<h3 id="43-supported-hooks--and-how-to-make-a-rule-win">4.3 Supported hooks — and how to make a rule win <a class="anchor" href="#43-supported-hooks--and-how-to-make-a-rule-win" aria-label="Link to this section">#</a></h3>
+<p>These names are the same on both engines and are kept stable on purpose. Style only these if the CSS must keep working.</p>
+<div class="table-wrap" role="region" aria-label="Table" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Hook</th>
+<th>What it is</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>#hu</code></td>
+<td>the banner</td>
+</tr>
+<tr>
+<td><code>#hu .hu-heading</code></td>
+<td>the banner heading — on Classic also the headings in the banner&#39;s other panels (preferences, categories, levels)</td>
+</tr>
+<tr>
+<td><code>#hu .hu-body</code></td>
+<td>the banner message — on Classic also the text in those panels</td>
+</tr>
+<tr>
+<td><code>#hu .hu-site-url</code></td>
+<td>the site name in the top row (shown only when the toolbar is on; not shown on the New banner&#39;s Compact style)</td>
+</tr>
+<tr>
+<td><code>#hu-revoke</code>, <code>#hu-revoke .hu-revoke-button</code></td>
+<td>the round icon that reopens the banner after a choice</td>
+</tr>
+<tr>
+<td><code>#hu-passive</code>, <code>#hu-passive .hu-passive-heading</code>, <code>#hu-passive .hu-passive-body</code></td>
+<td>the notice shown when the banner honours a Global Privacy Control signal</td>
+</tr>
+<tr>
+<td><code>.hu-iframe-overlay</code>, <code>.hu-iframe-overlay .hu-iframe-content</code>, <code>.hu-iframe-overlay .hu-btn</code></td>
+<td>the notice over a blocked video or map, its text, and its button</td>
+</tr>
+<tr>
+<td><code>#hu.hu-position-top</code> / <code>-bottom</code> / <code>-left</code> / <code>-right</code> / <code>-center</code>, <code>#hu.hu-display-floating</code> / <code>-fixed</code></td>
+<td>the banner&#39;s position and display type from its design</td>
+</tr>
+<tr>
+<td><code>body.hu-visible</code></td>
+<td>the banner is showing</td>
+</tr>
+<tr>
+<td><code>body.hu-not-set</code></td>
+<td>the visitor has not chosen yet</td>
+</tr>
+<tr>
+<td><code>body.hu-cookies-accepted</code></td>
+<td>a consent record exists — the visitor&#39;s choice (any choice, including the most private one), or one applied automatically from a Global Privacy Control signal</td>
+</tr>
+</tbody></table>
+</div>
+<p><strong>Start every selector with <code>body #hu</code></strong> — or <code>body</code> plus the part&#39;s own root: <code>body #hu-revoke …</code>, <code>body #hu-passive …</code>, <code>body .hu-iframe-overlay …</code>. The banner&#39;s rules sit under its root id, and the extra <code>body</code> outweighs them from <code>&lt;head&gt;</code> or <code>&lt;body&gt;</code>. A class alone (<code>.hu-heading</code>) or a tag selector (<code>#hu h2</code>) loses.</p>
+<ul>
+<li><strong><code>#hu</code> reaches only the banner.</strong> The reopen icon, the Global Privacy Control notice and the blocked-video notice are separate roots; write a rule for each one you mean.</li>
+<li><strong>Size, spacing and alignment of the heading and message can need <code>!important</code>.</strong> A few of the banner&#39;s layout rules are heavier (the heading&#39;s size and spacing on Classic; alignment and spacing on New&#39;s Compact style). For sizes, prefer the design keys.</li>
+<li><strong>Message colour and size: use the design keys</strong> (<code>textColor</code>, <code>textSize</code>), not CSS. On Classic the message text inside <code>.hu-body</code> sets its own colour and size, so a rule on <code>.hu-body</code> may not change what the visitor sees, even with <code>!important</code>.</li>
+<li><strong>A site theme rule with <code>!important</code></strong> (for example <code>h2 { color: green !important; }</code>) beats the banner. Only the site&#39;s own, more specific <code>!important</code> fixes it: <code>body #hu .hu-heading { color: #434f58 !important; }</code>.</li>
+<li><strong>Keep <code>#hu</code> in front of any body class.</strong> <code>.hu-cookies-accepted .x</code> alone also matches things outside the banner.</li>
+</ul>
+<div class="code"><pre tabindex="0"><code class="language-css">body #hu .hu-heading { font-weight: 400; }
+body #hu .hu-heading { color: #222; }
+body #hu-revoke .hu-revoke-button { background: #c00; }
+body #hu-passive .hu-passive-heading { color: #c00; }
+</code></pre></div>
+<h3 id="44-colours-and-sizes-variables-on-the-root">4.4 Colours and sizes: variables on the root <a class="anchor" href="#44-colours-and-sizes-variables-on-the-root" aria-label="Link to this section">#</a></h3>
+<p>Every colour and size design key is also a CSS variable named <code>--hu-&lt;key&gt;</code> (<code>--hu-primaryColor</code>, <code>--hu-textColor</code>, <code>--hu-bannerColor</code>, <code>--hu-headingSize</code>, <code>--hu-textSize</code>, <code>--hu-btnBorderRadius</code>, …). Set it <strong>on a root</strong>:</p>
+<div class="code"><pre tabindex="0"><code class="language-css">#hu { --hu-primaryColor: #c00; --hu-btnColor: #c00; }  /* the banner, buttons included */
+#hu, #hu-revoke, #hu-passive, .hu-iframe-overlay { --hu-primaryColor: #c00; --hu-btnColor: #c00; }  /* every part */
+</code></pre></div>
+<p><strong>To recolour buttons, set both <code>--hu-primaryColor</code> and <code>--hu-btnColor</code>.</strong> On Classic, <code>--hu-primaryColor</code> on <code>#hu</code> recolours only the link-style buttons; the filled buttons follow <code>--hu-btnColor</code>. Set both to recolour the buttons on either engine.</p>
+<p>Not on <code>:root</code> or <code>html</code>: the banner writes its own values directly on the <code>&lt;html&gt;</code> element, and those beat a stylesheet rule there. A variable set on <code>#hu</code> does not reach the other three parts. Your <code>--hu-bannerColor</code> replaces the banner&#39;s background opacity with a solid colour.</p>
+<p>Prefer the design keys (step 3) when one exists: a colour changed by CSS is not covered by the contrast check, so check it yourself (4.5:1 for text).</p>
+<h3 id="45-a-font-that-is-not-one-of-the-four">4.5 A font that is not one of the four <a class="anchor" href="#45-a-font-that-is-not-one-of-the-four" aria-label="Link to this section">#</a></h3>
+<p><strong>To use your own font, leave <code>fontFamily</code> unset (the banner default), then add this line to the site&#39;s stylesheet:</strong></p>
+<div class="code"><pre tabindex="0"><code class="language-css">body #hu, body #hu .hu-btn, body #hu-passive, body #hu-revoke, body .hu-iframe-overlay .hu-btn { font-family: &quot;Your Font&quot;, sans-serif; }
+</code></pre></div>
+<ul>
+<li>Replace <code>&quot;Your Font&quot;</code> with a font <strong>the site already loads</strong>. Adding a new font service only for the banner adds a third-party request on every page.</li>
+<li>The line covers both engines: the banner, its buttons, the Global Privacy Control notice, the reopen icon and the blocked-video notice&#39;s button. That notice&#39;s text keeps the page&#39;s own font.</li>
+<li>Do not combine the line with a <code>fontFamily</code> setting: on Classic the setting wins and the line has no effect; on New the result is mixed fonts. Leave <code>fontFamily</code> unset (send <code>null</code> to clear it) when you use the line.</li>
+<li>Check in a new private window, and clear the cache of any caching or optimisation plugin. A published design change, such as unsetting <code>fontFamily</code>, can take up to an hour to reach returning visitors.</li>
+</ul>
+<h3 id="46-not-supported-engine-specific-names-may-change">4.6 Not supported: engine-specific names (may change) <a class="anchor" href="#46-not-supported-engine-specific-names-may-change" aria-label="Link to this section">#</a></h3>
+<p>Everything not listed in 4.3 — the level buttons, the Customize panel, categories, links, toolbar icons — has different names on Classic and New, and <strong>may change without notice</strong>. CSS on these can stop working after an update. Use them only when the owner accepts that, and check the engine first: with the banner open (from the reopen icon, or in a new private window), New has <code>#hu .hu-panel</code> in the page and Classic has <code>#hu-cookies-content</code>. A script address containing <code>/v2/</code> is a second check (a script-combining optimizer can remove that tag from the page source).</p>
+<div class="table-wrap" role="region" aria-label="Table" tabindex="0">
+<table>
+<thead>
+<tr>
+<th>Want (New only — may change)</th>
 <th>CSS</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>A different font in the banner only (it uses the site&#39;s body font by default)</td>
-<td><code>#hu.hu-wrapper { font-family: Georgia, serif; }</code></td>
-</tr>
-<tr>
-<td>Left-aligned heading and message (standard style)</td>
-<td><code>body #hu .hu-heading, body #hu .hu-body { text-align: left; }</code></td>
-</tr>
-<tr>
-<td>Centred message on the compact bar</td>
-<td><code>#hu .hu-body { text-align: center !important; }</code></td>
-</tr>
-<tr>
 <td>Square corners on the level buttons only</td>
 <td><code>body #hu .hu-levels .hu-level { border-radius: 4px; }</code></td>
 </tr>
 <tr>
-<td>Hide the site name in the top row</td>
+<td>Centred message on the Compact style</td>
+<td><code>#hu .hu-body { text-align: center !important; }</code></td>
+</tr>
+<tr>
+<td>Hide the site name, icons stay in place</td>
 <td><code>body #hu .hu-site-url { visibility: hidden; }</code></td>
 </tr>
 <tr>
-<td>Lift the banner above a sticky footer or chat bar (bottom banners; on phones every banner is a bottom band)</td>
+<td>Lift the banner above a sticky footer or chat bar (on phones every banner is a bottom band)</td>
 <td><code>body #hu.hu-position-bottom { bottom: 80px; } @media (max-width: 600px) { body #hu.hu-wrapper { bottom: 80px; } }</code> — never plain <code>body #hu { bottom: … }</code>: on a top or centre banner it stretches an invisible box over the page that blocks clicks</td>
 </tr>
 <tr>
-<td>Recolour the keyboard focus ring (already on by default) on all four parts</td>
+<td>Recolour the keyboard focus ring (on by default) on all four parts</td>
 <td><code>body #hu :focus-visible, body #hu .hu-level:focus-within, body #hu-revoke :focus-visible, body #hu-passive :focus-visible, body .hu-iframe-overlay :focus-visible { outline-color: #005fcc; }</code></td>
 </tr>
 </tbody></table>
 </div>
-<p>Three more parts sit <strong>outside</strong> <code>#hu</code>, so a rule under <code>#hu</code> does not reach them: the round icon that reopens the banner (<code>#hu-revoke</code>), the Global Privacy Control notice (<code>#hu-passive</code>), and the notice over a blocked video or map (<code>.hu-iframe-overlay</code>). Use the same pattern with their root, e.g. <code>body #hu-revoke .hu-revoke-button { … }</code>.</p>
-<p>Do not use CSS to hide, cover or shrink the level buttons, Customize, the close button, the category switches or the privacy-policy link — a visitor who cannot reach a choice cannot refuse. Do not remove the focus ring (<code>outline: none</code>). If you change a colour with CSS, the contrast check from step 2 no longer covers it — prefer the design keys.</p>
+<p>On New, <code>#hu .hu-btn</code> matches only the Customize button; old Classic CSS mostly matches nothing there.</p>
+<h3 id="47-what-css-must-never-do">4.7 What CSS must never do <a class="anchor" href="#47-what-css-must-never-do" aria-label="Link to this section">#</a></h3>
+<p>The banner exists so a visitor can choose. Never use CSS to <strong>hide, shrink, cover or fade out</strong>: any consent choice (the level buttons, the category switches), the way to refuse (the most private level, and Save on Classic), Customize, the close button, the privacy-policy and other policy links, or the Global Privacy Control notice. No <code>display: none</code>, <code>visibility: hidden</code>, <code>opacity: 0</code>, <code>pointer-events: none</code>, off-screen positions or tiny sizes on any of them. Keeping the choices equally easy to see and use is the site owner&#39;s legal duty, and a choice a visitor cannot reach is a choice they cannot make. Do not remove the keyboard focus ring (<code>outline: none</code>); recolour it.</p>
+<p>This is technical guidance on using the banner, not legal advice.</p>
 <h2 id="verified">Verified <a class="anchor" href="#verified" aria-label="Link to this section">#</a></h2>
 <p><code>demo.suggestDesign</code>, <code>account.previewDesignChange</code> and <code>account.updateDesign</code> (with <code>publish: false</code>) were called live against a real (non-production, no-visitor) test app on 2026-09-29, confirming: the derived key set and contrast report shape above, that an unset field previews as <code>fromState: &quot;not_set&quot;</code> rather than a false before-value, and that <code>publish: false</code> saves a draft with <code>consentReIssued: false</code> and does not touch the live banner. Publishing a saved draft by re-running with <code>publish: true</code>, the colour-format refusal and the preview&#39;s contrast report came later and were not part of that test.</p>
-<p>Every selector in step 4 was checked in a real browser on 2026-10-13 against the v2 banner, with the CSS placed in <code>&lt;head&gt;</code> where WordPress prints Additional CSS — the harder spot, because a rule there loses any tie that the same rule at the end of <code>&lt;body&gt;</code> would win.</p>
+<p>The hooks in 4.3 are pinned by an automated test on each engine, so renaming one fails a test instead of breaking a site&#39;s CSS. On both engines a real-browser test places the CSS in <code>&lt;head&gt;</code>, where WordPress prints Additional CSS — the harder spot, because a rule there loses any tie that the same rule at the end of <code>&lt;body&gt;</code> would win — and confirms that <code>body #hu .hu-heading { color }</code>, a colour variable on the root, and the font line in 4.5 apply; on Classic it also confirms that filled buttons follow <code>--hu-btnColor</code>. The recipes in 4.6 were checked in a real browser against the New engine on 2026-10-13.</p>
   </main>
 </div>
 <footer class="site-footer">
