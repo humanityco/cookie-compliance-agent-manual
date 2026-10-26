@@ -29,7 +29,7 @@ On WordPress that fights the plugin (two banners, two consent stores) and skips 
 
 1. In wp-admin → Plugins → Add New, search **Cookie Compliance** (slug `cookie-notice` on [wordpress.org/plugins/cookie-notice/](https://wordpress.org/plugins/cookie-notice/)). Install and activate **Cookie Compliance**.
 2. Open the plugin's admin screen and connect with the **App ID** and **App Secret Key** from the Cookie Compliance dashboard Integrations page for that domain. You can also sign in or sign up from the plugin: if the account has apps but none for this site, the plugin (3.1.13 or later) asks which app to use or offers to create one.
-3. Publish (or confirm published) configuration in the Cookie Compliance dashboard. The plugin pulls config on a schedule and via **Pull latest settings** (**Pull Configuration** in plugin 3.1.12 and older) — Admin Portal changes are not live on the WP site until a pull.
+3. Publish (or confirm published) configuration in the Cookie Compliance dashboard. The plugin pulls config on a schedule and via **Pull latest settings** (**Pull Configuration** in plugin 3.1.12 and older) — Dashboard changes are not live on the WP site until a pull.
 4. Leave analytics plugins and tags alone. The product blocks them before consent; do not delete Site Kit / MonsterInsights / etc. solely to "make consent work."
 5. If a hand-rolled cookie popup or another CMP is still in the theme, remove it.
 
