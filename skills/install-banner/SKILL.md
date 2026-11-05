@@ -5,7 +5,7 @@ description: Install the Cookie Compliance consent banner (by Hu-manity.co) on a
 
 # Install the Cookie Compliance banner
 
-Goal: the real, live banner, loaded **first** on **every page**, with trackers held back until the visitor chooses. Don't write your own banner: a hand-made popup that stores a choice while the analytics above it has already run does not make the site compliant.
+Goal: the real, live banner, loaded **first** on **every page**, with trackers held back until the visitor chooses, where the visitor's region requires consent first. Don't write your own banner: a hand-made popup that stores a choice while the analytics above it has already run does not make the site compliant.
 
 MCP tool names below are written `install.getSnippet`; some clients list them as `install_getSnippet`.
 

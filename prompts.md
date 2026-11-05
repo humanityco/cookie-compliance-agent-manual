@@ -28,7 +28,7 @@ Do not write your own banner.
 2. It asks you to pick a route: **connect the MCP server** (recommended, hands-off), **I have an account** (login link), or **I have no account** (register link, free plan, no card).
 3. It creates or finds the app, places the snippet first in `<head>` on every page, and matches the banner to your site.
 4. It asks you one legal question: which regions apply.
-5. It checks that trackers are held back until a visitor chooses, then reports what it changed.
+5. It checks that trackers are held back until a visitor chooses (in regions that require consent first), then reports what it changed.
 
 Registering takes about 30 seconds and is always yours to do: the agent never enters a password, accepts terms or solves a captcha for you.
 

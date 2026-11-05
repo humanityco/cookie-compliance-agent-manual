@@ -5,7 +5,7 @@ description: Verify a Cookie Compliance consent banner actually blocks trackers 
 
 # Verify the Cookie Compliance banner is actually blocking
 
-A banner that is merely visible has not been verified. Verification means proving trackers do not run before the visitor consents, then proving they do run once the visitor allows them.
+A banner that is merely visible has not been verified. Verification means proving trackers do not run before the visitor consents, in a region whose rule requires consent first (GDPR and UK PECR by default; other regions are opt-out by default), then proving they do run once the visitor allows them.
 
 ## 0. Status check first
 
@@ -28,7 +28,7 @@ A 200 only means the configuration is live. It is not a pass of any check below 
 
 Use a fresh browser profile or private window. If you drive a browser with automation, **hide `navigator.webdriver` and use a normal desktop user agent**, because the widget deliberately doesn't run for automated or headless browsers, and you'd wrongly conclude the banner is missing.
 
-**Location matters:** with region rules on, the visitor's region decides whether the banner shows and whether it blocks. Test from a region under the strictest rule (for example the EU), or confirm region rules are off. Otherwise a missing banner may be correct, and a pass may not hold for EU visitors.
+**Location matters:** with region rules on, the visitor's region decides whether the banner shows and whether it blocks. Test from a region under the strictest rule (for example the EU), or confirm region rules are off. Otherwise a missing banner may be correct, and a pass may not hold for EU visitors. In a region whose rule does not require consent first, trackers running before a choice can be correct; confirm the region's rule before treating a pass or a failure as final.
 
 | # | Check | Pass |
 |---|---|---|

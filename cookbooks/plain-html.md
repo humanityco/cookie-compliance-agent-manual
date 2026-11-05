@@ -72,7 +72,7 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
 
 3. **Repeat on every page.** If your pages share a header include, put it there once.
 
-4. **Leave your trackers alone.** Don't delete them and don't wrap them in your own "if consented" code. The widget holds them back until the visitor agrees.
+4. **Leave your trackers alone.** Don't delete them and don't wrap them in your own "if consented" code. The widget holds the ones it recognises (its built-in list or your own patterns) until the visitor chooses, where the visitor's region requires consent first.
 
 **Options in `huOptions` (common keys):**
 
