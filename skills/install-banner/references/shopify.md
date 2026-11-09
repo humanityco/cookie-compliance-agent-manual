@@ -69,7 +69,7 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the live storefr
 | SP3 | Add a real tracker tag (e.g. `<script async src="https://www.googletagmanager.com/gtag/js?id=...">`) below the snippet in `theme.liquid`, reload, inspect the live DOM | The tag's `src` is emptied and moved to `data-src`, `type` becomes `javascript/blocked`, and a `hu-blocked` class is added — it never executes pre-consent. |
 | SP4 | `document.head.firstElementChild` in the live DOM | Will usually be Shopify's own async analytics script, **not** the Cookie Compliance snippet — expected per the gotcha above, not a failure. |
 
-**Verified 2026-09-30** against a real Shopify dev store (Partners-created, `*.myshopify.com`, password-gated, no real customer data), a real non-production Cookie Compliance AppID, and a real `googletagmanager.com/gtag/js` tag as the test tracker: the tracker rendered with `type="javascript/blocked"`, class `hu-blocked`, `data-hu-category="2"`, and its `src` moved to `data-src` — confirmed via the live DOM, not the tool's own preview response. The test tracker line was removed from `theme.liquid` after verification; only the real Cookie Compliance snippet remains live on that store.
+**Verified 2026-09-30** on a real Shopify test store, with a real `googletagmanager.com/gtag/js` tag as the test tracker: the tracker rendered with `type="javascript/blocked"`, class `hu-blocked`, `data-hu-category="2"`, and its `src` moved to `data-src` — confirmed via the live DOM, not the tool's own preview response. The test tracker line was removed from `theme.liquid` after verification.
 
 ## More help
 

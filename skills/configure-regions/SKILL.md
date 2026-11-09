@@ -73,13 +73,13 @@ Valid `name`s are the same seven keys as `regulations.*` above, plus `other`: th
 
 ## 5. The legacy fallback, and why it matters even if you never touch it
 
-The widget only uses `geolocationRules` when it's non-empty **and** `regulations` is also non-empty. If either is empty, it falls back to three flat buckets instead — `geolocationEUblocking` / `geolocationUSblocking` / `geolocationORblocking` (plus matching `*display` / `*dontsell` / `*privacy` / `*revoke` keys) — and in that fallback, **CCPA and "other US" visitors get the exact same treatment**. If a site owner wants California treated differently from the rest of the US, `geolocationRules` (step 3) is the only way; the legacy booleans can't express it.
+**On the Classic banner only**, if `geolocationRules` or `regulations` is empty, the widget falls back to three flat buckets instead — `geolocationEUblocking` / `geolocationUSblocking` / `geolocationORblocking` (plus matching `*display` / `*dontsell` / `*privacy` / `*revoke` keys) — and in that fallback, **CCPA and "other US" visitors get the exact same treatment**. The New banner ignores these flat keys, so with `geolocationMethod: "manual"` a config that carries only them gives it no region rules: send `geolocationRules` there. (In automatic mode the server supplies the default matrix, as in step 4.) If a site owner wants California treated differently from the rest of the US, `geolocationRules` (step 3) is the only way; the legacy booleans can't express it.
 
 ## Verified
 
-Live-tested against a non-production test app on 2026-09-29, with `publish:false` throughout and every result confirmed against the stored configuration, not just the tool's response:
+Verified on a real test site on 2026-09-29, with every result confirmed against the stored configuration, not just the tool's response:
 
 - `regulations.gdpr`/`ccpa` written, then `regulations.lgpd` written alone: the stored draft ends up with all three set. Writes to `regulations.*` merge.
 - `geolocationRules` written with 2 entries, then with a 1-entry list: the dropped entry is gone from the stored draft. Writes to `geolocationRules` replace the whole list.
 
-Steps 4 and 5, and the link-flag and New-banner notes in step 3, describe the documented behaviour of the server and the banner and have not yet been confirmed in a live browser test. Re-check them if either changes.
+Steps 4 and 5, and the link-flag and New-banner notes in step 3, describe the documented behaviour of the server and the banner and were not part of that test. Re-check them if either changes.

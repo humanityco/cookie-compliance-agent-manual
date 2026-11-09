@@ -72,7 +72,7 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site
 | A1 | View source (not devtools' rendered DOM) on `/` and an inner route | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are literal `<script>` elements — **not** `<script type="module" src="...?astro&type=script...">` — as the first two scripts, in order. |
 | A2 | Grep the layout for every Cookie Compliance `<script>` tag | Each one has `is:inline`. |
 
-**Verified 2026-09-29** against a live local Astro dev server, a real (non-production) test AppID, and a real `googletagmanager.com/gtag/js` tag as the tracker, in a fresh isolated browser context: with `is:inline` in place, the tracker rendered `type="javascript/blocked"` and no tracking cookie appeared before consent — matching the shared `verify-install` checklist's check 3.
+**Verified 2026-09-29** on a local Astro dev server, with a real `googletagmanager.com/gtag/js` tag as the tracker, in a fresh isolated browser context: with `is:inline` in place, the tracker rendered `type="javascript/blocked"` and no tracking cookie appeared before consent — matching the shared `verify-install` checklist's check 3.
 
 ## Gotchas
 

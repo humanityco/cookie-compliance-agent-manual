@@ -2,8 +2,6 @@
 
 Skills and cookbooks that teach coding agents to add a **Cookie Compliance** consent banner to a website, and to set it up so the consent actually holds.
 
-> **Status: early.** Structure and the install path are in place. Items marked *planned* are not published yet.
-
 ---
 
 ## Quick start

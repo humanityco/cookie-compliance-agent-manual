@@ -126,7 +126,7 @@
 <p><strong>In short:</strong> put Cookie Compliance in the page <code>&lt;head&gt;</code> <strong>above</strong> the GTM container snippet. Do <strong>not</strong> add the Cookie Compliance tags as a tag inside the GTM container.</p>
 <h2 id="why">Why <a class="anchor" href="#why" aria-label="Link to this section">#</a></h2>
 <p>Blocking and Consent Mode defaults must exist <strong>before</strong> <code>gtm.js</code> / <code>{gtm.start}</code> run. A tag that fires &quot;on All Pages&quot; inside GTM is already too late: the container has started, and child tags can write cookies before the CMP is in force.</p>
-<p>A measured failure mode of this class: consent defaults landed <strong>after</strong> the GTM container, and a Google Ads cookie was written before consent.</p>
+<p>If the Cookie Compliance snippet loads after the GTM container, tags the container fires can set cookies before the visitor chooses, in a region that requires consent first.</p>
 <h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>Creating a Custom HTML tag in GTM that pastes <code>huOptions</code> + <code>hu-banner.min.js</code>.</li>

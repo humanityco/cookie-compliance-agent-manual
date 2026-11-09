@@ -13,7 +13,7 @@ last_verified: 2026-09-28
 
 Blocking and Consent Mode defaults must exist **before** `gtm.js` / `{gtm.start}` run. A tag that fires "on All Pages" inside GTM is already too late: the container has started, and child tags can write cookies before the CMP is in force.
 
-A measured failure mode of this class: consent defaults landed **after** the GTM container, and a Google Ads cookie was written before consent.
+If the Cookie Compliance snippet loads after the GTM container, tags the container fires can set cookies before the visitor chooses, in a region that requires consent first.
 
 ## The wrong way
 

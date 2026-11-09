@@ -41,6 +41,6 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 
 ## Optional
 
-- [README](README.md): why this exists, what's planned, how to contribute.
+- [README](README.md): why this exists, how to contribute.
 - [AGENTS.md](AGENTS.md): hard rules for contributing here.
 - [LICENSE](LICENSE): MIT.
