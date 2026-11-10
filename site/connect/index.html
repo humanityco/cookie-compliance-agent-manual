@@ -83,6 +83,7 @@
         <li><a href="/start/">Start here</a></li>
         <li><a href="/connect/" aria-current="page">Connect your AI assistant</a>
           <ul class="toc" aria-label="On this page">
+            <li><a href="#fastest-way-paste-this-into-your-ai-chat">Fastest way: paste this into your AI chat</a></li>
             <li><a href="#which-address-do-i-use">Which address do I use?</a></li>
             <li><a href="#claude-claudeai-and-claude-desktop">Claude (claude.ai and Claude Desktop)</a></li>
             <li><a href="#chatgpt">ChatGPT</a></li>
@@ -126,6 +127,28 @@
 <h1 id="connect-your-ai-assistant-to-cookie-compliance">Connect your AI assistant to Cookie Compliance</h1>
 <p class="page-meta"><a href="/connect.md">View raw markdown (for agents)</a></p>
 <p>Connect your AI app to your Cookie Compliance account, and it can read your cookie banner and, when you ask, change it. This page has the steps for each app.</p>
+<h2 id="fastest-way-paste-this-into-your-ai-chat">Fastest way: paste this into your AI chat <a class="anchor" href="#fastest-way-paste-this-into-your-ai-chat" aria-label="Link to this section">#</a></h2>
+<p>Paste the prompt below into a chat with your AI app. It asks you a few questions, then does what it can and tells you exactly what to click for the rest. You approve the sign-in yourself, in your browser, and it asks before it creates anything in your account.</p>
+<div class="code"><pre tabindex="0"><code class="language-text">Connect yourself to my Cookie Compliance account so you can manage my consent banner. Guide: https://manual.hu-manity.co/connect.md (if you can't open it, tell me and I'll paste it).
+
+First show me a short plan. Then do it one step at a time, asking one question at a time. Never guess my answers.
+
+0. If you can already see Cookie Compliance tools, run help.authStatus. If I'm connected, skip to step 5.
+1. Ask which AI app I'm using. Don't assume. Use that app's exact steps from the guide.
+2. Ask whether I already have a Cookie Compliance account.
+   - No: give me two options.
+     (a) Preview only, using https://mcp.cookie-compliance.co/mcp. It shows a look-only banner, and nothing goes live.
+     (b) Create a free account (no card). Tell me every step. The terms, password, email check and captcha are mine to do. Then continue as &quot;Yes&quot;.
+   - Yes: go to step 3.
+3. Ask whether I want to add it myself or have you do it.
+   - Myself: give me the steps one at a time.
+   - You: add https://mcp.cookie-compliance.co/mcp/account at user level, so the folder doesn't matter. If the command isn't found, look for my app's bundled program or ask me. If a Cookie Compliance entry already exists, remove it first. If you can't run commands in this app, say so and give me the steps instead.
+4. Tell me the sign-in steps for my app, including whether I need a new session and the exact sentence to say in it. I sign in in my browser. Never ask for my password or an API token in this chat.
+5. Prove it by listing my sites. If a site for my domain is already there, tell me and skip to step 7.
+6. If my domain isn't there, ask me which domain I want to set up. Then tell me exactly what you're about to do (&quot;Register &lt;domain&gt; as a new app in my account and publish a starter banner&quot;) and wait for my yes. Don't create anything without it. If I already have a similar domain, ask me whether this is a separate site or the same one before going on. Never subscribe or upgrade me.
+7. Then stop and ask what I want next. Don't change my banner or settings unless I ask.
+</code></pre></div>
+<p>To do it manually by yourself? The steps for each app are below.</p>
 <h2 id="which-address-do-i-use">Which address do I use? <a class="anchor" href="#which-address-do-i-use" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
@@ -302,6 +325,7 @@
 <p>After you publish a change, visitors whose browser saved the old banner may see it for up to an hour.</p>
 <h2 id="for-ai-agents">For AI agents <a class="anchor" href="#for-ai-agents" aria-label="Link to this section">#</a></h2>
 <ul>
+<li>If the person pasted the prompt at the top of this page, follow its numbered steps, using the per-app steps below.</li>
 <li>Ask which app the person uses, then give them that app&#39;s steps from this page, one step at a time.</li>
 <li>Existing customer: the account address. No account: the try-it-out address. Never ask for a password, and never accept a token in a chat message.</li>
 <li>Then follow <a href="/skills/match-site-design/"><code>skills/match-site-design/SKILL.md</code></a> to restyle a banner, or <a href="/skills/install-banner/"><code>skills/install-banner/SKILL.md</code></a> to install one.</li>
