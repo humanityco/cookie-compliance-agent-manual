@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cookie Compliance Agent Manual</title>
-<meta name="description" content="Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice.">
+<meta name="description" content="Skills and cookbooks that teach a coding agent to install the Cookie Compliance banner so trackers wait for consent where the region requires it first.">
 <link rel="canonical" href="https://manual.hu-manity.co/">
 <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt (for agents)">
 <meta property="og:title" content="Cookie Compliance Agent Manual">
-<meta property="og:description" content="Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice.">
+<meta property="og:description" content="Skills and cookbooks that teach a coding agent to install the Cookie Compliance banner so trackers wait for consent where the region requires it first.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://manual.hu-manity.co/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -21,7 +21,7 @@
       "@type": "WebSite",
       "name": "Cookie Compliance Agent Manual",
       "url": "https://manual.hu-manity.co/",
-      "description": "Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice.",
+      "description": "Skills and cookbooks that teach a coding agent to install the Cookie Compliance banner so trackers wait for consent where the region requires it first.",
       "inLanguage": "en",
       "publisher": { "@id": "https://manual.hu-manity.co/#organization" }
     },
@@ -57,7 +57,7 @@
 </header>
 <main id="content" class="home">
   <h1>Cookie Compliance Agent Manual</h1>
-  <p class="tagline">Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly — blocking trackers before consent, not just showing a notice afterward.</p>
+  <p class="tagline">Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner correctly, so trackers wait for the visitor's choice where the region requires consent first — instead of only showing a notice afterward.</p>
 
   <p>Ask a coding agent to "add a cookie banner" and it usually writes one by hand: a popup that stores the visitor's choice while the analytics tag above it has already run. This manual gives an agent tested procedures for doing it properly with <a href="https://cookie-compliance.co/">Cookie Compliance</a> instead — the right snippet, in the right place, verified afterward.</p>
 
@@ -87,7 +87,7 @@ Do not write your own banner.</pre>
   <h2 id="skills">Skills</h2>
   <ul class="links">
     <li><a href="skills/install-banner/">install-banner</a><span class="desc">Get the live snippet for an AppID and place it correctly.</span></li>
-    <li><a href="skills/verify-install/">verify-install</a><span class="desc">Prove the banner blocks trackers before consent, on any install.</span></li>
+    <li><a href="skills/verify-install/">verify-install</a><span class="desc">Prove the banner holds trackers until the visitor chooses, where the region requires consent first.</span></li>
     <li><a href="skills/match-site-design/">match-site-design</a><span class="desc">Derive a banner design from the site's own colours; check WCAG AA contrast.</span></li>
     <li><a href="skills/configure-regions/">configure-regions</a><span class="desc">Set which regulations apply and how visitors are treated by region.</span></li>
   </ul>

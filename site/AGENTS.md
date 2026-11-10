@@ -1,8 +1,8 @@
 # AGENTS.md — cookie-compliance-agent-manual
 
 Skills and cookbooks that teach a coding agent to install the Cookie Compliance
-consent banner (Hu-manity.co) correctly — blocking trackers before consent, not
-just showing a notice. See [README.md](README.md) for the full picture.
+consent banner (Hu-manity.co) correctly — trackers wait for the visitor's choice
+where the region requires consent first, instead of only showing a notice. See [README.md](README.md) for the full picture.
 
 ## Where instructions live
 
