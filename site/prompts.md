@@ -18,7 +18,7 @@ Do not write your own banner.
 | Want to confirm each step | Same prompt, with `Mode: guided. Confirm before each file edit and before creating or changing an app.` |
 | Already know your AppID | Add a line: `My AppID is YOUR_APP_ID.` (the agent still checks it before using it) |
 | Have no MCP and want none | Add: `Do not use MCP. I will give you the AppID or the snippet from my dashboard.` |
-| Already installed, want a check | `Read https://manual.hu-manity.co/skills/verify-install/SKILL.md and check that the Cookie Compliance banner on this site blocks trackers before consent. Report each check.` |
+| Already installed, want a check | `Read https://manual.hu-manity.co/skills/verify-install/SKILL.md and check that the Cookie Compliance banner on this site holds trackers until the visitor chooses, where the region requires consent first. Report each check.` |
 | Want it to look like your site | `Read https://manual.hu-manity.co/skills/match-site-design/SKILL.md and match the Cookie Compliance banner to this site's colours.` |
 | Want region rules | `Read https://manual.hu-manity.co/skills/configure-regions/SKILL.md and set up region rules for this site. Ask me which regions apply.` |
 

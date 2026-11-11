@@ -29,9 +29,9 @@ This manual gives agents tested procedures for doing it properly with Cookie Com
 
 A hand-rolled banner is a popup and a `localStorage` flag. A Cookie Compliance banner, installed the way this manual describes, also:
 
-- **Holds trackers until the visitor chooses, where the region requires it** — scripts and iframes that match the 282 built-in tracker patterns (181 providers) or the site owner's own patterns are held until the visitor chooses, in regions whose rule requires consent first (GDPR and UK PECR by default; other regions are opt-out by default). The file may download but does not run. Limits: scripts that an allowed script adds later (such as tags fired from Google Tag Manager) must be gated there; on the Free plan blocking stops once the site reaches its visit limit; a script that matches no pattern runs; it does not generate the cookie table (declaration) for your cookie policy.
+- **Holds trackers until the visitor chooses, where the region requires it** — scripts and iframes that match the 282 built-in tracker patterns (181 providers) or the site owner's own patterns are held until the visitor chooses, in regions whose rule requires consent first (GDPR and UK PECR by default; other regions are opt-out by default). The file may download but does not run. To keep blocking complete: gate tags fired through Google Tag Manager with consent triggers (on the New engine, recognised tags GTM fires are also held automatically); add a custom pattern in Autoblocking, or mark the script, for trackers the built-in list does not recognise; the Free plan covers 1,000 visits per 30-day cycle, after which blocking resumes at the next cycle or once the site upgrades to Professional. The site's cookie policy still describes the cookies it uses.
 - **Signals consent mode** — passes the visitor's choice to Google, Microsoft and Meta Consent Mode, and honors Global Privacy Control (GPC), without extra code per provider.
-- **Keeps proof** — each consent is a server-side, exportable record, not a client-side flag with nothing behind it (on the Free plan, until the site reaches its monthly visit limit).
+- **Keeps proof** — each consent is a server-side, exportable record, not a client-side flag with nothing behind it (on the Free plan, 1,000 visits per 30-day cycle).
 - **Applies region rules** — different regions (for example GDPR in the EU, CCPA/CPRA in the US) get different rules without hand-coding the branching per visitor.
 
 This isn't hypothetical. A controlled trial of Cookie Compliance's MCP server (n=5 per arm, same method as any experiment this size — a signal, not a rate) measured what an agent actually does: given the install tool, hand-rolling a banner went from 5/5 runs to 0/5, and a supplied AppID got a correct live install 5/5. That's the failure mode this manual exists to close off, whether the agent reaches Cookie Compliance through the MCP server or through the skills and cookbooks here.
@@ -51,7 +51,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 ### Skills
 
 - **install-banner** *(shipped)*: the whole journey, in Autopilot by default: look around, sign in or register, create the app, place the snippet correctly (WordPress → plugin; others → paste), match the design, set regions, verify.
-- **verify-install** *(shipped)*: prove the banner actually blocks trackers before consent. `install-banner` calls this at its own verify step; it also stands alone for checking a banner someone else installed.
+- **verify-install** *(shipped)*: prove the banner actually holds trackers until the visitor chooses, where the region requires consent first. `install-banner` calls this at its own verify step; it also stands alone for checking a banner someone else installed.
 - **match-site-design** *(shipped)*: derive a banner design from the site's own colours and check contrast; set the banner font; supported CSS hooks for custom styling.
 - **configure-regions** *(shipped)*: set per-region rules (for example GDPR in the EU, CCPA in California).
 

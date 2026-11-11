@@ -1,6 +1,6 @@
 ---
 name: verify-install
-description: Verify a Cookie Compliance consent banner actually blocks trackers before consent on a site that already has it. Use after installing a banner, when asked "is the banner working", "check the consent banner", "verify the cookie banner blocks trackers", or before reporting any Cookie Compliance install as done.
+description: Verify a Cookie Compliance consent banner actually holds trackers until the visitor chooses, where the region requires consent first, on a site that already has it. Use after installing a banner, when asked "is the banner working", "check the consent banner", "verify the cookie banner blocks trackers", or before reporting any Cookie Compliance install as done.
 ---
 
 # Verify the Cookie Compliance banner is actually blocking

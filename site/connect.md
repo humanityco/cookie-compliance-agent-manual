@@ -2,6 +2,33 @@
 
 Connect your AI app to your Cookie Compliance account, and it can read your cookie banner and, when you ask, change it. This page has the steps for each app.
 
+## Fastest way: paste this into your AI chat
+
+Paste the prompt below into a chat with your AI app. It asks you a few questions, then does what it can and tells you exactly what to click for the rest. You approve the sign-in yourself, in your browser, and it asks before it creates anything in your account.
+
+```text
+Connect yourself to my Cookie Compliance account so you can manage my consent banner. Guide: https://manual.hu-manity.co/connect.md (if you can't open it, tell me and I'll paste it).
+
+First show me a short plan. Then do it one step at a time, asking one question at a time. Never guess my answers.
+
+0. If you can already see Cookie Compliance tools, run help.authStatus. If I'm connected, skip to step 5.
+1. Ask which AI app I'm using. Don't assume. Use that app's exact steps from the guide.
+2. Ask whether I already have a Cookie Compliance account.
+   - No: give me two options.
+     (a) Preview only, using https://mcp.cookie-compliance.co/mcp. It shows a look-only banner, and nothing goes live.
+     (b) Create a free account (no card). Tell me every step. The terms, password, email check and captcha are mine to do. Then continue as "Yes".
+   - Yes: go to step 3.
+3. Ask whether I want to add it myself or have you do it.
+   - Myself: give me the steps one at a time.
+   - You: add https://mcp.cookie-compliance.co/mcp/account at user level, so the folder doesn't matter. If the command isn't found, look for my app's bundled program or ask me. If a Cookie Compliance entry already exists, remove it first. If you can't run commands in this app, say so and give me the steps instead.
+4. Tell me the sign-in steps for my app, including whether I need a new session and the exact sentence to say in it. I sign in in my browser. Never ask for my password or an API token in this chat.
+5. Prove it by listing my sites. If a site for my domain is already there, tell me and skip to step 7.
+6. If my domain isn't there, ask me which domain I want to set up. Then tell me exactly what you're about to do ("Register <domain> as a new app in my account and publish a starter banner") and wait for my yes. Don't create anything without it. If I already have a similar domain, ask me whether this is a separate site or the same one before going on. Never subscribe or upgrade me.
+7. Then stop and ask what I want next. Don't change my banner or settings unless I ask.
+```
+
+Prefer to do it yourself? The steps for each app are below.
+
 ## Which address do I use?
 
 | You | Address to add |
@@ -154,6 +181,7 @@ After you publish a change, visitors whose browser saved the old banner may see 
 
 ## For AI agents
 
+- If the person pasted the prompt at the top of this page, follow its numbered steps, using the per-app steps below.
 - Ask which app the person uses, then give them that app's steps from this page, one step at a time.
 - Existing customer: the account address. No account: the try-it-out address. Never ask for a password, and never accept a token in a chat message.
 - Then follow [`skills/match-site-design/SKILL.md`](skills/match-site-design/SKILL.md) to restyle a banner, or [`skills/install-banner/SKILL.md`](skills/install-banner/SKILL.md) to install one.
