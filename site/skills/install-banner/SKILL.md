@@ -110,6 +110,7 @@ Platform detail:
 - Laravel: `references/laravel.md`
 - Django: `references/django.md`
 - Rails: `references/rails.md`
+- Tags and pixels (GA4, Meta Pixel, Hotjar and others): `references/trackers.md`
 - Shopify: `references/shopify.md`
 - Google Tag Manager on the page: `references/gtm.md`
 - WordPress: `references/wordpress.md` (plugin path — no paste)

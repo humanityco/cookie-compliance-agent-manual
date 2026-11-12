@@ -96,21 +96,22 @@ Do not write your own banner.</pre>
   <h2 id="cookbooks">Cookbooks</h2>
   <ul class="links">
     <li><a href="cookbooks/plain-html/">plain-html</a><span class="desc">Paste the snippet into a static site's <code>&lt;head&gt;</code>.</span></li>
-    <li><a href="cookbooks/wordpress/">wordpress</a><span class="desc">Install via the plugin, not a pasted snippet.</span></li>
-    <li><a href="cookbooks/nextjs/">nextjs</a><span class="desc">Place the snippet correctly in a Next.js layout.</span></li>
-    <li><a href="cookbooks/nuxt/">nuxt</a><span class="desc">Place it in <code>nuxt.config.ts</code> — never mark it <code>async</code>.</span></li>
+    <li><a href="cookbooks/wordpress/">wordpress</a><span class="desc">Install via the plugin, which handles placement.</span></li>
+    <li><a href="cookbooks/nextjs/">nextjs</a><span class="desc">Place the snippet as classic script tags in the root layout's <code>&lt;head&gt;</code>.</span></li>
+    <li><a href="cookbooks/nuxt/">nuxt</a><span class="desc">Place it in <code>nuxt.config.ts</code>, kept synchronous.</span></li>
     <li><a href="cookbooks/astro/">astro</a><span class="desc">Place it in the shared layout with <code>is:inline</code> on every tag.</span></li>
-    <li><a href="cookbooks/angular/">angular</a><span class="desc">Place it in <code>src/index.html</code>. The <code>angular.json</code> scripts array is deferred.</span></li>
+    <li><a href="cookbooks/angular/">angular</a><span class="desc">Place it in <code>src/index.html</code>.</span></li>
     <li><a href="cookbooks/vite/">vite</a><span class="desc">Place it in <code>index.html</code> for a React or Vue app, ahead of the module entry.</span></li>
     <li><a href="cookbooks/sveltekit/">sveltekit</a><span class="desc">Place it in <code>src/app.html</code> above <code>%sveltekit.head%</code>.</span></li>
-    <li><a href="cookbooks/gtm/">gtm</a><span class="desc">Put it above the GTM container in <code>&lt;head&gt;</code> — never inside GTM.</span></li>
-    <li><a href="cookbooks/shopify/">shopify</a><span class="desc">Place it in <code>layout/theme.liquid</code> — not Additional scripts or a Customer Events pixel.</span></li>
+    <li><a href="cookbooks/gtm/">gtm</a><span class="desc">Put it above the GTM container in <code>&lt;head&gt;</code>.</span></li>
+    <li><a href="cookbooks/shopify/">shopify</a><span class="desc">Place it in <code>layout/theme.liquid</code>.</span></li>
     <li><a href="cookbooks/hugo/">hugo</a><span class="desc">Place it first in the head partial or <code>baseof.html</code>.</span></li>
-    <li><a href="cookbooks/gatsby/">gatsby</a><span class="desc">Place it first in <code>setHeadComponents</code> — not <code>setPostBodyComponents</code>.</span></li>
-    <li><a href="cookbooks/docusaurus/">docusaurus</a><span class="desc">Add it through <code>headTags</code> — never <code>async: true</code>.</span></li>
+    <li><a href="cookbooks/gatsby/">gatsby</a><span class="desc">Place it first in <code>setHeadComponents</code>.</span></li>
+    <li><a href="cookbooks/docusaurus/">docusaurus</a><span class="desc">Add it through <code>headTags</code>, as synchronous script entries.</span></li>
     <li><a href="cookbooks/laravel/">laravel</a><span class="desc">Place it right after <code>&lt;head&gt;</code> in the Blade layout, above <code>@vite</code>.</span></li>
     <li><a href="cookbooks/django/">django</a><span class="desc">Place it first in <code>&lt;head&gt;</code> of the base template.</span></li>
     <li><a href="cookbooks/rails/">rails</a><span class="desc">Place it right after <code>&lt;head&gt;</code> in the application layout.</span></li>
+    <li><a href="cookbooks/trackers/">trackers</a><span class="desc">How GA4, Meta Pixel, Hotjar and other tags are held until the visitor chooses, and how to add each one.</span></li>
   </ul>
 
   <h2 id="gallery">Design gallery</h2>

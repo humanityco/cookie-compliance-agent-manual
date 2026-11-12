@@ -38,7 +38,7 @@ if (!out || !existsSync(out)) {
 // Sidebar order follows the journey (and the home page); anything new is
 // appended alphabetically, so adding a skill or cookbook needs no edit here.
 const SKILL_ORDER = ['install-banner', 'verify-install', 'match-site-design', 'configure-regions'];
-const COOKBOOK_ORDER = ['plain-html', 'wordpress', 'nextjs', 'nuxt', 'astro', 'gtm', 'shopify', 'hugo', 'gatsby', 'docusaurus', 'laravel', 'django', 'rails'];
+const COOKBOOK_ORDER = ['plain-html', 'wordpress', 'nextjs', 'nuxt', 'astro', 'gtm', 'shopify', 'hugo', 'gatsby', 'docusaurus', 'laravel', 'django', 'rails', 'trackers'];
 const ordered = (names, order) => [...names].sort((a, b) => {
   const [i, j] = [order.indexOf(a), order.indexOf(b)].map((n) => (n < 0 ? Infinity : n));
   return i - j || (a < b ? -1 : a > b ? 1 : 0);

@@ -14,3 +14,4 @@ docusaurus.md
 laravel.md
 django.md
 rails.md
+trackers.md

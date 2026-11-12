@@ -40,6 +40,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [laravel](cookbooks/laravel.md): place the snippet directly after `<head>` in the shared Blade layout, above `@fonts` and `@vite`.
 - [django](cookbooks/django.md): place the snippet first in `<head>` of the base template every page extends.
 - [rails](cookbooks/rails.md): place the snippet directly after `<head>` in `app/views/layouts/application.html.erb`.
+- [trackers](cookbooks/trackers.md): which common analytics and ad tags (GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok, Matomo) are held until the visitor chooses, their categories, and how to add each one below the banner snippet.
 
 ## Design gallery
 
