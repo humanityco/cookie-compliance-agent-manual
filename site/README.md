@@ -75,6 +75,11 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`laravel.md`](cookbooks/laravel.md) | Shipped |
 | [`django.md`](cookbooks/django.md) | Shipped |
 | [`rails.md`](cookbooks/rails.md) | Shipped |
+| [`drupal.md`](cookbooks/drupal.md) | Shipped |
+| [`joomla.md`](cookbooks/joomla.md) | Shipped |
+| [`ghost.md`](cookbooks/ghost.md) | Shipped |
+| [`prestashop.md`](cookbooks/prestashop.md) | Shipped |
+| [`magento.md`](cookbooks/magento.md) | Shipped |
 | [`trackers.md`](cookbooks/trackers.md) | Shipped |
 
 ### Design gallery

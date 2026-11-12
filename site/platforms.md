@@ -29,6 +29,11 @@ Each guide shows where the snippet goes and how to confirm it.
 | Laravel | Directly after `<head>` in the shared Blade layout, above `@fonts` and `@vite` | [laravel](cookbooks/laravel.md) |
 | Django | First thing in `<head>` of the base template every page extends | [django](cookbooks/django.md) |
 | Rails | Directly after `<head>` in `app/views/layouts/application.html.erb` | [rails](cookbooks/rails.md) |
+| Drupal | The theme's `html.html.twig`, first in `<head>` (or a small module with a low library weight) | [drupal](cookbooks/drupal.md) |
+| Joomla | The template's `index.php`, first in `<head>` above the scripts include (or a system plugin) | [joomla](cookbooks/joomla.md) |
+| Ghost | The theme's `default.hbs`, first in `<head>` above `{{ghost_head}}` | [ghost](cookbooks/ghost.md) |
+| PrestaShop | The theme's `_partials/head.tpl`, at the very top (or a `displayHeader` module at position 1) | [prestashop](cookbooks/prestashop.md) |
+| Magento | `Magento_Theme/templates/root.phtml` in your theme, first inside `<head>` | [magento](cookbooks/magento.md) |
 | Static HTML or any other site you edit directly | First thing in `<head>` on every page (or the shared header file) | [plain-html](cookbooks/plain-html.md) |
 
 ## Your platform isn't listed

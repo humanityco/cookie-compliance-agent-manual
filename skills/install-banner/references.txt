@@ -14,4 +14,9 @@ docusaurus.md
 laravel.md
 django.md
 rails.md
+drupal.md
+joomla.md
+ghost.md
+prestashop.md
+magento.md
 trackers.md

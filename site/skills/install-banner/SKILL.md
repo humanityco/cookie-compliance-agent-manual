@@ -110,6 +110,11 @@ Platform detail:
 - Laravel: `references/laravel.md`
 - Django: `references/django.md`
 - Rails: `references/rails.md`
+- Drupal: `references/drupal.md`
+- Joomla: `references/joomla.md`
+- Ghost: `references/ghost.md`
+- PrestaShop: `references/prestashop.md`
+- Magento: `references/magento.md`
 - Tags and pixels (GA4, Meta Pixel, Hotjar and others): `references/trackers.md`
 - Shopify: `references/shopify.md`
 - Google Tag Manager on the page: `references/gtm.md`
