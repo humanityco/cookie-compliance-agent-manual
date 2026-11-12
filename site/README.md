@@ -42,7 +42,7 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 
 | Folder | What it holds | Who it's for |
 |---|---|---|
-| [`start.md`](start.md), [`connect.md`](connect.md), [`prompts.md`](prompts.md) | The page an agent follows to install start to finish, how to connect each AI app to the MCP server, and copy-paste prompts. | Everyone |
+| [`start.md`](start.md), [`connect.md`](connect.md), [`platforms.md`](platforms.md), [`prompts.md`](prompts.md) | The page an agent follows to install start to finish, how to connect each AI app to the MCP server, where the snippet goes on each platform, and copy-paste prompts. | Everyone |
 | [`skills/`](skills/) | Installable agent skills. Each folder has a `SKILL.md` that an agent loads and follows. | Agents |
 | [`cookbooks/`](cookbooks/) | Worked recipes per platform and scenario. Each one covers the problem, the common wrong approach, the right approach, and how to check that it worked. | Developers and agents |
 | [`gallery/`](gallery/) | Example banner designs: a screenshot, a caption and the exact design JSON for each, with a separate page for the v2 banner at [`gallery/v2/`](gallery/v2/). Generated from `gallery/examples.json`. | Developers and agents |
