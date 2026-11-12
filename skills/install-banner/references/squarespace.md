@@ -47,7 +47,7 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 - **Use the site-wide Header field.** A page's own Header Code Injection (in that page's Advanced settings) reaches only that page.
 - **Code injection comes with Core, Plus, Advanced and some legacy plans.** Keep a plan that includes it so the banner keeps loading.
 - **Put analytics and pixels you add yourself in the Header field**, below the snippet, so they sit with the banner.
-- **Squarespace's built-in integrations** (for example its Google Analytics field) are loaded by Squarespace. Run [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md) to see how they behave before the visitor chooses, and keep Squarespace's own cookie banner on until you have.
+- **Squarespace's built-in integrations** (for example its Google Analytics field) are loaded by Squarespace. Run [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md) to see how they behave before the visitor chooses, and keep Squarespace's own cookie banner on while you do.
 - **Checkout pages are outside code injection on Squarespace**, so the banner shows on your site's other pages.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 

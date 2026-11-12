@@ -40,7 +40,7 @@ The banner holds recognised trackers that load after it until the visitor choose
 
 ## Confirm the result
 
-View the **page source** of the published site, not the editor or its preview (use the browser's View Source, not the Elements panel): the `huOptions` script and `hu-banner.min.js` are in `<head>` as plain synchronous tags (no `async` or `defer`), and your analytics tags come after them. Webflow writes Head code before the closing `</head>` tag and page-level custom code after the site-wide Head code, so confirm in the page source that your analytics tags sit after the banner snippet.
+View the **page source** of the published site, not the editor or its preview (use the browser's View Source, not the Elements panel): the `huOptions` script and `hu-banner.min.js` are in `<head>` as plain synchronous tags (no `async` or `defer`), and your analytics tags come after them. Webflow writes Head code before the closing `</head>` tag, so confirm in the page source that your analytics tags sit after the banner snippet.
 
 Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md). Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.
 

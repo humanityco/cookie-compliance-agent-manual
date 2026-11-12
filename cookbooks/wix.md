@@ -49,8 +49,8 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 - **Use Settings → Custom Code**, the site-wide route, so one entry covers every page.
 - **If you change the site's primary domain**, Wix removes its custom code snippets, so add the banner snippet again.
-- **If the banner does not appear** on the published site, check that the entry is applied to All pages and placed in Head, also read the note on code snippets in the Wix help page linked above, then see Banner not displayed below.
-- **Keep Wix's own cookie banner on while you use Wix's marketing integrations**, until verify-install shows how they behave before the visitor chooses.
+- **If the banner does not appear** on the published site, check that the entry is applied to All pages and placed in Head, also read the note on code snippets in Wix's embedding custom code article, then see Banner not displayed below.
+- **Keep Wix's own cookie banner on while you use Wix's marketing integrations**, and run verify-install to see how they behave before the visitor chooses.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
 ## More help
