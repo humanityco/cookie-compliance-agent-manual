@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the first thing in the `<head>` of your theme's `html.html.twig`. Or attach it from a small module with `hook_page_attachments()` and give the banner library a low weight.
 
-Confirmed on a Drupal site with a custom theme based on Olivero: the snippet is the first script in the built page's `<head>`, on the front page and on an inner page.
+Confirmed on a Drupal site: the snippet is the first script in the rendered page's `<head>`, on the front page and on an inner page.
 
 ## You need
 

@@ -9,13 +9,13 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the first thing inside `<head>` in your theme's `Magento_Theme/templates/root.phtml`. That one template renders the head of every storefront page, ahead of RequireJS and your analytics tags.
 
-Confirmed on a Magento Open Source 2.4 store with a theme built on Luma: the snippet is the first script in the built page's `<head>`, on the home page and on a CMS page.
+Confirmed on a Magento Open Source store: the snippet is the first script in the rendered page's `<head>`, on the home page and on a CMS page.
 
 ## You need
 
 - A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-magento) (free plan, no card); with MCP, call `help.startSignup`.
 - File access to the store's theme (`app/design/frontend/<Vendor>/<theme>/`) and the command line, to flush the cache.
-- A theme of your own, even a small one. If the store runs plain Luma, add a child theme (a `theme.xml` with `<parent>Magento/luma</parent>` and a `registration.php`) and apply it under **Content → Design → Configuration**, so the edit lives in your code and not in `vendor/`.
+- A theme of your own, even a small one. If the store runs plain Luma, add a child theme (a `theme.xml` with `<parent>Magento/luma</parent>` and a `registration.php`), then register and apply it as Adobe's [theme documentation](https://developer.adobe.com/commerce/frontend-core/guide/themes/) describes (applying is under **Content → Design → Configuration**), so the edit lives in your code and not in `vendor/`.
 
 ## Where it goes
 
@@ -41,7 +41,7 @@ Confirmed on a Magento Open Source 2.4 store with a theme built on Luma: the sni
        </head>
    ```
 
-4. Flush the cache: `bin/magento cache:flush`. Your analytics and other tags stay as they are; the banner holds the recognised ones until the visitor chooses.
+4. Flush the cache: `bin/magento cache:flush`. Your analytics and other tags stay as they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.
 
 ## What the order controls
 
@@ -55,10 +55,10 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 ## Gotchas
 
-- **Use `root.phtml`, so the banner comes first.** The admin field **Content → Design → Configuration → HTML Head → Scripts and Style Sheets** prints the snippet in the head, later than Magento's RequireJS scripts and later than any tag you added through a layout `head` file. A layout block in `head.additional` prints there too. If you use the admin field, put your analytics tags below the snippet in the same field. The footer field (**Footer → Miscellaneous HTML**) prints in the page body, so keep the snippet out of it.
+- **Use `root.phtml`: it prints first on every page.** If you prefer the admin field (**Content → Design → Configuration → HTML Head → Scripts and Style Sheets**), put your analytics tags below the snippet in the same field. Keep the snippet out of the footer field, which prints in the page body.
 - **After a Magento upgrade**, compare your `root.phtml` with the new core file and view the page source again, so the snippet is still first and the template still matches.
 - **Flush the cache after every edit.** Until then visitors keep getting the cached page.
-- **Keep a single consent banner.** Remove any other one, including Magento's own cookie restriction notice (**Stores → Configuration → General → Web → Default Cookie Settings**), so visitors see one clear choice.
+- **Keep a single consent banner.** Remove any other one, including Magento's own cookie notice (turn off **Cookie Restriction Mode** under **Stores → Configuration → General → Web → Default Cookie Settings**), so visitors see one clear choice.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
 ## More help

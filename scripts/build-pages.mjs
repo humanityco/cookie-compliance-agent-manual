@@ -74,7 +74,7 @@ const PAGES = [
     description: 'How to connect Claude, ChatGPT, Claude Code, Cursor and other AI apps to Cookie Compliance, so the AI can read and change your cookie banner.' },
   { src: 'prompts.md', url: '/prompts/', section: 'start', label: 'Prompts' },
   { src: 'platforms.md', url: '/platforms/', section: 'start', label: 'Platforms',
-    description: 'Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Google Tag Manager and plain HTML, and what to do on any other site.' },
+    description: 'Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Drupal, Joomla, Ghost, PrestaShop, Magento, Google Tag Manager and plain HTML, and what to do on any other site.' },
   ...skills.map((n) => ({ src: `skills/${n}/SKILL.md`, url: `/skills/${n}/`, section: 'skills', kind: 'Skill', label: n,
     description: SKILL_DESCRIPTIONS[n] })),
   ...cookbooks.map((n) => ({ src: `cookbooks/${n}.md`, url: `/cookbooks/${n}/`, section: 'cookbooks', kind: 'Cookbook', label: n })),

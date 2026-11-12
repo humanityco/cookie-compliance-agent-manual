@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the first thing in the `<head>` of your theme's `default.hbs`, above `{{ghost_head}}`. Keep your analytics in **Code injection → Site header**, where it renders below the banner.
 
-Confirmed on a Ghost site with the Source theme: the snippet is the first script in the built page's `<head>`, on the home page and on a post.
+Confirmed on a Ghost site: the snippet is the first script in the rendered page's `<head>`, on the home page and on a post.
 
 ## You need
 
@@ -38,9 +38,9 @@ Confirmed on a Ghost site with the Source theme: the snippet is the first script
 
    Placing it directly above `{{ghost_head}}` works as well. In that spot it follows any small inline script your theme has of its own (the Source theme has one for its colours) and comes before everything Ghost adds.
 
-3. Save the theme and reload your site. Your analytics tags stay where they are; the banner holds the recognised ones until the visitor chooses.
+3. Zip the theme and upload it under **Settings → Design → Change theme** (or, if you edit the theme files on your own server, restart Ghost), then reload your site. Your analytics tags stay where they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.
 
-Ghost's **Code injection → Site header** is written at the end of `{{ghost_head}}`, below the scripts the theme and Ghost add, and **Site footer** is written in the page body. They are a good home for analytics tags and other scripts you want the banner to manage. For the banner itself, use the theme file above.
+Ghost's **Code injection → Site header** is written at the end of `{{ghost_head}}`, below the scripts the theme and Ghost add, and **Site footer** is written in the page body. They are a good home for analytics tags and other scripts you want held until the visitor chooses, in regions whose rule requires consent first. For the banner itself, use the theme file above.
 
 ## What the order controls
 

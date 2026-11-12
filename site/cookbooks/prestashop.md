@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the first thing in your theme's head template, `themes/hummingbird/templates/_partials/head.tpl` for the default Hummingbird theme. That file is rendered on every storefront page, ahead of the scripts your modules add.
 
-Confirmed on a PrestaShop 9.2 store with the Hummingbird theme: the snippet is the first script in the built page's `<head>`, on the home page and on an inner page.
+Confirmed on a PrestaShop store: the snippet is the first script in the rendered page's `<head>`, on the home page and on an inner page.
 
 ## You need
 
@@ -34,9 +34,9 @@ Confirmed on a PrestaShop 9.2 store with the Hummingbird theme: the snippet is t
    {/block}
    ```
 
-4. Clear the cache (**Advanced Parameters → Performance → Clear cache**) and reload the store. Your modules, including the Google Analytics module, keep working as they are; the banner holds the recognised ones until the visitor chooses.
+4. Clear the cache (**Advanced Parameters → Performance → Clear cache**) and reload the store. Your modules, including the Google Analytics module, keep working as they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.
 
-The snippet also works pasted without the `{literal}` wrapper, and directly after the `<head>` tag in `layouts/layout-both-columns.tpl`, the layout the full-width, left-column, right-column and content-only layouts all build on. Both land first in the page head.
+The snippet also works directly after the `<head>` tag in `layouts/layout-both-columns.tpl` (keep the `{literal}` wrapper there too), the layout the full-width, left-column, right-column and content-only layouts all build on. It lands first in the page head.
 
 **Prefer a module?** A module that prints the snippet on the `displayHeader` hook works when it is the first module on that hook: in **Design → Positions**, drag it to the top of the `displayHeader` list. A module installed later joins the end of the list, after the Google Analytics module.
 

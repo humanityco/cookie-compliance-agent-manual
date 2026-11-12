@@ -137,12 +137,12 @@
 <h1 id="add-a-cookie-consent-banner-to-a-magento-store">Add a cookie consent banner to a Magento store</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/magento.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first thing inside <code>&lt;head&gt;</code> in your theme&#39;s <code>Magento_Theme/templates/root.phtml</code>. That one template renders the head of every storefront page, ahead of RequireJS and your analytics tags.</p>
-<p>Confirmed on a Magento Open Source 2.4 store with a theme built on Luma: the snippet is the first script in the built page&#39;s <code>&lt;head&gt;</code>, on the home page and on a CMS page.</p>
+<p>Confirmed on a Magento Open Source store: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>, on the home page and on a CMS page.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-magento">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>File access to the store&#39;s theme (<code>app/design/frontend/&lt;Vendor&gt;/&lt;theme&gt;/</code>) and the command line, to flush the cache.</li>
-<li>A theme of your own, even a small one. If the store runs plain Luma, add a child theme (a <code>theme.xml</code> with <code>&lt;parent&gt;Magento/luma&lt;/parent&gt;</code> and a <code>registration.php</code>) and apply it under <strong>Content → Design → Configuration</strong>, so the edit lives in your code and not in <code>vendor/</code>.</li>
+<li>A theme of your own, even a small one. If the store runs plain Luma, add a child theme (a <code>theme.xml</code> with <code>&lt;parent&gt;Magento/luma&lt;/parent&gt;</code> and a <code>registration.php</code>), then register and apply it as Adobe&#39;s <a href="https://developer.adobe.com/commerce/frontend-core/guide/themes/">theme documentation</a> describes (applying is under <strong>Content → Design → Configuration</strong>), so the edit lives in your code and not in <code>vendor/</code>.</li>
 </ul>
 <h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
 <ol>
@@ -168,7 +168,7 @@
     &lt;/head&gt;
 </code></pre></div>
 </li>
-<li><p>Flush the cache: <code>bin/magento cache:flush</code>. Your analytics and other tags stay as they are; the banner holds the recognised ones until the visitor chooses.</p>
+<li><p>Flush the cache: <code>bin/magento cache:flush</code>. Your analytics and other tags stay as they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.</p>
 </li>
 </ol>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
@@ -178,10 +178,10 @@
 <p>Then run the browser checks in <a href="/cookbooks/plain-html/#confirm-the-result">plain-html</a> in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Use <code>root.phtml</code>, so the banner comes first.</strong> The admin field <strong>Content → Design → Configuration → HTML Head → Scripts and Style Sheets</strong> prints the snippet in the head, later than Magento&#39;s RequireJS scripts and later than any tag you added through a layout <code>head</code> file. A layout block in <code>head.additional</code> prints there too. If you use the admin field, put your analytics tags below the snippet in the same field. The footer field (<strong>Footer → Miscellaneous HTML</strong>) prints in the page body, so keep the snippet out of it.</li>
+<li><strong>Use <code>root.phtml</code>: it prints first on every page.</strong> If you prefer the admin field (<strong>Content → Design → Configuration → HTML Head → Scripts and Style Sheets</strong>), put your analytics tags below the snippet in the same field. Keep the snippet out of the footer field, which prints in the page body.</li>
 <li><strong>After a Magento upgrade</strong>, compare your <code>root.phtml</code> with the new core file and view the page source again, so the snippet is still first and the template still matches.</li>
 <li><strong>Flush the cache after every edit.</strong> Until then visitors keep getting the cached page.</li>
-<li><strong>Keep a single consent banner.</strong> Remove any other one, including Magento&#39;s own cookie restriction notice (<strong>Stores → Configuration → General → Web → Default Cookie Settings</strong>), so visitors see one clear choice.</li>
+<li><strong>Keep a single consent banner.</strong> Remove any other one, including Magento&#39;s own cookie notice (turn off <strong>Cookie Restriction Mode</strong> under <strong>Stores → Configuration → General → Web → Default Cookie Settings</strong>), so visitors see one clear choice.</li>
 <li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
 </ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>

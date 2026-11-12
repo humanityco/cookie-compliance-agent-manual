@@ -137,7 +137,7 @@
 <h1 id="add-a-cookie-consent-banner-to-a-ghost-site">Add a cookie consent banner to a Ghost site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/ghost.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first thing in the <code>&lt;head&gt;</code> of your theme&#39;s <code>default.hbs</code>, above <code>{{ghost_head}}</code>. Keep your analytics in <strong>Code injection → Site header</strong>, where it renders below the banner.</p>
-<p>Confirmed on a Ghost site with the Source theme: the snippet is the first script in the built page&#39;s <code>&lt;head&gt;</code>, on the home page and on a post.</p>
+<p>Confirmed on a Ghost site: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>, on the home page and on a post.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-ghost">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
@@ -163,10 +163,10 @@
 </code></pre></div>
 <p>Placing it directly above <code>{{ghost_head}}</code> works as well. In that spot it follows any small inline script your theme has of its own (the Source theme has one for its colours) and comes before everything Ghost adds.</p>
 </li>
-<li><p>Save the theme and reload your site. Your analytics tags stay where they are; the banner holds the recognised ones until the visitor chooses.</p>
+<li><p>Zip the theme and upload it under <strong>Settings → Design → Change theme</strong> (or, if you edit the theme files on your own server, restart Ghost), then reload your site. Your analytics tags stay where they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.</p>
 </li>
 </ol>
-<p>Ghost&#39;s <strong>Code injection → Site header</strong> is written at the end of <code>{{ghost_head}}</code>, below the scripts the theme and Ghost add, and <strong>Site footer</strong> is written in the page body. They are a good home for analytics tags and other scripts you want the banner to manage. For the banner itself, use the theme file above.</p>
+<p>Ghost&#39;s <strong>Code injection → Site header</strong> is written at the end of <code>{{ghost_head}}</code>, below the scripts the theme and Ghost add, and <strong>Site footer</strong> is written in the page body. They are a good home for analytics tags and other scripts you want held until the visitor chooses, in regions whose rule requires consent first. For the banner itself, use the theme file above.</p>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
 <p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
 <h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>

@@ -137,7 +137,7 @@
 <h1 id="add-a-cookie-consent-banner-to-a-prestashop-store">Add a cookie consent banner to a PrestaShop store</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/prestashop.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first thing in your theme&#39;s head template, <code>themes/hummingbird/templates/_partials/head.tpl</code> for the default Hummingbird theme. That file is rendered on every storefront page, ahead of the scripts your modules add.</p>
-<p>Confirmed on a PrestaShop 9.2 store with the Hummingbird theme: the snippet is the first script in the built page&#39;s <code>&lt;head&gt;</code>, on the home page and on an inner page.</p>
+<p>Confirmed on a PrestaShop store: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>, on the home page and on an inner page.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-prestashop">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
@@ -161,10 +161,10 @@
 {/block}
 </code></pre></div>
 </li>
-<li><p>Clear the cache (<strong>Advanced Parameters → Performance → Clear cache</strong>) and reload the store. Your modules, including the Google Analytics module, keep working as they are; the banner holds the recognised ones until the visitor chooses.</p>
+<li><p>Clear the cache (<strong>Advanced Parameters → Performance → Clear cache</strong>) and reload the store. Your modules, including the Google Analytics module, keep working as they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.</p>
 </li>
 </ol>
-<p>The snippet also works pasted without the <code>{literal}</code> wrapper, and directly after the <code>&lt;head&gt;</code> tag in <code>layouts/layout-both-columns.tpl</code>, the layout the full-width, left-column, right-column and content-only layouts all build on. Both land first in the page head.</p>
+<p>The snippet also works directly after the <code>&lt;head&gt;</code> tag in <code>layouts/layout-both-columns.tpl</code> (keep the <code>{literal}</code> wrapper there too), the layout the full-width, left-column, right-column and content-only layouts all build on. It lands first in the page head.</p>
 <p><strong>Prefer a module?</strong> A module that prints the snippet on the <code>displayHeader</code> hook works when it is the first module on that hook: in <strong>Design → Positions</strong>, drag it to the top of the <code>displayHeader</code> list. A module installed later joins the end of the list, after the Google Analytics module.</p>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
 <p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>

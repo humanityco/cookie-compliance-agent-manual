@@ -34,6 +34,7 @@ DOMAIN_ALLOWLIST=(
   "app.hu-manity.co"
   "manual.hu-manity.co"
   "wordpress.org"
+  "developer.adobe.com"   # Magento theme documentation, linked from the Magento guide
   "www.googletagmanager.com"
   "support.claude.com"
   "help.openai.com"

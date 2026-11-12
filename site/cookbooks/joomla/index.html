@@ -137,7 +137,7 @@
 <h1 id="add-a-cookie-consent-banner-to-a-joomla-site">Add a cookie consent banner to a Joomla site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/joomla.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet in your template&#39;s <code>index.php</code>, inside <code>&lt;head&gt;</code>, above the <code>&lt;jdoc:include type=&quot;scripts&quot; /&gt;</code> line (or directly after <code>&lt;head&gt;</code>).</p>
-<p>Confirmed on a Joomla site with the Cassiopeia template: the snippet is the first script in the built page&#39;s <code>&lt;head&gt;</code>, on the home page and on an article page.</p>
+<p>Confirmed on a Joomla site: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>, on the home page and on an article page.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-joomla">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
@@ -186,6 +186,7 @@
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>Edit the template that is in use.</strong> Joomla uses the template style assigned to the page, so make the change in that template&#39;s <code>index.php</code>. A new template needs the snippet too.</li>
+<li><strong>After a Joomla update</strong>, open the page source again and confirm the snippet is still first; an update can replace a stock template&#39;s <code>index.php</code>. A child template or the system plugin keeps the snippet in place.</li>
 <li><strong>Keep a single consent banner.</strong> Remove any other one, so visitors see one clear choice.</li>
 <li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
 </ul>

@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet in your template's `index.php`, inside `<head>`, above the `<jdoc:include type="scripts" />` line (or directly after `<head>`).
 
-Confirmed on a Joomla site with the Cassiopeia template: the snippet is the first script in the built page's `<head>`, on the home page and on an article page.
+Confirmed on a Joomla site: the snippet is the first script in the rendered page's `<head>`, on the home page and on an article page.
 
 ## You need
 
@@ -69,6 +69,7 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 ## Gotchas
 
 - **Edit the template that is in use.** Joomla uses the template style assigned to the page, so make the change in that template's `index.php`. A new template needs the snippet too.
+- **After a Joomla update**, open the page source again and confirm the snippet is still first; an update can replace a stock template's `index.php`. A child template or the system plugin keeps the snippet in place.
 - **Keep a single consent banner.** Remove any other one, so visitors see one clear choice.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
