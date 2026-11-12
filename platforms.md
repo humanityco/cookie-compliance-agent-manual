@@ -34,6 +34,10 @@ Each guide shows where the snippet goes and how to confirm it.
 | Ghost | The theme's `default.hbs`, first in `<head>` above `{{ghost_head}}` | [ghost](cookbooks/ghost.md) |
 | PrestaShop | The theme's `_partials/head.tpl`, at the very top (or a `displayHeader` module at position 1) | [prestashop](cookbooks/prestashop.md) |
 | Magento | `Magento_Theme/templates/root.phtml` in your theme, first inside `<head>` | [magento](cookbooks/magento.md) |
+| Wix | **Settings → Custom Code**, on all pages, placed in Head | [wix](cookbooks/wix.md) |
+| Squarespace | **Code Injection → Header** (a plan that includes code injection) | [squarespace](cookbooks/squarespace.md) |
+| Webflow | **Site settings → Custom code → Head code**, then publish | [webflow](cookbooks/webflow.md) |
+| Framer | **Site Settings → Custom Code**, at the start of `<head>`, then publish | [framer](cookbooks/framer.md) |
 | Static HTML or any other site you edit directly | First thing in `<head>` on every page (or the shared header file) | [plain-html](cookbooks/plain-html.md) |
 
 ## Your platform isn't listed

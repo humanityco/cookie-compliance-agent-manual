@@ -19,4 +19,8 @@ joomla.md
 ghost.md
 prestashop.md
 magento.md
+wix.md
+squarespace.md
+webflow.md
+framer.md
 trackers.md

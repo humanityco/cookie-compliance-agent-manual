@@ -115,6 +115,10 @@ Platform detail:
 - Ghost: `references/ghost.md`
 - PrestaShop: `references/prestashop.md`
 - Magento: `references/magento.md`
+- Wix: `references/wix.md`
+- Squarespace: `references/squarespace.md`
+- Webflow: `references/webflow.md`
+- Framer: `references/framer.md`
 - Tags and pixels (GA4, Meta Pixel, Hotjar and others): `references/trackers.md`
 - Shopify: `references/shopify.md`
 - Google Tag Manager on the page: `references/gtm.md`

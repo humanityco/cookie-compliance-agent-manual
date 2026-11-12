@@ -80,6 +80,10 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`ghost.md`](cookbooks/ghost.md) | Shipped |
 | [`prestashop.md`](cookbooks/prestashop.md) | Shipped |
 | [`magento.md`](cookbooks/magento.md) | Shipped |
+| [`wix.md`](cookbooks/wix.md) | Shipped |
+| [`squarespace.md`](cookbooks/squarespace.md) | Shipped |
+| [`webflow.md`](cookbooks/webflow.md) | Shipped |
+| [`framer.md`](cookbooks/framer.md) | Shipped |
 | [`trackers.md`](cookbooks/trackers.md) | Shipped |
 
 ### Design gallery

@@ -12,7 +12,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 
 - [start](start.md): the one page to follow to install the banner start to finish. Autopilot by default; asks the person only to sign in or register, make the legal region choice, and approve anything that costs money.
 - [connect](connect.md): connect an AI app (Claude, ChatGPT, Claude Code, Cursor, Windsurf, GitHub Copilot, Codex) to Cookie Compliance. Which address to use, the steps per app, the API-token fallback, and how to check it worked.
-- [platforms](platforms.md): where the snippet goes on each platform with a cookbook (WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Drupal, Joomla, Ghost, PrestaShop, Magento, Google Tag Manager, plain HTML), and the steps for any other site.
+- [platforms](platforms.md): where the snippet goes on each platform with a cookbook (WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Drupal, Joomla, Ghost, PrestaShop, Magento, Wix, Squarespace, Webflow, Framer, Google Tag Manager, plain HTML), and the steps for any other site.
 - [prompts](prompts.md): copy-paste prompts for Claude Code, Cursor, Windsurf, GitHub Copilot, Codex and agents without MCP.
 
 ## Skills
@@ -45,6 +45,10 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [ghost](cookbooks/ghost.md): place the snippet first in `<head>` of the theme's `default.hbs`, above `{{ghost_head}}`; keep analytics in Code injection below it.
 - [prestashop](cookbooks/prestashop.md): place the snippet first in the theme's `_partials/head.tpl`, above the Google Analytics module and other header scripts.
 - [magento](cookbooks/magento.md): place the snippet first inside `<head>` in the theme's `Magento_Theme/templates/root.phtml`, above RequireJS and analytics tags.
+- [wix](cookbooks/wix.md): add the snippet in Settings → Custom Code, on all pages, placed in Head.
+- [squarespace](cookbooks/squarespace.md): paste the snippet in Code Injection → Header.
+- [webflow](cookbooks/webflow.md): paste the snippet in Site settings → Custom code → Head code, then publish.
+- [framer](cookbooks/framer.md): add the snippet in Site Settings → Custom Code at the start of `<head>`, then publish.
 - [trackers](cookbooks/trackers.md): which common analytics and ad tags (GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok, Matomo) are held until the visitor chooses in regions whose rule requires consent first, their categories, and how to add each one below the banner snippet.
 
 ## Design gallery
