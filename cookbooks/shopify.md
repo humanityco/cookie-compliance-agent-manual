@@ -75,7 +75,7 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the live storefr
 |---|---|---|
 | SP1 | Fetch the raw HTML response (not the live DOM) for `/` | `huOptions` and the `hu-banner.min.js` tag are the first content inside `<head>`, as plain synchronous tags (no `async` or `defer`), before `<meta charset>` and before `{{ content_for_header }}`'s output. |
 | SP2 | Load the storefront in a fresh session | The consent banner renders (tiers/choices appear) before any interaction. |
-| SP3 | Add a real tracker tag (e.g. `<script async src="https://www.googletagmanager.com/gtag/js?id=...">`) below the snippet in `theme.liquid`, reload, inspect the live DOM | The tag's `src` is moved to `data-src` and `type` becomes `javascript/blocked`, so it is held until the visitor chooses, in a region whose rule requires consent first. |
+| SP3 | Add a real tracker tag (e.g. `<script async src="https://www.googletagmanager.com/gtag/js?id=...">`) below the snippet in `theme.liquid`, reload, inspect the live DOM, then remove the test tag | The tag's `src` is moved to `data-src` and `type` becomes `javascript/blocked`, so it is held until the visitor chooses, in a region whose rule requires consent first. |
 | SP4 | `document.head.firstElementChild` in the live DOM | Usually Shopify's own async analytics script, which loads ahead of theme code on every store (see Gotchas). SP1 confirms the snippet's position in the source. |
 
 ## More help

@@ -35,7 +35,7 @@ Confirmed on a Docusaurus site: with `headTags`, the banner tags are among the f
          attributes: { src: 'https://cdn.hu-manity.co/v2/hu-banner.min.js', type: 'text/javascript', charset: 'utf-8' },
        },
      ],
-     // analytics goes in `scripts`, which renders after the entries above
+     // analytics goes in `scripts` (keep your usual gtag setup), which renders after the entries above
      scripts: ['https://www.googletagmanager.com/gtag/js?id=G-XXXX'],
    }
    ```
