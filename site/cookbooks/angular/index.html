@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to an Angular app — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Put the Cookie Compliance snippet in src/index.html as the first classic scripts. Entries in the angular.json scripts array are emitted deferred at the end of body.">
+<meta name="description" content="Put the Cookie Compliance snippet first in the head of src/index.html as classic script tags, above your analytics tags, so the banner can hold them until the visitor chooses.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/angular/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/angular.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to an Angular app">
-<meta property="og:description" content="Put the Cookie Compliance snippet in src/index.html as the first classic scripts. Entries in the angular.json scripts array are emitted deferred at the end of body.">
+<meta property="og:description" content="Put the Cookie Compliance snippet first in the head of src/index.html as classic script tags, above your analytics tags, so the banner can hold them until the visitor chooses.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/angular/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to an Angular app",
-      "description": "Put the Cookie Compliance snippet in src/index.html as the first classic scripts. Entries in the angular.json scripts array are emitted deferred at the end of body.",
+      "description": "Put the Cookie Compliance snippet first in the head of src/index.html as classic script tags, above your analytics tags, so the banner can hold them until the visitor chooses.",
       "url": "https://manual.hu-manity.co/cookbooks/angular/",
       "inLanguage": "en",
       "dateModified": "2026-10-22",
@@ -111,10 +111,10 @@
         <li><a href="/cookbooks/angular/" aria-current="page">angular</a>
           <ul class="toc" aria-label="On this page">
             <li><a href="#you-need">You need</a></li>
-            <li><a href="#the-wrong-way">The wrong way</a></li>
-            <li><a href="#the-right-way">The right way</a></li>
+            <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#what-the-order-controls">What the order controls</a></li>
+            <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
-            <li><a href="#check-it-works">Check it works</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
         <li><a href="/cookbooks/sveltekit/">sveltekit</a></li>
@@ -130,22 +130,19 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-an-angular-app">Add a cookie consent banner to an Angular app</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-10-22">22 October 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/angular.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> paste the <strong>live</strong> snippet into <code>&lt;head&gt;</code> of <code>src/index.html</code>, as the first classic <code>&lt;script&gt;</code> tags on every page. Leave the <code>scripts</code> array in <code>angular.json</code> for other files.</p>
+<p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first classic <code>&lt;script&gt;</code> tags in the <code>&lt;head&gt;</code> of <code>src/index.html</code>, above your analytics tags. That file is the shell of every page, so the banner is there on every route.</p>
+<p>Confirmed on an Angular app: tags written in <code>src/index.html</code> stay where you put them in both the development and production builds, and in the prerendered page.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-angular">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Edit access to <code>src/index.html</code>. That file is the document shell for <code>ng build</code> and for the prerendered page.</li>
 </ul>
-<h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
-<div class="code"><pre tabindex="0"><code class="language-json">// angular.json — BAD
-&quot;scripts&quot;: [
-  &quot;src/cookie-compliance.js&quot;
-]
-</code></pre></div>
-<p>The application builder bundles that entry and injects it at the <strong>end of <code>&lt;body&gt;</code></strong> with <code>defer</code>. <strong>Verified 2026-10-22</strong> on Angular 21.2 (<code>@angular/core</code> 21.2.25, <code>@angular/build</code> 21.2.27), in both the development and production builds: a file listed in <code>scripts</code> became <code>&lt;script src=&quot;scripts-….js&quot; defer&gt;&lt;/script&gt;</code>, immediately before <code>&lt;script src=&quot;main-….js&quot; type=&quot;module&quot;&gt;</code>. <code>defer</code> runs after the document has been parsed, so a classic tracker tag already in <code>index.html</code> has run first.</p>
-<p>A tag created from a component, <code>Renderer2</code>, or an <code>APP_INITIALIZER</code> runs with <code>main.js</code>. It is in the same late slot.</p>
-<h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
-<p>Put the live snippet at the top of <code>&lt;head&gt;</code> in <code>src/index.html</code>. Plain <code>&lt;script&gt;</code> tags. The builder leaves tags that are already in this file where you wrote them.</p>
+<h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
+<ol>
+<li>Copy the live snippet (see above).</li>
+<li>Open <code>src/index.html</code>.</li>
+<li>Paste the snippet at the top of <code>&lt;head&gt;</code>, as plain <code>&lt;script&gt;</code> tags. The builder leaves tags that are already in this file where you wrote them. (Entries in the <code>scripts</code> array of <code>angular.json</code> are bundled and added deferred at the end of <code>&lt;body&gt;</code>, so use that array for other files.)</li>
+</ol>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
 &lt;head&gt;
@@ -166,16 +163,11 @@
 &lt;/html&gt;
 </code></pre></div>
 <p>Prefer pasting the exact HTML from MCP/dashboard rather than retyping <code>huOptions</code> keys — the live snippet may carry Consent Mode defaults, <code>blockingEngine</code>, or custom providers.</p>
-<p><strong>Verified 2026-10-22:</strong> those head tags, with a tracker tag written after them in the same <code>&lt;head&gt;</code>, were still the first scripts in the production <code>index.html</code>. The build added no <code>async</code>, <code>defer</code>, or <code>type=&quot;module&quot;</code> to them. The prerendered production page kept that same order.</p>
-<h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
-<ul>
-<li><strong><code>angular.json</code> <code>scripts</code> is a deferred body bundle.</strong> See &quot;The wrong way&quot;. Global polyfills belong there. The banner belongs in <code>src/index.html</code>.</li>
-<li><strong>Application code runs with <code>main.js</code>.</strong> That bundle is <code>type=&quot;module&quot;</code> at the end of <code>&lt;body&gt;</code>.</li>
-<li><strong>Server rendering uses this <code>index.html</code>.</strong> The prerendered page is the same document with <code>&lt;app-root&gt;</code> filled in. After <code>ng build</code>, open the file the server will send and confirm the two tags are still the first scripts.</li>
-<li><strong>Engine switch:</strong> re-paste the live snippet when <code>widgetVersion</code> changes in the dashboard. <code>index.html</code> does not auto-update.</li>
-</ul>
-<h2 id="check-it-works">Check it works <a class="anchor" href="#check-it-works" aria-label="Link to this section">#</a></h2>
-<p>Run <code>verify-install</code> (<code>skills/verify-install/SKILL.md</code>) against the running site. Angular-specific extra:</p>
+<p>If the snippet is currently in the <code>scripts</code> array of <code>angular.json</code>, or added from a component, move it to the top of <code>&lt;head&gt;</code> in <code>src/index.html</code>.</p>
+<h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
+<p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
+<h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
+<p>Run the browser checks in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) with <code>verify-install</code> (<code>skills/verify-install/SKILL.md</code>) against the running site. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. Angular-specific extra:</p>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
 <thead>
@@ -193,10 +185,18 @@
 <tr>
 <td>A2</td>
 <td><code>src/index.html</code> and <code>angular.json</code></td>
-<td>The two tags are in <code>src/index.html</code>. The <code>scripts</code> array does not list the banner.</td>
+<td>The two tags are in <code>src/index.html</code>, and the <code>scripts</code> array holds your other files.</td>
 </tr>
 </tbody></table>
 </div>
+<h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong><code>angular.json</code> <code>scripts</code> is a deferred body bundle.</strong> The application builder bundles each entry and adds it with <code>defer</code> at the end of <code>&lt;body&gt;</code>, so use it for global polyfills and keep the banner in <code>src/index.html</code>.</li>
+<li><strong>Application code runs with <code>main.js</code>.</strong> That bundle is <code>type=&quot;module&quot;</code> at the end of <code>&lt;body&gt;</code>, so a tag created from a component, <code>Renderer2</code> or an <code>APP_INITIALIZER</code> loads at that point. Keep the banner in <code>src/index.html</code>.</li>
+<li><strong>Server rendering uses this <code>index.html</code>.</strong> The prerendered page is the same document with <code>&lt;app-root&gt;</code> filled in. After <code>ng build</code>, open the file the server will send and confirm the two tags are still the first scripts.</li>
+<li><strong>Keep a single consent banner.</strong> Remove any other one, so visitors see one clear choice.</li>
+<li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard (<code>widgetVersion</code>): changing the setting alone does not update a pasted snippet in <code>index.html</code>.</li>
+</ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><a href="https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/">Where to put the Cookie Compliance snippet</a> — the placement rule for every platform, for the site owner.</li>

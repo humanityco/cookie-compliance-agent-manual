@@ -1,35 +1,26 @@
 ---
 title: Add a cookie consent banner to an Angular app
-description: Put the Cookie Compliance snippet in src/index.html as the first classic scripts. Entries in the angular.json scripts array are emitted deferred at the end of body.
+description: Put the Cookie Compliance snippet first in the head of src/index.html as classic script tags, above your analytics tags, so the banner can hold them until the visitor chooses.
 kind: platform
 last_verified: 2026-10-22
 ---
 
 # Add a cookie consent banner to an Angular app
 
-**In short:** paste the **live** snippet into `<head>` of `src/index.html`, as the first classic `<script>` tags on every page. Leave the `scripts` array in `angular.json` for other files.
+**In short:** paste the **live** snippet as the first classic `<script>` tags in the `<head>` of `src/index.html`, above your analytics tags. That file is the shell of every page, so the banner is there on every route.
+
+Confirmed on an Angular app: tags written in `src/index.html` stay where you put them in both the development and production builds, and in the prerendered page.
 
 ## You need
 
 - A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-angular) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to `src/index.html`. That file is the document shell for `ng build` and for the prerendered page.
 
-## The wrong way
+## Where it goes
 
-```json
-// angular.json — BAD
-"scripts": [
-  "src/cookie-compliance.js"
-]
-```
-
-The application builder bundles that entry and injects it at the **end of `<body>`** with `defer`. **Verified 2026-10-22** on Angular 21.2 (`@angular/core` 21.2.25, `@angular/build` 21.2.27), in both the development and production builds: a file listed in `scripts` became `<script src="scripts-….js" defer></script>`, immediately before `<script src="main-….js" type="module">`. `defer` runs after the document has been parsed, so a classic tracker tag already in `index.html` has run first.
-
-A tag created from a component, `Renderer2`, or an `APP_INITIALIZER` runs with `main.js`. It is in the same late slot.
-
-## The right way
-
-Put the live snippet at the top of `<head>` in `src/index.html`. Plain `<script>` tags. The builder leaves tags that are already in this file where you wrote them.
+1. Copy the live snippet (see above).
+2. Open `src/index.html`.
+3. Paste the snippet at the top of `<head>`, as plain `<script>` tags. The builder leaves tags that are already in this file where you wrote them. (Entries in the `scripts` array of `angular.json` are bundled and added deferred at the end of `<body>`, so use that array for other files.)
 
 ```html
 <!doctype html>
@@ -54,23 +45,28 @@ Put the live snippet at the top of `<head>` in `src/index.html`. Plain `<script>
 
 Prefer pasting the exact HTML from MCP/dashboard rather than retyping `huOptions` keys — the live snippet may carry Consent Mode defaults, `blockingEngine`, or custom providers.
 
-**Verified 2026-10-22:** those head tags, with a tracker tag written after them in the same `<head>`, were still the first scripts in the production `index.html`. The build added no `async`, `defer`, or `type="module"` to them. The prerendered production page kept that same order.
+If the snippet is currently in the `scripts` array of `angular.json`, or added from a component, move it to the top of `<head>` in `src/index.html`.
 
-## Gotchas
+## What the order controls
 
-- **`angular.json` `scripts` is a deferred body bundle.** See "The wrong way". Global polyfills belong there. The banner belongs in `src/index.html`.
-- **Application code runs with `main.js`.** That bundle is `type="module"` at the end of `<body>`.
-- **Server rendering uses this `index.html`.** The prerendered page is the same document with `<app-root>` filled in. After `ng build`, open the file the server will send and confirm the two tags are still the first scripts.
-- **Engine switch:** re-paste the live snippet when `widgetVersion` changes in the dashboard. `index.html` does not auto-update.
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
 
-## Check it works
+## Confirm the result
 
-Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site. Angular-specific extra:
+Run the browser checks in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) with `verify-install` (`skills/verify-install/SKILL.md`) against the running site. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. Angular-specific extra:
 
 | # | Check | Pass |
 |---|---|---|
 | A1 | View source (not devtools' rendered DOM) on `/` | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are the first `<script>` tags, in that order, with no `async`, `defer`, or `type="module"`. |
-| A2 | `src/index.html` and `angular.json` | The two tags are in `src/index.html`. The `scripts` array does not list the banner. |
+| A2 | `src/index.html` and `angular.json` | The two tags are in `src/index.html`, and the `scripts` array holds your other files. |
+
+## Gotchas
+
+- **`angular.json` `scripts` is a deferred body bundle.** The application builder bundles each entry and adds it with `defer` at the end of `<body>`, so use it for global polyfills and keep the banner in `src/index.html`.
+- **Application code runs with `main.js`.** That bundle is `type="module"` at the end of `<body>`, so a tag created from a component, `Renderer2` or an `APP_INITIALIZER` loads at that point. Keep the banner in `src/index.html`.
+- **Server rendering uses this `index.html`.** The prerendered page is the same document with `<app-root>` filled in. After `ng build`, open the file the server will send and confirm the two tags are still the first scripts.
+- **Keep a single consent banner.** Remove any other one, so visitors see one clear choice.
+- **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard (`widgetVersion`): changing the setting alone does not update a pasted snippet in `index.html`.
 
 ## More help
 

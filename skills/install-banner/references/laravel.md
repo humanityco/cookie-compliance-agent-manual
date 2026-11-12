@@ -1,34 +1,22 @@
 ---
 title: Add a cookie consent banner to a Laravel app
-description: Put the Cookie Compliance snippet directly after the opening head tag of the Blade layout every page uses, above the fonts and Vite lines. Before the closing head tag or body is too late.
+description: Put the Cookie Compliance snippet directly after the opening head tag of the Blade layout every page uses, above the fonts and Vite lines.
 kind: platform
 last_verified: 2026-11-12
 ---
 
 # Add a cookie consent banner to a Laravel app
 
-**In short:** paste the **live** snippet directly after the opening `<head>` of the Blade layout every page uses (in a fresh app that is `resources/views/welcome.blade.php`; in yours, the shared layout file), above the other lines in `<head>` (`@fonts`, `@vite`). Not before `</head>`, and not before `</body>`.
+**In short:** paste the **live** snippet directly after the opening `<head>` of the Blade layout every page uses (in a fresh app that is `resources/views/welcome.blade.php`; in yours, the shared layout file), above the other lines in `<head>` (`@fonts`, `@vite`).
 
-Placement checked by building a Laravel 13 app, on the starter page (`welcome.blade.php`) and reading the page it produces (not a live banner or blocking test).
+Confirmed on a Laravel app, on the starter page `welcome.blade.php`: the snippet is the first script in the rendered page's `<head>`.
 
 ## You need
 
 - A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-laravel) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to the Blade layout that renders `<head>` (the file with `@yield`/`{{ $slot }}`, shared by your pages).
 
-## The wrong way
-
-```blade
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    {{-- BAD: pasted last in <head>, after the analytics and app scripts above --}}
-    <script> var huOptions = { ... }; </script>
-    <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js"></script>
-</head>
-```
-
-Pasting it before `</body>` is also wrong: everything in `<head>` has already run.
-
-## The right way
+## Where it goes
 
 1. Copy the live snippet (see above).
 2. Open the Blade file that renders `<head>` for your pages (your shared layout; in a fresh app the starter page `resources/views/welcome.blade.php`).
@@ -48,19 +36,25 @@ Pasting it before `</body>` is also wrong: everything in `<head>` has already ru
    </head>
    ```
 
-4. Leave your trackers where they are. Do not add the banner through `@vite` or your app's JavaScript bundle.
+4. Your trackers stay as they are. Keep the banner as plain tags in the layout, outside `@vite` and your JavaScript bundle.
 
-## Check it works
+If the snippet is currently at the end of `<head>` or before `</body>`, move it up to directly after `<head>`.
+
+## What the order controls
+
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
+
+## Confirm the result
 
 Build or render the site, then **view the page source** of the output (not the browser's Elements panel): the `huOptions` script and `hu-banner.min.js` are the first two `<script>` tags in `<head>` of the rendered page, with no `async` or `defer`, and your analytics tag comes after them.
 
-Then run the browser checks in [plain-html](plain-html.md#check-it-works) in a private window (banner shows, no tracking cookies or data hits before the visitor chooses, trackers start after Allow) and, for the full procedure, [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md). Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.
+Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md). Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.
 
 ## Gotchas
 
 - **More than one layout.** If some pages extend a different layout, add the snippet to each layout's `<head>` the same way.
-- **Remove any other consent banner.** Two banners give visitors two conflicting choices.
-- **Only install your own AppID**, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
+- **Keep a single consent banner.** Remove any other one, so visitors see one clear choice.
+- **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
 ## More help
 

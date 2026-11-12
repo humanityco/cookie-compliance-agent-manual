@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to an Astro site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Put the Cookie Compliance snippet in the Astro layout's &lt;head&gt; with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.">
+<meta name="description" content="Put the Cookie Compliance snippet first in the Astro layout's &lt;head&gt;, with is:inline on every script tag so Astro keeps the tags exactly as written.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/astro/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/astro.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to an Astro site">
-<meta property="og:description" content="Put the Cookie Compliance snippet in the Astro layout's &lt;head&gt; with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.">
+<meta property="og:description" content="Put the Cookie Compliance snippet first in the Astro layout's &lt;head&gt;, with is:inline on every script tag so Astro keeps the tags exactly as written.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/astro/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to an Astro site",
-      "description": "Put the Cookie Compliance snippet in the Astro layout's \u003chead> with is:inline on every script tag, or Astro makes it a deferred module and blocking stops.",
+      "description": "Put the Cookie Compliance snippet first in the Astro layout's \u003chead>, with is:inline on every script tag so Astro keeps the tags exactly as written.",
       "url": "https://manual.hu-manity.co/cookbooks/astro/",
       "inLanguage": "en",
       "dateModified": "2026-09-29",
@@ -102,9 +102,9 @@
         <li><a href="/cookbooks/astro/" aria-current="page">astro</a>
           <ul class="toc" aria-label="On this page">
             <li><a href="#you-need">You need</a></li>
-            <li><a href="#the-wrong-way">The wrong way</a></li>
-            <li><a href="#the-right-way">The right way</a></li>
-            <li><a href="#check-it-works">Check it works</a></li>
+            <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#what-the-order-controls">What the order controls</a></li>
+            <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
@@ -130,31 +130,14 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-an-astro-site">Add a cookie consent banner to an Astro site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-29">29 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/astro.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> paste the <strong>live</strong> snippet into the shared layout&#39;s <code>&lt;head&gt;</code>, and add <code>is:inline</code> to <strong>every</strong> Cookie Compliance <code>&lt;script&gt;</code> tag. Without it, Astro silently rewrites the tags into deferred Vite modules — the banner may still render, but <code>blocking</code> no longer holds.</p>
+<p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first scripts in the shared layout&#39;s <code>&lt;head&gt;</code>, and add <code>is:inline</code> to <strong>every</strong> Cookie Compliance <code>&lt;script&gt;</code> tag so Astro keeps them as written.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-astro">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Edit access to the shared layout (<code>src/layouts/Layout.astro</code>, or whatever every page renders through).</li>
 </ul>
-<h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
-<div class="code"><pre tabindex="0"><code class="language-astro">---
-// src/layouts/Layout.astro — BAD
----
-&lt;html lang=&quot;en&quot;&gt;
-  &lt;head&gt;
-    &lt;script&gt;
-      var huOptions = { &quot;appID&quot;: &quot;YOUR_APP_ID&quot;, &quot;blocking&quot;: true };
-    &lt;/script&gt;
-    &lt;script src=&quot;https://cdn.hu-manity.co/hu-banner.min.js&quot;&gt;&lt;/script&gt;
-    &lt;slot name=&quot;head&quot; /&gt;
-  &lt;/head&gt;
-  &lt;body&gt;&lt;slot /&gt;&lt;/body&gt;
-&lt;/html&gt;
-</code></pre></div>
-<p>This looks identical to the plain-HTML version, and that&#39;s the trap. <strong>Astro processes every <code>&lt;script&gt;</code> tag by default</strong> — even one with a real <code>src</code> URL — bundling and hoisting it through its own module graph, unless the tag has <code>is:inline</code> or any attribute other than <code>src</code>. The result renders as <code>&lt;script type=&quot;module&quot; src=&quot;/src/layouts/Layout.astro?astro&amp;type=script&amp;index=0&amp;lang.ts&quot;&gt;</code>: a deferred module, not the synchronous inline script <code>huOptions</code> has to be for <code>hu-banner.min.js</code> to read it before running.</p>
-<p><strong>Verified 2026-09-29:</strong> pasting the exact two-tag live snippet with no <code>is:inline</code> produced exactly this — the <code>huOptions</code> script became a deferred Vite module, and a bare third <code>&lt;script src=&quot;...&quot;&gt;</code> tracker tag (no <code>type</code> attribute, matching a typical GA4/gtag snippet) was <em>also</em> rewritten into a second deferred module. Only the Cookie Compliance CDN tag survived unprocessed, because it happened to carry an explicit <code>type=&quot;text/javascript&quot;</code> attribute — which is incidental, not something to rely on.</p>
-<h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
-<p>Add <code>is:inline</code> to <strong>every</strong> script tag you want Astro to leave completely alone, in the shared layout:</p>
+<h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
+<p>Astro processes a <code>&lt;script&gt;</code> tag by default: it bundles the tag and loads it as a deferred module. <code>is:inline</code> tells Astro to leave a tag exactly as written, which is what the banner needs, because <code>huOptions</code> is a synchronous inline script that <code>hu-banner.min.js</code> reads when it runs. Add <code>is:inline</code> to each Cookie Compliance tag in the shared layout:</p>
 <div class="code"><pre tabindex="0"><code class="language-astro">---
 // src/layouts/Layout.astro
 ---
@@ -172,23 +155,25 @@
   &lt;body&gt;&lt;slot /&gt;&lt;/body&gt;
 &lt;/html&gt;
 </code></pre></div>
-<p>Existing trackers, wherever they&#39;re declared (this layout, a page, a component), need <code>is:inline</code> too if you want their tag to render exactly as written — otherwise Astro may still bundle them, which doesn&#39;t defeat blocking on its own but does mean you&#39;re no longer looking at the tag you wrote when you check placement.</p>
-<p><strong>Verified 2026-09-29:</strong> with <code>is:inline</code> on all three tags, the rendered response had all three as literal <code>&lt;script&gt;</code> elements in source order, none converted to a module.</p>
-<h2 id="check-it-works">Check it works <a class="anchor" href="#check-it-works" aria-label="Link to this section">#</a></h2>
-<p>Run <code>verify-install</code> (<code>skills/verify-install/SKILL.md</code>) against the running site. Astro-specific extra:</p>
+<p>Add <code>is:inline</code> to your existing trackers too, wherever they are declared (this layout, a page, a component), so each tag renders exactly as you wrote it and the placement you check is the placement visitors get.</p>
+<p>If the snippet is currently in the <code>&lt;body&gt;</code>, in a component, or has no <code>is:inline</code>, move it to the top of the shared layout&#39;s <code>&lt;head&gt;</code> and add <code>is:inline</code> to each tag.</p>
+<h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
+<p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
+<h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
+<p>Run <code>verify-install</code> (<code>skills/verify-install/SKILL.md</code>) against the running site: banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. Astro-specific extra:</p>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
 <thead>
 <tr>
 <th>#</th>
 <th>Check</th>
-<th>Pass</th>
+<th>Result</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>A1</td>
 <td>View source (not devtools&#39; rendered DOM) on <code>/</code> and an inner route</td>
-<td><code>huOptions</code> and the <code>hu-banner.min.js</code> (or <code>/v2/…</code>) tag are literal <code>&lt;script&gt;</code> elements — <strong>not</strong> <code>&lt;script type=&quot;module&quot; src=&quot;...?astro&amp;type=script...&quot;&gt;</code> — as the first two scripts, in order.</td>
+<td><code>huOptions</code> and the <code>hu-banner.min.js</code> (or <code>/v2/…</code>) tag are literal <code>&lt;script&gt;</code> elements, as the first two scripts, in order. A tag Astro had bundled would show as <code>&lt;script type=&quot;module&quot; src=&quot;...?astro&amp;type=script...&quot;&gt;</code>.</td>
 </tr>
 <tr>
 <td>A2</td>
@@ -197,11 +182,10 @@
 </tr>
 </tbody></table>
 </div>
-<p><strong>Verified 2026-09-29</strong> on a local Astro dev server, with a real <code>googletagmanager.com/gtag/js</code> tag as the tracker, in a fresh isolated browser context: with <code>is:inline</code> in place, the tracker rendered <code>type=&quot;javascript/blocked&quot;</code> and no tracking cookie appeared before consent — matching the shared <code>verify-install</code> checklist&#39;s check 3.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong><code>is:inline</code> is not optional cleanup — it&#39;s the difference between working and silently broken.</strong> Astro&#39;s default script processing doesn&#39;t remove the banner or make it error; the page still looks fine and the badge-free banner still shows. The only visible symptom is that blocking stops working, which is exactly the kind of failure that survives a casual glance.</li>
-<li><strong>A <code>&lt;script&gt;</code> with an unusual <code>type</code> may already be exempt, but don&#39;t rely on it.</strong> In testing, a tag with <code>type=&quot;text/javascript&quot;</code> happened to pass through unprocessed while a bare <code>&lt;script src=&quot;...&quot;&gt;</code> did not. Add <code>is:inline</code> explicitly rather than depending on which attributes currently happen to opt a tag out.</li>
+<li><strong><code>is:inline</code> on every tag.</strong> Astro&#39;s default script processing keeps the page looking the same, so View Source is where to confirm the tags are literal <code>&lt;script&gt;</code> elements. With <code>is:inline</code> on each Cookie Compliance tag, they are.</li>
+<li><strong>Add <code>is:inline</code> explicitly.</strong> Astro leaves some tags unprocessed depending on their attributes (for example an explicit <code>type=&quot;text/javascript&quot;</code>), so setting <code>is:inline</code> on each tag gives the same result whichever attributes the snippet carries.</li>
 <li><strong>Engine switch:</strong> re-paste the live snippet when <code>widgetVersion</code> changes in the dashboard; the layout does not auto-update.</li>
 </ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>

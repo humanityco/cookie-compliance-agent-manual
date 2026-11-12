@@ -25,18 +25,18 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 ## Cookbooks
 
 - [plain-html](cookbooks/plain-html.md): paste the snippet into a static site's `<head>`.
-- [wordpress](cookbooks/wordpress.md): install via the Cookie Compliance for WordPress plugin, not a pasted snippet.
-- [nextjs](cookbooks/nextjs.md): place the snippet correctly in a Next.js layout.
-- [gtm](cookbooks/gtm.md): put the snippet above the Google Tag Manager container in `<head>`, never inside GTM.
-- [nuxt](cookbooks/nuxt.md): place the snippet in `nuxt.config.ts`, not a composable or client plugin — and never mark it `async`.
-- [astro](cookbooks/astro.md): place the snippet in the shared layout with `is:inline` on every tag, or Astro silently defers it as a module.
-- [angular](cookbooks/angular.md): place the snippet in `src/index.html`. The `angular.json` scripts array is emitted deferred at the end of body.
+- [wordpress](cookbooks/wordpress.md): install via the Cookie Compliance for WordPress plugin, which handles placement.
+- [nextjs](cookbooks/nextjs.md): place the snippet as classic script tags in the root layout's `<head>`.
+- [gtm](cookbooks/gtm.md): put the snippet above the Google Tag Manager container in `<head>`.
+- [nuxt](cookbooks/nuxt.md): place the snippet in `app.head.script` in `nuxt.config.ts`, kept synchronous.
+- [astro](cookbooks/astro.md): place the snippet in the shared layout with `is:inline` on every tag.
+- [angular](cookbooks/angular.md): place the snippet in `src/index.html`.
 - [vite](cookbooks/vite.md): place the snippet in `index.html` for a React or Vue single-page app, ahead of the module entry.
-- [sveltekit](cookbooks/sveltekit.md): place the snippet in `src/app.html` above `%sveltekit.head%`. `svelte:head` is missing from the first response when SSR is off.
-- [shopify](cookbooks/shopify.md): place the snippet first in `layout/theme.liquid`'s `<head>` — not checkout Additional scripts or a Customer Events pixel.
+- [sveltekit](cookbooks/sveltekit.md): place the snippet in `src/app.html` above `%sveltekit.head%`.
+- [shopify](cookbooks/shopify.md): place the snippet first in `layout/theme.liquid`'s `<head>`.
 - [hugo](cookbooks/hugo.md): place the snippet first in the head partial or `baseof.html` your layouts render on every page.
-- [gatsby](cookbooks/gatsby.md): place the snippet first in `setHeadComponents` in `gatsby-ssr.js` (or a custom `src/html.js`), never `setPostBodyComponents`.
-- [docusaurus](cookbooks/docusaurus.md): add the snippet through `headTags` in `docusaurus.config.js` as two script entries, never `async: true`.
+- [gatsby](cookbooks/gatsby.md): place the snippet first in `setHeadComponents` in `gatsby-ssr.js` (or a custom `src/html.js`).
+- [docusaurus](cookbooks/docusaurus.md): add the snippet through `headTags` in `docusaurus.config.js` as two synchronous script entries.
 - [laravel](cookbooks/laravel.md): place the snippet directly after `<head>` in the shared Blade layout, above `@fonts` and `@vite`.
 - [django](cookbooks/django.md): place the snippet first in `<head>` of the base template every page extends.
 - [rails](cookbooks/rails.md): place the snippet directly after `<head>` in `app/views/layouts/application.html.erb`.

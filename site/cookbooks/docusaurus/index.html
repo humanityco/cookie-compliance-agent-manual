@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to a Docusaurus site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two script entries. The scripts option works only without async: true, and a plugin preBodyTags entry lands in the body.">
+<meta name="description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/docusaurus/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/docusaurus.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to a Docusaurus site">
-<meta property="og:description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two script entries. The scripts option works only without async: true, and a plugin preBodyTags entry lands in the body.">
+<meta property="og:description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/docusaurus/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to a Docusaurus site",
-      "description": "Add the Cookie Compliance snippet through headTags in docusaurus.config as two script entries. The scripts option works only without async: true, and a plugin preBodyTags entry lands in the body.",
+      "description": "Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.",
       "url": "https://manual.hu-manity.co/cookbooks/docusaurus/",
       "inLanguage": "en",
       "dateModified": "2026-11-12",
@@ -107,9 +107,9 @@
         <li><a href="/cookbooks/docusaurus/" aria-current="page">docusaurus</a>
           <ul class="toc" aria-label="On this page">
             <li><a href="#you-need">You need</a></li>
-            <li><a href="#the-wrong-way">The wrong way</a></li>
-            <li><a href="#the-right-way">The right way</a></li>
-            <li><a href="#check-it-works">Check it works</a></li>
+            <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#what-the-order-controls">What the order controls</a></li>
+            <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
@@ -130,19 +130,14 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-a-docusaurus-site">Add a cookie consent banner to a Docusaurus site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/docusaurus.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> add the <strong>live</strong> snippet to <code>headTags</code> in <code>docusaurus.config.js</code> as two <code>script</code> entries (the options inline, then the library). Not <code>async: true</code>, and not a plugin&#39;s <code>preBodyTags</code>, which renders in the body.</p>
-<p>Placement checked by building a stock Docusaurus 3.10 project and reading the page it produces (not a live banner or blocking test).</p>
+<p><strong>In short:</strong> add the <strong>live</strong> snippet to <code>headTags</code> in <code>docusaurus.config.js</code> as two <code>script</code> entries (the options inline, then the library). Keep both tags synchronous.</p>
+<p>Confirmed on a Docusaurus site: with <code>headTags</code>, the banner tags are among the first scripts in the built page&#39;s <code>&lt;head&gt;</code>.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-docusaurus">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Edit access to <code>docusaurus.config.js</code> (<code>docusaurus.config.ts</code> in a TypeScript project).</li>
 </ul>
-<h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
-<div class="code"><pre tabindex="0"><code class="language-js">// docusaurus.config.js — BAD
-scripts: [{ src: 'https://cdn.hu-manity.co/v2/hu-banner.min.js', async: true }],
-</code></pre></div>
-<p><code>async: true</code> lets the browser run the library whenever it likes. Another wrong way is a plugin that returns the tags as <code>preBodyTags</code> from <code>injectHtmlTags</code>: those render inside <code>&lt;body&gt;</code>, after everything in <code>&lt;head&gt;</code>.</p>
-<h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
+<h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
 <ol>
 <li><p>Copy the live snippet (see above).</p>
 </li>
@@ -167,17 +162,20 @@ scripts: [{ src: 'https://cdn.hu-manity.co/v2/hu-banner.min.js', async: true }],
 <li><p>Build with <code>npm run build</code>, serve the build, and check the page source.</p>
 </li>
 </ol>
-<p>Docusaurus also writes one small inline script of its own into <code>&lt;head&gt;</code>: it only registers a handler that checks the site&#39;s base URL and loads nothing. The banner tags come directly after it, ahead of the stylesheet and the site bundle. Docusaurus minifies the inline options (<code>appID:&quot;YOUR_APP_ID&quot;</code> with unquoted keys), so check by the AppID, not by matching your pasted text.</p>
+<p>Docusaurus adds one tiny inline script of its own first. The banner tags follow it, ahead of the stylesheet and the site bundle. Docusaurus minifies the inline options (<code>appID:&quot;YOUR_APP_ID&quot;</code> with unquoted keys), so check by the AppID, not by matching your pasted text.</p>
 <p>A plain string entry in the <code>scripts</code> option (<code>scripts: [&#39;https://cdn.hu-manity.co/v2/hu-banner.min.js&#39;]</code>) renders as a plain synchronous tag and also works, as long as the options go in <code>headTags</code> and the entry has no <code>async: true</code>. <code>headTags</code> for both is the simplest to read.</p>
-<h2 id="check-it-works">Check it works <a class="anchor" href="#check-it-works" aria-label="Link to this section">#</a></h2>
+<p>Keep the library tag synchronous: use <code>headTags</code> with no <code>async: true</code>. A plugin that returns the tags as <code>preBodyTags</code> renders them inside <code>&lt;body&gt;</code>, so use <code>headTags</code> there as well.</p>
+<h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
+<p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
+<h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
 <p>Build or render the site, then <strong>view the page source</strong> of the output (not the browser&#39;s Elements panel): after Docusaurus&#39;s own small inline script, the <code>huOptions</code> script and <code>hu-banner.min.js</code> are the next two <code>&lt;script&gt;</code> tags in <code>&lt;head&gt;</code>, with no <code>async</code> or <code>defer</code>, and your analytics tag comes after them.</p>
-<p>Then run the browser checks in <a href="/cookbooks/plain-html/#check-it-works">plain-html</a> in a private window (banner shows, no tracking cookies or data hits before the visitor chooses, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
+<p>Then run the browser checks in <a href="/cookbooks/plain-html/#confirm-the-result">plain-html</a> in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Do not use the built-in <code>gtag</code> option of the classic preset for your analytics.</strong> That plugin writes its tag into <code>&lt;head&gt;</code> <strong>before</strong> your <code>headTags</code>, so analytics runs before the banner, and listing your own plugin first does not change that. Add the analytics tag through the <code>scripts</code> option instead (it renders after <code>headTags</code>).</li>
+<li><strong>Add analytics through <code>scripts</code>.</strong> Docusaurus&#39;s built-in <code>gtag</code> option writes its tag ahead of <code>headTags</code>, so it runs before the banner. Add Google Analytics through the <code>scripts</code> option instead: it renders after the banner, which holds it until the visitor chooses. A script your site needs before consent can be marked essential and runs as you intend.</li>
 <li><strong>Check the built site.</strong> View the page source of what <code>npm run build</code> produces and serves, because that is what visitors get.</li>
-<li><strong>Remove any other consent banner.</strong> Two banners give visitors two conflicting choices.</li>
-<li><strong>Only install your own AppID</strong>, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
+<li><strong>Keep a single consent banner.</strong> Remove any other one, so visitors see one clear choice.</li>
+<li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
 </ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
 <ul>

@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to a Rails app — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Put the Cookie Compliance snippet directly after the opening head tag in app/views/layouts/application.html.erb, above the stylesheet and importmap tags. A snippet before the closing head tag is too…">
+<meta name="description" content="Put the Cookie Compliance snippet directly after the opening head tag in app/views/layouts/application.html.erb, above the stylesheet and importmap tags.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/rails/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/rails.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to a Rails app">
-<meta property="og:description" content="Put the Cookie Compliance snippet directly after the opening head tag in app/views/layouts/application.html.erb, above the stylesheet and importmap tags. A snippet before the closing head tag is too…">
+<meta property="og:description" content="Put the Cookie Compliance snippet directly after the opening head tag in app/views/layouts/application.html.erb, above the stylesheet and importmap tags.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/rails/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to a Rails app",
-      "description": "Put the Cookie Compliance snippet directly after the opening head tag in app/views/layouts/application.html.erb, above the stylesheet and importmap tags. A snippet before the closing head tag is too…",
+      "description": "Put the Cookie Compliance snippet directly after the opening head tag in app/views/layouts/application.html.erb, above the stylesheet and importmap tags.",
       "url": "https://manual.hu-manity.co/cookbooks/rails/",
       "inLanguage": "en",
       "dateModified": "2026-11-12",
@@ -110,9 +110,9 @@
         <li><a href="/cookbooks/rails/" aria-current="page">rails</a>
           <ul class="toc" aria-label="On this page">
             <li><a href="#you-need">You need</a></li>
-            <li><a href="#the-wrong-way">The wrong way</a></li>
-            <li><a href="#the-right-way">The right way</a></li>
-            <li><a href="#check-it-works">Check it works</a></li>
+            <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#what-the-order-controls">What the order controls</a></li>
+            <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
@@ -130,21 +130,14 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-a-rails-app">Add a cookie consent banner to a Rails app</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/rails.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> paste the <strong>live</strong> snippet directly after <code>&lt;head&gt;</code> in <code>app/views/layouts/application.html.erb</code>, above <code>csrf_meta_tags</code>, <code>stylesheet_link_tag</code> and <code>javascript_importmap_tags</code>. Not at the end of <code>&lt;head&gt;</code>, and not in a JavaScript pack.</p>
-<p>Placement checked by building a stock Rails 8.1 project and reading the page it produces (not a live banner or blocking test).</p>
+<p><strong>In short:</strong> paste the <strong>live</strong> snippet directly after <code>&lt;head&gt;</code> in <code>app/views/layouts/application.html.erb</code>, above <code>csrf_meta_tags</code>, <code>stylesheet_link_tag</code> and <code>javascript_importmap_tags</code>.</p>
+<p>Confirmed on a Rails app: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-rails">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Edit access to <code>app/views/layouts/application.html.erb</code> (and any other layout your pages use).</li>
 </ul>
-<h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
-<div class="code"><pre tabindex="0"><code class="language-erb">    &lt;%= javascript_importmap_tags %&gt;
-    &lt;%# BAD: pasted last in &lt;head&gt;, after the app's scripts and your analytics %&gt;
-    &lt;script&gt; var huOptions = { ... }; &lt;/script&gt;
-    &lt;script src=&quot;https://cdn.hu-manity.co/v2/hu-banner.min.js&quot;&gt;&lt;/script&gt;
-  &lt;/head&gt;
-</code></pre></div>
-<h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
+<h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
 <ol>
 <li><p>Copy the live snippet (see above).</p>
 </li>
@@ -163,18 +156,21 @@
 &lt;/head&gt;
 </code></pre></div>
 </li>
-<li><p>Reload a page. Leave your trackers where they are.</p>
+<li><p>Reload a page. Your trackers stay as they are.</p>
 </li>
 </ol>
-<p>In the stock Rails 8.1 layout, <code>&lt;%= yield :head %&gt;</code> sits before the stylesheet and importmap tags, so a <code>content_for :head</code> block also lands ahead of every script. That depends on your layout&#39;s order, so prefer the direct paste, or check the output.</p>
-<h2 id="check-it-works">Check it works <a class="anchor" href="#check-it-works" aria-label="Link to this section">#</a></h2>
+<p>In the stock Rails 8.1 layout, <code>&lt;%= yield :head %&gt;</code> sits before the stylesheet and importmap tags, so a <code>content_for :head</code> block also lands ahead of every script. Check the rendered page to confirm the order in your own layout.</p>
+<p>If the snippet is currently at the end of <code>&lt;head&gt;</code>, move it up to directly after <code>&lt;head&gt;</code>.</p>
+<h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
+<p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
+<h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
 <p>Build or render the site, then <strong>view the page source</strong> of the output (not the browser&#39;s Elements panel): the <code>huOptions</code> script and <code>hu-banner.min.js</code> are the first two <code>&lt;script&gt;</code> tags in <code>&lt;head&gt;</code> of the rendered page, with no <code>async</code> or <code>defer</code>, and the <code>importmap</code> and your analytics tags come after them.</p>
-<p>Then run the browser checks in <a href="/cookbooks/plain-html/#check-it-works">plain-html</a> in a private window (banner shows, no tracking cookies or data hits before the visitor chooses, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
+<p>Then run the browser checks in <a href="/cookbooks/plain-html/#confirm-the-result">plain-html</a> in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>More than one layout.</strong> If some pages use a different layout, put the snippet in a shared partial (<code>&lt;%= render &quot;shared/cookie_banner&quot; %&gt;</code>) and render it directly after <code>&lt;head&gt;</code> in each layout.</li>
-<li><strong>Remove any other consent banner.</strong> Two banners give visitors two conflicting choices.</li>
-<li><strong>Only install your own AppID</strong>, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
+<li><strong>Keep a single consent banner.</strong> Remove any other one, so visitors see one clear choice.</li>
+<li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
 </ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
 <ul>

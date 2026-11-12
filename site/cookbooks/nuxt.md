@@ -1,36 +1,20 @@
 ---
 title: Add a cookie consent banner to a Nuxt site
-description: Put the Cookie Compliance snippet in app.head.script in nuxt.config.ts, not useHead() or a client-only plugin, and never mark a script in that array async.
+description: Put the Cookie Compliance snippet first in app.head.script in nuxt.config.ts, as plain synchronous entries, so it renders at the top of the page's head.
 kind: platform
 last_verified: 2026-09-29
 ---
 
 # Add a cookie consent banner to a Nuxt site
 
-**In short:** paste the **live** snippet into `app.head.script` in `nuxt.config.ts` — not a `useHead()` call inside a page or component, and not inside a client-only plugin — and never mark any script in that array `async`.
+**In short:** paste the **live** snippet as the first entries of `app.head.script` in `nuxt.config.ts`, as plain synchronous scripts (no `async` or `defer` on any entry in that array).
 
 ## You need
 
 - A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-nuxt) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to `nuxt.config.ts`.
 
-## The wrong way
-
-```ts
-// plugins/analytics.client.ts — BAD
-export default defineNuxtPlugin(() => {
-  useHead({
-    script: [
-      { innerHTML: 'var huOptions = { "appID": "YOUR_APP_ID", "blocking": true };' },
-      { src: 'https://cdn.hu-manity.co/hu-banner.min.js' }
-    ]
-  })
-})
-```
-
-Problems: a `.client.ts` plugin only runs in the browser, after hydration — by then any tracker declared statically in `nuxt.config.ts` has already had its chance to run. Client-side injection is always too late for pre-consent blocking, in Nuxt as in any framework.
-
-## The right way
+## Where it goes
 
 Put the live snippet in `app.head.script` in `nuxt.config.ts`. This is resolved at server-render time and lands in the initial HTML response, the same way a root layout's `<head>` does in other frameworks.
 
@@ -58,25 +42,29 @@ export default defineNuxtConfig({
 })
 ```
 
-Prefer pasting the exact HTML string's two pieces (the `huOptions` object and the CDN `src`) from MCP/dashboard rather than retyping `huOptions` keys by hand — the live snippet may carry Consent Mode defaults, `blockingEngine`, or custom providers you'd otherwise drop.
+Prefer pasting the exact HTML string's two pieces (the `huOptions` object and the CDN `src`) from MCP/dashboard rather than retyping `huOptions` keys by hand: the live snippet may carry Consent Mode defaults, `blockingEngine`, or custom providers you would otherwise miss.
+
+If the snippet is currently in a `useHead()` call or a `.client.ts` plugin, move it to `app.head.script` in `nuxt.config.ts`.
+
+## What the order controls
+
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
+
+## Confirm the result
+
+Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site: banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. Nuxt-specific extra:
+
+| # | Check | Result |
+|---|---|---|
+| N1 | View source (not devtools' rendered DOM) on `/` and an inner route | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are the first two `<script>` tags, in that order, with no `async`/`defer`. |
+| N2 | Grep `app.head.script` in `nuxt.config.ts` | Every entry, Cookie Compliance's and your trackers', is a plain synchronous script without `async` or `defer`. |
 
 ## Gotchas
 
-- **Array order is not render order — `async` silently reorders scripts.** Nuxt's head manager (`unhead`) does not always emit `app.head.script` entries in the order you wrote them. A script marked `async: true` can be hoisted **ahead of** scripts that appear earlier in the array, even a synchronous Cookie Compliance snippet. **Verified 2026-09-29:** with a tracker script listed after Cookie Compliance but marked `async: true`, the rendered response had the tracker's `<script>` tag **first** — ahead of `huOptions` and `hu-banner.min.js`. Removing `async` restored array order in the response. **Never mark any script in this array `async` or `defer`** if you need Cookie Compliance to stay first; verify with View Source, not by trusting the config file.
-- **`useHead()` inside a page or component is not equivalent to `app.head` in `nuxt.config.ts`.** It runs as part of that component's setup, on a schedule Nuxt controls, not necessarily before every other script on the page. Use the static config, not a composable, for the banner.
-- **A `.client.ts` plugin is always too late.** See "The wrong way" above.
+- **Leave out `async` and `defer` in `app.head.script`.** Nuxt's head manager (`unhead`) moves an entry marked `async: true` ahead of entries listed earlier, including a synchronous Cookie Compliance snippet. Plain entries render in the order you wrote them. Check the order with View Source of the response.
+- **Use the static config for the banner.** `app.head` in `nuxt.config.ts` renders into the initial HTML. `useHead()` inside a page or component runs as part of that component's setup, on a schedule Nuxt controls, so it is a better place for page-specific tags than for the banner.
+- **Keep the banner out of `.client.ts` plugins.** A `.client.ts` plugin runs in the browser after hydration, while `app.head.script` is in the server-rendered HTML.
 - **Engine switch:** re-paste the live snippet when `widgetVersion` changes in the dashboard; `nuxt.config.ts` does not auto-update.
-
-## Check it works
-
-Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site. Nuxt-specific extra:
-
-| # | Check | Pass |
-|---|---|---|
-| N1 | View source (not devtools' rendered DOM) on `/` and an inner route | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are the first two `<script>` tags, in that order, with no `async`/`defer`. |
-| N2 | Grep `app.head.script` in `nuxt.config.ts` | No entry — Cookie Compliance's or a tracker's — has `async` or `defer`, per the gotcha above. |
-
-**Verified 2026-09-29** on a local Nuxt 4 dev server, with a real `googletagmanager.com/gtag/js` tag as the tracker, in a fresh isolated browser context: the tracker script rendered with `type="javascript/blocked"` and no tracking cookie (`_ga`) appeared before consent, matching the shared `verify-install` checklist's check 3.
 
 ## More help
 

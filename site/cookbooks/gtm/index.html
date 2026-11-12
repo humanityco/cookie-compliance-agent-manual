@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Cookie consent banner with Google Tag Manager — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Put the Cookie Compliance snippet in &lt;head&gt; above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.">
+<meta name="description" content="Put the Cookie Compliance snippet first in the page &lt;head&gt;, above the Google Tag Manager container, so blocking and Consent Mode defaults are in place before gtm.js runs.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/gtm/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/gtm.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Cookie consent banner with Google Tag Manager">
-<meta property="og:description" content="Put the Cookie Compliance snippet in &lt;head&gt; above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.">
+<meta property="og:description" content="Put the Cookie Compliance snippet first in the page &lt;head&gt;, above the Google Tag Manager container, so blocking and Consent Mode defaults are in place before gtm.js runs.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/gtm/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Cookie consent banner with Google Tag Manager",
-      "description": "Put the Cookie Compliance snippet in \u003chead> above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.",
+      "description": "Put the Cookie Compliance snippet first in the page \u003chead>, above the Google Tag Manager container, so blocking and Consent Mode defaults are in place before gtm.js runs.",
       "url": "https://manual.hu-manity.co/cookbooks/gtm/",
       "inLanguage": "en",
       "dateModified": "2026-09-28",
@@ -102,10 +102,10 @@
         <li><a href="/cookbooks/astro/">astro</a></li>
         <li><a href="/cookbooks/gtm/" aria-current="page">gtm</a>
           <ul class="toc" aria-label="On this page">
-            <li><a href="#why">Why</a></li>
-            <li><a href="#the-wrong-way">The wrong way</a></li>
-            <li><a href="#the-right-way">The right way</a></li>
-            <li><a href="#check-it-works">Check it works</a></li>
+            <li><a href="#why-the-snippet-goes-first">Why the snippet goes first</a></li>
+            <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#what-the-order-controls">What the order controls</a></li>
+            <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
@@ -130,22 +130,15 @@
   <main id="content" class="doc">
 <h1 id="cookie-consent-banner-with-google-tag-manager">Cookie consent banner with Google Tag Manager</h1>
 <p class="page-meta">Cookbook · scenario <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-28">28 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/gtm.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> put Cookie Compliance in the page <code>&lt;head&gt;</code> <strong>above</strong> the GTM container snippet. Do <strong>not</strong> add the Cookie Compliance tags as a tag inside the GTM container.</p>
-<h2 id="why">Why <a class="anchor" href="#why" aria-label="Link to this section">#</a></h2>
-<p>Blocking and Consent Mode defaults must exist <strong>before</strong> <code>gtm.js</code> / <code>{gtm.start}</code> run. A tag that fires &quot;on All Pages&quot; inside GTM is already too late: the container has started, and child tags can write cookies before the CMP is in force.</p>
-<p>If the Cookie Compliance snippet loads after the GTM container, tags the container fires can set cookies before the visitor chooses, in a region that requires consent first.</p>
-<h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
-<ul>
-<li>Creating a Custom HTML tag in GTM that pastes <code>huOptions</code> + <code>hu-banner.min.js</code>.</li>
-<li>Loading Cookie Compliance only via a tag-manager &quot;consent&quot; template that still boots after <code>gtm.js</code>.</li>
-<li>Moving analytics into GTM and assuming that alone solves pre-consent blocking without a page-level CMP first.</li>
-</ul>
-<h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
+<p><strong>In short:</strong> put Cookie Compliance as the first script in the page <code>&lt;head&gt;</code>, <strong>above</strong> the GTM container snippet, and keep your tags inside GTM.</p>
+<h2 id="why-the-snippet-goes-first">Why the snippet goes first <a class="anchor" href="#why-the-snippet-goes-first" aria-label="Link to this section">#</a></h2>
+<p>Blocking and Consent Mode defaults are set up when the snippet runs, so placing it above the GTM container puts them in place before <code>gtm.js</code> / <code>{gtm.start}</code> starts. The container&#39;s tags then load with the visitor&#39;s consent state already known.</p>
+<h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
 <ol>
 <li>Get the <strong>live</strong> Cookie Compliance snippet (MCP <code>install.getSnippet</code> or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-gtm">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Paste it as the <strong>first script</strong> in the site&#39;s real <code>&lt;head&gt;</code> (layout / theme / HTML), on every page.</li>
 <li>Leave the existing GTM snippet where it is, <strong>below</strong> Cookie Compliance.</li>
-<li>Keep the tags inside GTM — do not delete GA4/Ads tags to &quot;fix&quot; consent. Gate them with consent triggers in GTM so they wait for the visitor&#39;s choice where the region requires consent first (on the Classic engine, always do this). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.</li>
+<li>Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor&#39;s choice where the region requires consent first (on the Classic engine, always do this). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.</li>
 </ol>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;head&gt;
   &lt;!-- 1. Cookie Compliance FIRST (live snippet; a new app is on v2, an app on v1 keeps the URL without /v2/) --&gt;
@@ -156,8 +149,10 @@
   &lt;script&gt;(function(w,d,s,l,i){/* standard GTM snippet */})&lt;/script&gt;
 &lt;/head&gt;
 </code></pre></div>
-<p>If you <strong>cannot</strong> edit <code>&lt;head&gt;</code> outside GTM, stop and tell the owner. Do not invent a container-only workaround.</p>
-<h2 id="check-it-works">Check it works <a class="anchor" href="#check-it-works" aria-label="Link to this section">#</a></h2>
+<p>If the snippet is currently inside GTM (a Custom HTML tag, or a tag-manager consent template), move it into the page <code>&lt;head&gt;</code> above the container snippet. That needs edit access to the site&#39;s layout, theme or HTML, so ask the site owner for it if you do not have it.</p>
+<h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
+<p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
+<h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
 <p>Same verification as install-banner / plain-html. Extra:</p>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
@@ -175,15 +170,15 @@
 </tr>
 <tr>
 <td>G2</td>
-<td>Before consent</td>
+<td>Before the visitor chooses, in a region whose rule requires consent first</td>
 <td>No Ads/Analytics cookies from GTM-fired tags; with Google Consent Mode on, denied cookieless pings may appear — judge by cookies, not by loader requests.</td>
 </tr>
 </tbody></table>
 </div>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>WordPress + GTM4WP (or similar):</strong> still install the Cookie Compliance <strong>plugin</strong> for placement; do not also paste a manual snippet, and do not put the CMP inside GTM.</li>
-<li><strong>Banner engine:</strong> a new app uses <code>/v2/hu-banner.min.js</code>. Take the URL from the live snippet. An app already on v1 keeps the URL without <code>/v2/</code>. After an engine switch, re-copy; do not hardcode.</li>
+<li><strong>WordPress + GTM4WP (or similar):</strong> install the Cookie Compliance <strong>plugin</strong> for placement, and let it be the only place the banner is added (no manual snippet, nothing inside GTM).</li>
+<li><strong>Banner engine:</strong> a new app uses <code>/v2/hu-banner.min.js</code>. Take the URL from the live snippet; an app already on v1 keeps the URL without <code>/v2/</code>. After an engine switch, copy the snippet again.</li>
 </ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
 <ul>

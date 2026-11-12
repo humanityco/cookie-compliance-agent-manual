@@ -1,6 +1,6 @@
 ---
 title: Add a cookie consent banner to a plain HTML site
-description: Paste the live Cookie Compliance snippet first in <head> on every page of a static HTML site, above every other script, with your analytics tags below it.
+description: Paste the live Cookie Compliance snippet first in <head> on every page of a static HTML site, with your analytics tags below it, so the banner can hold them until the visitor chooses.
 kind: platform
 last_verified: 2026-09-28
 ---
@@ -14,27 +14,9 @@ last_verified: 2026-09-28
 - A Cookie Compliance **AppID**, for example `examplecom-1a2b3c4`. You'll find it in the Cookie Compliance dashboard. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-plain-html); the free plan needs no card.
 - Access to edit the HTML of every page, or the shared header file they all include.
 
-## The wrong way
+## Where it goes
 
-```html
-<head>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
-  <script>/* gtag config */</script>
-
-  <!-- banner added last, "so it doesn't slow the page down" -->
-  <script async src="https://cdn.hu-manity.co/hu-banner.min.js"></script>
-</head>
-```
-
-The banner shows up, but Google Analytics has **already run and set its cookies** before the visitor sees it. The consent is decoration. Three things are wrong here:
-
-1. The snippet comes **after** a tracker. The widget can only block scripts that haven't run yet.
-2. `async` lets the browser run it whenever it likes, so the order is lost.
-3. The `huOptions` block is missing, so the widget doesn't know which app it belongs to.
-
-## The right way
-
-1. **Get the live snippet — do not rebuild it from memory.** A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet from **Integrations → Manual Integration**. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. Once the app is published, that source picks the script URL for your app's banner engine (to check it matches, see step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md)):
+1. **Get the live snippet from the dashboard or MCP.** A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet from **Integrations → Manual Integration**. If you copied it while the app was unpublished, copy it again after publishing. Or ask an agent that has the Cookie Compliance MCP server connected to call `install.getSnippet` (also listed as `install_getSnippet`) with your AppID. Paste the returned HTML **unchanged**. Once the app is published, that source picks the script URL for your app's banner engine (to check it matches, see step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md)):
    - **v2** (a new app): `https://cdn.hu-manity.co/v2/hu-banner.min.js`
    - **v1**: `https://cdn.hu-manity.co/hu-banner.min.js` — the owner asked for v1, or this app was already on v1
 
@@ -52,43 +34,49 @@ The banner shows up, but Google Analytics has **already run and set its cookies*
    <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
    ```
 
-   If you later switch banner engine in the dashboard, **re-copy and replace** the snippet on every page. Changing the setting alone does not update a hand-pasted install.
+   If you later switch banner engine in the dashboard, **copy the snippet again and replace it** on every page. Changing the setting alone does not update a hand-pasted install.
 
-2. **Put it first in `<head>`**, before anything else that runs code:
+2. **Put it first in `<head>`**, before anything else that runs code. Load it with plain `<script>` tags, without `async` or `defer`, so the browser runs it in order:
 
    ```html
    <head>
      <meta charset="utf-8">
-     <!-- Cookie Compliance: FIRST script on the page (paste live snippet here) -->
+     <!-- Cookie Compliance: first script on the page (paste live snippet here) -->
      <script>
          var huOptions = { "appID": "YOUR_APP_ID", "currentLanguage": "en", "blocking": true, "globalCookie": false };
      </script>
      <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
 
-     <!-- your existing tags stay here, unchanged -->
+     <!-- your existing tags stay below it, unchanged -->
      <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
    </head>
    ```
 
 3. **Repeat on every page.** If your pages share a header include, put it there once.
 
-4. **Leave your trackers alone.** Don't delete them and don't wrap them in your own "if consented" code. The widget holds the ones it recognises (its built-in list or your own patterns) until the visitor chooses, where the visitor's region requires consent first.
+4. **Keep your trackers as they are.** They stay in place, with no "if consented" code of your own around them. The banner holds the ones it recognises (its built-in list or your own patterns) until the visitor chooses, where the visitor's region requires consent first.
 
 **Options in `huOptions` (common keys):**
 
 | Key | Default | Change it when |
 |---|---|---|
-| `blocking` | `true` | Almost never. `false` means scripts run before consent. |
+| `blocking` | `true` | Rarely. Set it to `false` only when you want scripts to run before consent. |
 | `currentLanguage` | `"en"` | The page is in another language (two-letter code). |
 | `globalCookie` | `false` | Consent should be shared across your subdomains. |
 
 The dashboard snippet may also include other keys (for example Consent Mode defaults, `blockingEngine`, custom providers). Keep whatever the live snippet gave you.
 
-Colours, wording, consent categories and regions are **not** set in the page. They live in your published configuration in the dashboard, and anything you add to the page for them is overwritten when the banner loads.
+Colours, wording, consent categories and regions are set in your published configuration in the dashboard, not in the page. The banner loads that configuration, so make those changes there.
 
-## Check it works
+If the snippet is currently below your analytics tags, or only on some pages, move it to the top of `<head>` on every page.
 
-Use a **private window**, so no earlier consent is remembered.
+## What the order controls
+
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
+
+## Confirm the result
+
+Use a **private window**, so no earlier consent is remembered. In the browser you should see the banner, and no tracking cookies before the visitor chooses in a region whose rule requires consent first.
 
 **Your location matters.** If region rules are switched on in the dashboard, the banner and the blocking follow the rule for the visitor's region. Some regions may be set to show no banner, or not to block. Test from a location covered by your strictest rule (for example the EU), or confirm region rules are off, before judging checks 1 and 3.
 
@@ -96,15 +84,15 @@ Use a **private window**, so no earlier consent is remembered.
 |---|---|---|
 | 1 | **Look at the page** | The banner appears on first visit. There is **no** "Hu-manity PREVIEW — not active consent management" badge (that badge means a demo snippet was installed instead of the real one). |
 | 2 | **View the page source** | The `huOptions` block and `hu-banner.min.js` are the first scripts in `<head>`, with no `async` or `defer`, and the page contains no `previewMode`, `forceShow` or `cnPreview` (preview-only keys). For a v2 app, the script `src` is `/v2/hu-banner.min.js`. |
-| 3 | **Before clicking anything** | No tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`) in the Application → Cookies panel, and no **data hits** in the Network tab (for example `google-analytics.com/g/collect`, `facebook.com/tr`). |
+| 3 | **Before clicking anything** | The Application → Cookies panel shows no tracking cookies (for example `_ga`, `_gcl_au`, `_fbp`). |
 | 4 | **Allow everything** (choose the most permissive option; on a Classic banner, then click Save; the New banner has no Save button, each choice saves on click, and if the app has the Reloading setting on, the page reloads once after the choice) | Trackers start running straight away, with no reload needed: their cookies appear and data hits go out. After a reload the banner stays closed and a `hu-consent` cookie exists. |
 | 5 | **Another page** | Repeat checks 1–3 on an inner page, in a fresh private window, not only the homepage. |
 
-Check 3 is the one that matters for compliance. In the Elements panel, blocked tags show `type="javascript/blocked"`, but cookies and data hits are the real proof, because a script can still inject other scripts.
+Check 3 confirms the blocking. In the Elements panel, held tags show `type="javascript/blocked"`; the cookies are the clearest confirmation, because they show what actually ran.
 
-**A tracker's script file may still download before consent.** While the page loads, the browser looks ahead in the HTML and starts downloading `<script src>` files it finds there, even while the Cookie Compliance snippet above them is still running. (Scripts that code adds later are not fetched this way.) So you can see a request for a file such as `googletagmanager.com/gtag/js` even when the banner is blocking it correctly: the file downloads but never runs. That is not a failure, as long as its cookies and data hits stay absent. To confirm it didn't run, type these in the browser console before choosing anything: `typeof google_tag_manager` should print `"undefined"` (Google), and `typeof fbq === 'undefined' || !fbq.getState` should print `true` (Meta).
+**How blocking treats a tracker's script file.** While the page loads, the browser looks ahead in the HTML and starts downloading `<script src>` files it finds there, even while the Cookie Compliance snippet above them is still running. (Scripts that code adds later are not fetched this way.) So you may see a request for a file such as `googletagmanager.com/gtag/js` while the banner is holding it: the file downloads, and it runs only after the visitor allows it. Its cookies stay absent until then. To confirm it has not run, type these in the browser console before choosing anything: `typeof google_tag_manager` should print `"undefined"` (Google), and `typeof fbq === 'undefined' || !fbq.getState` should print `true` (Meta).
 
-**Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) are **allowed to load before consent** on purpose. They receive a "denied" consent signal instead of being blocked. With Google Consent Mode, cookieless pings to `google-analytics.com` that carry the denied state are expected too. Seeing those requests is correct. Judge check 3 by the cookies: none of their tracking cookies should appear before the visitor accepts.
+**Google, Meta or Microsoft Consent Mode on?** Then their loader scripts (such as `googletagmanager.com/gtag/js` or `connect.facebook.net`) load before consent on purpose. They receive a "denied" consent signal instead of being held. With Google Consent Mode, cookieless pings to `google-analytics.com` that carry the denied state are part of how it works. Judge check 3 by the cookies: none of their tracking cookies appear before the visitor accepts.
 
 ## Troubleshooting
 
@@ -114,17 +102,17 @@ The status check is `https://designer-api.hu-manity.co/api/designer/user-design-
 |---|---|---|
 | The script loads but no banner shows | The app is not published. | Click **Publish Now** in the dashboard, then copy the snippet again from **Integrations → Manual Integration**. |
 | Status check returns 400 "App is not published yet" | Same. | Same. |
-| Status check returns 400 "App does not exist" or "App was deleted" | The AppID in the snippet is wrong, or the app is gone. | Do not publish. Copy the snippet for the current app from **Integrations → Manual Integration**. |
-| The script path does not match the status check's `WidgetVersion` (`"v2"` needs `/v2/hu-banner.min.js`) | The snippet was copied before publishing, or before an engine switch. | Pasted snippet: copy it again from **Integrations → Manual Integration** after publishing (with MCP: call `install.getSnippet` again). WordPress plugin: never add this snippet; use the plugin fix in step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md). |
-| No banner, and the console shows `[hu] status banner-hidden:gpc` | The browser sends Global Privacy Control. | Nothing: this is expected. Re-test in a fresh profile without Global Privacy Control. |
-| No banner in Playwright, Puppeteer or Selenium | The widget does not run in automated browsers. | See the first gotcha below. |
+| Status check returns 400 "App does not exist" or "App was deleted" | The AppID in the snippet is wrong, or the app is gone. | Copy the snippet for the current app from **Integrations → Manual Integration**. |
+| The script path does not match the status check's `WidgetVersion` (`"v2"` needs `/v2/hu-banner.min.js`) | The snippet was copied before publishing, or before an engine switch. | Pasted snippet: copy it again from **Integrations → Manual Integration** after publishing (with MCP: call `install.getSnippet` again). WordPress plugin: the plugin installs the banner itself, so use the plugin fix in step 0 of [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md) rather than this snippet. |
+| No banner, and the console shows `[hu] status banner-hidden:gpc` | The browser sends Global Privacy Control. | Nothing to fix: this is expected. Re-test in a fresh profile without Global Privacy Control. |
+| No banner in Playwright, Puppeteer or Selenium | The widget stays inactive in automated browsers. | See the first gotcha below. |
 
 ## Gotchas
 
-- **Automated browsers see no banner.** The widget deliberately doesn't run when the browser reports that it is automated (`navigator.webdriver`), or when the user agent looks like a bot, including `HeadlessChrome`. If you check with Playwright, Puppeteer or Selenium, hide `navigator.webdriver` and use a normal desktop user agent, or you'll get a false "banner missing".
+- **Automated browsers.** The widget stays inactive when the browser reports that it is automated (`navigator.webdriver`), or when the user agent looks like a bot, including `HeadlessChrome`. To check with Playwright, Puppeteer or Selenium, hide `navigator.webdriver` and use a normal desktop user agent, and the banner appears.
 - **"Combine" or "minify JS" optimisers** (in hosting panels or caching plugins) can merge or move the snippet. Exclude both tags from them.
-- **Remove any other consent banner.** If the site already has a hand-made cookie popup or another consent tool, take it out. Two banners give visitors two conflicting choices.
-- **Only install your own AppID.** Consent recorded by the snippet is logged against that app, together with the website's domain it came from (not the individual page address).
+- **Keep a single consent banner.** Remove any other one, such as a hand-made cookie popup or another consent tool, so visitors see one clear choice.
+- **Use your own AppID**, and copy the snippet again after switching banner engine. Consent recorded by the snippet is logged against that app, together with the website's domain it came from (not the individual page address).
 
 ## More help
 

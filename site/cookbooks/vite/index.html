@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to a Vite app (React or Vue) — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Put the Cookie Compliance snippet in index.html as classic scripts ahead of the module entry. React and Vue single-page apps share this file. Next.js, Nuxt and SvelteKit have their own pages.">
+<meta name="description" content="Put the Cookie Compliance snippet first in the head of index.html as classic script tags, ahead of the module entry and your analytics tags. React and Vue single-page apps share this file. Next.js…">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/vite/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/vite.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to a Vite app (React or Vue)">
-<meta property="og:description" content="Put the Cookie Compliance snippet in index.html as classic scripts ahead of the module entry. React and Vue single-page apps share this file. Next.js, Nuxt and SvelteKit have their own pages.">
+<meta property="og:description" content="Put the Cookie Compliance snippet first in the head of index.html as classic script tags, ahead of the module entry and your analytics tags. React and Vue single-page apps share this file. Next.js…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/vite/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to a Vite app (React or Vue)",
-      "description": "Put the Cookie Compliance snippet in index.html as classic scripts ahead of the module entry. React and Vue single-page apps share this file. Next.js, Nuxt and SvelteKit have their own pages.",
+      "description": "Put the Cookie Compliance snippet first in the head of index.html as classic script tags, ahead of the module entry and your analytics tags. React and Vue single-page apps share this file. Next.js…",
       "url": "https://manual.hu-manity.co/cookbooks/vite/",
       "inLanguage": "en",
       "dateModified": "2026-10-22",
@@ -113,10 +113,10 @@
         <li><a href="/cookbooks/vite/" aria-current="page">vite</a>
           <ul class="toc" aria-label="On this page">
             <li><a href="#you-need">You need</a></li>
-            <li><a href="#the-wrong-way">The wrong way</a></li>
-            <li><a href="#the-right-way">The right way</a></li>
+            <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#what-the-order-controls">What the order controls</a></li>
+            <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
-            <li><a href="#check-it-works">Check it works</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
       </ul>
@@ -137,21 +137,7 @@
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-vite">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Edit access to the project&#39;s <code>index.html</code> (the file next to <code>vite.config</code>).</li>
 </ul>
-<h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
-<div class="code"><pre tabindex="0"><code class="language-tsx">// src/main.tsx — BAD. The Vue equivalent is onMounted() in src/main.ts or App.vue.
-import { useEffect } from 'react';
-
-export function Banner() {
-  useEffect(() =&gt; {
-    const s = document.createElement('script');
-    s.src = 'https://cdn.hu-manity.co/v2/hu-banner.min.js';
-    document.head.appendChild(s);
-  }, []);
-  return null;
-}
-</code></pre></div>
-<p>The browser parses <code>index.html</code> before the app module runs. A script created from <code>main.tsx</code>, <code>main.ts</code>, <code>useEffect</code>, or Vue&#39;s <code>onMounted</code> is absent from that first document, so any classic tracker tag already in <code>index.html</code> has run.</p>
-<h2 id="the-right-way">The right way <a class="anchor" href="#the-right-way" aria-label="Link to this section">#</a></h2>
+<h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
 <p>Put the live snippet in <code>&lt;head&gt;</code> of <code>index.html</code>, above the module entry. In the source that entry is <code>&lt;script type=&quot;module&quot; src=&quot;/src/main.tsx&quot;&gt;</code> (React) or <code>src=&quot;/src/main.ts&quot;</code> (Vue). Leave it as a module.</p>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;!doctype html&gt;
 &lt;html lang=&quot;en&quot;&gt;
@@ -177,16 +163,12 @@ export function Banner() {
 </code></pre></div>
 <p>Vue uses <code>&lt;div id=&quot;app&quot;&gt;</code> and <code>/src/main.ts</code>. The snippet is the same.</p>
 <p>Prefer pasting the exact HTML from MCP/dashboard rather than retyping <code>huOptions</code> keys — the live snippet may carry Consent Mode defaults, <code>blockingEngine</code>, or custom providers.</p>
-<p><strong>Verified 2026-10-22</strong> on Vite 8.3.5, with the React and Vue templates from create-vite 9.3.1. In both production builds the inline <code>huOptions</code> tag, the banner tag, and an <code>async</code> tracker written after them stayed in that order, with their attributes unchanged. Vite moved the app entry from the end of <code>&lt;body&gt;</code> up into <code>&lt;head&gt;</code>, still <code>type=&quot;module&quot;</code>, and still after those three tags. An <code>async</code> tracker was left where it was written — Vite did not hoist it ahead of the snippet.</p>
-<h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
-<ul>
-<li><strong>The module entry in <code>&lt;head&gt;</code> is expected.</strong> After <code>vite build</code> it may sit in <code>&lt;head&gt;</code> as <code>&lt;script type=&quot;module&quot; src=&quot;/assets/….js&quot;&gt;</code>. It has to stay a module, and the Cookie Compliance tags have to stay ahead of it, as classic scripts.</li>
-<li><strong>Keep <code>async</code> and <code>defer</code> off the banner tags.</strong> A tracker that must stay behind the snippet stays a later classic script too. Confirm the order in the built <code>index.html</code>, which is the file the browser parses.</li>
-<li><strong>React and Vue share this recipe.</strong> <code>useEffect</code>, <code>react-helmet</code>, Vue&#39;s <code>onMounted</code>, and a head helper called from the app all run inside the module.</li>
-<li><strong>Engine switch:</strong> re-paste the live snippet when <code>widgetVersion</code> changes in the dashboard. <code>index.html</code> does not auto-update.</li>
-</ul>
-<h2 id="check-it-works">Check it works <a class="anchor" href="#check-it-works" aria-label="Link to this section">#</a></h2>
-<p>Run <code>verify-install</code> (<code>skills/verify-install/SKILL.md</code>) against the running site. Vite-specific extra:</p>
+<p>Confirmed on Vite React and Vue apps: in the production build the <code>huOptions</code> tag and the banner tag keep their order and attributes, and a tracker tag written after them stays after them. Vite moves the app entry into <code>&lt;head&gt;</code> as <code>type=&quot;module&quot;</code>, after those tags.</p>
+<p>If the snippet is currently created from <code>main.tsx</code>, <code>main.ts</code>, <code>useEffect</code> or Vue&#39;s <code>onMounted</code>, move it to the top of <code>&lt;head&gt;</code> in <code>index.html</code>.</p>
+<h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
+<p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
+<h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
+<p>Run the browser checks in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) with <code>verify-install</code> (<code>skills/verify-install/SKILL.md</code>) against the running site. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. Vite-specific extra:</p>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
 <thead>
@@ -204,10 +186,18 @@ export function Banner() {
 <tr>
 <td>V2</td>
 <td><code>index.html</code> versus <code>src/main.tsx</code> / <code>src/main.ts</code></td>
-<td>The two tags are in <code>index.html</code>. The app entry does not create them.</td>
+<td>The two tags are in <code>index.html</code>, and the app entry leaves them to it.</td>
 </tr>
 </tbody></table>
 </div>
+<h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
+<ul>
+<li><strong>The module entry in <code>&lt;head&gt;</code> is expected.</strong> After <code>vite build</code> it may sit in <code>&lt;head&gt;</code> as <code>&lt;script type=&quot;module&quot; src=&quot;/assets/….js&quot;&gt;</code>. Leave it as a module and keep the Cookie Compliance tags ahead of it, as classic scripts.</li>
+<li><strong>Keep the banner tags as plain classic scripts</strong>, without <code>async</code> or <code>defer</code>, and keep your trackers as later classic scripts. Confirm the order in the built <code>index.html</code>, which is the file the browser parses.</li>
+<li><strong>React and Vue share this recipe.</strong> <code>useEffect</code>, <code>react-helmet</code>, Vue&#39;s <code>onMounted</code>, and a head helper called from the app all run inside the module, so keep the banner in <code>index.html</code>.</li>
+<li><strong>Keep a single consent banner.</strong> Remove any other one, so visitors see one clear choice.</li>
+<li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard (<code>widgetVersion</code>): changing the setting alone does not update a pasted snippet in <code>index.html</code>.</li>
+</ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><a href="https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/">Where to put the Cookie Compliance snippet</a> — the placement rule for every platform, for the site owner.</li>

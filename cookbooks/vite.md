@@ -1,6 +1,6 @@
 ---
 title: Add a cookie consent banner to a Vite app (React or Vue)
-description: Put the Cookie Compliance snippet in index.html as classic scripts ahead of the module entry. React and Vue single-page apps share this file. Next.js, Nuxt and SvelteKit have their own pages.
+description: Put the Cookie Compliance snippet first in the head of index.html as classic script tags, ahead of the module entry and your analytics tags. React and Vue single-page apps share this file. Next.js, Nuxt and SvelteKit have their own pages.
 kind: platform
 last_verified: 2026-10-22
 ---
@@ -16,25 +16,7 @@ This page is for a Vite single-page app. [Next.js](nextjs.md), [Nuxt](nuxt.md) a
 - A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-vite) (free plan, no card); with MCP, call `help.startSignup`.
 - Edit access to the project's `index.html` (the file next to `vite.config`).
 
-## The wrong way
-
-```tsx
-// src/main.tsx — BAD. The Vue equivalent is onMounted() in src/main.ts or App.vue.
-import { useEffect } from 'react';
-
-export function Banner() {
-  useEffect(() => {
-    const s = document.createElement('script');
-    s.src = 'https://cdn.hu-manity.co/v2/hu-banner.min.js';
-    document.head.appendChild(s);
-  }, []);
-  return null;
-}
-```
-
-The browser parses `index.html` before the app module runs. A script created from `main.tsx`, `main.ts`, `useEffect`, or Vue's `onMounted` is absent from that first document, so any classic tracker tag already in `index.html` has run.
-
-## The right way
+## Where it goes
 
 Put the live snippet in `<head>` of `index.html`, above the module entry. In the source that entry is `<script type="module" src="/src/main.tsx">` (React) or `src="/src/main.ts"` (Vue). Leave it as a module.
 
@@ -66,23 +48,30 @@ Vue uses `<div id="app">` and `/src/main.ts`. The snippet is the same.
 
 Prefer pasting the exact HTML from MCP/dashboard rather than retyping `huOptions` keys — the live snippet may carry Consent Mode defaults, `blockingEngine`, or custom providers.
 
-**Verified 2026-10-22** on Vite 8.3.5, with the React and Vue templates from create-vite 9.3.1. In both production builds the inline `huOptions` tag, the banner tag, and an `async` tracker written after them stayed in that order, with their attributes unchanged. Vite moved the app entry from the end of `<body>` up into `<head>`, still `type="module"`, and still after those three tags. An `async` tracker was left where it was written — Vite did not hoist it ahead of the snippet.
+Confirmed on Vite React and Vue apps: in the production build the `huOptions` tag and the banner tag keep their order and attributes, and a tracker tag written after them stays after them. Vite moves the app entry into `<head>` as `type="module"`, after those tags.
 
-## Gotchas
+If the snippet is currently created from `main.tsx`, `main.ts`, `useEffect` or Vue's `onMounted`, move it to the top of `<head>` in `index.html`.
 
-- **The module entry in `<head>` is expected.** After `vite build` it may sit in `<head>` as `<script type="module" src="/assets/….js">`. It has to stay a module, and the Cookie Compliance tags have to stay ahead of it, as classic scripts.
-- **Keep `async` and `defer` off the banner tags.** A tracker that must stay behind the snippet stays a later classic script too. Confirm the order in the built `index.html`, which is the file the browser parses.
-- **React and Vue share this recipe.** `useEffect`, `react-helmet`, Vue's `onMounted`, and a head helper called from the app all run inside the module.
-- **Engine switch:** re-paste the live snippet when `widgetVersion` changes in the dashboard. `index.html` does not auto-update.
+## What the order controls
 
-## Check it works
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
 
-Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site. Vite-specific extra:
+## Confirm the result
+
+Run the browser checks in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) with `verify-install` (`skills/verify-install/SKILL.md`) against the running site. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. Vite-specific extra:
 
 | # | Check | Pass |
 |---|---|---|
 | V1 | View source (not devtools' rendered DOM), and the built `dist/index.html` | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are the first `<script>` tags, in that order, with no `async`, `defer`, or `type="module"`. The app bundle may follow them as `type="module"`. |
-| V2 | `index.html` versus `src/main.tsx` / `src/main.ts` | The two tags are in `index.html`. The app entry does not create them. |
+| V2 | `index.html` versus `src/main.tsx` / `src/main.ts` | The two tags are in `index.html`, and the app entry leaves them to it. |
+
+## Gotchas
+
+- **The module entry in `<head>` is expected.** After `vite build` it may sit in `<head>` as `<script type="module" src="/assets/….js">`. Leave it as a module and keep the Cookie Compliance tags ahead of it, as classic scripts.
+- **Keep the banner tags as plain classic scripts**, without `async` or `defer`, and keep your trackers as later classic scripts. Confirm the order in the built `index.html`, which is the file the browser parses.
+- **React and Vue share this recipe.** `useEffect`, `react-helmet`, Vue's `onMounted`, and a head helper called from the app all run inside the module, so keep the banner in `index.html`.
+- **Keep a single consent banner.** Remove any other one, so visitors see one clear choice.
+- **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard (`widgetVersion`): changing the setting alone does not update a pasted snippet in `index.html`.
 
 ## More help
 

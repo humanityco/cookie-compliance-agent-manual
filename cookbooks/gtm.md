@@ -1,32 +1,24 @@
 ---
 title: Cookie consent banner with Google Tag Manager
-description: Put the Cookie Compliance snippet in <head> above the Google Tag Manager container, not in GTM, so blocking and Consent Mode defaults precede gtm.js.
+description: Put the Cookie Compliance snippet first in the page <head>, above the Google Tag Manager container, so blocking and Consent Mode defaults are in place before gtm.js runs.
 kind: scenario
 last_verified: 2026-09-28
 ---
 
 # Cookie consent banner with Google Tag Manager
 
-**In short:** put Cookie Compliance in the page `<head>` **above** the GTM container snippet. Do **not** add the Cookie Compliance tags as a tag inside the GTM container.
+**In short:** put Cookie Compliance as the first script in the page `<head>`, **above** the GTM container snippet, and keep your tags inside GTM.
 
-## Why
+## Why the snippet goes first
 
-Blocking and Consent Mode defaults must exist **before** `gtm.js` / `{gtm.start}` run. A tag that fires "on All Pages" inside GTM is already too late: the container has started, and child tags can write cookies before the CMP is in force.
+Blocking and Consent Mode defaults are set up when the snippet runs, so placing it above the GTM container puts them in place before `gtm.js` / `{gtm.start}` starts. The container's tags then load with the visitor's consent state already known.
 
-If the Cookie Compliance snippet loads after the GTM container, tags the container fires can set cookies before the visitor chooses, in a region that requires consent first.
-
-## The wrong way
-
-- Creating a Custom HTML tag in GTM that pastes `huOptions` + `hu-banner.min.js`.
-- Loading Cookie Compliance only via a tag-manager "consent" template that still boots after `gtm.js`.
-- Moving analytics into GTM and assuming that alone solves pre-consent blocking without a page-level CMP first.
-
-## The right way
+## Where it goes
 
 1. Get the **live** Cookie Compliance snippet (MCP `install.getSnippet` or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-gtm) (free plan, no card); with MCP, call `help.startSignup`.
 2. Paste it as the **first script** in the site's real `<head>` (layout / theme / HTML), on every page.
 3. Leave the existing GTM snippet where it is, **below** Cookie Compliance.
-4. Keep the tags inside GTM — do not delete GA4/Ads tags to "fix" consent. Gate them with consent triggers in GTM so they wait for the visitor's choice where the region requires consent first (on the Classic engine, always do this). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.
+4. Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor's choice where the region requires consent first (on the Classic engine, always do this). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.
 
 ```html
 <head>
@@ -39,21 +31,25 @@ If the Cookie Compliance snippet loads after the GTM container, tags the contain
 </head>
 ```
 
-If you **cannot** edit `<head>` outside GTM, stop and tell the owner. Do not invent a container-only workaround.
+If the snippet is currently inside GTM (a Custom HTML tag, or a tag-manager consent template), move it into the page `<head>` above the container snippet. That needs edit access to the site's layout, theme or HTML, so ask the site owner for it if you do not have it.
 
-## Check it works
+## What the order controls
+
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
+
+## Confirm the result
 
 Same verification as install-banner / plain-html. Extra:
 
 | # | Check | Pass |
 |---|---|---|
 | G1 | View source | Cookie Compliance script tags appear **above** the GTM bootstrap in `<head>`. |
-| G2 | Before consent | No Ads/Analytics cookies from GTM-fired tags; with Google Consent Mode on, denied cookieless pings may appear — judge by cookies, not by loader requests. |
+| G2 | Before the visitor chooses, in a region whose rule requires consent first | No Ads/Analytics cookies from GTM-fired tags; with Google Consent Mode on, denied cookieless pings may appear — judge by cookies, not by loader requests. |
 
 ## Gotchas
 
-- **WordPress + GTM4WP (or similar):** still install the Cookie Compliance **plugin** for placement; do not also paste a manual snippet, and do not put the CMP inside GTM.
-- **Banner engine:** a new app uses `/v2/hu-banner.min.js`. Take the URL from the live snippet. An app already on v1 keeps the URL without `/v2/`. After an engine switch, re-copy; do not hardcode.
+- **WordPress + GTM4WP (or similar):** install the Cookie Compliance **plugin** for placement, and let it be the only place the banner is added (no manual snippet, nothing inside GTM).
+- **Banner engine:** a new app uses `/v2/hu-banner.min.js`. Take the URL from the live snippet; an app already on v1 keeps the URL without `/v2/`. After an engine switch, copy the snippet again.
 
 ## More help
 
