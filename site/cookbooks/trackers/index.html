@@ -140,27 +140,27 @@
 <li>Edit access to the place your tags are added: the same template, theme or head field as the snippet.</li>
 </ul>
 <h2 id="how-each-tag-is-held">How each tag is held <a class="anchor" href="#how-each-tag-is-held" aria-label="Link to this section">#</a></h2>
-<p>Both banner engines hold the tags below by the address of the script file. Each is held under a category, and it is released when the visitor allows that category: 1 Basic Operations, 2 Content Personalization, 3 Site Optimization, 4 Ad Personalization.</p>
+<p>Both banner engines recognise the tags below by the address of the script file. In regions whose rule requires consent first, a recognised tag waits until the visitor allows its category: 1 Basic Operations, 2 Content Personalisation, 3 Site Optimisation, 4 Ad Personalisation. The category shown is the built-in default. You can file any tag under a different category with your own Autoblocking pattern or a <code>data-hu-category</code> mark.</p>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">
 <table>
 <thead>
 <tr>
 <th>Tracker</th>
-<th>Held automatically?</th>
-<th>Category</th>
+<th>Recognised by the built-in list</th>
+<th>Default category</th>
 <th>How to add it</th>
 </tr>
 </thead>
 <tbody><tr>
 <td>GA4 (gtag)</td>
-<td>Yes: the <code>googletagmanager.com/gtag/js</code> loader</td>
+<td>Yes: the <code>googletagmanager.com</code> loader, <code>gtag/js</code> or <code>gtm.js</code></td>
 <td>2</td>
 <td>Paste Google&#39;s snippet below the banner snippet, unchanged.</td>
 </tr>
 <tr>
 <td>Google Ads</td>
-<td>Yes: the same <code>gtag/js</code> loader, and the <code>googleadservices.com/pagead/conversion</code> files</td>
-<td>2 for <code>gtag/js</code>, 4 for the conversion files</td>
+<td>Yes: the same <code>googletagmanager.com</code> loader, and the <code>googleadservices.com/pagead/conversion</code> files (<code>conversion.js</code>, <code>conversion_async</code>)</td>
+<td>2 for the loader, 4 for the conversion files</td>
 <td>Paste the Ads tag below the banner snippet, unchanged.</td>
 </tr>
 <tr>
@@ -177,7 +177,7 @@
 </tr>
 <tr>
 <td>Microsoft Clarity</td>
-<td>Yes: <code>clarity.ms/tag/</code> and <code>clarity.js</code></td>
+<td>Yes: <code>clarity.ms/tag/</code> and <code>/clarity.js</code></td>
 <td>4</td>
 <td>Paste the Clarity snippet below the banner snippet. The whole inline block is held, because it names that address.</td>
 </tr>
@@ -185,7 +185,7 @@
 <td>LinkedIn Insight Tag</td>
 <td>Yes: the <code>insight.min.js</code> loader (<code>lms-analytics/insight.min.js</code>)</td>
 <td>3</td>
-<td>Paste the Insight Tag below the banner snippet. The whole inline block is held, because it names that address.</td>
+<td>Paste the Insight Tag below the banner snippet, in <code>&lt;head&gt;</code> or where LinkedIn places it. The whole inline block is held, because it names that address.</td>
 </tr>
 <tr>
 <td>TikTok Pixel</td>
@@ -213,7 +213,7 @@
 <ol>
 <li><p>Keep the Cookie Compliance snippet as the first script in <code>&lt;head&gt;</code>.</p>
 </li>
-<li><p>Put each tag <strong>below</strong> it, in the same <code>&lt;head&gt;</code>, as the vendor gives it to you:</p>
+<li><p>Put each tag <strong>below</strong> it, in the same <code>&lt;head&gt;</code> (or wherever the vendor places it, as long as it is below the banner snippet), as the vendor gives it to you:</p>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;head&gt;
   &lt;!-- Cookie Compliance: first script on the page --&gt;
   &lt;script&gt;var huOptions = { &quot;appID&quot;: &quot;YOUR_APP_ID&quot;, &quot;currentLanguage&quot;: &quot;en&quot;, &quot;blocking&quot;: true, &quot;globalCookie&quot;: false };&lt;/script&gt;
@@ -234,9 +234,9 @@
 <p>Test from a region your strictest rule covers (for example the EU), or confirm region rules are off. The browser checks are in <a href="/cookbooks/plain-html/#confirm-the-result">plain-html</a>, and the full procedure is <a href="/skills/verify-install/">verify-install</a>.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>A tracker that is not on the list.</strong> Add your own pattern in Autoblocking, or mark the script with <code>data-hu-category</code> as above. Either way the banner then holds it like the tags in the table.</li>
+<li><strong>A tracker that is not on the list.</strong> Add your own pattern in Autoblocking, or mark the script with <code>data-hu-category</code> as above. Either way the banner then holds it like the tags in the table, in regions whose rule requires consent first.</li>
 <li><strong>Tags added by a tag manager.</strong> Gate them with consent triggers in the tag manager (both engines). On the New engine, recognised tags that Google Tag Manager fires are also held automatically.</li>
-<li><strong>Google or Meta Consent Mode on.</strong> Their loaders (<code>gtag/js</code>, <code>connect.facebook.net</code>) then load straight away and receive a &quot;denied&quot; consent signal until the visitor chooses. Judge the result by the cookies, as in <a href="/skills/verify-install/">verify-install</a>.</li>
+<li><strong>Google, Meta or Microsoft Consent Mode on.</strong> Their loaders (<code>googletagmanager.com</code>, <code>connect.facebook.net</code>, and the Clarity tag when Microsoft Consent Mode is on) then load straight away and receive a &quot;denied&quot; consent signal until the visitor chooses. Judge the result by the cookies, as in <a href="/skills/verify-install/">verify-install</a>.</li>
 <li><strong>Essential is your choice.</strong> Marking a tag <code>data-hu-category=&quot;1&quot;</code> lets it run before consent. Mark only tags your site needs to work, and decide each one on purpose.</li>
 <li><strong>Held scripts may still download.</strong> The file can download while it is held; it does not run until the visitor chooses.</li>
 </ul>

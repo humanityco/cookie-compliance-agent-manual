@@ -17,16 +17,16 @@ last_verified: 2026-11-12
 
 ## How each tag is held
 
-Both banner engines hold the tags below by the address of the script file. Each is held under a category, and it is released when the visitor allows that category: 1 Basic Operations, 2 Content Personalization, 3 Site Optimization, 4 Ad Personalization.
+Both banner engines recognise the tags below by the address of the script file. In regions whose rule requires consent first, a recognised tag waits until the visitor allows its category: 1 Basic Operations, 2 Content Personalisation, 3 Site Optimisation, 4 Ad Personalisation. The category shown is the built-in default. You can file any tag under a different category with your own Autoblocking pattern or a `data-hu-category` mark.
 
-| Tracker | Held automatically? | Category | How to add it |
+| Tracker | Recognised by the built-in list | Default category | How to add it |
 |---|---|---|---|
-| GA4 (gtag) | Yes: the `googletagmanager.com/gtag/js` loader | 2 | Paste Google's snippet below the banner snippet, unchanged. |
-| Google Ads | Yes: the same `gtag/js` loader, and the `googleadservices.com/pagead/conversion` files | 2 for `gtag/js`, 4 for the conversion files | Paste the Ads tag below the banner snippet, unchanged. |
+| GA4 (gtag) | Yes: the `googletagmanager.com` loader, `gtag/js` or `gtm.js` | 2 | Paste Google's snippet below the banner snippet, unchanged. |
+| Google Ads | Yes: the same `googletagmanager.com` loader, and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`) | 2 for the loader, 4 for the conversion files | Paste the Ads tag below the banner snippet, unchanged. |
 | Meta Pixel | Yes: `connect.facebook.net` (`fbevents.js`) | 4 | Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address. |
 | Hotjar | Yes: `static.hotjar.com` and `script.hotjar.com` | 3 | Paste the Hotjar snippet below the banner snippet. The whole inline block is held, because it names that address. |
-| Microsoft Clarity | Yes: `clarity.ms/tag/` and `clarity.js` | 4 | Paste the Clarity snippet below the banner snippet. The whole inline block is held, because it names that address. |
-| LinkedIn Insight Tag | Yes: the `insight.min.js` loader (`lms-analytics/insight.min.js`) | 3 | Paste the Insight Tag below the banner snippet. The whole inline block is held, because it names that address. |
+| Microsoft Clarity | Yes: `clarity.ms/tag/` and `/clarity.js` | 4 | Paste the Clarity snippet below the banner snippet. The whole inline block is held, because it names that address. |
+| LinkedIn Insight Tag | Yes: the `insight.min.js` loader (`lms-analytics/insight.min.js`) | 3 | Paste the Insight Tag below the banner snippet, in `<head>` or where LinkedIn places it. The whole inline block is held, because it names that address. |
 | TikTok Pixel | Yes: `analytics.tiktok.com` | 4 | Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address. |
 | Matomo | Yes, for a script file named `matomo.js` (self-hosted or Matomo Cloud) | 3 | Load `matomo.js` with a normal `<script src>` below the banner snippet. Matomo's standard inline snippet builds the file name in pieces, so mark it: `class="hu-block" data-hu-category="3"`. |
 
@@ -47,7 +47,7 @@ To choose the category of any script, inline or external, add `class="hu-block"`
 ## Where it goes
 
 1. Keep the Cookie Compliance snippet as the first script in `<head>`.
-2. Put each tag **below** it, in the same `<head>`, as the vendor gives it to you:
+2. Put each tag **below** it, in the same `<head>` (or wherever the vendor places it, as long as it is below the banner snippet), as the vendor gives it to you:
 
    ```html
    <head>
@@ -74,9 +74,9 @@ Test from a region your strictest rule covers (for example the EU), or confirm r
 
 ## Gotchas
 
-- **A tracker that is not on the list.** Add your own pattern in Autoblocking, or mark the script with `data-hu-category` as above. Either way the banner then holds it like the tags in the table.
+- **A tracker that is not on the list.** Add your own pattern in Autoblocking, or mark the script with `data-hu-category` as above. Either way the banner then holds it like the tags in the table, in regions whose rule requires consent first.
 - **Tags added by a tag manager.** Gate them with consent triggers in the tag manager (both engines). On the New engine, recognised tags that Google Tag Manager fires are also held automatically.
-- **Google or Meta Consent Mode on.** Their loaders (`gtag/js`, `connect.facebook.net`) then load straight away and receive a "denied" consent signal until the visitor chooses. Judge the result by the cookies, as in [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md).
+- **Google, Meta or Microsoft Consent Mode on.** Their loaders (`googletagmanager.com`, `connect.facebook.net`, and the Clarity tag when Microsoft Consent Mode is on) then load straight away and receive a "denied" consent signal until the visitor chooses. Judge the result by the cookies, as in [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md).
 - **Essential is your choice.** Marking a tag `data-hu-category="1"` lets it run before consent. Mark only tags your site needs to work, and decide each one on purpose.
 - **Held scripts may still download.** The file can download while it is held; it does not run until the visitor chooses.
 
