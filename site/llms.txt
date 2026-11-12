@@ -45,7 +45,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [ghost](cookbooks/ghost.md): place the snippet first in `<head>` of the theme's `default.hbs`, above `{{ghost_head}}`; keep analytics in Code injection below it.
 - [prestashop](cookbooks/prestashop.md): place the snippet first in the theme's `_partials/head.tpl`, above the Google Analytics module and other header scripts.
 - [magento](cookbooks/magento.md): place the snippet first inside `<head>` in the theme's `Magento_Theme/templates/root.phtml`, above RequireJS and analytics tags.
-- [trackers](cookbooks/trackers.md): which common analytics and ad tags (GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok, Matomo) are held until the visitor chooses, their categories, and how to add each one below the banner snippet.
+- [trackers](cookbooks/trackers.md): which common analytics and ad tags (GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok, Matomo) are held until the visitor chooses in regions whose rule requires consent first, their categories, and how to add each one below the banner snippet.
 
 ## Design gallery
 
