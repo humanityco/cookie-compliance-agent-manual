@@ -29,7 +29,7 @@ If the Manual Integration snippet is currently pasted into `header.php`, a custo
 
 ## What the order controls
 
-The plugin places the banner ahead of your other scripts. It holds recognised trackers until the visitor chooses, in regions whose rule requires consent first, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision.
+The plugin places the banner early in `<head>`. It holds recognised trackers until the visitor chooses, in regions whose rule requires consent first, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision.
 
 ## Confirm the result
 

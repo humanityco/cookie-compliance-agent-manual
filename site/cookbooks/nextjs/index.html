@@ -167,7 +167,7 @@
 <p>Prefer pasting the exact HTML string from MCP/dashboard into the layout (or a tiny server-only include) rather than rebuilding <code>huOptions</code> keys by hand: the live snippet may carry Consent Mode defaults and the correct CDN path.</p>
 <p>Next.js versions differ in how the root layout renders the document head, so check the built page&#39;s source after you add the snippet.</p>
 <h3 id="pages-router">Pages Router <a class="anchor" href="#pages-router" aria-label="Link to this section">#</a></h3>
-<p>Put the same two tags in <code>pages/_document.tsx</code> inside <code>&lt;Head&gt;</code>, ahead of any other scripts. Use <code>_app</code> only if it renders into <code>&lt;head&gt;</code> before other scripts on your Next.js version, and check View Source.</p>
+<p>Put the same two tags in <code>pages/_document.tsx</code> inside <code>&lt;Head&gt;</code>, ahead of any other scripts. Prefer <code>_document</code>; it is the file that renders the document <code>&lt;head&gt;</code>.</p>
 <p>If the snippet is currently in <code>next/script</code>, in a client component or in the <code>&lt;body&gt;</code>, move it to the top of the root layout&#39;s <code>&lt;head&gt;</code> (or <code>pages/_document.tsx</code>).</p>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
 <p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>

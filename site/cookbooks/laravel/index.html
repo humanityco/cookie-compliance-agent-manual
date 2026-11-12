@@ -131,7 +131,7 @@
 <h1 id="add-a-cookie-consent-banner-to-a-laravel-app">Add a cookie consent banner to a Laravel app</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/laravel.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet directly after the opening <code>&lt;head&gt;</code> of the Blade layout every page uses (in a fresh app that is <code>resources/views/welcome.blade.php</code>; in yours, the shared layout file), above the other lines in <code>&lt;head&gt;</code> (<code>@fonts</code>, <code>@vite</code>).</p>
-<p>Confirmed on a Laravel app, on the starter page <code>welcome.blade.php</code>: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>.</p>
+<p>Confirmed on a Laravel app: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-laravel">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
@@ -152,6 +152,7 @@
     &lt;script src=&quot;https://cdn.hu-manity.co/v2/hu-banner.min.js&quot; type=&quot;text/javascript&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
 
     &lt;meta charset=&quot;utf-8&quot;&gt;
+    @fonts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     &lt;script async src=&quot;https://www.googletagmanager.com/gtag/js?id=G-XXXX&quot;&gt;&lt;/script&gt;
 &lt;/head&gt;

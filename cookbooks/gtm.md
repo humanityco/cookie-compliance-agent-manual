@@ -7,7 +7,7 @@ last_verified: 2026-09-28
 
 # Cookie consent banner with Google Tag Manager
 
-**In short:** put Cookie Compliance as the first script in the page `<head>`, **above** the GTM container snippet, and keep your tags inside GTM.
+**In short:** put Cookie Compliance as the first script in the page `<head>`, **above** the GTM container snippet, and keep your own tags inside GTM. Cookie Compliance itself stays in the page `<head>`, outside the container.
 
 ## Why the snippet goes first
 
@@ -18,7 +18,7 @@ Blocking and Consent Mode defaults are set up when the snippet runs, so placing 
 1. Get the **live** Cookie Compliance snippet (MCP `install.getSnippet` or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-gtm) (free plan, no card); with MCP, call `help.startSignup`.
 2. Paste it as the **first script** in the site's real `<head>` (layout / theme / HTML), on every page.
 3. Leave the existing GTM snippet where it is, **below** Cookie Compliance.
-4. Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor's choice where the region requires consent first (on the Classic engine, always do this). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.
+4. Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor's choice where the region requires consent first (on both engines). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.
 
 ```html
 <head>
@@ -43,7 +43,7 @@ Same verification as install-banner / plain-html. Extra:
 
 | # | Check | Pass |
 |---|---|---|
-| G1 | View source | Cookie Compliance script tags appear **above** the GTM bootstrap in `<head>`. |
+| G1 | View source | Cookie Compliance script tags appear **above** the GTM bootstrap in `<head>`, as plain synchronous tags (no `async` or `defer`). |
 | G2 | Before the visitor chooses, in a region whose rule requires consent first | No Ads/Analytics cookies from GTM-fired tags; with Google Consent Mode on, denied cookieless pings may appear — judge by cookies, not by loader requests. |
 
 ## Gotchas

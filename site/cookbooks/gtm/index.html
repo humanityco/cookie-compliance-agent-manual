@@ -130,7 +130,7 @@
   <main id="content" class="doc">
 <h1 id="cookie-consent-banner-with-google-tag-manager">Cookie consent banner with Google Tag Manager</h1>
 <p class="page-meta">Cookbook · scenario <span aria-hidden="true">·</span> Last verified <time datetime="2026-09-28">28 September 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/gtm.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> put Cookie Compliance as the first script in the page <code>&lt;head&gt;</code>, <strong>above</strong> the GTM container snippet, and keep your tags inside GTM.</p>
+<p><strong>In short:</strong> put Cookie Compliance as the first script in the page <code>&lt;head&gt;</code>, <strong>above</strong> the GTM container snippet, and keep your own tags inside GTM. Cookie Compliance itself stays in the page <code>&lt;head&gt;</code>, outside the container.</p>
 <h2 id="why-the-snippet-goes-first">Why the snippet goes first <a class="anchor" href="#why-the-snippet-goes-first" aria-label="Link to this section">#</a></h2>
 <p>Blocking and Consent Mode defaults are set up when the snippet runs, so placing it above the GTM container puts them in place before <code>gtm.js</code> / <code>{gtm.start}</code> starts. The container&#39;s tags then load with the visitor&#39;s consent state already known.</p>
 <h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
@@ -138,7 +138,7 @@
 <li>Get the <strong>live</strong> Cookie Compliance snippet (MCP <code>install.getSnippet</code> or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-gtm">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
 <li>Paste it as the <strong>first script</strong> in the site&#39;s real <code>&lt;head&gt;</code> (layout / theme / HTML), on every page.</li>
 <li>Leave the existing GTM snippet where it is, <strong>below</strong> Cookie Compliance.</li>
-<li>Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor&#39;s choice where the region requires consent first (on the Classic engine, always do this). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.</li>
+<li>Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor&#39;s choice where the region requires consent first (on both engines). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.</li>
 </ol>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;head&gt;
   &lt;!-- 1. Cookie Compliance FIRST (live snippet; a new app is on v2, an app on v1 keeps the URL without /v2/) --&gt;
@@ -166,7 +166,7 @@
 <tbody><tr>
 <td>G1</td>
 <td>View source</td>
-<td>Cookie Compliance script tags appear <strong>above</strong> the GTM bootstrap in <code>&lt;head&gt;</code>.</td>
+<td>Cookie Compliance script tags appear <strong>above</strong> the GTM bootstrap in <code>&lt;head&gt;</code>, as plain synchronous tags (no <code>async</code> or <code>defer</code>).</td>
 </tr>
 <tr>
 <td>G2</td>

@@ -58,7 +58,7 @@ Run the browser checks in a private window (banner shows, no tracking cookies be
 | # | Check | Pass |
 |---|---|---|
 | A1 | View source (not devtools' rendered DOM) on `/` | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are the first `<script>` tags, in that order, with no `async`, `defer`, or `type="module"`. |
-| A2 | `src/index.html` and `angular.json` | The two tags are in `src/index.html`, and the `scripts` array holds your other files. |
+| A2 | `src/index.html` and `angular.json` | The two tags are in `src/index.html` only, and the `scripts` array holds your other files. |
 
 ## Gotchas
 

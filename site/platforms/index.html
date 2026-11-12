@@ -129,7 +129,7 @@
 <p class="page-meta"><a href="/platforms.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> the banner is one two-tag snippet that works on any site where you can place code in the <code>&lt;head&gt;</code>, whatever it is built with. What changes from platform to platform is <strong>where the snippet goes</strong>. Find your platform below for the exact spot, or use the general steps if it isn&#39;t listed.</p>
 <h2 id="the-one-rule">The one rule <a class="anchor" href="#the-one-rule" aria-label="Link to this section">#</a></h2>
-<p>Blocking works by <strong>execution order</strong>: the banner holds the scripts that come after it. So the snippet goes <strong>first</strong> on every page, in <code>&lt;head&gt;</code>, as plain synchronous tags (no <code>async</code>, <code>defer</code> or <code>type=&quot;module&quot;</code>), above analytics, pixels and any tag manager.</p>
+<p>Blocking works by <strong>execution order</strong>: the banner holds the recognised trackers that come after it. So the snippet goes <strong>first</strong> on every page, in <code>&lt;head&gt;</code>, as plain synchronous tags (no <code>async</code>, <code>defer</code> or <code>type=&quot;module&quot;</code>), above analytics, pixels and any tag manager.</p>
 <p>Scripts you mark essential (<code>data-hu-category=&quot;1&quot;</code>) run straight away. Recognised trackers wait for the visitor&#39;s choice, in regions whose rule requires consent first. What runs before consent is your decision.</p>
 <h2 id="platforms-with-a-guide">Platforms with a guide <a class="anchor" href="#platforms-with-a-guide" aria-label="Link to this section">#</a></h2>
 <p>Each guide shows where the snippet goes and how to confirm it.</p>
@@ -229,7 +229,7 @@
 <ol>
 <li>Copy the live snippet from the dashboard (<strong>Integrations → Manual Integration</strong>), or with the MCP server connected call <code>install.getSnippet</code>. Paste it unchanged. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=platforms">Sign up</a> (free plan, no card).</li>
 <li>Paste it as the first thing inside <code>&lt;head&gt;</code>, on every page or in the shared header your pages include.</li>
-<li>Confirm it with <a href="/skills/verify-install/">verify-install</a>: in a region whose rule requires consent first, no tracking cookies appear before the visitor chooses.</li>
+<li>Confirm it with <a href="/skills/verify-install/">verify-install</a>: in a region whose rule requires consent first, no tracking cookies appear before the visitor chooses. It also explains what to expect with Google Consent Mode.</li>
 </ol>
 <p>The banner works from any spot that comes first in <code>&lt;head&gt;</code>. Most site builders have a header or head-code field: use that one. If a platform offers only a footer or <code>&lt;body&gt;</code> code box, look for its header option, or a template where you can edit <code>&lt;head&gt;</code>. <a href="/skills/verify-install/">verify-install</a> confirms the result. A coding agent that finds no head position should tell the site owner which options exist before installing.</p>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>

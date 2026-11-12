@@ -189,8 +189,8 @@ export default defineNuxtConfig({
 </div>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Leave out <code>async</code> and <code>defer</code> in <code>app.head.script</code>.</strong> Nuxt&#39;s head manager (<code>unhead</code>) moves an entry marked <code>async: true</code> ahead of entries listed earlier, including a synchronous Cookie Compliance snippet. Plain entries render in the order you wrote them. Check the order with View Source of the response.</li>
-<li><strong>Use the static config for the banner.</strong> <code>app.head</code> in <code>nuxt.config.ts</code> renders into the initial HTML. <code>useHead()</code> inside a page or component runs as part of that component&#39;s setup, on a schedule Nuxt controls, so it is a better place for page-specific tags than for the banner.</li>
+<li><strong>Leave out <code>async</code> and <code>defer</code> in <code>app.head.script</code>.</strong> Nuxt&#39;s head manager (<code>unhead</code>) moves an entry marked <code>async: true</code> ahead of entries listed earlier, including a synchronous Cookie Compliance snippet. Plain entries (no <code>async</code> or <code>defer</code>) render in the order you wrote them. Check the order with View Source of the response.</li>
+<li><strong>Use the static config for the banner.</strong> <code>app.head</code> in <code>nuxt.config.ts</code> renders into the initial HTML. <code>useHead()</code> inside a page or component runs as part of that component&#39;s setup, after the config entries, so it suits page-specific tags; the banner belongs in the static config.</li>
 <li><strong>Keep the banner out of <code>.client.ts</code> plugins.</strong> A <code>.client.ts</code> plugin runs in the browser after hydration, while <code>app.head.script</code> is in the server-rendered HTML.</li>
 <li><strong>Engine switch:</strong> re-paste the live snippet when <code>widgetVersion</code> changes in the dashboard; <code>nuxt.config.ts</code> does not auto-update.</li>
 </ul>

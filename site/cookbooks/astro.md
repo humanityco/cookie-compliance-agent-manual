@@ -56,7 +56,7 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site
 
 ## Gotchas
 
-- **`is:inline` on every tag.** Astro's default script processing keeps the page looking the same, so View Source is where to confirm the tags are literal `<script>` elements. With `is:inline` on each Cookie Compliance tag, they are.
+- **`is:inline` on every tag.** Without `is:inline`, Astro bundles a script as a deferred module, so it no longer runs in page order. With `is:inline` on each Cookie Compliance tag they stay literal `<script>` elements, which View Source confirms.
 - **Add `is:inline` explicitly.** Astro leaves some tags unprocessed depending on their attributes (for example an explicit `type="text/javascript"`), so setting `is:inline` on each tag gives the same result whichever attributes the snippet carries.
 - **Engine switch:** re-paste the live snippet when `widgetVersion` changes in the dashboard; the layout does not auto-update.
 

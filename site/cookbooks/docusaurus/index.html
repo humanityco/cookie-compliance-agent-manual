@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to a Docusaurus site — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.">
+<meta name="description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option where the banner holds recognised trackers…">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/docusaurus/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/docusaurus.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to a Docusaurus site">
-<meta property="og:description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.">
+<meta property="og:description" content="Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option where the banner holds recognised trackers…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/docusaurus/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to a Docusaurus site",
-      "description": "Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.",
+      "description": "Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option where the banner holds recognised trackers…",
       "url": "https://manual.hu-manity.co/cookbooks/docusaurus/",
       "inLanguage": "en",
       "dateModified": "2026-11-12",
@@ -155,7 +155,8 @@
       attributes: { src: 'https://cdn.hu-manity.co/v2/hu-banner.min.js', type: 'text/javascript', charset: 'utf-8' },
     },
   ],
-  // add analytics through `scripts` (below), which renders after these
+  // analytics goes in `scripts`, which renders after the entries above
+  scripts: ['https://www.googletagmanager.com/gtag/js?id=G-XXXX'],
 }
 </code></pre></div>
 </li>
@@ -172,7 +173,7 @@
 <p>Then run the browser checks in <a href="/cookbooks/plain-html/#confirm-the-result">plain-html</a> in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Add analytics through <code>scripts</code>.</strong> Docusaurus&#39;s built-in <code>gtag</code> option writes its tag ahead of <code>headTags</code>, so it runs before the banner. Add Google Analytics through the <code>scripts</code> option instead: it renders after the banner, which holds it until the visitor chooses. A script your site needs before consent can be marked essential and runs as you intend.</li>
+<li><strong>Add analytics through <code>scripts</code>.</strong> Docusaurus&#39;s built-in <code>gtag</code> option writes its tag ahead of <code>headTags</code>, wherever the plugins are listed, so it runs before the banner. Add Google Analytics through the <code>scripts</code> option instead: it renders after the banner, which holds recognised trackers such as Google Analytics until the visitor chooses, in regions whose rule requires consent first.</li>
 <li><strong>Check the built site.</strong> View the page source of what <code>npm run build</code> produces and serves, because that is what visitors get.</li>
 <li><strong>Keep a single consent banner.</strong> Remove any other one, so visitors see one clear choice.</li>
 <li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>

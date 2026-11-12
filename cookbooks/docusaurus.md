@@ -1,6 +1,6 @@
 ---
 title: Add a cookie consent banner to a Docusaurus site
-description: Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option so the banner can hold it.
+description: Add the Cookie Compliance snippet through headTags in docusaurus.config as two synchronous script entries, and add analytics through the scripts option where the banner holds recognised trackers until the visitor chooses.
 kind: platform
 last_verified: 2026-11-12
 ---
@@ -35,7 +35,8 @@ Confirmed on a Docusaurus site: with `headTags`, the banner tags are among the f
          attributes: { src: 'https://cdn.hu-manity.co/v2/hu-banner.min.js', type: 'text/javascript', charset: 'utf-8' },
        },
      ],
-     // add analytics through `scripts` (below), which renders after these
+     // analytics goes in `scripts`, which renders after the entries above
+     scripts: ['https://www.googletagmanager.com/gtag/js?id=G-XXXX'],
    }
    ```
 
@@ -59,7 +60,7 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 ## Gotchas
 
-- **Add analytics through `scripts`.** Docusaurus's built-in `gtag` option writes its tag ahead of `headTags`, so it runs before the banner. Add Google Analytics through the `scripts` option instead: it renders after the banner, which holds it until the visitor chooses. A script your site needs before consent can be marked essential and runs as you intend.
+- **Add analytics through `scripts`.** Docusaurus's built-in `gtag` option writes its tag ahead of `headTags`, wherever the plugins are listed, so it runs before the banner. Add Google Analytics through the `scripts` option instead: it renders after the banner, which holds recognised trackers such as Google Analytics until the visitor chooses, in regions whose rule requires consent first.
 - **Check the built site.** View the page source of what `npm run build` produces and serves, because that is what visitors get.
 - **Keep a single consent banner.** Remove any other one, so visitors see one clear choice.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.

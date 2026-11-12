@@ -53,7 +53,7 @@ Next.js versions differ in how the root layout renders the document head, so che
 
 ### Pages Router
 
-Put the same two tags in `pages/_document.tsx` inside `<Head>`, ahead of any other scripts. Use `_app` only if it renders into `<head>` before other scripts on your Next.js version, and check View Source.
+Put the same two tags in `pages/_document.tsx` inside `<Head>`, ahead of any other scripts. Prefer `_document`; it is the file that renders the document `<head>`.
 
 If the snippet is currently in `next/script`, in a client component or in the `<body>`, move it to the top of the root layout's `<head>` (or `pages/_document.tsx`).
 

@@ -184,7 +184,7 @@
 </div>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong><code>is:inline</code> on every tag.</strong> Astro&#39;s default script processing keeps the page looking the same, so View Source is where to confirm the tags are literal <code>&lt;script&gt;</code> elements. With <code>is:inline</code> on each Cookie Compliance tag, they are.</li>
+<li><strong><code>is:inline</code> on every tag.</strong> Without <code>is:inline</code>, Astro bundles a script as a deferred module, so it no longer runs in page order. With <code>is:inline</code> on each Cookie Compliance tag they stay literal <code>&lt;script&gt;</code> elements, which View Source confirms.</li>
 <li><strong>Add <code>is:inline</code> explicitly.</strong> Astro leaves some tags unprocessed depending on their attributes (for example an explicit <code>type=&quot;text/javascript&quot;</code>), so setting <code>is:inline</code> on each tag gives the same result whichever attributes the snippet carries.</li>
 <li><strong>Engine switch:</strong> re-paste the live snippet when <code>widgetVersion</code> changes in the dashboard; the layout does not auto-update.</li>
 </ul>

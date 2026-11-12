@@ -195,8 +195,8 @@
 <p>The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Shopify&#39;s own first-party analytics loads ahead of theme code on every store.</strong> The Cookie Compliance snippet manages the trackers you install. In the live DOM, Shopify&#39;s async analytics script therefore appears before the snippet even when the snippet is the first thing in <code>theme.liquid</code>; keep the snippet first in the source, as shown above.</li>
-<li><strong>The snippet passes the visitor&#39;s choice to Shopify, and Shopify applies it to Customer Events pixels.</strong> Shopify has its own consent record, set through its Customer Privacy API (<code>Shopify.customerPrivacy.setTrackingConsent</code>), and Shopify Analytics plus every <strong>Customer Events</strong> pixel read that record. The widget writes the visitor&#39;s choice into it, and after a saved choice <code>Shopify.customerPrivacy.currentVisitorConsent()</code> reflects it. A purpose is turned on only after an explicit click (saving a choice, or unblocking a blocked item) during the current page view; an implied accept (such as closing the banner) or a Global Privacy Control signal can only turn purposes off. Before the visitor chooses, the widget sends nothing new, except that it turns off any purpose Shopify still holds as allowed without a matching Cookie Compliance choice; otherwise those pixels follow Shopify&#39;s own region defaults. The snippet holds trackers that are real <code>&lt;script&gt;</code>/<code>&lt;iframe&gt;</code> tags in theme code (a hand-pasted GTM container or pixel, a theme app embed that injects into <code>&lt;head&gt;</code>); set each Customer Events pixel&#39;s customer privacy setting in Shopify, which applies it.</li>
+<li><strong>Shopify&#39;s own first-party analytics loads ahead of theme code on every store.</strong> The Cookie Compliance snippet manages the trackers you install. In the live DOM, Shopify&#39;s async analytics script appears before the snippet even when the snippet is the first thing in <code>theme.liquid</code>; keep the snippet first in the source, as shown above.</li>
+<li><strong>The snippet passes the visitor&#39;s choice to Shopify, and Shopify applies it to Customer Events pixels.</strong> Shopify has its own consent record, set through its Customer Privacy API (<code>Shopify.customerPrivacy.setTrackingConsent</code>), and Shopify Analytics plus every <strong>Customer Events</strong> pixel read that record. The widget writes the visitor&#39;s choice into it, and after a saved choice <code>Shopify.customerPrivacy.currentVisitorConsent()</code> reflects it. Before the visitor chooses, those pixels follow Shopify&#39;s own region defaults. The snippet holds trackers that are real <code>&lt;script&gt;</code>/<code>&lt;iframe&gt;</code> tags in theme code (a hand-pasted GTM container or pixel, a theme app embed that injects into <code>&lt;head&gt;</code>); set each Customer Events pixel&#39;s customer privacy setting in Shopify, which applies it.</li>
 <li><strong>Keep a single consent banner.</strong> Leave Shopify&#39;s own cookie banner (Settings → Customer privacy → Cookie banner) off, so visitors see one clear choice.</li>
 <li><strong>Use &quot;Edit code&quot;, which opens <code>layout/theme.liquid</code>.</strong> &quot;Edit default theme content&quot; edits theme <em>settings</em> (text, images) instead.</li>
 <li><strong>Edit the live theme.</strong> Check the Themes page for which theme is marked as the current theme before opening Edit code.</li>
@@ -215,7 +215,7 @@
 <tbody><tr>
 <td>SP1</td>
 <td>Fetch the raw HTML response (not the live DOM) for <code>/</code></td>
-<td><code>huOptions</code> and the <code>hu-banner.min.js</code> tag are the first content inside <code>&lt;head&gt;</code>, before <code>&lt;meta charset&gt;</code> and before <code>{{ content_for_header }}</code>&#39;s output.</td>
+<td><code>huOptions</code> and the <code>hu-banner.min.js</code> tag are the first content inside <code>&lt;head&gt;</code>, as plain synchronous tags (no <code>async</code> or <code>defer</code>), before <code>&lt;meta charset&gt;</code> and before <code>{{ content_for_header }}</code>&#39;s output.</td>
 </tr>
 <tr>
 <td>SP2</td>
@@ -234,7 +234,6 @@
 </tr>
 </tbody></table>
 </div>
-<p>Confirmed on a Shopify store: a <code>googletagmanager.com/gtag/js</code> tag placed below the snippet in <code>theme.liquid</code> is rendered with <code>type=&quot;javascript/blocked&quot;</code>, <code>data-hu-category=&quot;2&quot;</code> and its <code>src</code> moved to <code>data-src</code>, until the visitor chooses in a region whose rule requires consent first. Remove any test tracker line from <code>theme.liquid</code> when you finish.</p>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><a href="https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/">Where to put the Cookie Compliance snippet</a> — the placement rule for every platform, for the site owner.</li>

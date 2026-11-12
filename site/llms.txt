@@ -1,6 +1,6 @@
 # cookie-compliance-agent-manual
 
-> Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner (by Hu-manity.co) so trackers wait for the visitor's choice where the region requires consent first, instead of only showing a notice afterward.
+> Skills and cookbooks that teach a coding agent to install the Cookie Compliance consent banner (by Hu-manity.co) so trackers wait for the visitor's choice where the region requires consent first.
 
 Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and similar laws, published by Hu-manity.co (https://hu-manity.co/llms.txt). The product itself — capabilities, pricing, the MCP server — is documented at https://cookie-compliance.co/llms.txt; this manual is the agent-facing companion that shows how to actually install and verify the banner.
 

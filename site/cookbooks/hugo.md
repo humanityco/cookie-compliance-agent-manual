@@ -45,7 +45,6 @@ If the snippet currently sits in a footer partial, or in a partial rendered afte
 
 The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
 
-
 ## Confirm the result
 
 Build or render the site, then **view the page source** of the output (not the browser's Elements panel): the `huOptions` script and `hu-banner.min.js` are the first two `<script>` tags in `<head>` of `public/index.html`, with no `async` or `defer`, and your analytics tag comes after them.

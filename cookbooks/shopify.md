@@ -61,8 +61,8 @@ The banner holds recognised trackers that load after it until the visitor choose
 
 ## Gotchas
 
-- **Shopify's own first-party analytics loads ahead of theme code on every store.** The Cookie Compliance snippet manages the trackers you install. In the live DOM, Shopify's async analytics script therefore appears before the snippet even when the snippet is the first thing in `theme.liquid`; keep the snippet first in the source, as shown above.
-- **The snippet passes the visitor's choice to Shopify, and Shopify applies it to Customer Events pixels.** Shopify has its own consent record, set through its Customer Privacy API (`Shopify.customerPrivacy.setTrackingConsent`), and Shopify Analytics plus every **Customer Events** pixel read that record. The widget writes the visitor's choice into it, and after a saved choice `Shopify.customerPrivacy.currentVisitorConsent()` reflects it. A purpose is turned on only after an explicit click (saving a choice, or unblocking a blocked item) during the current page view; an implied accept (such as closing the banner) or a Global Privacy Control signal can only turn purposes off. Before the visitor chooses, the widget sends nothing new, except that it turns off any purpose Shopify still holds as allowed without a matching Cookie Compliance choice; otherwise those pixels follow Shopify's own region defaults. The snippet holds trackers that are real `<script>`/`<iframe>` tags in theme code (a hand-pasted GTM container or pixel, a theme app embed that injects into `<head>`); set each Customer Events pixel's customer privacy setting in Shopify, which applies it.
+- **Shopify's own first-party analytics loads ahead of theme code on every store.** The Cookie Compliance snippet manages the trackers you install. In the live DOM, Shopify's async analytics script appears before the snippet even when the snippet is the first thing in `theme.liquid`; keep the snippet first in the source, as shown above.
+- **The snippet passes the visitor's choice to Shopify, and Shopify applies it to Customer Events pixels.** Shopify has its own consent record, set through its Customer Privacy API (`Shopify.customerPrivacy.setTrackingConsent`), and Shopify Analytics plus every **Customer Events** pixel read that record. The widget writes the visitor's choice into it, and after a saved choice `Shopify.customerPrivacy.currentVisitorConsent()` reflects it. Before the visitor chooses, those pixels follow Shopify's own region defaults. The snippet holds trackers that are real `<script>`/`<iframe>` tags in theme code (a hand-pasted GTM container or pixel, a theme app embed that injects into `<head>`); set each Customer Events pixel's customer privacy setting in Shopify, which applies it.
 - **Keep a single consent banner.** Leave Shopify's own cookie banner (Settings → Customer privacy → Cookie banner) off, so visitors see one clear choice.
 - **Use "Edit code", which opens `layout/theme.liquid`.** "Edit default theme content" edits theme *settings* (text, images) instead.
 - **Edit the live theme.** Check the Themes page for which theme is marked as the current theme before opening Edit code.
@@ -73,12 +73,10 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the live storefr
 
 | # | Check | Pass |
 |---|---|---|
-| SP1 | Fetch the raw HTML response (not the live DOM) for `/` | `huOptions` and the `hu-banner.min.js` tag are the first content inside `<head>`, before `<meta charset>` and before `{{ content_for_header }}`'s output. |
+| SP1 | Fetch the raw HTML response (not the live DOM) for `/` | `huOptions` and the `hu-banner.min.js` tag are the first content inside `<head>`, as plain synchronous tags (no `async` or `defer`), before `<meta charset>` and before `{{ content_for_header }}`'s output. |
 | SP2 | Load the storefront in a fresh session | The consent banner renders (tiers/choices appear) before any interaction. |
 | SP3 | Add a real tracker tag (e.g. `<script async src="https://www.googletagmanager.com/gtag/js?id=...">`) below the snippet in `theme.liquid`, reload, inspect the live DOM | The tag's `src` is moved to `data-src` and `type` becomes `javascript/blocked`, so it is held until the visitor chooses, in a region whose rule requires consent first. |
 | SP4 | `document.head.firstElementChild` in the live DOM | Usually Shopify's own async analytics script, which loads ahead of theme code on every store (see Gotchas). SP1 confirms the snippet's position in the source. |
-
-Confirmed on a Shopify store: a `googletagmanager.com/gtag/js` tag placed below the snippet in `theme.liquid` is rendered with `type="javascript/blocked"`, `data-hu-category="2"` and its `src` moved to `data-src`, until the visitor chooses in a region whose rule requires consent first. Remove any test tracker line from `theme.liquid` when you finish.
 
 ## More help
 

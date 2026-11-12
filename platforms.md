@@ -4,7 +4,7 @@
 
 ## The one rule
 
-Blocking works by **execution order**: the banner holds the scripts that come after it. So the snippet goes **first** on every page, in `<head>`, as plain synchronous tags (no `async`, `defer` or `type="module"`), above analytics, pixels and any tag manager.
+Blocking works by **execution order**: the banner holds the recognised trackers that come after it. So the snippet goes **first** on every page, in `<head>`, as plain synchronous tags (no `async`, `defer` or `type="module"`), above analytics, pixels and any tag manager.
 
 Scripts you mark essential (`data-hu-category="1"`) run straight away. Recognised trackers wait for the visitor's choice, in regions whose rule requires consent first. What runs before consent is your decision.
 
@@ -37,7 +37,7 @@ If you can put code in the `<head>` of every page, the plain HTML steps apply:
 
 1. Copy the live snippet from the dashboard (**Integrations → Manual Integration**), or with the MCP server connected call `install.getSnippet`. Paste it unchanged. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=platforms) (free plan, no card).
 2. Paste it as the first thing inside `<head>`, on every page or in the shared header your pages include.
-3. Confirm it with [verify-install](skills/verify-install/SKILL.md): in a region whose rule requires consent first, no tracking cookies appear before the visitor chooses.
+3. Confirm it with [verify-install](skills/verify-install/SKILL.md): in a region whose rule requires consent first, no tracking cookies appear before the visitor chooses. It also explains what to expect with Google Consent Mode.
 
 The banner works from any spot that comes first in `<head>`. Most site builders have a header or head-code field: use that one. If a platform offers only a footer or `<body>` code box, look for its header option, or a template where you can edit `<head>`. [verify-install](skills/verify-install/SKILL.md) confirms the result. A coding agent that finds no head position should tell the site owner which options exist before installing.
 

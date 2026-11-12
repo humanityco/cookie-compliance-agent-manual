@@ -55,7 +55,7 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 ## Gotchas
 
-- **Other tags added through `setHeadComponents`** (by you or a plugin) come after the banner when the banner is written in `src/html.js`, which renders before them. If you keep the banner in `gatsby-ssr.js` and another source adds head tags, check the built page: the banner tags must still be the first scripts.
+- **Other tags added through `setHeadComponents`** (by you or a plugin) come after the banner when the banner is written in `src/html.js`, which renders before them. If you keep the banner in `gatsby-ssr.js` and another source adds head tags, check the built page: the banner tags should still be the first scripts. When plugins add head tags, `src/html.js` is the more robust route, because it renders the banner before them.
 - **Keep a single consent banner.** Remove any other one, so visitors see one clear choice.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 

@@ -182,7 +182,7 @@
 <tr>
 <td>3</td>
 <td><strong>Before any click</strong></td>
-<td>No tracking cookies (for example <code>_ga</code>, <code>_gcl_au</code>, <code>_fbp</code>) and no data hits (for example <code>google-analytics.com/g/collect</code>, <code>facebook.com/tr</code>). A tracker&#39;s script <strong>file</strong> in the HTML may still download (the browser starts fetching <code>&lt;script src&gt;</code> files it finds ahead in the page); that is fine only if it never runs. Prove it: <code>typeof google_tag_manager === &#39;undefined&#39;</code> and <code>typeof fbq === &#39;undefined&#39; || !fbq.getState</code> are both true. Repeat this check on an inner page in a fresh profile.</td>
+<td>No tracking cookies (for example <code>_ga</code>, <code>_gcl_au</code>, <code>_fbp</code>). A tracker&#39;s script <strong>file</strong> in the HTML may still download (the browser starts fetching <code>&lt;script src&gt;</code> files it finds ahead in the page); it runs only after the visitor allows it. Confirm with <code>typeof google_tag_manager === &#39;undefined&#39;</code> and <code>typeof fbq === &#39;undefined&#39; || !fbq.getState</code>, both true. Repeat this check on an inner page in a fresh profile.</td>
 </tr>
 <tr>
 <td>4</td>

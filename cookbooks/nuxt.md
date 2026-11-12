@@ -61,8 +61,8 @@ Run `verify-install` (`skills/verify-install/SKILL.md`) against the running site
 
 ## Gotchas
 
-- **Leave out `async` and `defer` in `app.head.script`.** Nuxt's head manager (`unhead`) moves an entry marked `async: true` ahead of entries listed earlier, including a synchronous Cookie Compliance snippet. Plain entries render in the order you wrote them. Check the order with View Source of the response.
-- **Use the static config for the banner.** `app.head` in `nuxt.config.ts` renders into the initial HTML. `useHead()` inside a page or component runs as part of that component's setup, on a schedule Nuxt controls, so it is a better place for page-specific tags than for the banner.
+- **Leave out `async` and `defer` in `app.head.script`.** Nuxt's head manager (`unhead`) moves an entry marked `async: true` ahead of entries listed earlier, including a synchronous Cookie Compliance snippet. Plain entries (no `async` or `defer`) render in the order you wrote them. Check the order with View Source of the response.
+- **Use the static config for the banner.** `app.head` in `nuxt.config.ts` renders into the initial HTML. `useHead()` inside a page or component runs as part of that component's setup, after the config entries, so it suits page-specific tags; the banner belongs in the static config.
 - **Keep the banner out of `.client.ts` plugins.** A `.client.ts` plugin runs in the browser after hydration, while `app.head.script` is in the server-rendered HTML.
 - **Engine switch:** re-paste the live snippet when `widgetVersion` changes in the dashboard; `nuxt.config.ts` does not auto-update.
 

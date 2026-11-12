@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet directly after the opening `<head>` of the Blade layout every page uses (in a fresh app that is `resources/views/welcome.blade.php`; in yours, the shared layout file), above the other lines in `<head>` (`@fonts`, `@vite`).
 
-Confirmed on a Laravel app, on the starter page `welcome.blade.php`: the snippet is the first script in the rendered page's `<head>`.
+Confirmed on a Laravel app: the snippet is the first script in the rendered page's `<head>`.
 
 ## You need
 
@@ -31,6 +31,7 @@ Confirmed on a Laravel app, on the starter page `welcome.blade.php`: the snippet
        <script src="https://cdn.hu-manity.co/v2/hu-banner.min.js" type="text/javascript" charset="utf-8"></script>
 
        <meta charset="utf-8">
+       @fonts
        @vite(['resources/css/app.css', 'resources/js/app.js'])
        <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXX"></script>
    </head>

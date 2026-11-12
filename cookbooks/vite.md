@@ -63,7 +63,7 @@ Run the browser checks in a private window (banner shows, no tracking cookies be
 | # | Check | Pass |
 |---|---|---|
 | V1 | View source (not devtools' rendered DOM), and the built `dist/index.html` | `huOptions` and the `hu-banner.min.js` (or `/v2/…`) tag are the first `<script>` tags, in that order, with no `async`, `defer`, or `type="module"`. The app bundle may follow them as `type="module"`. |
-| V2 | `index.html` versus `src/main.tsx` / `src/main.ts` | The two tags are in `index.html`, and the app entry leaves them to it. |
+| V2 | `index.html` versus `src/main.tsx` / `src/main.ts` | The two tags are in `index.html` only, and the app entry does not add them again. |
 
 ## Gotchas
 
