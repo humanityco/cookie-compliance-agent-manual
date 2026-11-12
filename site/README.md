@@ -80,11 +80,13 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`ghost.md`](cookbooks/ghost.md) | Shipped |
 | [`prestashop.md`](cookbooks/prestashop.md) | Shipped |
 | [`magento.md`](cookbooks/magento.md) | Shipped |
-| [`wix.md`](cookbooks/wix.md) | Shipped |
-| [`squarespace.md`](cookbooks/squarespace.md) | Shipped |
-| [`webflow.md`](cookbooks/webflow.md) | Shipped |
-| [`framer.md`](cookbooks/framer.md) | Shipped |
+| [`wix.md`](cookbooks/wix.md) | Shipped, from the vendor's documentation |
+| [`squarespace.md`](cookbooks/squarespace.md) | Shipped, from the vendor's documentation |
+| [`webflow.md`](cookbooks/webflow.md) | Shipped, from the vendor's documentation |
+| [`framer.md`](cookbooks/framer.md) | Shipped, from the vendor's documentation |
 | [`trackers.md`](cookbooks/trackers.md) | Shipped |
+
+Every cookbook except the four site builders (Wix, Squarespace, Webflow, Framer) was confirmed on a real install. Those four follow each builder's published help pages and are confirmed the same way as installs come in.
 
 ### Design gallery
 
@@ -132,7 +134,7 @@ Issues and pull requests are welcome. Every contribution is reviewed before it i
 
 A contribution must:
 
-- **Be verified.** Any claim about how the banner behaves has been checked against a real install.
+- **Be verified.** Any claim about how the banner behaves has been checked against a real install. The site-builder cookbooks are the exception for now: they follow the builder's own documentation and say so in the table above.
 - **Contain no customer data.** No real AppIDs, customer domains, or personal information. Use placeholders such as `YOUR_APP_ID` and `example.com`. CI runs `scripts/check-no-real-data.sh` on every PR.
 - **Follow the recipe shape** (cookbooks only): problem → wrong approach → right approach → how to check it.
 - **Edit cookbooks, not `skills/*/references/`.** Those copies are generated; CI runs `scripts/sync-references.sh --check`.

@@ -35,6 +35,10 @@ DOMAIN_ALLOWLIST=(
   "manual.hu-manity.co"
   "wordpress.org"
   "developer.adobe.com"   # Magento theme documentation, linked from the Magento guide
+  "support.wix.com"   # Wix help pages, linked from the Wix guide
+  "support.squarespace.com"   # Squarespace help pages, linked from the Squarespace guide
+  "help.webflow.com"   # Webflow help pages, linked from the Webflow guide
+  "www.framer.com"   # Framer lessons, linked from the Framer guide
   "www.googletagmanager.com"
   "support.claude.com"
   "help.openai.com"
