@@ -4,7 +4,7 @@
 # paths. site/ is a generated copy: edit the source (skills/, cookbooks/,
 # gallery/examples.json, root files), never site/ directly.
 # It also renders each mirrored page's human-readable HTML twin (start/,
-# connect/, prompts/, skills/<name>/, cookbooks/<name>/) with scripts/build-pages.mjs,
+# connect/, prompts/, platforms/, skills/<name>/, cookbooks/<name>/) with scripts/build-pages.mjs,
 # so it needs node.
 #
 #   scripts/sync-site.sh          rebuild the site/ mirror
@@ -22,7 +22,7 @@ tmp="$(mktemp -d)"
 trap 'rm -rf "$tmp"' EXIT
 chmod 755 "$tmp"
 
-for f in README.md AGENTS.md LICENSE start.md connect.md prompts.md; do
+for f in README.md AGENTS.md LICENSE start.md connect.md prompts.md platforms.md; do
   cp "$root/$f" "$tmp/$f"
 done
 # llms.txt says "this repo" -- true on GitHub, not on this site. One
@@ -53,6 +53,9 @@ done
 # it into the expected tree so the diff exempts it (and only it), and so a
 # rebuild keeps it. Any other index.html (e.g. site/gallery/, site/gallery/v2/) is mirrored.
 cp "$root/site/index.html" "$tmp/index.html"
+# Likewise site/favicon.ico: a binary with no source elsewhere, so carry it
+# instead of letting the rebuild delete it.
+cp "$root/site/favicon.ico" "$tmp/favicon.ico"
 
 # Human-readable HTML twins of the mirrored markdown, plus site/assets/. The
 # raw .md files above are left byte-identical: agents fetch those.
@@ -137,7 +140,7 @@ site_files="$(find "$tmp" -type f | sort)"
   while IFS= read -r f; do
     rel="${f#"$tmp"/}"
     case "$rel" in
-      start.md|connect.md|prompts.md) twin="/${rel%.md}/" ;;
+      start.md|connect.md|prompts.md|platforms.md) twin="/${rel%.md}/" ;;
       cookbooks/*.md) twin="/${rel%.md}/" ;;
       skills/*/SKILL.md) twin="/${rel%SKILL.md}" ;;
       gallery/README.md|gallery/v2/README.md) twin="/${rel%README.md}" ;;

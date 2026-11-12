@@ -12,6 +12,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 
 - [start](start.md): the one page to follow to install the banner start to finish. Autopilot by default; asks the person only to sign in or register, make the legal region choice, and approve anything that costs money.
 - [connect](connect.md): connect an AI app (Claude, ChatGPT, Claude Code, Cursor, Windsurf, GitHub Copilot, Codex) to Cookie Compliance. Which address to use, the steps per app, the API-token fallback, and how to check it worked.
+- [platforms](platforms.md): where the snippet goes on each platform with a cookbook (WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Google Tag Manager, plain HTML), and the steps for any other site.
 - [prompts](prompts.md): copy-paste prompts for Claude Code, Cursor, Windsurf, GitHub Copilot, Codex and agents without MCP.
 
 ## Skills
