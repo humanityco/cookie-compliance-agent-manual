@@ -48,7 +48,7 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 - **Test on the published site.** Custom Code does not run in the canvas preview, so publish and check the live page.
 - **Start of `<head>` for the banner, end of `<head>` for tags.** The placement is what orders them, so give each its own placement.
 - **Keep the banner script synchronous.** Paste the tags as shown, without `async` or `defer`, so it runs before the tags it holds.
-- **One banner on the pages where Cookie Compliance runs.** Once verify-install is clean, retire any second cookie banner there, so visitors see one clear choice.
+- **Built-in integrations.** Analytics and pixels connected through the builder's own settings are loaded by the builder. Run [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md) to see how they behave before the visitor chooses.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
 ## More help

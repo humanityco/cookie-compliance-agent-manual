@@ -174,8 +174,8 @@
 <ul>
 <li><strong>Keep the banner script synchronous.</strong> Webflow&#39;s <a href="https://help.webflow.com/hc/en-us/articles/57073523993107-Optimize-custom-scripts">script guidance</a> suggests <code>async</code> or <code>defer</code> for external scripts in the head. For the banner, paste the tags exactly as they appear above, without <code>async</code> or <code>defer</code>, so it runs before the tags it holds.</li>
 <li><strong>Publish after saving.</strong> Custom code does not reach the live site until you publish.</li>
-<li><strong>Site-wide first.</strong> Put the banner in the site-wide Head code. Page-level code is for tags that belong to one page, and it comes after the site-wide code.</li>
-<li><strong>One banner on the pages where Cookie Compliance runs.</strong> Once verify-install is clean, retire any second cookie banner there, so visitors see one clear choice.</li>
+<li><strong>Site-wide first.</strong> Put the banner in the site-wide Head code. Page-level code is for tags that belong to one page.</li>
+<li><strong>Built-in integrations.</strong> Analytics and pixels connected through the builder&#39;s own settings are loaded by the builder. Run <a href="/skills/verify-install/">verify-install</a> to see how they behave before the visitor chooses.</li>
 <li><strong>Use your own AppID</strong>, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
 </ul>
 <h2 id="more-help">More help <a class="anchor" href="#more-help" aria-label="Link to this section">#</a></h2>

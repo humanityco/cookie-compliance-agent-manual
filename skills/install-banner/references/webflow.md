@@ -48,8 +48,8 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 - **Keep the banner script synchronous.** Webflow's [script guidance](https://help.webflow.com/hc/en-us/articles/57073523993107-Optimize-custom-scripts) suggests `async` or `defer` for external scripts in the head. For the banner, paste the tags exactly as they appear above, without `async` or `defer`, so it runs before the tags it holds.
 - **Publish after saving.** Custom code does not reach the live site until you publish.
-- **Site-wide first.** Put the banner in the site-wide Head code. Page-level code is for tags that belong to one page, and it comes after the site-wide code.
-- **One banner on the pages where Cookie Compliance runs.** Once verify-install is clean, retire any second cookie banner there, so visitors see one clear choice.
+- **Site-wide first.** Put the banner in the site-wide Head code. Page-level code is for tags that belong to one page.
+- **Built-in integrations.** Analytics and pixels connected through the builder's own settings are loaded by the builder. Run [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md) to see how they behave before the visitor chooses.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
 ## More help

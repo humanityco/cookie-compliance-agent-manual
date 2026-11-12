@@ -15,7 +15,7 @@ kind: platform
 
 ## Where it goes
 
-Steps follow [Wix: embedding custom code](https://support.wix.com/en/article/embedding-custom-code-to-your-site).
+Steps follow [Wix: embedding custom code](https://support.wix.com/en/article/embedding-custom-code-to-your-site) and [Wix: categorizing custom code](https://support.wix.com/en/article/categorizing-your-custom-code).
 
 1. Copy the live snippet (see above).
 2. In the site dashboard open **Settings → Custom Code** (listed under Development & integrations) and click **+ Add Custom Code**.
@@ -37,11 +37,11 @@ Wix connects Google Analytics, Google Tag Manager and the Facebook and TikTok pi
 
 ## What the order controls
 
-The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet.
+The banner holds recognised trackers that load after it until the visitor chooses, in regions whose rule requires consent first. A script placed above the snippet runs straight away, and a script you mark `data-hu-category="1"` is treated as essential. What runs before consent is your decision, so keep analytics and pixels below the snippet. Tags connected through Wix's own integrations are loaded by Wix, outside this ordering.
 
 ## Confirm the result
 
-View the **page source** of the published site, not the editor or its preview (use the browser's View Source, not the Elements panel): the `huOptions` script and `hu-banner.min.js` are in `<head>` as plain synchronous tags (no `async` or `defer`), and any tags you added come after them.
+View the **page source** of the published site, not the editor or its preview (use the browser's View Source, not the Elements panel): the `huOptions` script and `hu-banner.min.js` are in `<head>` as plain synchronous tags (no `async` or `defer`).
 
 Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md). Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.
 
@@ -49,8 +49,8 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 - **Use Settings → Custom Code**, the site-wide route, so one entry covers every page.
 - **If you change the site's primary domain**, Wix removes its custom code snippets, so add the banner snippet again.
-- **If the banner does not appear** on the published site, check that the entry is applied to All pages and placed in Head, then see Banner not displayed below.
-- **One banner on the pages where Cookie Compliance runs.** Once verify-install is clean, retire any second cookie banner there, so visitors see one clear choice.
+- **If the banner does not appear** on the published site, check that the entry is applied to All pages and placed in Head, also read the note on code snippets in the Wix help page linked above, then see Banner not displayed below.
+- **Keep Wix's own cookie banner on while you use Wix's marketing integrations**, until verify-install shows how they behave before the visitor chooses.
 - **Use your own AppID**, and copy the snippet again after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 
 ## More help
