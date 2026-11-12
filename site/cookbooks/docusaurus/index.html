@@ -131,11 +131,11 @@
 <h1 id="add-a-cookie-consent-banner-to-a-docusaurus-site">Add a cookie consent banner to a Docusaurus site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/docusaurus.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> add the <strong>live</strong> snippet to <code>headTags</code> in <code>docusaurus.config.js</code> as two <code>script</code> entries (the options inline, then the library). Not <code>async: true</code>, and not a plugin&#39;s <code>preBodyTags</code>, which renders in the body.</p>
-<p>Tested with Docusaurus 3.10.</p>
+<p>Placement checked by building a stock Docusaurus 3.10 project and reading the page it produces (not a live banner or blocking test).</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-docusaurus">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
-<li>Edit access to <code>docusaurus.config.js</code>.</li>
+<li>Edit access to <code>docusaurus.config.js</code> (<code>docusaurus.config.ts</code> in a TypeScript project).</li>
 </ul>
 <h2 id="the-wrong-way">The wrong way <a class="anchor" href="#the-wrong-way" aria-label="Link to this section">#</a></h2>
 <div class="code"><pre tabindex="0"><code class="language-js">// docusaurus.config.js — BAD
@@ -174,7 +174,7 @@ scripts: [{ src: 'https://cdn.hu-manity.co/v2/hu-banner.min.js', async: true }],
 <p>Then run the browser checks in <a href="/cookbooks/plain-html/#check-it-works">plain-html</a> in a private window (banner shows, no tracking cookies or data hits before the visitor chooses, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Do not use the built-in <code>gtag</code> (or <code>googleAnalytics</code>) option of the classic preset for your analytics.</strong> That plugin writes its tag into <code>&lt;head&gt;</code> <strong>before</strong> your <code>headTags</code>, so analytics runs before the banner, and listing your own plugin first does not change that. Add the analytics tag through the <code>scripts</code> option instead (it renders after <code>headTags</code>), and put any <code>gtag(&#39;config&#39;, …)</code> call in a <code>headTags</code> entry after the banner entries.</li>
+<li><strong>Do not use the built-in <code>gtag</code> option of the classic preset for your analytics.</strong> That plugin writes its tag into <code>&lt;head&gt;</code> <strong>before</strong> your <code>headTags</code>, so analytics runs before the banner, and listing your own plugin first does not change that. Add the analytics tag through the <code>scripts</code> option instead (it renders after <code>headTags</code>).</li>
 <li><strong>Check the built site.</strong> View the page source of what <code>npm run build</code> produces and serves, because that is what visitors get.</li>
 <li><strong>Remove any other consent banner.</strong> Two banners give visitors two conflicting choices.</li>
 <li><strong>Only install your own AppID</strong>, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>

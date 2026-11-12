@@ -130,8 +130,8 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-a-laravel-app">Add a cookie consent banner to a Laravel app</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/laravel.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> paste the <strong>live</strong> snippet directly after the opening <code>&lt;head&gt;</code> of the Blade layout every page uses (in a fresh app that is <code>resources/views/welcome.blade.php</code>; yours is likely a layout file such as <code>resources/views/layouts/app.blade.php</code>), above the other lines in <code>&lt;head&gt;</code> (<code>@fonts</code>, <code>@vite</code>). Not before <code>&lt;/head&gt;</code>, and not before <code>&lt;/body&gt;</code>.</p>
-<p>Tested with Laravel 13, on the starter page (<code>welcome.blade.php</code>).</p>
+<p><strong>In short:</strong> paste the <strong>live</strong> snippet directly after the opening <code>&lt;head&gt;</code> of the Blade layout every page uses (in a fresh app that is <code>resources/views/welcome.blade.php</code>; in yours, the shared layout file), above the other lines in <code>&lt;head&gt;</code> (<code>@fonts</code>, <code>@vite</code>). Not before <code>&lt;/head&gt;</code>, and not before <code>&lt;/body&gt;</code>.</p>
+<p>Placement checked by building a Laravel 13 app, on the starter page (<code>welcome.blade.php</code>) and reading the page it produces (not a live banner or blocking test).</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-laravel">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
@@ -149,7 +149,7 @@
 <ol>
 <li><p>Copy the live snippet (see above).</p>
 </li>
-<li><p>Open the Blade file that renders <code>&lt;head&gt;</code> for your pages (a layout such as <code>resources/views/layouts/app.blade.php</code>; in a fresh app the starter page <code>resources/views/welcome.blade.php</code>).</p>
+<li><p>Open the Blade file that renders <code>&lt;head&gt;</code> for your pages (your shared layout; in a fresh app the starter page <code>resources/views/welcome.blade.php</code>).</p>
 </li>
 <li><p>Paste the snippet <strong>directly after <code>&lt;head&gt;</code></strong>, before the <code>&lt;meta&gt;</code> tags, <code>@fonts</code>, <code>@vite</code> and your analytics:</p>
 <div class="code"><pre tabindex="0"><code class="language-blade">&lt;head&gt;

@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the first thing inside `<head>` of the base template every page extends (`templates/base.html`). If you use a child-template block for it, that block must sit above your other scripts in the base.
 
-Tested with Django 6.1.
+Placement checked by building a stock Django 6.1 project and reading the page it produces (not a live banner or blocking test).
 
 ## You need
 

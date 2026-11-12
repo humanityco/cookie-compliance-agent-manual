@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the **first two entries** of `setHeadComponents([...])` in `gatsby-ssr.js`, or as the first thing in `<head>` of a custom `src/html.js`. Not `setPostBodyComponents`, and not after your analytics entry.
 
-Tested with Gatsby 5.16.
+Placement checked by building a stock Gatsby 5.16 project and reading the page it produces (not a live banner or blocking test).
 
 ## You need
 

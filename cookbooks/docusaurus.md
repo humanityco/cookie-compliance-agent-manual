@@ -9,12 +9,12 @@ last_verified: 2026-11-12
 
 **In short:** add the **live** snippet to `headTags` in `docusaurus.config.js` as two `script` entries (the options inline, then the library). Not `async: true`, and not a plugin's `preBodyTags`, which renders in the body.
 
-Tested with Docusaurus 3.10.
+Placement checked by building a stock Docusaurus 3.10 project and reading the page it produces (not a live banner or blocking test).
 
 ## You need
 
 - A Cookie Compliance AppID and the live snippet from MCP `install.getSnippet` or dashboard **Integrations → Manual Integration** (a new app uses `/v2/hu-banner.min.js`; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-docusaurus) (free plan, no card); with MCP, call `help.startSignup`.
-- Edit access to `docusaurus.config.js`.
+- Edit access to `docusaurus.config.js` (`docusaurus.config.ts` in a TypeScript project).
 
 ## The wrong way
 
@@ -62,7 +62,7 @@ Then run the browser checks in [plain-html](plain-html.md#check-it-works) in a p
 
 ## Gotchas
 
-- **Do not use the built-in `gtag` (or `googleAnalytics`) option of the classic preset for your analytics.** That plugin writes its tag into `<head>` **before** your `headTags`, so analytics runs before the banner, and listing your own plugin first does not change that. Add the analytics tag through the `scripts` option instead (it renders after `headTags`), and put any `gtag('config', …)` call in a `headTags` entry after the banner entries.
+- **Do not use the built-in `gtag` option of the classic preset for your analytics.** That plugin writes its tag into `<head>` **before** your `headTags`, so analytics runs before the banner, and listing your own plugin first does not change that. Add the analytics tag through the `scripts` option instead (it renders after `headTags`).
 - **Check the built site.** View the page source of what `npm run build` produces and serves, because that is what visitors get.
 - **Remove any other consent banner.** Two banners give visitors two conflicting choices.
 - **Only install your own AppID**, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.

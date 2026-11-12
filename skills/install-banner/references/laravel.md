@@ -7,9 +7,9 @@ last_verified: 2026-11-12
 
 # Add a cookie consent banner to a Laravel app
 
-**In short:** paste the **live** snippet directly after the opening `<head>` of the Blade layout every page uses (in a fresh app that is `resources/views/welcome.blade.php`; yours is likely a layout file such as `resources/views/layouts/app.blade.php`), above the other lines in `<head>` (`@fonts`, `@vite`). Not before `</head>`, and not before `</body>`.
+**In short:** paste the **live** snippet directly after the opening `<head>` of the Blade layout every page uses (in a fresh app that is `resources/views/welcome.blade.php`; in yours, the shared layout file), above the other lines in `<head>` (`@fonts`, `@vite`). Not before `</head>`, and not before `</body>`.
 
-Tested with Laravel 13, on the starter page (`welcome.blade.php`).
+Placement checked by building a Laravel 13 app, on the starter page (`welcome.blade.php`) and reading the page it produces (not a live banner or blocking test).
 
 ## You need
 
@@ -31,7 +31,7 @@ Pasting it before `</body>` is also wrong: everything in `<head>` has already ru
 ## The right way
 
 1. Copy the live snippet (see above).
-2. Open the Blade file that renders `<head>` for your pages (a layout such as `resources/views/layouts/app.blade.php`; in a fresh app the starter page `resources/views/welcome.blade.php`).
+2. Open the Blade file that renders `<head>` for your pages (your shared layout; in a fresh app the starter page `resources/views/welcome.blade.php`).
 3. Paste the snippet **directly after `<head>`**, before the `<meta>` tags, `@fonts`, `@vite` and your analytics:
 
    ```blade

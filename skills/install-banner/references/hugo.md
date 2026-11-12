@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet as the first thing in the `<head>` your layouts render on every page: `layouts/_default/baseof.html`, or the head partial it includes. A footer partial, or a partial rendered after your analytics tag, is too late.
 
-Tested with Hugo 0.154, on a site with its own `baseof.html` and head partial.
+Placement checked by building a Hugo 0.154 site with its own `baseof.html` and head partial and reading the page it produces (not a live banner or blocking test).
 
 ## You need
 

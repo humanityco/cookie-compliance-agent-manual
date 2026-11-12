@@ -9,7 +9,7 @@ last_verified: 2026-11-12
 
 **In short:** paste the **live** snippet directly after `<head>` in `app/views/layouts/application.html.erb`, above `csrf_meta_tags`, `stylesheet_link_tag` and `javascript_importmap_tags`. Not at the end of `<head>`, and not in a JavaScript pack.
 
-Tested with Rails 8.1.
+Placement checked by building a stock Rails 8.1 project and reading the page it produces (not a live banner or blocking test).
 
 ## You need
 
@@ -59,7 +59,7 @@ Then run the browser checks in [plain-html](plain-html.md#check-it-works) in a p
 
 ## Gotchas
 
-- **More than one layout.** If some pages use a different layout, put the snippet in a shared partial (`render "shared/cookie_banner"`) and render it directly after `<head>` in each layout.
+- **More than one layout.** If some pages use a different layout, put the snippet in a shared partial (`<%= render "shared/cookie_banner" %>`) and render it directly after `<head>` in each layout.
 - **Remove any other consent banner.** Two banners give visitors two conflicting choices.
 - **Only install your own AppID**, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.
 

@@ -131,7 +131,7 @@
 <h1 id="add-a-cookie-consent-banner-to-a-gatsby-site">Add a cookie consent banner to a Gatsby site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/gatsby.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet as the <strong>first two entries</strong> of <code>setHeadComponents([...])</code> in <code>gatsby-ssr.js</code>, or as the first thing in <code>&lt;head&gt;</code> of a custom <code>src/html.js</code>. Not <code>setPostBodyComponents</code>, and not after your analytics entry.</p>
-<p>Tested with Gatsby 5.16.</p>
+<p>Placement checked by building a stock Gatsby 5.16 project and reading the page it produces (not a live banner or blocking test).</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-gatsby">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>

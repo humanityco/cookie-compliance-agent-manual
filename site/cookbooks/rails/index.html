@@ -131,7 +131,7 @@
 <h1 id="add-a-cookie-consent-banner-to-a-rails-app">Add a cookie consent banner to a Rails app</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/rails.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> paste the <strong>live</strong> snippet directly after <code>&lt;head&gt;</code> in <code>app/views/layouts/application.html.erb</code>, above <code>csrf_meta_tags</code>, <code>stylesheet_link_tag</code> and <code>javascript_importmap_tags</code>. Not at the end of <code>&lt;head&gt;</code>, and not in a JavaScript pack.</p>
-<p>Tested with Rails 8.1.</p>
+<p>Placement checked by building a stock Rails 8.1 project and reading the page it produces (not a live banner or blocking test).</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
 <li>A Cookie Compliance AppID and the live snippet from MCP <code>install.getSnippet</code> or dashboard <strong>Integrations → Manual Integration</strong> (a new app uses <code>/v2/hu-banner.min.js</code>; an existing app keeps the URL in that snippet). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click <strong>Publish Now</strong>, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? <a href="https://app.hu-manity.co/#/register?enable-free=true&amp;discount=JOIN-40D&amp;utm_source=agent-manual&amp;utm_medium=docs&amp;utm_content=cookbook-rails">Sign up</a> (free plan, no card); with MCP, call <code>help.startSignup</code>.</li>
@@ -172,7 +172,7 @@
 <p>Then run the browser checks in <a href="/cookbooks/plain-html/#check-it-works">plain-html</a> in a private window (banner shows, no tracking cookies or data hits before the visitor chooses, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>More than one layout.</strong> If some pages use a different layout, put the snippet in a shared partial (<code>render &quot;shared/cookie_banner&quot;</code>) and render it directly after <code>&lt;head&gt;</code> in each layout.</li>
+<li><strong>More than one layout.</strong> If some pages use a different layout, put the snippet in a shared partial (<code>&lt;%= render &quot;shared/cookie_banner&quot; %&gt;</code>) and render it directly after <code>&lt;head&gt;</code> in each layout.</li>
 <li><strong>Remove any other consent banner.</strong> Two banners give visitors two conflicting choices.</li>
 <li><strong>Only install your own AppID</strong>, and re-copy the snippet after switching banner engine in the dashboard: changing the setting alone does not update a pasted snippet.</li>
 </ul>
