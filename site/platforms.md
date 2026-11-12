@@ -21,6 +21,12 @@ Each guide covers the wrong way, the right way, and how to check that it worked.
 | React or Vue (Vite) | `<head>` of `index.html`, ahead of the module entry | [vite](cookbooks/vite.md) |
 | SvelteKit | `src/app.html`, above `%sveltekit.head%` | [sveltekit](cookbooks/sveltekit.md) |
 | Google Tag Manager | `<head>`, above the GTM container; never as a tag inside GTM | [gtm](cookbooks/gtm.md) |
+| Hugo | The head partial or `baseof.html` your layouts render on every page, first | [hugo](cookbooks/hugo.md) |
+| Gatsby | `gatsby-ssr.js` `setHeadComponents` with the snippet first, or a custom `src/html.js`; not `setPostBodyComponents` | [gatsby](cookbooks/gatsby.md) |
+| Docusaurus | `headTags` in `docusaurus.config.js`, two script entries; not `async: true` | [docusaurus](cookbooks/docusaurus.md) |
+| Laravel | Directly after `<head>` in the shared Blade layout, above `@fonts` and `@vite` | [laravel](cookbooks/laravel.md) |
+| Django | First thing in `<head>` of the base template every page extends | [django](cookbooks/django.md) |
+| Rails | Directly after `<head>` in `app/views/layouts/application.html.erb` | [rails](cookbooks/rails.md) |
 | Static HTML or any other site you edit directly | First thing in `<head>` on every page (or the shared header file) | [plain-html](cookbooks/plain-html.md) |
 
 ## Your platform isn't listed

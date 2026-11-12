@@ -38,7 +38,7 @@ if (!out || !existsSync(out)) {
 // Sidebar order follows the journey (and the home page); anything new is
 // appended alphabetically, so adding a skill or cookbook needs no edit here.
 const SKILL_ORDER = ['install-banner', 'verify-install', 'match-site-design', 'configure-regions'];
-const COOKBOOK_ORDER = ['plain-html', 'wordpress', 'nextjs', 'nuxt', 'astro', 'gtm', 'shopify'];
+const COOKBOOK_ORDER = ['plain-html', 'wordpress', 'nextjs', 'nuxt', 'astro', 'gtm', 'shopify', 'hugo', 'gatsby', 'docusaurus', 'laravel', 'django', 'rails'];
 const ordered = (names, order) => [...names].sort((a, b) => {
   const [i, j] = [order.indexOf(a), order.indexOf(b)].map((n) => (n < 0 ? Infinity : n));
   return i - j || (a < b ? -1 : a > b ? 1 : 0);
@@ -74,7 +74,7 @@ const PAGES = [
     description: 'How to connect Claude, ChatGPT, Claude Code, Cursor and other AI apps to Cookie Compliance, so the AI can read and change your cookie banner.' },
   { src: 'prompts.md', url: '/prompts/', section: 'start', label: 'Prompts' },
   { src: 'platforms.md', url: '/platforms/', section: 'start', label: 'Platforms',
-    description: 'Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Google Tag Manager and plain HTML, and what to do on any other site.' },
+    description: 'Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Google Tag Manager and plain HTML, and what to do on any other site.' },
   ...skills.map((n) => ({ src: `skills/${n}/SKILL.md`, url: `/skills/${n}/`, section: 'skills', kind: 'Skill', label: n,
     description: SKILL_DESCRIPTIONS[n] })),
   ...cookbooks.map((n) => ({ src: `cookbooks/${n}.md`, url: `/cookbooks/${n}/`, section: 'cookbooks', kind: 'Cookbook', label: n })),

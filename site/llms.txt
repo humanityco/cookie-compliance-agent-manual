@@ -12,7 +12,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 
 - [start](start.md): the one page to follow to install the banner start to finish. Autopilot by default; asks the person only to sign in or register, make the legal region choice, and approve anything that costs money.
 - [connect](connect.md): connect an AI app (Claude, ChatGPT, Claude Code, Cursor, Windsurf, GitHub Copilot, Codex) to Cookie Compliance. Which address to use, the steps per app, the API-token fallback, and how to check it worked.
-- [platforms](platforms.md): where the snippet goes on each platform with a cookbook (WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Google Tag Manager, plain HTML), and the steps for any other site.
+- [platforms](platforms.md): where the snippet goes on each platform with a cookbook (WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Google Tag Manager, plain HTML), and the steps for any other site.
 - [prompts](prompts.md): copy-paste prompts for Claude Code, Cursor, Windsurf, GitHub Copilot, Codex and agents without MCP.
 
 ## Skills
@@ -34,6 +34,12 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [vite](cookbooks/vite.md): place the snippet in `index.html` for a React or Vue single-page app, ahead of the module entry.
 - [sveltekit](cookbooks/sveltekit.md): place the snippet in `src/app.html` above `%sveltekit.head%`. `svelte:head` is missing from the first response when SSR is off.
 - [shopify](cookbooks/shopify.md): place the snippet first in `layout/theme.liquid`'s `<head>` — not checkout Additional scripts or a Customer Events pixel.
+- [hugo](cookbooks/hugo.md): place the snippet first in the head partial or `baseof.html` your layouts render on every page.
+- [gatsby](cookbooks/gatsby.md): place the snippet first in `setHeadComponents` in `gatsby-ssr.js` (or a custom `src/html.js`), never `setPostBodyComponents`.
+- [docusaurus](cookbooks/docusaurus.md): add the snippet through `headTags` in `docusaurus.config.js` as two script entries, never `async: true`.
+- [laravel](cookbooks/laravel.md): place the snippet directly after `<head>` in the shared Blade layout, above `@fonts` and `@vite`.
+- [django](cookbooks/django.md): place the snippet first in `<head>` of the base template every page extends.
+- [rails](cookbooks/rails.md): place the snippet directly after `<head>` in `app/views/layouts/application.html.erb`.
 
 ## Design gallery
 

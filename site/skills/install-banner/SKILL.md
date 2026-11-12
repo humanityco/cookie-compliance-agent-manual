@@ -104,6 +104,12 @@ Platform detail:
 - Angular: `references/angular.md`
 - Vite (React or Vue single-page app): `references/vite.md`
 - SvelteKit: `references/sveltekit.md`
+- Hugo: `references/hugo.md`
+- Gatsby: `references/gatsby.md`
+- Docusaurus: `references/docusaurus.md`
+- Laravel: `references/laravel.md`
+- Django: `references/django.md`
+- Rails: `references/rails.md`
 - Shopify: `references/shopify.md`
 - Google Tag Manager on the page: `references/gtm.md`
 - WordPress: `references/wordpress.md` (plugin path — no paste)

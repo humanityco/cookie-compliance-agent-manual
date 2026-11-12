@@ -69,6 +69,12 @@ None of the above is a claim that installing Cookie Compliance this way makes a 
 | [`vite.md`](cookbooks/vite.md) | Shipped |
 | [`sveltekit.md`](cookbooks/sveltekit.md) | Shipped |
 | [`shopify.md`](cookbooks/shopify.md) | Shipped |
+| [`hugo.md`](cookbooks/hugo.md) | Shipped |
+| [`gatsby.md`](cookbooks/gatsby.md) | Shipped |
+| [`docusaurus.md`](cookbooks/docusaurus.md) | Shipped |
+| [`laravel.md`](cookbooks/laravel.md) | Shipped |
+| [`django.md`](cookbooks/django.md) | Shipped |
+| [`rails.md`](cookbooks/rails.md) | Shipped |
 
 ### Design gallery
 

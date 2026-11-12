@@ -8,3 +8,9 @@ angular.md
 vite.md
 sveltekit.md
 shopify.md
+hugo.md
+gatsby.md
+docusaurus.md
+laravel.md
+django.md
+rails.md

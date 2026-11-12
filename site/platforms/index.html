@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Install Cookie Compliance on your platform — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Google Tag Manager and plain HTML, and what to do on any other site.">
+<meta name="description" content="Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Google Tag Manager and plain HTML…">
 <link rel="canonical" href="https://manual.hu-manity.co/platforms/">
 <link rel="alternate" type="text/markdown" href="/platforms.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Install Cookie Compliance on your platform">
-<meta property="og:description" content="Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Google Tag Manager and plain HTML, and what to do on any other site.">
+<meta property="og:description" content="Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Google Tag Manager and plain HTML…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/platforms/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Install Cookie Compliance on your platform",
-      "description": "Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Google Tag Manager and plain HTML, and what to do on any other site.",
+      "description": "Where to put the Cookie Compliance snippet on WordPress, Shopify, Next.js, Nuxt, Astro, Angular, Vite, SvelteKit, Hugo, Gatsby, Docusaurus, Laravel, Django, Rails, Google Tag Manager and plain HTML…",
       "url": "https://manual.hu-manity.co/platforms/",
       "inLanguage": "en",
       "publisher": {
@@ -107,6 +107,12 @@
         <li><a href="/cookbooks/astro/">astro</a></li>
         <li><a href="/cookbooks/gtm/">gtm</a></li>
         <li><a href="/cookbooks/shopify/">shopify</a></li>
+        <li><a href="/cookbooks/hugo/">hugo</a></li>
+        <li><a href="/cookbooks/gatsby/">gatsby</a></li>
+        <li><a href="/cookbooks/docusaurus/">docusaurus</a></li>
+        <li><a href="/cookbooks/laravel/">laravel</a></li>
+        <li><a href="/cookbooks/django/">django</a></li>
+        <li><a href="/cookbooks/rails/">rails</a></li>
         <li><a href="/cookbooks/angular/">angular</a></li>
         <li><a href="/cookbooks/sveltekit/">sveltekit</a></li>
         <li><a href="/cookbooks/vite/">vite</a></li>
@@ -179,6 +185,36 @@
 <td>Google Tag Manager</td>
 <td><code>&lt;head&gt;</code>, above the GTM container; never as a tag inside GTM</td>
 <td><a href="/cookbooks/gtm/">gtm</a></td>
+</tr>
+<tr>
+<td>Hugo</td>
+<td>The head partial or <code>baseof.html</code> your layouts render on every page, first</td>
+<td><a href="/cookbooks/hugo/">hugo</a></td>
+</tr>
+<tr>
+<td>Gatsby</td>
+<td><code>gatsby-ssr.js</code> <code>setHeadComponents</code> with the snippet first, or a custom <code>src/html.js</code>; not <code>setPostBodyComponents</code></td>
+<td><a href="/cookbooks/gatsby/">gatsby</a></td>
+</tr>
+<tr>
+<td>Docusaurus</td>
+<td><code>headTags</code> in <code>docusaurus.config.js</code>, two script entries; not <code>async: true</code></td>
+<td><a href="/cookbooks/docusaurus/">docusaurus</a></td>
+</tr>
+<tr>
+<td>Laravel</td>
+<td>Directly after <code>&lt;head&gt;</code> in the shared Blade layout, above <code>@fonts</code> and <code>@vite</code></td>
+<td><a href="/cookbooks/laravel/">laravel</a></td>
+</tr>
+<tr>
+<td>Django</td>
+<td>First thing in <code>&lt;head&gt;</code> of the base template every page extends</td>
+<td><a href="/cookbooks/django/">django</a></td>
+</tr>
+<tr>
+<td>Rails</td>
+<td>Directly after <code>&lt;head&gt;</code> in <code>app/views/layouts/application.html.erb</code></td>
+<td><a href="/cookbooks/rails/">rails</a></td>
 </tr>
 <tr>
 <td>Static HTML or any other site you edit directly</td>

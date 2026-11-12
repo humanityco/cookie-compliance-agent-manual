@@ -18,8 +18,23 @@
 /cookbooks/astro.md
   Link: <https://manual.hu-manity.co/cookbooks/astro/>; rel="canonical"
 
+/cookbooks/django.md
+  Link: <https://manual.hu-manity.co/cookbooks/django/>; rel="canonical"
+
+/cookbooks/docusaurus.md
+  Link: <https://manual.hu-manity.co/cookbooks/docusaurus/>; rel="canonical"
+
+/cookbooks/gatsby.md
+  Link: <https://manual.hu-manity.co/cookbooks/gatsby/>; rel="canonical"
+
 /cookbooks/gtm.md
   Link: <https://manual.hu-manity.co/cookbooks/gtm/>; rel="canonical"
+
+/cookbooks/hugo.md
+  Link: <https://manual.hu-manity.co/cookbooks/hugo/>; rel="canonical"
+
+/cookbooks/laravel.md
+  Link: <https://manual.hu-manity.co/cookbooks/laravel/>; rel="canonical"
 
 /cookbooks/nextjs.md
   Link: <https://manual.hu-manity.co/cookbooks/nextjs/>; rel="canonical"
@@ -29,6 +44,9 @@
 
 /cookbooks/plain-html.md
   Link: <https://manual.hu-manity.co/cookbooks/plain-html/>; rel="canonical"
+
+/cookbooks/rails.md
+  Link: <https://manual.hu-manity.co/cookbooks/rails/>; rel="canonical"
 
 /cookbooks/shopify.md
   Link: <https://manual.hu-manity.co/cookbooks/shopify/>; rel="canonical"

@@ -105,6 +105,12 @@ Do not write your own banner.</pre>
     <li><a href="cookbooks/sveltekit/">sveltekit</a><span class="desc">Place it in <code>src/app.html</code> above <code>%sveltekit.head%</code>.</span></li>
     <li><a href="cookbooks/gtm/">gtm</a><span class="desc">Put it above the GTM container in <code>&lt;head&gt;</code> — never inside GTM.</span></li>
     <li><a href="cookbooks/shopify/">shopify</a><span class="desc">Place it in <code>layout/theme.liquid</code> — not Additional scripts or a Customer Events pixel.</span></li>
+    <li><a href="cookbooks/hugo/">hugo</a><span class="desc">Place it first in the head partial or <code>baseof.html</code>.</span></li>
+    <li><a href="cookbooks/gatsby/">gatsby</a><span class="desc">Place it first in <code>setHeadComponents</code> — not <code>setPostBodyComponents</code>.</span></li>
+    <li><a href="cookbooks/docusaurus/">docusaurus</a><span class="desc">Add it through <code>headTags</code> — never <code>async: true</code>.</span></li>
+    <li><a href="cookbooks/laravel/">laravel</a><span class="desc">Place it right after <code>&lt;head&gt;</code> in the Blade layout, above <code>@vite</code>.</span></li>
+    <li><a href="cookbooks/django/">django</a><span class="desc">Place it first in <code>&lt;head&gt;</code> of the base template.</span></li>
+    <li><a href="cookbooks/rails/">rails</a><span class="desc">Place it right after <code>&lt;head&gt;</code> in the application layout.</span></li>
   </ul>
 
   <h2 id="gallery">Design gallery</h2>
