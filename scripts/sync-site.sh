@@ -53,6 +53,9 @@ done
 # it into the expected tree so the diff exempts it (and only it), and so a
 # rebuild keeps it. Any other index.html (e.g. site/gallery/, site/gallery/v2/) is mirrored.
 cp "$root/site/index.html" "$tmp/index.html"
+# Likewise site/favicon.ico: a binary with no source elsewhere, so carry it
+# instead of letting the rebuild delete it.
+cp "$root/site/favicon.ico" "$tmp/favicon.ico"
 
 # Human-readable HTML twins of the mirrored markdown, plus site/assets/. The
 # raw .md files above are left byte-identical: agents fetch those.
