@@ -4,7 +4,7 @@
 
 ## The one rule
 
-Blocking works by **execution order**: the banner holds the recognised trackers that come after it. So the snippet goes **first** on every page, in `<head>`, as plain synchronous tags (no `async`, `defer` or `type="module"`), above analytics, pixels and any tag manager.
+Blocking works by **execution order**: the banner holds the recognised trackers that come after it, in regions whose rule requires consent first. So the snippet goes **first** on every page, in `<head>`, as plain synchronous tags (no `async`, `defer` or `type="module"`), above analytics, pixels and any tag manager.
 
 Scripts you mark essential (`data-hu-category="1"`) run straight away. Recognised trackers wait for the visitor's choice, in regions whose rule requires consent first. What runs before consent is your decision.
 

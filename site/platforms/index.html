@@ -105,6 +105,9 @@
         <li><a href="/cookbooks/nextjs/">nextjs</a></li>
         <li><a href="/cookbooks/nuxt/">nuxt</a></li>
         <li><a href="/cookbooks/astro/">astro</a></li>
+        <li><a href="/cookbooks/angular/">angular</a></li>
+        <li><a href="/cookbooks/vite/">vite</a></li>
+        <li><a href="/cookbooks/sveltekit/">sveltekit</a></li>
         <li><a href="/cookbooks/gtm/">gtm</a></li>
         <li><a href="/cookbooks/shopify/">shopify</a></li>
         <li><a href="/cookbooks/hugo/">hugo</a></li>
@@ -123,9 +126,6 @@
         <li><a href="/cookbooks/webflow/">webflow</a></li>
         <li><a href="/cookbooks/framer/">framer</a></li>
         <li><a href="/cookbooks/trackers/">trackers</a></li>
-        <li><a href="/cookbooks/angular/">angular</a></li>
-        <li><a href="/cookbooks/sveltekit/">sveltekit</a></li>
-        <li><a href="/cookbooks/vite/">vite</a></li>
       </ul>
       <h2>Design gallery</h2>
       <ul>
@@ -139,7 +139,7 @@
 <p class="page-meta"><a href="/platforms.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> the banner is one two-tag snippet that works on any site where you can place code in the <code>&lt;head&gt;</code>, whatever it is built with. What changes from platform to platform is <strong>where the snippet goes</strong>. Find your platform below for the exact spot, or use the general steps if it isn&#39;t listed.</p>
 <h2 id="the-one-rule">The one rule <a class="anchor" href="#the-one-rule" aria-label="Link to this section">#</a></h2>
-<p>Blocking works by <strong>execution order</strong>: the banner holds the recognised trackers that come after it. So the snippet goes <strong>first</strong> on every page, in <code>&lt;head&gt;</code>, as plain synchronous tags (no <code>async</code>, <code>defer</code> or <code>type=&quot;module&quot;</code>), above analytics, pixels and any tag manager.</p>
+<p>Blocking works by <strong>execution order</strong>: the banner holds the recognised trackers that come after it, in regions whose rule requires consent first. So the snippet goes <strong>first</strong> on every page, in <code>&lt;head&gt;</code>, as plain synchronous tags (no <code>async</code>, <code>defer</code> or <code>type=&quot;module&quot;</code>), above analytics, pixels and any tag manager.</p>
 <p>Scripts you mark essential (<code>data-hu-category=&quot;1&quot;</code>) run straight away. Recognised trackers wait for the visitor&#39;s choice, in regions whose rule requires consent first. What runs before consent is your decision.</p>
 <h2 id="platforms-with-a-guide">Platforms with a guide <a class="anchor" href="#platforms-with-a-guide" aria-label="Link to this section">#</a></h2>
 <p>Each guide shows where the snippet goes and how to confirm it.</p>

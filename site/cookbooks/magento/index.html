@@ -100,6 +100,9 @@
         <li><a href="/cookbooks/nextjs/">nextjs</a></li>
         <li><a href="/cookbooks/nuxt/">nuxt</a></li>
         <li><a href="/cookbooks/astro/">astro</a></li>
+        <li><a href="/cookbooks/angular/">angular</a></li>
+        <li><a href="/cookbooks/vite/">vite</a></li>
+        <li><a href="/cookbooks/sveltekit/">sveltekit</a></li>
         <li><a href="/cookbooks/gtm/">gtm</a></li>
         <li><a href="/cookbooks/shopify/">shopify</a></li>
         <li><a href="/cookbooks/hugo/">hugo</a></li>
@@ -126,9 +129,6 @@
         <li><a href="/cookbooks/webflow/">webflow</a></li>
         <li><a href="/cookbooks/framer/">framer</a></li>
         <li><a href="/cookbooks/trackers/">trackers</a></li>
-        <li><a href="/cookbooks/angular/">angular</a></li>
-        <li><a href="/cookbooks/sveltekit/">sveltekit</a></li>
-        <li><a href="/cookbooks/vite/">vite</a></li>
       </ul>
       <h2>Design gallery</h2>
       <ul>
@@ -182,7 +182,7 @@
 <p>Then run the browser checks in <a href="/cookbooks/plain-html/#confirm-the-result">plain-html</a> in a private window (banner shows, no tracking cookies before the visitor chooses in a region whose rule requires consent first, trackers start after Allow) and, for the full procedure, <a href="/skills/verify-install/">verify-install</a>. Test from a region your strictest rule covers (for example the EU), or confirm region rules are off.</p>
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
-<li><strong>Use <code>root.phtml</code>: it prints first on every page.</strong> If you prefer the admin field (<strong>Content → Design → Configuration → HTML Head → Scripts and Style Sheets</strong>), put your analytics tags below the snippet in the same field. Keep the snippet out of the footer field, which prints in the page body.</li>
+<li><strong>Use <code>root.phtml</code>: it prints first on every page.</strong> It is the one place that prints ahead of RequireJS, so the snippet lives there. The admin <strong>HTML Head</strong> fields (<strong>Content → Design → Configuration</strong>) suit tags that can load after the banner; the footer field prints in the page body.</li>
 <li><strong>After a Magento upgrade</strong>, compare your <code>root.phtml</code> with the new core file and view the page source again, so the snippet is still first and the template still matches.</li>
 <li><strong>Flush the cache after every edit.</strong> Until then visitors keep getting the cached page.</li>
 <li><strong>Keep a single consent banner.</strong> Remove any other one, including Magento&#39;s own cookie notice (turn off <strong>Cookie Restriction Mode</strong> under <strong>Stores → Configuration → General → Web → Default Cookie Settings</strong>), so visitors see one clear choice.</li>

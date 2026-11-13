@@ -93,7 +93,7 @@ If the owner later switches banner engine in the dashboard, a hand-pasted snippe
 2. Insert the snippet as the **first script** in `<head>`, above analytics, pixels and any tag-manager container.
 3. No `async`, `defer` or `type="module"`. Don't route it through a bundler, a framework script helper, or a tag manager.
 4. Leave existing trackers in place, **below** the snippet. Don't delete them or add your own consent checks around them.
-5. Remove any other consent banner (see Autopilot above for which ones to ask about first), and any leftover preview key (`previewMode`, `forceShow`, `cnPreview`). Two banners give conflicting consent, and a preview key stops choices being saved.
+5. Remove any other consent banner (see Autopilot above for which ones to ask about first) (a site builder's own banner stays where its cookbook says so: Wix, Squarespace), and any leftover preview key (`previewMode`, `forceShow`, `cnPreview`). Two banners give conflicting consent, and a preview key stops choices being saved.
 
 Platform detail:
 

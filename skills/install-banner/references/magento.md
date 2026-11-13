@@ -55,7 +55,7 @@ Then run the browser checks in [plain-html](plain-html.md#confirm-the-result) in
 
 ## Gotchas
 
-- **Use `root.phtml`: it prints first on every page.** If you prefer the admin field (**Content → Design → Configuration → HTML Head → Scripts and Style Sheets**), put your analytics tags below the snippet in the same field. Keep the snippet out of the footer field, which prints in the page body.
+- **Use `root.phtml`: it prints first on every page.** It is the one place that prints ahead of RequireJS, so the snippet lives there. The admin **HTML Head** fields (**Content → Design → Configuration**) suit tags that can load after the banner; the footer field prints in the page body.
 - **After a Magento upgrade**, compare your `root.phtml` with the new core file and view the page source again, so the snippet is still first and the template still matches.
 - **Flush the cache after every edit.** Until then visitors keep getting the cached page.
 - **Keep a single consent banner.** Remove any other one, including Magento's own cookie notice (turn off **Cookie Restriction Mode** under **Stores → Configuration → General → Web → Default Cookie Settings**), so visitors see one clear choice.
