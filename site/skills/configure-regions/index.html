@@ -149,9 +149,10 @@
 </code></pre></div>
 <p>Leave <code>geolocationMethod</code> unset. It is already <code>automatic</code>, so the platform&#39;s region matrix applies. Do not send <code>geolocationRules</code>.</p>
 <p>On <strong>Free</strong> (<code>Basic</code>, or any value other than <code>Pro</code>), the live banner keeps region detection off and keeps Meta and Microsoft Consent Mode off. Apply only:</p>
-<div class="code"><pre tabindex="0"><code class="language-json">{&quot;googleConsentMode&quot;: true, &quot;gpcSupportMode&quot;: true}
+<div class="code"><pre tabindex="0"><code class="language-json">{&quot;googleConsentMode&quot;: true}
 </code></pre></div>
-<p>Say, in the same question, that region detection and the Meta and Microsoft signals stay off on the Free plan. Do not change <code>regulations</code> or any consent-mode map. GDPR stays the only declared law. This does not make the site legally compliant.</p>
+<p>Global Privacy Control is a Professional setting, so it is part of the Pro starter above and not this one.</p>
+<p>Say, in the same question, that region detection and the Meta and Microsoft signals stay off on the Free plan, and that Global Privacy Control is a Professional feature. Do not change <code>regulations</code> or any consent-mode map. GDPR stays the only declared law. This does not make the site legally compliant.</p>
 <p>The preview is the write. If it reports a deletion or a warning the owner did not accept, stop and show it.</p>
 <h2 id="1-two-separate-decisions--dont-conflate-them">1. Two separate decisions — don&#39;t conflate them <a class="anchor" href="#1-two-separate-decisions--dont-conflate-them" aria-label="Link to this section">#</a></h2>
 <div class="table-wrap" role="region" aria-label="Table" tabindex="0">

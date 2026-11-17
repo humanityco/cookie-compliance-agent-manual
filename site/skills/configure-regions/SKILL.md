@@ -24,10 +24,12 @@ Leave `geolocationMethod` unset. It is already `automatic`, so the platform's re
 On **Free** (`Basic`, or any value other than `Pro`), the live banner keeps region detection off and keeps Meta and Microsoft Consent Mode off. Apply only:
 
 ```json
-{"googleConsentMode": true, "gpcSupportMode": true}
+{"googleConsentMode": true}
 ```
 
-Say, in the same question, that region detection and the Meta and Microsoft signals stay off on the Free plan. Do not change `regulations` or any consent-mode map. GDPR stays the only declared law. This does not make the site legally compliant.
+Global Privacy Control is a Professional setting, so it is part of the Pro starter above and not this one.
+
+Say, in the same question, that region detection and the Meta and Microsoft signals stay off on the Free plan, and that Global Privacy Control is a Professional feature. Do not change `regulations` or any consent-mode map. GDPR stays the only declared law. This does not make the site legally compliant.
 
 The preview is the write. If it reports a deletion or a warning the owner did not accept, stop and show it.
 
