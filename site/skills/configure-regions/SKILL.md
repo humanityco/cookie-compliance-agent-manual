@@ -9,7 +9,7 @@ MCP tool names below are written `account.previewComplianceChange`; some clients
 
 ## GDPR starter
 
-A new app leaves region detection, Consent Mode and Global Privacy Control off (GDPR is its declared law on Classic; the New banner applies every law by place). Ask the site owner once whether to turn the starter on. Apply it only after they accept. An earlier request to "make the site compliant" is not that answer.
+A new app leaves region detection, Consent Mode and Global Privacy Control off (GDPR is its declared law on Classic; on the New banner, once region detection is on, every law applies by place). Ask the site owner once whether to turn the starter on. Apply it only after they accept. An earlier request to "make the site compliant" is not that answer.
 
 Read `subscriptionType` from `account.createApp` or from `account.getDesign` (`meta.subscriptionType`).
 
@@ -19,7 +19,7 @@ On **Pro**, preview then commit exactly:
 {"geolocation": true, "googleConsentMode": true, "facebookConsentMode": true, "microsoftConsentMode": true, "gpcSupportMode": true}
 ```
 
-Leave `geolocationMethod` unset. It is already `automatic`. On the New banner that is the **Managed** method: the banner's own law table decides each place (GDPR for the EU, the EEA and Switzerland, UK PECR for the UK, CCPA in California, the other US states, and Brazil, Canada and South Africa), and it also asks first in further places where our research finds the law expects consent first. We keep that list current, so nothing here needs maintaining. Do not send `geolocationRules` or `regulations`: the New banner does not read them.
+Leave `geolocationMethod` unset. It is already `automatic`. On the New banner that is the **Managed** method: once region detection is on, the banner's own law table decides each place (GDPR for the EU, the EEA and Switzerland, UK PECR for the UK, CCPA in California, the other US states, and Brazil, Canada and South Africa), and it also asks first in further places from our country research. Do not send `geolocationRules` or `regulations`: the New banner does not read them.
 
 On **Free** (`Basic`, or any value other than `Pro`), the live banner keeps region detection off and keeps Meta and Microsoft Consent Mode off. Apply only:
 
@@ -35,14 +35,14 @@ The preview is the write. If it reports a deletion or a warning the owner did no
 
 ## 1. Check the engine first
 
-Read `WidgetVersion` from the status check (`"v2"` is the New banner; anything else is Classic). Every new app is New.
+Find the engine from the status check in [`verify-install`](../verify-install/SKILL.md) step 0 (`data.WidgetVersion`: `"v2"` is the New banner; anything else is Classic), or from the `engine` field of `account.explainRegion`. `account.getDesign` does not return it. A new app normally starts on the New banner.
 
 | | New banner | Classic banner |
 |---|---|---|
 | Which laws apply | Built in: every law is on, by place. `regulations` is ignored. | `config.regulations.<key>` declares them |
 | What a region gets | The banner's law table. Places no law covers get **Default for other places**. | `config.geolocationRules[]` (see step 3) |
 | Region detection | `config.geolocation` (boolean) | `config.geolocation` (boolean) |
-| Method | `geolocationMethod` `automatic` = Managed: the law table plus the places we research, kept current by us. Manual also applies the owner's own per-country settings. | `automatic` serves the built-in rules; `manual` uses the stored rules |
+| Method | `geolocationMethod` `automatic` = Managed: the law table plus the places from our country research. Manual also applies the owner's own per-country settings. | `automatic` serves the built-in rules; `manual` uses the stored rules |
 
 Read the app's current values with `account.getDesign` before changing anything: they live under `config.*`. To see what one visitor gets, call `account.explainRegion` (step 6).
 
@@ -52,9 +52,15 @@ Read the app's current values with `account.getDesign` before changing anything:
 
 On Classic, `account.previewComplianceChange` then `account.updateComplianceConfig` with, for example, `{"regulations": {"gdpr": true, "ccpa": true}}`. This **merges** against whatever the app already has stored: setting `lgpd` in a later call does not erase `gdpr`/`ccpa`. See Verified below.
 
-## 3. Per-region behavior on Classic: `geolocationRules`, and its one real hazard
+## 3. Per-region behavior
 
-**Classic banner only.** On the New banner an EU visitor and a California visitor are already treated differently by the built-in law table once `geolocation` is on, and `geolocationRules` is not read. Do not set `geolocationMethod` to `manual` on a New app: these tools refuse it, because Manual drops the extra places Managed asks first in. Switching to Manual is done by the owner in the dashboard (Configuration → Laws), which carries those places into their Opt-in list.
+### New banner
+
+On the New banner an EU visitor and a California visitor are already treated differently by the built-in law table once `geolocation` is on, and `geolocationRules` is not read. Do not set `geolocationMethod` to `manual` on a New app: these tools refuse it, because Manual drops the extra places Managed asks first in. Switching to Manual is done by the owner in the dashboard (Configuration → Laws), which carries those places into their Opt-in list.
+
+**On the New banner, the law table shapes the banner whether or not the script blocking engine is on.** The Do Not Sell link follows the visitor's place (it shows for US visitors and not elsewhere); the privacy policy link and the Update consent icon follow the app's own switches. With region detection on, the banner shows in every place unless the owner chose No banner for it (step 6). The engine is off on a WordPress site with the plugin's **Script blocking engine** setting off and on every page a logged-in WordPress administrator views, so an administrator sees the visitors' banner but not its blocking: with the engine off nothing is held. The WordPress plugin's **Autoblocking** setting does not switch region rules off. A Free plan site past its visit limit is also engine-off, and the live banner keeps region detection off on the Free plan on both engines (see the GDPR starter above).
+
+### Classic banner: `geolocationRules`, and its one real hazard
 
 On a Classic app, to treat an EU visitor differently from a California visitor, turn on `geolocation: true`, set `geolocationMethod: "manual"` (see step 4 for why), and send the **full** `geolocationRules` array: one entry per regulation name, each with its own `display` / `revoke` / `blocking` / `privacy` / `doNotSell` booleans:
 
@@ -71,15 +77,13 @@ On a Classic app, to treat an EU visitor differently from a California visitor, 
 
 On Classic, `privacy` and `doNotSell` show or hide the privacy-policy link and the Do Not Sell link for that region's visitors, and a rule's flag wins over the app's **Privacy Policy Link** or **Do Not Sell Link** switch in the dashboard. Where no rule applies (for example geolocation is off, or the visitor matches no rule; see below), the switch alone decides. Make sure each link has a URL and link text. Send both flags on every entry: the two banner engines treat a missing flag differently.
 
-**On the New banner, the law table shapes the banner whether or not the script blocking engine is on.** The Do Not Sell link follows the visitor's place (it shows for US visitors and not elsewhere); the privacy policy link and the Update consent icon follow the app's own switches. With region detection on, the banner shows in every place unless the owner chose No banner for it (step 6). The engine is off on a WordPress site with the plugin's **Script blocking engine** setting off and on every page a logged-in WordPress administrator views, so an administrator sees the visitors' banner but not its blocking: with the engine off nothing is held. The WordPress plugin's **Autoblocking** setting does not switch region rules off. A Free plan site past its visit limit is also engine-off, and the live banner keeps region detection off on the Free plan on both engines (see the GDPR starter above).
-
 **On Classic, this array replaces wholesale; it is never merged.** Sending only the `gdpr` entry silently deletes every other region's rules. `account.previewComplianceChange` warns about this at preview time, but nothing warns you at commit time, so read the preview. Always fetch the app's current `geolocationRules` with `account.getDesign` first, edit only the one entry you mean to change, and send the **whole list** back.
 
 On Classic, valid `name`s are the same seven keys as `regulations.*` above, plus `other`: the rule for visitors who match no other enabled rule. US visitors are the exception: outside California they match `otherus` only when it is enabled, and otherwise get no rule at all, so `other` does not cover them. `other` is kept whatever `regulations` says, so keep it in the list.
 
 ## 4. Location method: Managed or Manual
 
-**New banner.** `automatic` is **Managed** (the default): the law table decides each place, plus the places where our research finds the law expects consent first (we keep these current). Per-country settings the owner made are ignored on Managed. **Manual** applies the owner's own per-country settings on top of the law table (Professional plan, region detection on). These tools do not switch a New app to Manual; the owner does it on the Laws page, and the dashboard then adds the research places to their Opt-in list so they stay asked first.
+**New banner.** `automatic` is **Managed** (the default): with region detection on, the law table decides each place, plus the places from our country research. Per-country settings the owner made are ignored on Managed. **Manual** applies the owner's own per-country settings on top of the law table (Professional plan, region detection on). These tools do not switch a New app to Manual; the owner does it on the Laws page, and the dashboard then adds the research places to their Opt-in list so they stay asked first.
 
 **Classic banner.** `automatic` is the default. The Cookie Compliance server replaces whatever `geolocationRules` you last stored with its built-in default matrix on every live read, so your custom per-region rules never reach a visitor. **Set `geolocationMethod: "manual"` in the same change** if you want the array in step 3 to actually take effect.
 
@@ -89,7 +93,7 @@ On Classic, valid `name`s are the same seven keys as `regulations.*` above, plus
 
 ## 6. Per-country settings (New banner, owner's choice)
 
-The Laws page (Configuration → Laws, section **Countries**) lists every country, Quebec, California, and every US state and DC, and shows what a visitor from each place gets. On the Manual method (Professional plan, region detection on) the owner can set a place to **Opt-in** (recognised scripts wait for the visitor's choice), **Opt-out** (scripts run until the visitor refuses) or **No banner**, and choose what **Default for other places** gives where no law applies (Opt-out unless the owner chooses Opt-in). Opt-out and No banner are not available for the EU, EEA, Switzerland, the UK or the US, so a US state can only be set to Opt-in; Opt-out also has no effect for a business based in the EU, EEA, Switzerland or the UK. The settings are read from the app's live settings, and they apply once the visitor's location is known.
+The Laws page (Configuration → Laws, section **Countries**) lists every country, Quebec, California, and every US state and DC, and shows what a visitor from each place gets. On the Manual method (Professional plan, region detection on) the owner can set a place to **Opt-in** (recognised scripts wait for the visitor's choice), **Opt-out** (scripts run until the visitor refuses) or **No banner**, and choose what **Default for other places** gives where no law applies (Opt-out unless the owner chooses Opt-in; for a business based in the EU, the EEA, Switzerland or the UK, that law covers every visitor, so the default does not apply). Opt-out and No banner are not available for the EU, EEA, Switzerland, the UK or the US, so a US state can only be set to Opt-in; Opt-out also has no effect where another law applies (every law is on, so in Brazil, Canada and South Africa too), or for a business based in the EU, EEA, Switzerland or the UK. The settings are read from the app's live settings, and they apply once the visitor's location is known.
 
 Which of these a site uses is a legal choice for the owner: set them in the dashboard, and do not propose them. These tools do not write them. Until a visitor's location is known, the visitor is asked first (with region detection on). Region detection off means every visitor gets the same banner. On a Classic app the dashboard offers a **Switch to New engine** button for these settings.
 
