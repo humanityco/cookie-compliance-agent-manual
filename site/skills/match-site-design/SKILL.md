@@ -46,7 +46,7 @@ To restyle a **real** banner:
 
 Do **not** add a `design` block to the snippet from `install.getSnippet`. It would style the banner for a fraction of a second and then revert, which looks like an intermittent bug rather than a setting.
 
-**Free plan:** the live banner keeps the defaults for `btnBorderRadius`, `revokeMarginX`, `revokeMarginY`, `delayDisplay`, `delayTime` and `levelsOrder`, whatever the app stores. Button corners, the reopen icon's position, a delay before the banner appears and the order of the level buttons change on paid plans only, so do not promise them to a Free-plan owner.
+**Free plan:** on the Free plan too, these look settings can be set and published, and visitors see the saved values: button corners (`btnBorderRadius`), how far the reopen icon sits from the page edge (`revokeMarginX`, `revokeMarginY`), a delay before the banner appears (`delayDisplay`, `delayTime`) and the order of the level buttons (`levelsOrder`). New sites keep the same defaults until the owner changes them.
 
 `account.updateDesign` refuses any compliance-determinative field (blocking, consent categories, region settings, consent mode, GPC, expiry) — those go through the `configure-regions` skill instead; per-country settings are set by the owner in the dashboard.
 
