@@ -30,7 +30,7 @@ Use a fresh browser profile or private window. If you drive a browser with autom
 
 **Location matters:** with region rules on, the visitor's region decides whether the banner shows and whether it blocks. Test from a region under the strictest rule (for example the EU), or confirm region rules are off. Otherwise a missing banner may be correct, and a pass may not hold for EU visitors. In a region whose rule does not require consent first, trackers running before a choice can be correct; confirm the region's rule before treating a pass or a failure as final.
 
-On the New banner with region detection on, a visitor whose location is not known yet is asked first, so a first load that is still waiting for the location answer holds trackers whatever the region. For a site on the New banner that uses the Manual method, a place the owner set to Opt-out or No banner behaves differently from its law; `account.explainRegion` (AppID plus a place such as `DE` or `US-CA`) says what a visitor from that place gets.
+On the New banner with region detection on, a visitor whose location is not known yet is asked first, so a first load that is still waiting for the location answer holds trackers whatever the region. For a site on the New banner that uses the Manual method, a place the owner set to Opt-out or No banner behaves differently from the default; `account.explainRegion` (AppID plus a place such as `DE` or `US-CA`) says what a visitor from that place gets.
 
 | # | Check | Pass |
 |---|---|---|
