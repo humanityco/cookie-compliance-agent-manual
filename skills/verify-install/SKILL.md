@@ -5,7 +5,7 @@ description: Verify a Cookie Compliance consent banner actually holds trackers u
 
 # Verify the Cookie Compliance banner is actually blocking
 
-A banner that is merely visible has not been verified. Verification means proving trackers do not run before the visitor consents, in a region whose rule requires consent first (GDPR and UK PECR by default; other regions are opt-out by default), then proving they do run once the visitor allows them.
+A banner that is merely visible has not been verified. Verification means proving trackers do not run before the visitor consents, in a region whose rule requires consent first (GDPR and UK PECR by default. On the New banner's Managed method it also holds in further places where our research finds the law expects consent first, such as Brazil and Quebec; every other place is opt-out by default. A visitor whose location is not known yet is asked first), then proving they do run once the visitor allows them.
 
 ## 0. Status check first
 
@@ -29,6 +29,8 @@ A 200 only means the configuration is live. It is not a pass of any check below 
 Use a fresh browser profile or private window. If you drive a browser with automation, **hide `navigator.webdriver` and use a normal desktop user agent**, because the widget deliberately doesn't run for automated or headless browsers, and you'd wrongly conclude the banner is missing.
 
 **Location matters:** with region rules on, the visitor's region decides whether the banner shows and whether it blocks. Test from a region under the strictest rule (for example the EU), or confirm region rules are off. Otherwise a missing banner may be correct, and a pass may not hold for EU visitors. In a region whose rule does not require consent first, trackers running before a choice can be correct; confirm the region's rule before treating a pass or a failure as final.
+
+On the New banner, a visitor whose location is not known yet is asked first, so a first load that is still waiting for the location answer holds trackers whatever the region. For a site that uses the Manual method, a place the owner set to Opt-out or No banner behaves differently from its law; `account.explainRegion` (AppID plus a place such as `DE` or `US-CA`) says what a visitor from that place gets.
 
 | # | Check | Pass |
 |---|---|---|
