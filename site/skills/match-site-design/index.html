@@ -194,7 +194,7 @@
 </thead>
 <tbody><tr>
 <td>not set</td>
-<td>the banner default: <strong>Arial on Classic</strong>; <strong>the website&#39;s own font on New</strong>. On both engines the notice over a blocked video or map uses the website&#39;s font for its text and Arial for its button</td>
+<td>the banner default: <strong>Arial on Classic</strong>; <strong>the website&#39;s own font on New</strong>. On both engines the notice over a blocked video or map uses the website&#39;s font for its text; on the New engine the Accept button on that notice matches the outlined level-pill look (Private, Balanced, Personalized) and uses the banner font; on Classic that Accept button is filled</td>
 </tr>
 <tr>
 <td><code>&quot;site&quot;</code></td>
@@ -314,10 +314,10 @@ body #hu-passive .hu-passive-heading { color: #c00; }
 </code></pre></div>
 <h3 id="44-colours-and-sizes-variables-on-the-root">4.4 Colours and sizes: variables on the root <a class="anchor" href="#44-colours-and-sizes-variables-on-the-root" aria-label="Link to this section">#</a></h3>
 <p>Every colour and size design key is also a CSS variable named <code>--hu-&lt;key&gt;</code> (<code>--hu-primaryColor</code>, <code>--hu-textColor</code>, <code>--hu-bannerColor</code>, <code>--hu-headingSize</code>, <code>--hu-textSize</code>, <code>--hu-btnBorderRadius</code>, …). Set it <strong>on a root</strong>:</p>
-<div class="code"><pre tabindex="0"><code class="language-css">#hu { --hu-primaryColor: #c00; --hu-btnColor: #c00; }  /* the banner, buttons included */
+<div class="code"><pre tabindex="0"><code class="language-css">#hu { --hu-primaryColor: #c00; --hu-btnColor: #c00; }  /* the banner, filled buttons included */
 #hu, #hu-revoke, #hu-passive, .hu-iframe-overlay { --hu-primaryColor: #c00; --hu-btnColor: #c00; }  /* every part */
 </code></pre></div>
-<p><strong>To recolour buttons, set both <code>--hu-primaryColor</code> and <code>--hu-btnColor</code>.</strong> On Classic, <code>--hu-primaryColor</code> on <code>#hu</code> recolours only the link-style buttons; the filled buttons follow <code>--hu-btnColor</code>. Set both to recolour the buttons on either engine.</p>
+<p><strong>To recolour the banner&#39;s filled buttons, set both <code>--hu-primaryColor</code> and <code>--hu-btnColor</code>.</strong> On Classic, <code>--hu-primaryColor</code> on <code>#hu</code> recolours only the link-style buttons; the filled buttons follow <code>--hu-btnColor</code>. Set both to recolour the filled buttons on either engine. On New, the Accept button on a blocked video or map is outlined like the level pills: it follows <code>--hu-borderColor</code> and <code>--hu-headingColor</code>, with <code>--hu-primaryColor</code> on the border when hovered; <code>--hu-btnColor</code> and <code>--hu-btnTextColor</code> do not reach it (Classic: that Accept button is filled and follows <code>--hu-btnColor</code> / <code>--hu-btnTextColor</code>).</p>
 <p>Not on <code>:root</code> or <code>html</code>: the banner writes its own values directly on the <code>&lt;html&gt;</code> element, and those beat a stylesheet rule there. A variable set on <code>#hu</code> does not reach the other three parts. Your <code>--hu-bannerColor</code> replaces the banner&#39;s background opacity with a solid colour.</p>
 <p>Prefer the design keys (step 3) when one exists: a colour changed by CSS is not covered by the contrast check, so check it yourself (4.5:1 for text).</p>
 <h3 id="45-a-font-that-is-not-one-of-the-four">4.5 A font that is not one of the four <a class="anchor" href="#45-a-font-that-is-not-one-of-the-four" aria-label="Link to this section">#</a></h3>
