@@ -130,7 +130,7 @@ Every colour and size design key is also a CSS variable named `--hu-<key>` (`--h
 **Button variables (New only):** for a look the design keys do not cover, `--hu-buttonBackground`, `--hu-buttonLabelColor` and `--hu-buttonBorderColor` restyle those same two buttons, and win over either Button style. Set them on `#hu` for Customize only, on `.hu-iframe-overlay` for the blocked-content Accept only, or on both:
 
 ```css
-#hu, .hu-iframe-overlay { --hu-buttonBackground: #20c19e; --hu-buttonLabelColor: #fff; --hu-buttonBorderColor: #20c19e; }
+#hu, .hu-iframe-overlay { --hu-buttonBackground: #20c19e; --hu-buttonLabelColor: #111; --hu-buttonBorderColor: #20c19e; }
 ```
 
 Check the label against the background yourself (4.5:1); a colour set by CSS is not covered by the contrast check. These three variables are the exception to the next rule: the banner never writes them, so they also work on `:root`.
