@@ -98,12 +98,15 @@ If the owner later switches banner engine in the dashboard, a hand-pasted snippe
 Platform detail:
 
 - Plain HTML: `references/plain-html.md`
+- WordPress: `references/wordpress.md` (plugin path — no paste)
 - Next.js: `references/nextjs.md`
 - Nuxt: `references/nuxt.md`
 - Astro: `references/astro.md`
 - Angular: `references/angular.md`
 - Vite (React or Vue single-page app): `references/vite.md`
 - SvelteKit: `references/sveltekit.md`
+- Shopify: `references/shopify.md`
+- Google Tag Manager on the page: `references/gtm.md`
 - Hugo: `references/hugo.md`
 - Gatsby: `references/gatsby.md`
 - Docusaurus: `references/docusaurus.md`
@@ -120,9 +123,6 @@ Platform detail:
 - Webflow: `references/webflow.md`
 - Framer: `references/framer.md`
 - Tags and pixels (GA4, Meta Pixel, Hotjar and others): `references/trackers.md`
-- Shopify: `references/shopify.md`
-- Google Tag Manager on the page: `references/gtm.md`
-- WordPress: `references/wordpress.md` (plugin path — no paste)
 
 **Stop and ask the owner** if the only way to add scripts is through a tag manager, or if you can't edit `<head>` on every page. Say so plainly; don't invent a workaround.
 

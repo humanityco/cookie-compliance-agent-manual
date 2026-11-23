@@ -140,7 +140,7 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-a-hugo-site">Add a cookie consent banner to a Hugo site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/hugo.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first thing in the <code>&lt;head&gt;</code> your layouts render on every page: <code>layouts/_default/baseof.html</code>, or the head partial it includes, above your analytics tag.</p>
+<p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first script in the <code>&lt;head&gt;</code> your layouts render on every page: <code>layouts/_default/baseof.html</code>, or the head partial it includes, above your analytics tag.</p>
 <p>Confirmed on a Hugo site with its own <code>baseof.html</code> and head partial: the snippet is the first script in the built page&#39;s <code>&lt;head&gt;</code>.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -168,7 +168,7 @@
 &lt;/head&gt;
 </code></pre></div>
 </li>
-<li><p>Rebuild with <code>hugo</code>. Your trackers stay as they are; the banner manages them.</p>
+<li><p>Rebuild with <code>hugo</code>. Your trackers stay as they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.</p>
 </li>
 </ol>
 <p>If the snippet currently sits in a footer partial, or in a partial rendered after your analytics tag, move it up to the top of the head partial.</p>

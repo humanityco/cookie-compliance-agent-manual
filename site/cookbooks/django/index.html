@@ -140,7 +140,7 @@
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-a-django-site">Add a cookie consent banner to a Django site</h1>
 <p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/django.md">View raw markdown (for agents)</a></p>
-<p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first thing inside <code>&lt;head&gt;</code> of the base template every page extends (<code>templates/base.html</code>). If you use a child-template block for it, that block must sit above your other scripts in the base.</p>
+<p><strong>In short:</strong> paste the <strong>live</strong> snippet as the first script inside <code>&lt;head&gt;</code> of the base template every page extends (<code>templates/base.html</code>). If you use a child-template block for it, that block must sit above your other scripts in the base.</p>
 <p>Confirmed on a Django site: the snippet is the first script in the rendered page&#39;s <code>&lt;head&gt;</code>.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -151,7 +151,7 @@
 <ol>
 <li><p>Copy the live snippet (see above).</p>
 </li>
-<li><p>Open the base template and paste the snippet as the <strong>first thing inside <code>&lt;head&gt;</code></strong>:</p>
+<li><p>Open the base template and paste the snippet as the <strong>first script inside <code>&lt;head&gt;</code></strong>:</p>
 <div class="code"><pre tabindex="0"><code class="language-django">&lt;head&gt;
   &lt;meta charset=&quot;utf-8&quot;&gt;
   {# Cookie Compliance: first script on the page (paste live snippet here) #}

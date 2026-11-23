@@ -7,7 +7,7 @@ last_verified: 2026-11-12
 
 # Add a cookie consent banner to a Django site
 
-**In short:** paste the **live** snippet as the first thing inside `<head>` of the base template every page extends (`templates/base.html`). If you use a child-template block for it, that block must sit above your other scripts in the base.
+**In short:** paste the **live** snippet as the first script inside `<head>` of the base template every page extends (`templates/base.html`). If you use a child-template block for it, that block must sit above your other scripts in the base.
 
 Confirmed on a Django site: the snippet is the first script in the rendered page's `<head>`.
 
@@ -19,7 +19,7 @@ Confirmed on a Django site: the snippet is the first script in the rendered page
 ## Where it goes
 
 1. Copy the live snippet (see above).
-2. Open the base template and paste the snippet as the **first thing inside `<head>`**:
+2. Open the base template and paste the snippet as the **first script inside `<head>`**:
 
    ```django
    <head>

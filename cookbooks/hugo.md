@@ -7,7 +7,7 @@ last_verified: 2026-11-12
 
 # Add a cookie consent banner to a Hugo site
 
-**In short:** paste the **live** snippet as the first thing in the `<head>` your layouts render on every page: `layouts/_default/baseof.html`, or the head partial it includes, above your analytics tag.
+**In short:** paste the **live** snippet as the first script in the `<head>` your layouts render on every page: `layouts/_default/baseof.html`, or the head partial it includes, above your analytics tag.
 
 Confirmed on a Hugo site with its own `baseof.html` and head partial: the snippet is the first script in the built page's `<head>`.
 
@@ -37,7 +37,7 @@ Confirmed on a Hugo site with its own `baseof.html` and head partial: the snippe
    </head>
    ```
 
-4. Rebuild with `hugo`. Your trackers stay as they are; the banner manages them.
+4. Rebuild with `hugo`. Your trackers stay as they are; the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.
 
 If the snippet currently sits in a footer partial, or in a partial rendered after your analytics tag, move it up to the top of the head partial.
 
