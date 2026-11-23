@@ -62,7 +62,7 @@ Set it like any other design key (`account.previewDesignChange`, then `account.u
 
 | Value | Font |
 |---|---|
-| not set | the banner default: **Arial on Classic**; **the website's own font on New**. On both engines the notice over a blocked video or map uses the website's font for its text; on the New engine the Accept button on that notice matches the outlined level-pill look (Private, Balanced, Personalized) and uses the banner font; on Classic that Accept button is filled |
+| not set | the banner default: **Arial on Classic**; **the website's own font on New**. On both engines the notice over a blocked video or map uses the website's font for its text; on the New engine the Accept button on that notice matches the outlined level-pill look (Private, Balanced, Personalized) unless Button style is Solid (4.4), and uses the banner font; on Classic that Accept button is filled |
 | `"site"` | the website's own font |
 | `"sans-serif"` | Arial, or the closest plain font on the device (the Classic default look) |
 | `"serif"` | Georgia, or Times New Roman |
@@ -123,9 +123,19 @@ Every colour and size design key is also a CSS variable named `--hu-<key>` (`--h
 #hu, #hu-revoke, #hu-passive, .hu-iframe-overlay { --hu-primaryColor: #c00; --hu-btnColor: #c00; }  /* every part */
 ```
 
-**To recolour the banner's filled buttons, set both `--hu-primaryColor` and `--hu-btnColor`.** On Classic, `--hu-primaryColor` on `#hu` recolours only the link-style buttons; the filled buttons follow `--hu-btnColor`. Set both to recolour the filled buttons on either engine. On New, the Accept button on a blocked video or map is outlined like the level pills: it follows `--hu-borderColor` and `--hu-headingColor`, with `--hu-primaryColor` on the border when hovered; `--hu-btnColor` and `--hu-btnTextColor` do not reach it (Classic: that Accept button is filled and follows `--hu-btnColor` / `--hu-btnTextColor`).
+**To recolour the banner's filled buttons, set both `--hu-primaryColor` and `--hu-btnColor`.** On Classic, `--hu-primaryColor` on `#hu` recolours only the link-style buttons; the filled buttons follow `--hu-btnColor`. Set both to recolour the filled buttons on Classic. On New, the Accept button on a blocked video or map is outlined like the level pills by default: it follows `--hu-borderColor` and `--hu-headingColor`, with `--hu-primaryColor` on the border when hovered; `--hu-btnColor` and `--hu-btnTextColor` do not reach it. To make it solid, use the Button style below (Classic: that Accept button is filled and follows `--hu-btnColor` / `--hu-btnTextColor`).
 
-Not on `:root` or `html`: the banner writes its own values directly on the `<html>` element, and those beat a stylesheet rule there. A variable set on `#hu` does not reach the other three parts. Your `--hu-bannerColor` replaces the banner's background opacity with a solid colour.
+**Button style (New only): `design.buttonStyle`.** `outline` (the default; not set means the same) or `solid`. It styles two buttons: Customize, and the Accept button on a blocked video or map. `solid` fills both with `primaryColor`, with `btnTextColor` (or its `"auto"` pick) as the label. The level choices and the reopen icon do not change, and Classic ignores the key. Apply it like any design key: `account.previewDesignChange` then `account.updateDesign`, or the **Button style** control on Configuration → Design. `demo.suggestDesign` never derives it; set it only when the site's own buttons are filled.
+
+**Button variables (New only):** for a look the design keys do not cover, `--hu-buttonBackground`, `--hu-buttonLabelColor` and `--hu-buttonBorderColor` restyle those same two buttons, and win over either Button style. Set them on `#hu` for Customize only, on `.hu-iframe-overlay` for the blocked-content Accept only, or on both:
+
+```css
+#hu, .hu-iframe-overlay { --hu-buttonBackground: #20c19e; --hu-buttonLabelColor: #fff; --hu-buttonBorderColor: #20c19e; }
+```
+
+Check the label against the background yourself (4.5:1); a colour set by CSS is not covered by the contrast check. These three variables are the exception to the next rule: the banner never writes them, so they also work on `:root`.
+
+For the design-key variables (`--hu-primaryColor` and the rest), not on `:root` or `html`: the banner writes its own values directly on the `<html>` element, and those beat a stylesheet rule there. A variable set on `#hu` does not reach the other three parts. Your `--hu-bannerColor` replaces the banner's background opacity with a solid colour.
 
 Prefer the design keys (step 3) when one exists: a colour changed by CSS is not covered by the contrast check, so check it yourself (4.5:1 for text).
 
