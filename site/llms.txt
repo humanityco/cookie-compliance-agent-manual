@@ -4,6 +4,8 @@
 
 Cookie Compliance is a consent management platform (CMP) for GDPR, CCPA and similar laws, published by Hu-manity.co (https://hu-manity.co/llms.txt). The product itself — capabilities, pricing, the MCP server — is documented at https://cookie-compliance.co/llms.txt; this manual is the agent-facing companion that shows how to actually install and verify the banner.
 
+Background guides for people (how holding and consent signals work, then how to switch them on): https://cookie-compliance.co/guides/.
+
 No account yet? Sign up at https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=llms-txt (free plan, no card); with the MCP server connected, call `help.startSignup` instead.
 
 First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new paid subscription (not trial plans; one discount per subscription; the checkout shows the discounted amount). The signup links in this manual already carry it, so checkout pre-fills it if the person subscribes within 7 days in the same browser.
@@ -50,6 +52,18 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [webflow](cookbooks/webflow.md): paste the snippet in Site settings → Custom code → Head code, then publish.
 - [framer](cookbooks/framer.md): add the snippet in Site Settings → Custom Code at the start of `<head>`, then publish.
 - [trackers](cookbooks/trackers.md): which common analytics and ad tags (GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok, Matomo) are held until the visitor chooses in regions whose rule requires consent first, their categories, and how to add each one below the banner snippet.
+
+## Background guides (cookie-compliance.co)
+
+Read these for the why. Use the cookbooks above for the exact steps. All guides: https://cookie-compliance.co/guides/.
+
+- [Add a cookie banner to your website](https://cookie-compliance.co/guides/add-cookie-banner-to-your-website/): platform chooser; pairs with [platforms](platforms.md).
+- [Cookie auto-blocking](https://cookie-compliance.co/guides/cookie-auto-blocking/): how holding works; pairs with [verify-install](skills/verify-install/SKILL.md) and [trackers](cookbooks/trackers.md).
+- [Test that your cookie banner blocks trackers](https://cookie-compliance.co/guides/test-cookie-banner-blocks-trackers/): a human walkthrough of the check; pairs with [verify-install](skills/verify-install/SKILL.md).
+- [Google Tag Manager and cookie consent](https://cookie-compliance.co/guides/google-tag-manager-cookie-consent/): pairs with [gtm](cookbooks/gtm.md).
+- Consent signals, pairing with [trackers](cookbooks/trackers.md): [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/), [Global Privacy Control](https://cookie-compliance.co/guides/global-privacy-control/), [Microsoft UET and Clarity](https://cookie-compliance.co/guides/microsoft-uet-clarity-consent-mode/), [Meta Pixel](https://cookie-compliance.co/guides/meta-pixel-cookie-consent/).
+- Records and regions, pairing with [configure-regions](skills/configure-regions/SKILL.md): [Proof of consent](https://cookie-compliance.co/guides/proof-of-consent/), [Regional cookie banner rules](https://cookie-compliance.co/guides/regional-cookie-banner-rules/).
+- Platform guides, each paired with its cookbook: [Shopify](https://cookie-compliance.co/guides/shopify-cookie-consent-banner/) ([shopify](cookbooks/shopify.md)), [WooCommerce](https://cookie-compliance.co/guides/woocommerce-cookie-consent/) ([wordpress](cookbooks/wordpress.md)), [Next.js](https://cookie-compliance.co/guides/nextjs-cookie-consent-banner/) ([nextjs](cookbooks/nextjs.md)), [plain HTML](https://cookie-compliance.co/guides/add-cookie-banner-to-html-website/) ([plain-html](cookbooks/plain-html.md)), [Nuxt](https://cookie-compliance.co/guides/nuxt-cookie-consent-banner/) ([nuxt](cookbooks/nuxt.md)), [Astro](https://cookie-compliance.co/guides/astro-cookie-consent-banner/) ([astro](cookbooks/astro.md)).
 
 ## Design gallery
 
