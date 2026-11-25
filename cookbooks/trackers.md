@@ -2,7 +2,7 @@
 title: Tags and pixels with Cookie Compliance
 description: How Cookie Compliance holds GA4, Google Ads, Meta Pixel, Hotjar, Microsoft Clarity, LinkedIn Insight Tag, TikTok Pixel and Matomo until the visitor chooses, and how to add each tag below the banner snippet.
 kind: guide
-last_verified: 2026-11-12
+last_verified: 2026-11-25
 ---
 
 # Tags and pixels with Cookie Compliance
@@ -21,14 +21,14 @@ Both banner engines recognise the tags below by the address of the script file. 
 
 | Tracker | Recognised by the built-in list | Default category | How to add it |
 |---|---|---|---|
-| GA4 (gtag) | Yes: the `googletagmanager.com` loader, `gtag/js` or `gtm.js` | 2 | Paste Google's snippet below the banner snippet, unchanged. |
-| Google Ads | Yes: the same `googletagmanager.com` loader, and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`) | 2 for the loader, 4 for the conversion files | Paste the Ads tag below the banner snippet, unchanged. |
-| Meta Pixel | Yes: `connect.facebook.net` (`fbevents.js`) | 4 | Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address. |
-| Hotjar | Yes: `static.hotjar.com` and `script.hotjar.com` | 3 | Paste the Hotjar snippet below the banner snippet. The whole inline block is held, because it names that address. |
-| Microsoft Clarity | Yes: `clarity.ms/tag/` and `/clarity.js` | 4 | Paste the Clarity snippet below the banner snippet. The whole inline block is held, because it names that address. |
-| LinkedIn Insight Tag | Yes: the `insight.min.js` loader (`lms-analytics/insight.min.js`) | 3 | Paste the Insight Tag below the banner snippet, in `<head>` or where LinkedIn places it. The whole inline block is held, because it names that address. |
+| [GA4 (gtag)](ga4.md) | Yes: the `googletagmanager.com` loader, `gtag/js` or `gtm.js` | 2 | Paste Google's snippet below the banner snippet, unchanged. |
+| [Google Ads](google-ads.md) | Yes: the same `googletagmanager.com` loader, and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`) | 2 for the loader, 4 for the conversion files | Paste the Ads tag below the banner snippet, unchanged. |
+| [Meta Pixel](meta-pixel.md) | Yes: `connect.facebook.net` (`fbevents.js`) | 4 | Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address. |
+| [Hotjar](hotjar.md) | Yes: `static.hotjar.com` and `script.hotjar.com` | 3 | Paste the Hotjar snippet below the banner snippet. The whole inline block is held, because it names that address. |
+| [Microsoft Clarity](microsoft-clarity.md) | Yes: `clarity.ms/tag/` and `/clarity.js` | 4 | Paste the Clarity snippet below the banner snippet. The whole inline block is held, because it names that address. |
+| [LinkedIn Insight Tag](linkedin-insight.md) | Yes: the `insight.min.js` loader (`lms-analytics/insight.min.js`) | 3 | Paste the Insight Tag below the banner snippet, in `<head>` or where LinkedIn places it. The whole inline block is held, because it names that address. |
 | TikTok Pixel | Yes: `analytics.tiktok.com` | 4 | Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address. |
-| Matomo | Yes, for a script file named `matomo.js` (self-hosted or Matomo Cloud) | 3 | Load `matomo.js` with a normal `<script src>` below the banner snippet. Matomo's standard inline snippet builds the file name in pieces, so mark it: `class="hu-block" data-hu-category="3"`. |
+| [Matomo](matomo.md) | Yes, for a script file named `matomo.js` (self-hosted or Matomo Cloud) | 3 | Load `matomo.js` with a normal `<script src>` below the banner snippet. Matomo's standard inline snippet builds the file name in pieces, so mark it: `class="hu-block" data-hu-category="3"`. |
 
 A tracker file with a different name (for example `piwik.js`, or a Matomo Tag Manager container) is yours to name: add its address as your own pattern in Autoblocking, or mark the script, as in the next section.
 

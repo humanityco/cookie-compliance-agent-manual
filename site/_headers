@@ -30,14 +30,23 @@
 /cookbooks/framer.md
   Link: <https://manual.hu-manity.co/cookbooks/framer/>; rel="canonical"
 
+/cookbooks/ga4.md
+  Link: <https://manual.hu-manity.co/cookbooks/ga4/>; rel="canonical"
+
 /cookbooks/gatsby.md
   Link: <https://manual.hu-manity.co/cookbooks/gatsby/>; rel="canonical"
 
 /cookbooks/ghost.md
   Link: <https://manual.hu-manity.co/cookbooks/ghost/>; rel="canonical"
 
+/cookbooks/google-ads.md
+  Link: <https://manual.hu-manity.co/cookbooks/google-ads/>; rel="canonical"
+
 /cookbooks/gtm.md
   Link: <https://manual.hu-manity.co/cookbooks/gtm/>; rel="canonical"
+
+/cookbooks/hotjar.md
+  Link: <https://manual.hu-manity.co/cookbooks/hotjar/>; rel="canonical"
 
 /cookbooks/hugo.md
   Link: <https://manual.hu-manity.co/cookbooks/hugo/>; rel="canonical"
@@ -48,8 +57,20 @@
 /cookbooks/laravel.md
   Link: <https://manual.hu-manity.co/cookbooks/laravel/>; rel="canonical"
 
+/cookbooks/linkedin-insight.md
+  Link: <https://manual.hu-manity.co/cookbooks/linkedin-insight/>; rel="canonical"
+
 /cookbooks/magento.md
   Link: <https://manual.hu-manity.co/cookbooks/magento/>; rel="canonical"
+
+/cookbooks/matomo.md
+  Link: <https://manual.hu-manity.co/cookbooks/matomo/>; rel="canonical"
+
+/cookbooks/meta-pixel.md
+  Link: <https://manual.hu-manity.co/cookbooks/meta-pixel/>; rel="canonical"
+
+/cookbooks/microsoft-clarity.md
+  Link: <https://manual.hu-manity.co/cookbooks/microsoft-clarity/>; rel="canonical"
 
 /cookbooks/nextjs.md
   Link: <https://manual.hu-manity.co/cookbooks/nextjs/>; rel="canonical"

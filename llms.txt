@@ -52,6 +52,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 - [webflow](cookbooks/webflow.md): paste the snippet in Site settings → Custom code → Head code, then publish.
 - [framer](cookbooks/framer.md): add the snippet in Site Settings → Custom Code at the start of `<head>`, then publish.
 - [trackers](cookbooks/trackers.md): which common analytics and ad tags (GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok, Matomo) are held until the visitor chooses in regions whose rule requires consent first, their categories, and how to add each one below the banner snippet.
+  Per tag: [GA4](cookbooks/ga4.md), [Google Ads](cookbooks/google-ads.md), [Meta Pixel](cookbooks/meta-pixel.md), [Hotjar](cookbooks/hotjar.md), [Microsoft Clarity](cookbooks/microsoft-clarity.md), [LinkedIn Insight Tag](cookbooks/linkedin-insight.md), [Matomo](cookbooks/matomo.md).
 
 ## Background guides (cookie-compliance.co)
 

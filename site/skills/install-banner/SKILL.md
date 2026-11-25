@@ -123,6 +123,13 @@ Platform detail:
 - Webflow: `references/webflow.md`
 - Framer: `references/framer.md`
 - Tags and pixels (GA4, Meta Pixel, Hotjar and others): `references/trackers.md`
+  - GA4: `references/ga4.md`
+  - Google Ads: `references/google-ads.md`
+  - Meta Pixel: `references/meta-pixel.md`
+  - Hotjar: `references/hotjar.md`
+  - Microsoft Clarity: `references/microsoft-clarity.md`
+  - LinkedIn Insight Tag: `references/linkedin-insight.md`
+  - Matomo: `references/matomo.md`
 
 **Stop and ask the owner** if the only way to add scripts is through a tag manager, or if you can't edit `<head>` on every page. Say so plainly; don't invent a workaround.
 

@@ -26,7 +26,7 @@
       "description": "How Cookie Compliance holds GA4, Google Ads, Meta Pixel, Hotjar, Microsoft Clarity, LinkedIn Insight Tag, TikTok Pixel and Matomo until the visitor chooses, and how to add each tag below the banner…",
       "url": "https://manual.hu-manity.co/cookbooks/trackers/",
       "inLanguage": "en",
-      "dateModified": "2026-11-12",
+      "dateModified": "2026-11-25",
       "publisher": {
         "@type": "Organization",
         "@id": "https://manual.hu-manity.co/#organization",
@@ -130,6 +130,13 @@
             <li><a href="#gotchas">Gotchas</a></li>
             <li><a href="#more-help">More help</a></li>
           </ul></li>
+        <li><a href="/cookbooks/ga4/">ga4</a></li>
+        <li><a href="/cookbooks/google-ads/">google-ads</a></li>
+        <li><a href="/cookbooks/meta-pixel/">meta-pixel</a></li>
+        <li><a href="/cookbooks/hotjar/">hotjar</a></li>
+        <li><a href="/cookbooks/microsoft-clarity/">microsoft-clarity</a></li>
+        <li><a href="/cookbooks/linkedin-insight/">linkedin-insight</a></li>
+        <li><a href="/cookbooks/matomo/">matomo</a></li>
       </ul>
       <h2>Design gallery</h2>
       <ul>
@@ -140,7 +147,7 @@
   </details>
   <main id="content" class="doc">
 <h1 id="tags-and-pixels-with-cookie-compliance">Tags and pixels with Cookie Compliance</h1>
-<p class="page-meta">Cookbook · guide <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-12">12 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/trackers.md">View raw markdown (for agents)</a></p>
+<p class="page-meta">Cookbook · guide <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-25">25 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/trackers.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> add each tag below the Cookie Compliance snippet in the same <code>&lt;head&gt;</code>, exactly as its vendor gives it to you. Tags the banner recognises wait for the visitor&#39;s choice, in regions whose rule requires consent first. For a tag it does not recognise, add your own pattern in Autoblocking, or mark the script.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -161,37 +168,37 @@
 </tr>
 </thead>
 <tbody><tr>
-<td>GA4 (gtag)</td>
+<td><a href="/cookbooks/ga4/">GA4 (gtag)</a></td>
 <td>Yes: the <code>googletagmanager.com</code> loader, <code>gtag/js</code> or <code>gtm.js</code></td>
 <td>2</td>
 <td>Paste Google&#39;s snippet below the banner snippet, unchanged.</td>
 </tr>
 <tr>
-<td>Google Ads</td>
+<td><a href="/cookbooks/google-ads/">Google Ads</a></td>
 <td>Yes: the same <code>googletagmanager.com</code> loader, and the <code>googleadservices.com/pagead/conversion</code> files (<code>conversion.js</code>, <code>conversion_async</code>)</td>
 <td>2 for the loader, 4 for the conversion files</td>
 <td>Paste the Ads tag below the banner snippet, unchanged.</td>
 </tr>
 <tr>
-<td>Meta Pixel</td>
+<td><a href="/cookbooks/meta-pixel/">Meta Pixel</a></td>
 <td>Yes: <code>connect.facebook.net</code> (<code>fbevents.js</code>)</td>
 <td>4</td>
 <td>Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address.</td>
 </tr>
 <tr>
-<td>Hotjar</td>
+<td><a href="/cookbooks/hotjar/">Hotjar</a></td>
 <td>Yes: <code>static.hotjar.com</code> and <code>script.hotjar.com</code></td>
 <td>3</td>
 <td>Paste the Hotjar snippet below the banner snippet. The whole inline block is held, because it names that address.</td>
 </tr>
 <tr>
-<td>Microsoft Clarity</td>
+<td><a href="/cookbooks/microsoft-clarity/">Microsoft Clarity</a></td>
 <td>Yes: <code>clarity.ms/tag/</code> and <code>/clarity.js</code></td>
 <td>4</td>
 <td>Paste the Clarity snippet below the banner snippet. The whole inline block is held, because it names that address.</td>
 </tr>
 <tr>
-<td>LinkedIn Insight Tag</td>
+<td><a href="/cookbooks/linkedin-insight/">LinkedIn Insight Tag</a></td>
 <td>Yes: the <code>insight.min.js</code> loader (<code>lms-analytics/insight.min.js</code>)</td>
 <td>3</td>
 <td>Paste the Insight Tag below the banner snippet, in <code>&lt;head&gt;</code> or where LinkedIn places it. The whole inline block is held, because it names that address.</td>
@@ -203,7 +210,7 @@
 <td>Paste the Pixel code below the banner snippet. The whole inline block is held, because it names that address.</td>
 </tr>
 <tr>
-<td>Matomo</td>
+<td><a href="/cookbooks/matomo/">Matomo</a></td>
 <td>Yes, for a script file named <code>matomo.js</code> (self-hosted or Matomo Cloud)</td>
 <td>3</td>
 <td>Load <code>matomo.js</code> with a normal <code>&lt;script src&gt;</code> below the banner snippet. Matomo&#39;s standard inline snippet builds the file name in pieces, so mark it: <code>class=&quot;hu-block&quot; data-hu-category=&quot;3&quot;</code>.</td>

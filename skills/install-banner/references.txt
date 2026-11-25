@@ -24,3 +24,10 @@ squarespace.md
 webflow.md
 framer.md
 trackers.md
+ga4.md
+google-ads.md
+meta-pixel.md
+hotjar.md
+microsoft-clarity.md
+linkedin-insight.md
+matomo.md

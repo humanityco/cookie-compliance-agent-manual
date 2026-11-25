@@ -54,4 +54,5 @@ The banner works from any spot that comes first in `<head>`. Most site builders 
 
 - [Where to put the Cookie Compliance snippet](https://cookie-compliance.co/documentation/where-to-put-the-consent-snippet/): the placement rule, for the site owner.
 - [trackers](cookbooks/trackers.md): how GA4, Google Ads, Meta Pixel, Hotjar, Clarity, LinkedIn, TikTok and Matomo are held until the visitor chooses in regions whose rule requires consent first, and how to add each one.
+  One page per tag: [GA4](cookbooks/ga4.md), [Google Ads](cookbooks/google-ads.md), [Meta Pixel](cookbooks/meta-pixel.md), [Hotjar](cookbooks/hotjar.md), [Microsoft Clarity](cookbooks/microsoft-clarity.md), [LinkedIn Insight Tag](cookbooks/linkedin-insight.md), [Matomo](cookbooks/matomo.md).
 - [start](start.md): the page a coding agent follows to install the banner start to finish.
