@@ -98,7 +98,7 @@ If the owner later switches banner engine in the dashboard, a hand-pasted snippe
 Platform detail:
 
 - Plain HTML: `references/plain-html.md`
-- WordPress: `references/wordpress.md` (plugin path — no paste)
+- WordPress and WooCommerce: `references/wordpress.md` (plugin path — no paste)
 - Next.js: `references/nextjs.md`
 - Nuxt: `references/nuxt.md`
 - Astro: `references/astro.md`

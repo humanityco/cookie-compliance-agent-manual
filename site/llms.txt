@@ -27,7 +27,7 @@ First-payment discount: code `JOIN-40D` takes 40% off the first payment of a new
 ## Cookbooks
 
 - [plain-html](cookbooks/plain-html.md): paste the snippet into a static site's `<head>`.
-- [wordpress](cookbooks/wordpress.md): install via the Cookie Compliance for WordPress plugin, which handles placement.
+- [wordpress](cookbooks/wordpress.md): install via the Cookie Compliance for WordPress plugin, which handles placement; WooCommerce shops follow the same steps.
 - [nextjs](cookbooks/nextjs.md): place the snippet as classic script tags in the root layout's `<head>`.
 - [gtm](cookbooks/gtm.md): put the snippet above the Google Tag Manager container in `<head>`.
 - [nuxt](cookbooks/nuxt.md): place the snippet in `app.head.script` in `nuxt.config.ts`, kept synchronous.

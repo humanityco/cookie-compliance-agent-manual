@@ -14,7 +14,7 @@ Each guide shows where the snippet goes and how to confirm it.
 
 | Platform | Where the snippet goes | Guide |
 |---|---|---|
-| WordPress | Install the Cookie Compliance for WordPress plugin, which handles placement | [wordpress](cookbooks/wordpress.md) |
+| WordPress and WooCommerce | Install the Cookie Compliance for WordPress plugin, which handles placement | [wordpress](cookbooks/wordpress.md) |
 | Shopify | First thing in `<head>` of `layout/theme.liquid` | [shopify](cookbooks/shopify.md) |
 | Next.js | The document `<head>` of the root layout, as classic script tags | [nextjs](cookbooks/nextjs.md) |
 | Nuxt | `app.head.script` in `nuxt.config.ts`, kept synchronous | [nuxt](cookbooks/nuxt.md) |

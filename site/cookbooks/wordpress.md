@@ -1,8 +1,8 @@
 ---
 title: Add a cookie consent banner to WordPress
-description: Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you.
+description: Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you, on WooCommerce shops too.
 kind: platform
-last_verified: 2026-10-07
+last_verified: 2026-11-25
 ---
 
 # Add a cookie consent banner to WordPress
@@ -26,6 +26,17 @@ last_verified: 2026-10-07
 **Banner engine:** a new app starts on v2, whether it is created in the dashboard, through MCP, or from the plugin (3.1.13 or later: signup, or a sign-in that creates an app for this site). Connecting an app that already exists keeps that app's engine, and an app switched back to v1 stays on v1. The plugin picks the CDN path from the app's engine on each settings pull, so you do not paste a script URL. When the engine changes, the plugin shows a notice offering to purge the page cache; you can also run **Pull latest settings**. On a v2 site, the plugin's new admin interface also lets you choose a Standard or Compact banner.
 
 If the Manual Integration snippet is currently pasted into `header.php`, a custom HTML widget or an "Insert Headers and Footers" plugin, remove that paste and let the plugin place the banner. The dashboard Manual Integration snippet is for non-WordPress sites; on WordPress the plugin adds the config pull, Script blocking engine control and WP Consent API interop.
+
+## WooCommerce shops
+
+A WooCommerce shop follows the same steps: install the plugin, connect it, publish. WooCommerce prints jQuery and its own scripts in the page `<head>`, and the plugin prints the banner at the very start of `wp_head` (priority 0), ahead of them, so the shop needs nothing extra. Your analytics plugin and the WooCommerce tracking tags stay as they are, and the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.
+
+Confirmed on a WooCommerce shop with the Storefront theme: a banner snippet printed at the start of `wp_head` is the first script on the front page and on a product page, with WooCommerce's scripts after it. If a site cannot use the plugin and prints the Manual Integration snippet from a child theme instead, use one of these two places, because WooCommerce's scripts print at the default `wp_head` priority and anything registered there runs after them:
+
+- `add_action( 'wp_head', ..., 1 )` in the child theme's `functions.php`, or
+- the child theme's `header.php`, directly after `<head>`.
+
+The checks below apply to shops too. For the WP Consent API, Google Consent Mode and the order-attribution cookies, see the [WooCommerce cookie consent guide](https://cookie-compliance.co/guides/woocommerce-cookie-consent/).
 
 ## What the order controls
 

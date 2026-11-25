@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Add a cookie consent banner to WordPress — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you.">
+<meta name="description" content="Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you, on WooCommerce shops too.">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/wordpress/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/wordpress.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Add a cookie consent banner to WordPress">
-<meta property="og:description" content="Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you.">
+<meta property="og:description" content="Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you, on WooCommerce shops too.">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/wordpress/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,10 +23,10 @@
         "Article"
       ],
       "headline": "Add a cookie consent banner to WordPress",
-      "description": "Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you.",
+      "description": "Install the Cookie Compliance for WordPress plugin and connect it with your App ID and App Secret Key; the plugin places the banner early in the head for you, on WooCommerce shops too.",
       "url": "https://manual.hu-manity.co/cookbooks/wordpress/",
       "inLanguage": "en",
-      "dateModified": "2026-10-07",
+      "dateModified": "2026-11-25",
       "publisher": {
         "@type": "Organization",
         "@id": "https://manual.hu-manity.co/#organization",
@@ -100,6 +100,7 @@
           <ul class="toc" aria-label="On this page">
             <li><a href="#you-need">You need</a></li>
             <li><a href="#where-it-goes">Where it goes</a></li>
+            <li><a href="#woocommerce-shops">WooCommerce shops</a></li>
             <li><a href="#what-the-order-controls">What the order controls</a></li>
             <li><a href="#confirm-the-result">Confirm the result</a></li>
             <li><a href="#gotchas">Gotchas</a></li>
@@ -139,7 +140,7 @@
   </details>
   <main id="content" class="doc">
 <h1 id="add-a-cookie-consent-banner-to-wordpress">Add a cookie consent banner to WordPress</h1>
-<p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-10-07">7 October 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/wordpress.md">View raw markdown (for agents)</a></p>
+<p class="page-meta">Cookbook · platform <span aria-hidden="true">·</span> Last verified <time datetime="2026-11-25">25 November 2026</time> <span aria-hidden="true">·</span> <a href="/cookbooks/wordpress.md">View raw markdown (for agents)</a></p>
 <p><strong>In short:</strong> install the <strong>Cookie Compliance for WordPress</strong> plugin and connect it with your App ID and App Secret Key (plugin 3.1.12 and older label it <strong>App Key</strong>). The plugin adds the banner script to every page for you, so no snippet needs pasting into the theme.</p>
 <h2 id="you-need">You need <a class="anchor" href="#you-need" aria-label="Link to this section">#</a></h2>
 <ul>
@@ -157,6 +158,14 @@
 </ol>
 <p><strong>Banner engine:</strong> a new app starts on v2, whether it is created in the dashboard, through MCP, or from the plugin (3.1.13 or later: signup, or a sign-in that creates an app for this site). Connecting an app that already exists keeps that app&#39;s engine, and an app switched back to v1 stays on v1. The plugin picks the CDN path from the app&#39;s engine on each settings pull, so you do not paste a script URL. When the engine changes, the plugin shows a notice offering to purge the page cache; you can also run <strong>Pull latest settings</strong>. On a v2 site, the plugin&#39;s new admin interface also lets you choose a Standard or Compact banner.</p>
 <p>If the Manual Integration snippet is currently pasted into <code>header.php</code>, a custom HTML widget or an &quot;Insert Headers and Footers&quot; plugin, remove that paste and let the plugin place the banner. The dashboard Manual Integration snippet is for non-WordPress sites; on WordPress the plugin adds the config pull, Script blocking engine control and WP Consent API interop.</p>
+<h2 id="woocommerce-shops">WooCommerce shops <a class="anchor" href="#woocommerce-shops" aria-label="Link to this section">#</a></h2>
+<p>A WooCommerce shop follows the same steps: install the plugin, connect it, publish. WooCommerce prints jQuery and its own scripts in the page <code>&lt;head&gt;</code>, and the plugin prints the banner at the very start of <code>wp_head</code> (priority 0), ahead of them, so the shop needs nothing extra. Your analytics plugin and the WooCommerce tracking tags stay as they are, and the banner holds the recognised ones until the visitor chooses, in regions whose rule requires consent first.</p>
+<p>Confirmed on a WooCommerce shop with the Storefront theme: a banner snippet printed at the start of <code>wp_head</code> is the first script on the front page and on a product page, with WooCommerce&#39;s scripts after it. If a site cannot use the plugin and prints the Manual Integration snippet from a child theme instead, use one of these two places, because WooCommerce&#39;s scripts print at the default <code>wp_head</code> priority and anything registered there runs after them:</p>
+<ul>
+<li><code>add_action( &#39;wp_head&#39;, ..., 1 )</code> in the child theme&#39;s <code>functions.php</code>, or</li>
+<li>the child theme&#39;s <code>header.php</code>, directly after <code>&lt;head&gt;</code>.</li>
+</ul>
+<p>The checks below apply to shops too. For the WP Consent API, Google Consent Mode and the order-attribution cookies, see the <a href="https://cookie-compliance.co/guides/woocommerce-cookie-consent/">WooCommerce cookie consent guide</a>.</p>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
 <p>The plugin places the banner early in <code>&lt;head&gt;</code>. It holds recognised trackers until the visitor chooses, in regions whose rule requires consent first, and a script you mark <code>data-hu-category=&quot;1&quot;</code> is treated as essential. What runs before consent is your decision.</p>
 <h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>
