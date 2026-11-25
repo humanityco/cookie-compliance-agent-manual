@@ -17,7 +17,7 @@ last_verified: 2026-11-25
 
 ## Where it goes
 
-Google's docs say to paste the tag after the `<head>` element. With Cookie Compliance installed, keep the banner snippet first, then paste the Ads tag below it — same shape Google gives you:
+Google's docs place the tag in the page's `<head>`. With Cookie Compliance installed, keep the banner snippet first, then paste the Ads tag below it — same shape Google gives you:
 
 ```html
 <!-- Cookie Compliance snippet first, then: -->
@@ -34,11 +34,11 @@ Firing Ads through Google Tag Manager instead? Put the banner above the GTM cont
 
 ## What the order controls
 
-The banner recognises the `googletagmanager.com` loader (default category **2 Content Personalisation**) and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`; default category **4 Ad Personalisation**). The whole inline block is held when it names that address. In regions whose rule requires consent first, those files wait until the visitor allows their category; they start after Allow. A script placed above the banner snippet runs straight away.
+The banner recognises the `googletagmanager.com` loader (default category **2 Content Personalisation**) and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`; default category **4 Ad Personalisation**). In regions whose rule requires consent first, those files wait until the visitor allows their category; they start after Allow. A script placed above the banner snippet runs straight away.
 
 ## Confirm the result
 
-View the page source: the banner snippet comes first in `<head>`, the Ads tag after it. Before choosing, in a region whose rule requires consent first, `_gcl_au`, `_gcl_aw`, `_gcl_dc`, `_gcl_gb` and `_gac_<wpid>` are absent; the held script shows `type="javascript/blocked"` in the Elements panel. After Allow, those cookies appear. Browser checks: [plain-html](plain-html.md#confirm-the-result); full procedure: [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md).
+View the page source: the banner snippet comes first in `<head>`, the Ads tag after it. Before choosing, in a region whose rule requires consent first, `_gcl_au` (and the other `_gcl_*` cookies Google lists) are absent; the held script shows `type="javascript/blocked"` in the Elements panel. After Allow, `_gcl_au` appears. Browser checks: [plain-html](plain-html.md#confirm-the-result); full procedure: [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md).
 
 ## Gotchas
 

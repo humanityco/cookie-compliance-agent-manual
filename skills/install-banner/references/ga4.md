@@ -34,7 +34,7 @@ Firing GA4 through Google Tag Manager instead? Put the banner above the GTM cont
 
 ## What the order controls
 
-The banner recognises the `googletagmanager.com` loader (`gtag/js` or `gtm.js`) and holds it under category **2 Content Personalisation** by default. The whole inline block is held when it names that address. In regions whose rule requires consent first, the tag waits until the visitor allows that category; it starts after Allow. A script placed above the banner snippet runs straight away.
+The banner recognises the `googletagmanager.com` loader (`gtag/js` or `gtm.js`) and holds it under category **2 Content Personalisation** by default. In regions whose rule requires consent first, the tag waits until the visitor allows that category; it starts after Allow. A script placed above the banner snippet runs straight away.
 
 ## Confirm the result
 

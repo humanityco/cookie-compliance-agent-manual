@@ -1,6 +1,6 @@
 ---
 title: Matomo with Cookie Compliance
-description: Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses.
+description: Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses, in regions whose rule requires consent first.
 kind: guide
 last_verified: 2026-11-25
 ---
@@ -23,7 +23,7 @@ Matomo's docs place the code just after the opening `<body>` tag or within `<hea
 
 ```html
 <!-- Cookie Compliance snippet first, then: -->
-<script src="https://YOUR-MATOMO-HOST/matomo.js" async defer></script>
+<script src="https://example.com/matomo.js" async defer></script>
 ```
 
 **Standard inline snippet** (builds the file name in pieces — mark it):

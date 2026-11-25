@@ -155,17 +155,8 @@
 <li>Edit access to the same template, theme or head field as the banner snippet.</li>
 </ul>
 <h2 id="where-it-goes">Where it goes <a class="anchor" href="#where-it-goes" aria-label="Link to this section">#</a></h2>
-<p>Meta&#39;s docs place the Pixel between the <code>&lt;head&gt;</code> tags. With Cookie Compliance installed, keep the banner snippet first, then paste the Pixel below it. The code shape loads <code>fbevents.js</code> and includes a <code>&lt;noscript&gt;</code> image fallback:</p>
-<div class="code"><pre tabindex="0"><code class="language-html">&lt;!-- Cookie Compliance snippet first, then Meta's Pixel block: --&gt;
-&lt;script&gt;
-  !function(f,b,e,v,n,t,s){/* Meta's loader */}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'YOUR-PIXEL-ID');
-  fbq('track', 'PageView');
-&lt;/script&gt;
-&lt;noscript&gt;&lt;img height=&quot;1&quot; width=&quot;1&quot; style=&quot;display:none&quot;
-  src=&quot;https://www.facebook.com/tr?id=YOUR-PIXEL-ID&amp;ev=PageView&amp;noscript=1&quot;/&gt;&lt;/noscript&gt;
-</code></pre></div>
+<p>Meta&#39;s docs place the Pixel between the <code>&lt;head&gt;</code> tags. With Cookie Compliance installed, keep the banner snippet first, then paste the Pixel below it.</p>
+<p>Paste the Pixel base code exactly as Events Manager gives it. It is an inline block that loads <code>fbevents.js</code> from <code>connect.facebook.net</code>, followed by a <code>&lt;noscript&gt;</code> image fallback.</p>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
 <p>The banner recognises <code>connect.facebook.net</code> (<code>fbevents.js</code>) and holds it under category <strong>4 Ad Personalisation</strong> by default. The whole inline block is held when it names that address. In regions whose rule requires consent first, the Pixel waits until the visitor allows that category; it starts after Allow. A script placed above the banner snippet runs straight away.</p>
 <h2 id="confirm-the-result">Confirm the result <a class="anchor" href="#confirm-the-result" aria-label="Link to this section">#</a></h2>

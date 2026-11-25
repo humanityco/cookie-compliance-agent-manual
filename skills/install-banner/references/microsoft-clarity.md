@@ -19,16 +19,8 @@ last_verified: 2026-11-25
 
 Microsoft's docs say to paste Clarity into the `<head>`. With Cookie Compliance installed, keep the banner snippet first, then paste Clarity below it:
 
-```html
-<!-- Cookie Compliance snippet first, then: -->
-<script type="text/javascript">
-  (function(c,l,a,r,i,t,y){
-    c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-    t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-    y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-  })(window, document, "clarity", "script", "YOUR-CLARITY-ID");
-</script>
-```
+Paste the tracking code exactly as the Clarity portal gives it. It is an inline block that loads Clarity's tag from `clarity.ms/tag/`, which is the address the banner recognises.
+
 
 ## What the order controls
 

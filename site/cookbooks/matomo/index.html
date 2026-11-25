@@ -5,11 +5,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Matomo with Cookie Compliance — Cookie Compliance Agent Manual</title>
-<meta name="description" content="Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses.">
+<meta name="description" content="Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses, in regions whose…">
 <link rel="canonical" href="https://manual.hu-manity.co/cookbooks/matomo/">
 <link rel="alternate" type="text/markdown" href="/cookbooks/matomo.md" title="Raw markdown (for agents)">
 <meta property="og:title" content="Matomo with Cookie Compliance">
-<meta property="og:description" content="Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses.">
+<meta property="og:description" content="Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses, in regions whose…">
 <meta property="og:type" content="article">
 <meta property="og:url" content="https://manual.hu-manity.co/cookbooks/matomo/">
 <meta property="og:site_name" content="Cookie Compliance Agent Manual">
@@ -23,7 +23,7 @@
         "Article"
       ],
       "headline": "Matomo with Cookie Compliance",
-      "description": "Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses.",
+      "description": "Place Matomo below the Cookie Compliance snippet — mark the standard inline snippet, or load matomo.js with a normal script src — so the banner can hold it until the visitor chooses, in regions whose…",
       "url": "https://manual.hu-manity.co/cookbooks/matomo/",
       "inLanguage": "en",
       "dateModified": "2026-11-25",
@@ -158,7 +158,7 @@
 <p>Matomo&#39;s docs place the code just after the opening <code>&lt;body&gt;</code> tag or within <code>&lt;head&gt;</code>. Either spot is fine as long as it stays below the banner snippet.</p>
 <p><strong>Normal external file</strong> (recognised on its own):</p>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;!-- Cookie Compliance snippet first, then: --&gt;
-&lt;script src=&quot;https://YOUR-MATOMO-HOST/matomo.js&quot; async defer&gt;&lt;/script&gt;
+&lt;script src=&quot;https://example.com/matomo.js&quot; async defer&gt;&lt;/script&gt;
 </code></pre></div>
 <p><strong>Standard inline snippet</strong> (builds the file name in pieces — mark it):</p>
 <div class="code"><pre tabindex="0"><code class="language-html">&lt;script class=&quot;hu-block&quot; data-hu-category=&quot;3&quot;&gt;

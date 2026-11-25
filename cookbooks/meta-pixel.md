@@ -17,19 +17,10 @@ last_verified: 2026-11-25
 
 ## Where it goes
 
-Meta's docs place the Pixel between the `<head>` tags. With Cookie Compliance installed, keep the banner snippet first, then paste the Pixel below it. The code shape loads `fbevents.js` and includes a `<noscript>` image fallback:
+Meta's docs place the Pixel between the `<head>` tags. With Cookie Compliance installed, keep the banner snippet first, then paste the Pixel below it.
 
-```html
-<!-- Cookie Compliance snippet first, then Meta's Pixel block: -->
-<script>
-  !function(f,b,e,v,n,t,s){/* Meta's loader */}(window,document,'script',
-  'https://connect.facebook.net/en_US/fbevents.js');
-  fbq('init', 'YOUR-PIXEL-ID');
-  fbq('track', 'PageView');
-</script>
-<noscript><img height="1" width="1" style="display:none"
-  src="https://www.facebook.com/tr?id=YOUR-PIXEL-ID&ev=PageView&noscript=1"/></noscript>
-```
+Paste the Pixel base code exactly as Events Manager gives it. It is an inline block that loads `fbevents.js` from `connect.facebook.net`, followed by a `<noscript>` image fallback.
+
 
 ## What the order controls
 
