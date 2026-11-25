@@ -27,7 +27,7 @@ Each guide shows where the snippet goes and how to confirm it.
 | Gatsby | `gatsby-ssr.js` `setHeadComponents` with the snippet first, or a custom `src/html.js` | [gatsby](cookbooks/gatsby.md) |
 | Docusaurus | `headTags` in `docusaurus.config.js`, as two synchronous script entries | [docusaurus](cookbooks/docusaurus.md) |
 | Laravel | Directly after `<head>` in the shared Blade layout, above `@fonts` and `@vite` | [laravel](cookbooks/laravel.md) |
-| Django | First thing in `<head>` of the base template every page extends | [django](cookbooks/django.md) |
+| Django | First script in `<head>` of the base template every page extends | [django](cookbooks/django.md) |
 | Rails | Directly after `<head>` in `app/views/layouts/application.html.erb` | [rails](cookbooks/rails.md) |
 | Drupal | The theme's `html.html.twig`, first in `<head>` (or a small module with a low library weight) | [drupal](cookbooks/drupal.md) |
 | Joomla | The template's `index.php`, first in `<head>` above the scripts include (or a system plugin) | [joomla](cookbooks/joomla.md) |
