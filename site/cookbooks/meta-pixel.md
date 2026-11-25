@@ -21,7 +21,6 @@ Meta's docs place the Pixel between the `<head>` tags. With Cookie Compliance in
 
 Paste the Pixel base code exactly as Events Manager gives it. It is an inline block that loads `fbevents.js` from `connect.facebook.net`, followed by a `<noscript>` image fallback.
 
-
 ## What the order controls
 
 The banner recognises `connect.facebook.net` (`fbevents.js`) and holds it under category **4 Ad Personalisation** by default. The whole inline block is held when it names that address. In regions whose rule requires consent first, the Pixel waits until the visitor allows that category; it starts after Allow. A script placed above the banner snippet runs straight away.

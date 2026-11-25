@@ -17,10 +17,9 @@ last_verified: 2026-11-25
 
 ## Where it goes
 
-Microsoft's docs say to paste Clarity into the `<head>`. With Cookie Compliance installed, keep the banner snippet first, then paste Clarity below it:
+Microsoft's docs say to paste Clarity into the `<head>`. With Cookie Compliance installed, keep the banner snippet first, then paste Clarity below it.
 
 Paste the tracking code exactly as the Clarity portal gives it. It is an inline block that loads Clarity's tag from `clarity.ms/tag/`, which is the address the banner recognises.
-
 
 ## What the order controls
 
