@@ -60,7 +60,7 @@ To choose the category of any script, inline or external, add `class="hu-block"`
    </head>
    ```
 
-3. Or fire the tags through Google Tag Manager and gate them with consent triggers (both engines). On the New engine, recognised tags that GTM fires are also held automatically. See [gtm](gtm.md) for placing the banner above the container.
+3. Or fire the tags through Google Tag Manager and gate them with consent triggers (both engines). On the New engine, recognised tags that GTM fires are also held where the region requires consent first. See [gtm](gtm.md) for placing the banner above the container.
 
 ## What the order controls
 
@@ -75,8 +75,8 @@ Test from a region your strictest rule covers (for example the EU), or confirm r
 ## Gotchas
 
 - **A tracker that is not on the list.** Add your own pattern in Autoblocking, or mark the script with `data-hu-category` as above. Either way the banner then holds it like the tags in the table, in regions whose rule requires consent first.
-- **Tags added by a tag manager.** Gate them with consent triggers in the tag manager (both engines). On the New engine, recognised tags that Google Tag Manager fires are also held automatically.
-- **Google, Meta or Microsoft Consent Mode on.** Their loaders (`googletagmanager.com`, `connect.facebook.net`, and the Clarity tag when Microsoft Consent Mode is on) then load straight away and receive a "denied" consent signal until the visitor chooses. Judge the result by the cookies, as in [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md).
+- **Tags added by a tag manager.** Gate them with consent triggers in the tag manager (both engines). On the New engine, recognised tags that Google Tag Manager fires are also held where the region requires consent first.
+- **Google, Meta or Microsoft Consent Mode on.** With Google Consent Mode on, Tag Manager (`gtm.js`) and the Google tag (`gtag/js`) load before the visitor's choice on both engines, with Consent Mode defaults denying `ad_storage`, `analytics_storage`, `ad_user_data` and `ad_personalization` where the region requires consent first. With Meta or Microsoft Consent Mode on, Classic loads `connect.facebook.net` and the UET loader (and Clarity, when its option is on) straight away with a denied signal; the New engine keeps them held until their category is accepted, where the region requires consent first. Judge the result by the cookies, as in [verify-install](https://manual.hu-manity.co/skills/verify-install/SKILL.md).
 - **Essential is your choice.** Marking a tag `data-hu-category="1"` lets it run before consent. Mark only tags your site needs to work, and decide each one on purpose.
 - **Held scripts may still download.** The file can download while it is held; it does not run until the visitor chooses.
 

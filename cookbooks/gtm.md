@@ -18,7 +18,7 @@ Blocking and Consent Mode defaults are set up when the snippet runs, so placing 
 1. Get the **live** Cookie Compliance snippet (MCP `install.getSnippet` or dashboard Integrations → Manual Integration). A domain added in the dashboard is published automatically; if the status check still says the app is not published yet, or after later edits, click **Publish Now**, then copy the snippet. A snippet copied before publishing must be copied again. No account yet? [Sign up](https://app.hu-manity.co/#/register?enable-free=true&discount=JOIN-40D&utm_source=agent-manual&utm_medium=docs&utm_content=cookbook-gtm) (free plan, no card); with MCP, call `help.startSignup`.
 2. Paste it as the **first script** in the site's real `<head>` (layout / theme / HTML), on every page.
 3. Leave the existing GTM snippet where it is, **below** Cookie Compliance.
-4. Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor's choice where the region requires consent first (on both engines). On the New engine, recognised tags GTM fires are also held automatically. Consent Mode signals apply when configured in the dashboard.
+4. Keep the tags inside GTM, including GA4 and Ads. Gate them with consent triggers in GTM so they wait for the visitor's choice where the region requires consent first (on both engines). On the New engine, recognised tags GTM fires are also held where the region requires consent first. With Google Consent Mode on, Tag Manager and the Google tag load before the visitor's choice, with Consent Mode defaults that deny the advertising signals (Google's advanced consent mode); with it off, they stay held until Content Personalisation is accepted where the region requires consent first.
 
 ```html
 <head>
@@ -44,11 +44,12 @@ Same verification as install-banner / plain-html. Extra:
 | # | Check | Pass |
 |---|---|---|
 | G1 | View source | Cookie Compliance script tags appear **above** the GTM bootstrap in `<head>`, as plain synchronous tags (no `async` or `defer`). |
-| G2 | Before the visitor chooses, in a region whose rule requires consent first | No Ads/Analytics cookies from GTM-fired tags; with Google Consent Mode on, denied cookieless pings may appear — judge by cookies, not by loader requests. |
+| G2 | Before the visitor chooses, in a region whose rule requires consent first | No Ads/Analytics cookies from GTM-fired tags; with Google Consent Mode on, Tag Manager and the Google tag may load early with Consent Mode defaults that deny the advertising signals — judge by cookies, not by loader requests. |
 
 ## Gotchas
 
 - **WordPress + GTM4WP (or similar):** install the Cookie Compliance **plugin** for placement, and let it be the only place the banner is added (no manual snippet, nothing inside GTM).
+- **New engine + Google Consent Mode on:** Tag Manager loads early with Google's standard GTM snippet (or the `gtag/js` file), the default dataLayer name, Cookie Compliance first in `<head>`, and **Block trackers added by other scripts** on; otherwise it stays held as with the switch off.
 - **Banner engine:** a new app uses `/v2/hu-banner.min.js`. Take the URL from the live snippet; an app already on v1 keeps the URL without `/v2/`. After an engine switch, copy the snippet again.
 
 ## More help

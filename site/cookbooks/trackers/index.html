@@ -240,7 +240,7 @@
 &lt;/head&gt;
 </code></pre></div>
 </li>
-<li><p>Or fire the tags through Google Tag Manager and gate them with consent triggers (both engines). On the New engine, recognised tags that GTM fires are also held automatically. See <a href="/cookbooks/gtm/">gtm</a> for placing the banner above the container.</p>
+<li><p>Or fire the tags through Google Tag Manager and gate them with consent triggers (both engines). On the New engine, recognised tags that GTM fires are also held where the region requires consent first. See <a href="/cookbooks/gtm/">gtm</a> for placing the banner above the container.</p>
 </li>
 </ol>
 <h2 id="what-the-order-controls">What the order controls <a class="anchor" href="#what-the-order-controls" aria-label="Link to this section">#</a></h2>
@@ -251,8 +251,8 @@
 <h2 id="gotchas">Gotchas <a class="anchor" href="#gotchas" aria-label="Link to this section">#</a></h2>
 <ul>
 <li><strong>A tracker that is not on the list.</strong> Add your own pattern in Autoblocking, or mark the script with <code>data-hu-category</code> as above. Either way the banner then holds it like the tags in the table, in regions whose rule requires consent first.</li>
-<li><strong>Tags added by a tag manager.</strong> Gate them with consent triggers in the tag manager (both engines). On the New engine, recognised tags that Google Tag Manager fires are also held automatically.</li>
-<li><strong>Google, Meta or Microsoft Consent Mode on.</strong> Their loaders (<code>googletagmanager.com</code>, <code>connect.facebook.net</code>, and the Clarity tag when Microsoft Consent Mode is on) then load straight away and receive a &quot;denied&quot; consent signal until the visitor chooses. Judge the result by the cookies, as in <a href="/skills/verify-install/">verify-install</a>.</li>
+<li><strong>Tags added by a tag manager.</strong> Gate them with consent triggers in the tag manager (both engines). On the New engine, recognised tags that Google Tag Manager fires are also held where the region requires consent first.</li>
+<li><strong>Google, Meta or Microsoft Consent Mode on.</strong> With Google Consent Mode on, Tag Manager (<code>gtm.js</code>) and the Google tag (<code>gtag/js</code>) load before the visitor&#39;s choice on both engines, with Consent Mode defaults denying <code>ad_storage</code>, <code>analytics_storage</code>, <code>ad_user_data</code> and <code>ad_personalization</code> where the region requires consent first. With Meta or Microsoft Consent Mode on, Classic loads <code>connect.facebook.net</code> and the UET loader (and Clarity, when its option is on) straight away with a denied signal; the New engine keeps them held until their category is accepted, where the region requires consent first. Judge the result by the cookies, as in <a href="/skills/verify-install/">verify-install</a>.</li>
 <li><strong>Essential is your choice.</strong> Marking a tag <code>data-hu-category=&quot;1&quot;</code> lets it run before consent. Mark only tags your site needs to work, and decide each one on purpose.</li>
 <li><strong>Held scripts may still download.</strong> The file can download while it is held; it does not run until the visitor chooses.</li>
 </ul>

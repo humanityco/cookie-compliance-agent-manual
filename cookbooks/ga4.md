@@ -34,7 +34,7 @@ Firing GA4 through Google Tag Manager instead? Put the banner above the GTM cont
 
 ## What the order controls
 
-The banner recognises the `googletagmanager.com` loader (`gtag/js` or `gtm.js`) and holds it under category **2 Content Personalisation** by default. In regions whose rule requires consent first, the tag waits until the visitor allows that category; it starts after Allow. A script placed above the banner snippet runs straight away.
+The banner recognises the `googletagmanager.com` loader (`gtag/js` or `gtm.js`) and, with Google Consent Mode off, holds it under category **2 Content Personalisation**. In regions whose rule requires consent first, the tag waits until the visitor allows that category; it starts after Allow. A script placed above the banner snippet runs straight away.
 
 ## Confirm the result
 
@@ -42,8 +42,8 @@ View the page source: the banner snippet comes first in `<head>`, the GA4 tag af
 
 ## Gotchas
 
-- **Google Consent Mode on.** The `googletagmanager.com` loader then loads straight away with a denied signal until the visitor chooses. Judge by the cookies (`_ga`, `_ga_<container-id>`), not by whether the loader request appears. See [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/).
-- **Tags inside GTM.** Gate them with consent triggers; on the New engine, recognised tags GTM fires are also held automatically. See the [GTM cookie consent guide](https://cookie-compliance.co/guides/google-tag-manager-cookie-consent/).
+- **Google Consent Mode on.** Tag Manager and the Google tag then load before the visitor's choice, with Consent Mode defaults that deny the advertising signals (Google's advanced consent mode). Judge by the cookies (`_ga`, `_ga_<container-id>`), not by whether the loader request appears. See [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/).
+- **Tags inside GTM.** Gate them with consent triggers; on the New engine, recognised tags GTM fires are also held where the region requires consent first. See the [GTM cookie consent guide](https://cookie-compliance.co/guides/google-tag-manager-cookie-consent/).
 
 ## More help
 

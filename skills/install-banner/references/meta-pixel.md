@@ -31,7 +31,7 @@ View the page source: the banner snippet comes first in `<head>`, the Pixel afte
 
 ## Gotchas
 
-- **Meta Consent Mode on (Professional plan).** The `connect.facebook.net` loader then loads straight away with a denied signal until the visitor chooses. Judge by the cookies (`_fbp`, `_fbc`), not by whether the loader request appears. See [Meta Pixel cookie consent](https://cookie-compliance.co/guides/meta-pixel-cookie-consent/).
+- **Meta Consent Mode on (Professional plan).** On Classic, the `connect.facebook.net` loader then loads straight away with a denied signal until the visitor chooses. On the New engine, it stays held until Ad Personalisation is accepted (by default), where the region requires consent first. Judge by the cookies (`_fbp`, `_fbc`), not by whether the loader request appears. See [Meta Pixel cookie consent](https://cookie-compliance.co/guides/meta-pixel-cookie-consent/).
 - **A script above the banner snippet** runs straight away. Keep the Pixel below the Cookie Compliance snippet.
 
 ## More help

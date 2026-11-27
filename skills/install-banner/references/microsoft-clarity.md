@@ -31,7 +31,7 @@ View the page source: the banner snippet comes first in `<head>`, the Clarity sn
 
 ## Gotchas
 
-- **Microsoft Consent Mode on (Professional plan).** The Clarity loader then loads straight away with a denied signal until the visitor chooses. Judge by the cookies (`_clck`, `_clsk`), not by whether the loader request appears. See [Microsoft UET / Clarity Consent Mode](https://cookie-compliance.co/guides/microsoft-uet-clarity-consent-mode/).
+- **Microsoft Consent Mode on (Professional plan).** On Classic, with the Clarity option also on, the Clarity loader then loads straight away with a denied signal until the visitor chooses. On the New engine, it stays held until Ad Personalisation is accepted (by default), where the region requires consent first. Judge by the cookies (`_clck`, `_clsk`), not by whether the loader request appears. See [Microsoft UET / Clarity Consent Mode](https://cookie-compliance.co/guides/microsoft-uet-clarity-consent-mode/).
 - **A script above the banner snippet** runs straight away. Keep Clarity below the Cookie Compliance snippet.
 
 ## More help

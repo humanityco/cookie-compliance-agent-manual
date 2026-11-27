@@ -34,7 +34,7 @@ Firing Ads through Google Tag Manager instead? Put the banner above the GTM cont
 
 ## What the order controls
 
-The banner recognises the `googletagmanager.com` loader (default category **2 Content Personalisation**) and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`; default category **4 Ad Personalisation**). In regions whose rule requires consent first, those files wait until the visitor allows their category; they start after Allow. A script placed above the banner snippet runs straight away.
+The banner recognises the `googletagmanager.com` loader (default category **2 Content Personalisation**) and the `googleadservices.com/pagead/conversion` files (`conversion.js`, `conversion_async`; default category **4 Ad Personalisation**). With Google Consent Mode off, in regions whose rule requires consent first, the Tag Manager / Google tag loaders wait until the visitor allows their category; with it on, those loaders load before the choice with denied Consent Mode defaults. The conversion files always wait until their category is allowed where the region requires consent first. They start after Allow. A script placed above the banner snippet runs straight away.
 
 ## Confirm the result
 
@@ -42,8 +42,8 @@ View the page source: the banner snippet comes first in `<head>`, the Ads tag af
 
 ## Gotchas
 
-- **Google Consent Mode on.** The `googletagmanager.com` loader then loads straight away with a denied signal until the visitor chooses. Judge by the cookies (`_gcl_*`, `_gac_<wpid>`), not by whether the loader request appears. See [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/).
-- **Tags inside GTM.** Gate them with consent triggers; on the New engine, recognised tags GTM fires are also held automatically. See the [GTM cookie consent guide](https://cookie-compliance.co/guides/google-tag-manager-cookie-consent/).
+- **Google Consent Mode on.** Tag Manager and the Google tag then load before the visitor's choice, with Consent Mode defaults that deny the advertising signals (Google's advanced consent mode). Judge by the cookies (`_gcl_*`, `_gac_<wpid>`), not by whether the loader request appears. See [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/).
+- **Tags inside GTM.** Gate them with consent triggers; on the New engine, recognised tags GTM fires are also held where the region requires consent first. See the [GTM cookie consent guide](https://cookie-compliance.co/guides/google-tag-manager-cookie-consent/).
 
 ## More help
 
