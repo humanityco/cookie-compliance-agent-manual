@@ -250,7 +250,7 @@ Standard style on a phone: the three levels and Customize stacked as full-width 
 1. **Dashboard:** open the app, go to Configuration, use the **Banner engine** dropdown in the page header, choose **New** and confirm. It goes live right away and is not part of Publish.
 2. **WordPress plugin:** version 3.1.11 or later picks the change up at its next check-in. Nothing to paste.
 3. **Hand-pasted snippet:** go to Integrations, copy the updated snippet (it loads the v2 script) and replace the old one on your site.
-4. Once the app is on v2, set **Banner style** to Compact if you want the compact style, then click **Publish Now**. The engine switch goes live when you confirm it, but banner style needs **Publish Now**. Standard is the default.
+4. Once the app is on v2, set **Banner style** to Compact if you want the compact style, then click **Save** on Configuration, then **Publish** in the review window. The engine switch goes live when you confirm it, but banner style goes live when you publish. Standard is the default.
 
 To switch back to v1, choose **Classic** in the same dropdown and confirm. For a hand-pasted snippet, paste the updated snippet again.
 
@@ -260,7 +260,7 @@ Settings that apply to only one engine, or behave differently on New, are tagged
 
 A `design` block set on your own page is overwritten by your app's published configuration a moment after the banner loads. To use one of these designs on a live v2 banner:
 
-- **Dashboard:** set the same values in your app's banner design settings, and the Banner style, then click **Publish Now**.
+- **Dashboard:** set the same values in your app's banner design settings, and the Banner style, then click **Save** on Configuration, then **Publish** in the review window.
 - **MCP server:** call `account.previewDesignChange` with your AppID and both objects from the example, `design` and `config` (which carries `bannerStyle`), show the before/after to the site owner, then call `account.updateDesign` with the same objects and the returned `previewToken`.
 
 Never add a `design` block to the install snippet.

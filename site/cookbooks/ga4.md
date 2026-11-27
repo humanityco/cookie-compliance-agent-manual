@@ -42,7 +42,7 @@ View the page source: the banner snippet comes first in `<head>`, the GA4 tag af
 
 ## Gotchas
 
-- **Google Consent Mode on.** Tag Manager and the Google tag then load before the visitor's choice, with Consent Mode defaults that deny the advertising signals (Google's advanced consent mode). Judge by the cookies (`_ga`, `_ga_<container-id>`), not by whether the loader request appears. See [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/).
+- **Google Consent Mode on.** Tag Manager and the Google tag then load before the visitor's choice, with Consent Mode defaults that deny the advertising signals (Google's advanced consent mode). On the New engine this applies when Cookie Compliance's snippet comes first in the page head, the standard GTM snippet or `gtag/js` file and the default dataLayer are used, and **Block trackers added by other scripts** is on; otherwise the loaders stay held until their category is accepted, where the region requires consent first. Judge by the cookies (`_ga`, `_ga_<container-id>`), not by whether the loader request appears. See [Google Consent Mode v2](https://cookie-compliance.co/guides/google-consent-mode-v2/).
 - **Tags inside GTM.** Gate them with consent triggers; on the New engine, recognised tags GTM fires are also held where the region requires consent first. See the [GTM cookie consent guide](https://cookie-compliance.co/guides/google-tag-manager-cookie-consent/).
 
 ## More help

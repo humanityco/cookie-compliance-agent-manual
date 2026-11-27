@@ -401,7 +401,7 @@
       <li><strong>Dashboard:</strong> open the app, go to Configuration, use the <strong>Banner engine</strong> dropdown in the page header, choose <strong>New</strong> and confirm. It goes live right away and is not part of Publish.</li>
       <li><strong>WordPress plugin:</strong> version 3.1.11 or later picks the change up at its next check-in. Nothing to paste.</li>
       <li><strong>Hand-pasted snippet:</strong> go to Integrations, copy the updated snippet (it loads the v2 script) and replace the old one on your site.</li>
-      <li>Once the app is on v2, set <strong>Banner style</strong> to Compact if you want the compact style, then click <strong>Publish Now</strong>. The engine switch goes live when you confirm it, but banner style needs <strong>Publish Now</strong>. Standard is the default.</li>
+      <li>Once the app is on v2, set <strong>Banner style</strong> to Compact if you want the compact style, then click <strong>Save</strong> on Configuration, then <strong>Publish</strong> in the review window. The engine switch goes live when you confirm it, but banner style goes live when you publish. Standard is the default.</li>
     </ol>
     <p>To switch back to v1, choose <strong>Classic</strong> in the same dropdown and confirm. For a hand-pasted snippet, paste the updated snippet again.</p>
     <p>Settings that apply to only one engine, or behave differently on New, are tagged in the dashboard (&quot;Classic engine only&quot;, &quot;New engine only&quot;, &quot;Works differently on New&quot;).</p>
@@ -411,7 +411,7 @@
     <h2>Apply a design to your live banner</h2>
     <p>A <code>design</code> block set on your own page is overwritten by your app's published configuration a moment after the banner loads. To use one of these designs on a live v2 banner:</p>
     <ul>
-      <li><strong>Dashboard:</strong> set the same values in your app's banner design settings, and the Banner style, then click <strong>Publish Now</strong>.</li>
+      <li><strong>Dashboard:</strong> set the same values in your app's banner design settings, and the Banner style, then click <strong>Save</strong> on Configuration, then <strong>Publish</strong> in the review window.</li>
       <li><strong>MCP server:</strong> call <code>account.previewDesignChange</code> with your AppID and both objects from the example, <code>design</code> and <code>config</code> (which carries <code>bannerStyle</code>), show the before/after to the site owner, then call <code>account.updateDesign</code> with the same objects and the returned <code>previewToken</code>.</li>
     </ul>
     <p>Never add a <code>design</code> block to the install snippet.</p>
